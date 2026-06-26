@@ -26,7 +26,7 @@ export default function ContactSection() {
   const inp = 'w-full bg-white border border-gray-200 text-gray-800 text-sm px-4 py-3 rounded-xl outline-none focus:border-[#00d4ff] focus:ring-1 focus:ring-[#00d4ff]/20 transition-all placeholder:text-gray-300'
 
   return (
-    <section id="contact" className="relative bg-[#0a0a0a] py-28 overflow-hidden font-inter">
+    <section id="contact" className="relative bg-[#0a0a0a] py-28 overflow-hidden">
       {/* 글로우 */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[600px] h-[400px] rounded-full opacity-[0.05]"
@@ -39,7 +39,7 @@ export default function ContactSection() {
         <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }} className="text-center mb-16">
           <p className="text-[#00d4ff]/50 text-[10px] tracking-[0.3em] uppercase font-black mb-4">Contact & Partnership</p>
-          <h2 className="font-askan text-white text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight mb-4">
+          <h2 className="font-black text-white text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight mb-4">
             도입 문의
           </h2>
           <p className="text-white/40 text-sm max-w-md mx-auto leading-relaxed">
@@ -97,7 +97,7 @@ export default function ContactSection() {
                   <div className="w-14 h-14 rounded-full bg-[#00ff88]/10 flex items-center justify-center mb-5">
                     <CheckCircle className="w-7 h-7 text-[#00ff88]" />
                   </div>
-                  <h3 className="font-askan text-gray-900 text-2xl mb-2">전송 완료</h3>
+                  <h3 className="font-black text-gray-900 text-2xl mb-2">전송 완료</h3>
                   <p className="text-sm text-gray-400">담당자가 확인 후 연락드리겠습니다.</p>
                 </div>
               ) : (

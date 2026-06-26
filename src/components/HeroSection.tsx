@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Terminal, ChevronRight, Shield, Zap, Activity, Menu, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Terminal, ChevronRight, Shield, Zap, Activity } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import GlobeVisualization from './GlobeVisualization'
 
@@ -26,12 +26,6 @@ const STATS = [
   { icon: Zap,      value: '<0.3s', label: '실시간 분석' },
   { icon: Shield,   value: '2,400+', label: '위협 패턴 DB' },
   { icon: Terminal, value: '6개',    label: 'AI 모듈' },
-]
-
-const NAV_LINKS = [
-  { label: 'HOME',       href: '/' },
-  { label: 'INTEL',      href: '/#intelligence' },
-  { label: 'SOLUTIONS',  href: '/#solutions' },
 ]
 
 // ── 타이핑 텍스트 ─────────────────────────────────────────────────────────────
@@ -72,8 +66,6 @@ function TypingText() {
 // ── 메인 컴포넌트 ─────────────────────────────────────────────────────────────
 
 export default function HeroSection() {
-  const [menuOpen, setMenuOpen] = useState(false)
-
   return (
     <section id="home" className="relative w-full min-h-screen flex flex-col overflow-hidden">
 
@@ -85,91 +77,17 @@ export default function HeroSection() {
         <source src={VIDEO_URL} type="video/mp4" />
       </video>
 
-      {/* ── 오버레이 (군사 계조) ── */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#020b18]/85 via-[#041526]/70 to-[#020b18]/80" />
+      {/* ── 오버레이 ── */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#020b18]/88 via-[#041526]/72 to-[#020b18]/82" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,212,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.02)_1px,transparent_1px)] bg-[length:48px_48px]" />
-
-      {/* 우측 상단 레이더 글로우 */}
       <div className="absolute top-0 right-0 w-[55%] h-[70%] pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at top right, rgba(0,212,255,0.07) 0%, transparent 65%)' }} />
 
-      {/* ── 콘텐츠 레이어 ── */}
-      <div className="relative z-10 flex flex-col flex-1 px-4 sm:px-8 lg:px-12 py-4 sm:py-6">
-
-        {/* ── 네비게이션 ── */}
-        <nav className="flex items-center justify-between">
-
-          {/* 왼쪽 — 브랜드 글래스 필 */}
-          <div className="flex items-center gap-0">
-            <div className="bg-black/25 backdrop-blur-md border border-[#00d4ff]/15 px-4 py-2.5 sm:px-6 sm:py-3.5 flex items-center gap-3">
-              <div className="relative w-6 h-6 shrink-0">
-                <div className="absolute inset-0 bg-[#00d4ff]/20 rotate-45" />
-                <Shield className="absolute inset-0 m-auto w-3.5 h-3.5 text-[#00d4ff]" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-[8px] font-black tracking-[0.3em] text-[#00d4ff]/60 uppercase leading-none">Meta ICT</div>
-                <div className="text-[11px] font-black tracking-[0.1em] text-white uppercase leading-none">K-Defense AI</div>
-              </div>
-              <span className="sm:hidden text-sm font-black text-white tracking-wide">K-Defense AI</span>
-
-              {/* 데스크톱 nav 링크 */}
-              <div className="hidden lg:flex items-center gap-0 ml-8">
-                {NAV_LINKS.map((l) => (
-                  <Link key={l.label} to={l.href}
-                    className="px-3 py-1.5 text-[10px] font-black tracking-[0.12em] text-[#8ab8d4] hover:text-[#00d4ff] transition-colors border-r border-[#00d4ff]/10 last:border-0">
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* 모바일 햄버거 */}
-              <button onClick={() => setMenuOpen((v) => !v)}
-                className="lg:hidden ml-4 text-[#00d4ff]">
-                {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-              </button>
-            </div>
-          </div>
-
-          {/* 오른쪽 — 위협 레벨 + CTA */}
-          <div className="hidden sm:flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-3 py-2 border border-[#ff2d55]/30 bg-[#ff2d55]/10 backdrop-blur-sm">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#ff2d55] animate-pulse" />
-              <span className="text-[8px] font-black tracking-[0.15em] text-[#ff2d55]">THREAT: HIGH</span>
-            </div>
-            <Link to="/command"
-              className="flex items-center gap-1.5 px-4 py-2.5 bg-[#00d4ff] text-[#020b18] text-[9px] font-black tracking-[0.12em] uppercase hover:bg-[#00eeff] transition-colors">
-              <Terminal className="w-3 h-3" /> 지휘 센터
-            </Link>
-          </div>
-        </nav>
-
-        {/* ── 모바일 메뉴 ── */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              className="lg:hidden absolute top-[4.5rem] left-4 right-4 bg-[#020b18]/95 backdrop-blur-xl border border-[#00d4ff]/15 z-20 p-4">
-              {[...NAV_LINKS,
-                { label: '무기DB', href: '/weapons' },
-                { label: 'COMMAND', href: '/command' },
-                { label: '게시판', href: '/board' },
-              ].map((l) => (
-                <Link key={l.label} to={l.href} onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 py-2.5 text-[11px] font-black tracking-[0.12em] text-[#8ab8d4] hover:text-[#00d4ff] border-b border-[#0a3050] transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#00d4ff]/40" /> {l.label}
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* 모바일 스페이서 */}
-        <div className="flex-1 min-h-[2rem]" />
+      {/* ── 콘텐츠 레이어 — 전역 Navbar 높이(AlertTicker 28px + Navbar 56px) 아래부터 시작 ── */}
+      <div className="relative z-10 flex flex-col flex-1 px-4 sm:px-8 lg:px-12 pt-[calc(1.75rem+3.5rem+1.5rem)] pb-6 sm:pb-10 lg:pb-14">
 
         {/* ── 메인 콘텐츠 ── */}
-        <div className="flex flex-col xl:flex-row xl:items-end gap-8 pb-6 sm:pb-10 lg:pb-14">
+        <div className="flex flex-col xl:flex-row xl:items-end gap-8 mt-auto">
 
           {/* 왼쪽 컬럼 */}
           <div className="flex-1">

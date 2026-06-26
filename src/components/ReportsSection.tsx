@@ -58,7 +58,7 @@ export default function ReportsSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="reports" className="relative bg-[#f8f6f2] py-28 overflow-hidden font-inter">
+    <section id="reports" className="relative bg-[#f8f6f2] py-28 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/15 to-transparent" />
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -69,7 +69,7 @@ export default function ReportsSection() {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
           <div>
             <p className="text-gray-400 text-[10px] tracking-[0.3em] uppercase font-black mb-4">Intelligence Reports</p>
-            <h2 className="font-askan text-gray-900 text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight">
+            <h2 className="font-black text-gray-900 text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight">
               최신 보고서
             </h2>
           </div>

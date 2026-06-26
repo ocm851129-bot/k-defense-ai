@@ -59,7 +59,7 @@ export default function SolutionsSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="solutions" className="relative bg-[#0a0a0a] py-28 overflow-hidden font-inter">
+    <section id="solutions" className="relative bg-[#0a0a0a] py-28 overflow-hidden">
       {/* 배경 글로우 */}
       <div className="absolute bottom-0 left-0 w-[500px] h-[400px] opacity-[0.04] pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at bottom left, #c084fc, transparent)' }} />
@@ -73,7 +73,7 @@ export default function SolutionsSection() {
           transition={{ duration: 0.7 }} className="mb-16">
           <p className="text-[#00d4ff]/50 text-[10px] tracking-[0.3em] uppercase font-black mb-4">Defense Solutions</p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="font-askan text-white text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight max-w-xl">
+            <h2 className="font-black text-white text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight max-w-xl">
               핵심 방산 AI 솔루션
             </h2>
             <p className="text-white/35 text-sm max-w-xs leading-relaxed sm:text-right">
@@ -107,7 +107,7 @@ export default function SolutionsSection() {
                   <p className="text-[9px] font-bold tracking-[0.15em] text-white/30 uppercase mb-1.5">
                     {sol.subtitle}
                   </p>
-                  <h3 className="font-askan text-white text-xl mb-3 group-hover:text-white transition-colors leading-tight">
+                  <h3 className="font-black text-white text-xl mb-3 group-hover:text-white transition-colors leading-tight">
                     {sol.title}
                   </h3>
                   <p className="text-white/50 text-sm leading-relaxed mb-5 group-hover:text-white/65 transition-colors">

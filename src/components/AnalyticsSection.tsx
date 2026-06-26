@@ -40,7 +40,7 @@ export default function AnalyticsSection() {
   const maxVal = Math.max(...CHART_DATA)
 
   return (
-    <section id="analytics" className="relative bg-[#f8f6f2] py-28 overflow-hidden font-inter">
+    <section id="analytics" className="relative bg-[#f8f6f2] py-28 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/20 to-transparent" />
 
       <div ref={ref} className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -49,7 +49,7 @@ export default function AnalyticsSection() {
         <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }} className="text-center mb-16">
           <p className="text-gray-400 text-[10px] tracking-[0.3em] uppercase font-black mb-4">Analytics & Performance</p>
-          <h2 className="font-askan text-gray-900 text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight">
+          <h2 className="font-black text-gray-900 text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight">
             AI 분석 성능 지표
           </h2>
           <p className="mt-4 text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
@@ -64,7 +64,7 @@ export default function AnalyticsSection() {
               initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 text-center shadow-sm">
-              <div className="font-askan text-3xl sm:text-4xl mb-3">
+              <div className="font-black text-3xl sm:text-4xl mb-3">
                 <CountUp to={s.value} display={s.display} accent={s.accent} inView={inView} />
               </div>
               <p className="text-gray-500 text-xs sm:text-sm">{s.label}</p>

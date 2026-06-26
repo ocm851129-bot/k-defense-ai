@@ -46,7 +46,7 @@ export default function IntelligenceSection() {
   }, [alerts])
 
   return (
-    <section id="intelligence" className="relative bg-[#0a0a0a] py-28 overflow-hidden font-inter">
+    <section id="intelligence" className="relative bg-[#0a0a0a] py-28 overflow-hidden">
       {/* 상단 청록 글로우 */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%)' }} />
@@ -61,7 +61,7 @@ export default function IntelligenceSection() {
             <p className="text-[#00d4ff]/50 text-[10px] tracking-[0.3em] uppercase font-black mb-3">
               Intelligence Center
             </p>
-            <h2 className="font-askan text-white text-[2rem] sm:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight">
+            <h2 className="font-black text-white text-[2rem] sm:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight">
               실시간 위협 인텔리전스
             </h2>
             <p className="mt-3 text-white/40 text-sm max-w-md leading-relaxed">
