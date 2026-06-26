@@ -1,172 +1,128 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { TrendingUp, Database, Cpu, Globe } from 'lucide-react'
 
-type StatItem = {
-  icon: typeof Database
-  value: number
-  suffix: string
-  label: string
-  unit: string
-  color: string
-  decimal?: number
-  displayFn: (n: number) => string
-}
-
-const STATS: StatItem[] = [
-  {
-    icon: Database,
-    value: 487,
-    suffix: '',
-    label: '일일 분석 데이터포인트',
-    unit: '십만 건',
-    color: '#00d4ff',
-    displayFn: (n) => `${n * 10}만+`,
-  },
-  {
-    icon: TrendingUp,
-    value: 997,
-    suffix: '%',
-    label: '위협 탐지 정확도',
-    unit: '',
-    color: '#00ff88',
-    displayFn: (n) => `${(n / 10).toFixed(1)}%`,
-  },
-  {
-    icon: Cpu,
-    value: 3,
-    suffix: 's',
-    label: '평균 응답 시간',
-    unit: '',
-    color: '#ffcc00',
-    displayFn: (n) => `0.${n}s`,
-  },
-  {
-    icon: Globe,
-    value: 34,
-    suffix: '',
-    label: '모니터링 구역',
-    unit: '개',
-    color: '#ff6b35',
-    displayFn: (n) => `${n}개`,
-  },
+const STATS = [
+  { value: 94,  suffix: '%', label: 'feel calmer within 2 weeks',       accent: '#c4b5a0' },
+  { value: 87,  suffix: '%', label: 'reduction in anxiety symptoms',     accent: '#a0b5a4' },
+  { value: 4.9, suffix: '★', label: 'average session rating',            accent: '#b5a0c4', decimal: true },
+  { value: 50,  suffix: 'K+', label: 'guided sessions completed',        accent: '#c4b5a0' },
 ]
 
-const CHART_DATA = [62, 45, 78, 55, 88, 72, 91, 68, 84, 76, 93, 87]
-const MONTHS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+const TESTIMONIAL_STRIP = [
+  '"Finally, something that actually helps."',
+  '"Like a therapist in my pocket."',
+  '"I understand myself so much better now."',
+  '"The 3am support changed everything for me."',
+  '"Aurai noticed patterns I couldn\'t see."',
+]
 
-function AnimatedStat({ stat, inView }: { stat: StatItem; inView: boolean }) {
-  const [count, setCount] = useState(0)
-  const Icon = stat.icon
+function CountUp({ to, suffix, decimal, accent, inView }: {
+  to: number; suffix: string; decimal?: boolean; accent: string; inView: boolean
+}) {
+  const [val, setVal] = useState(0)
 
   useEffect(() => {
     if (!inView) return
-    let startTime: number
-    const duration = 2200
-    const step = (ts: number) => {
-      if (!startTime) startTime = ts
-      const progress = Math.min((ts - startTime) / duration, 1)
-      const ease = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(ease * stat.value))
-      if (progress < 1) requestAnimationFrame(step)
+    let start: number
+    const duration = 1800
+    const raf = (ts: number) => {
+      if (!start) start = ts
+      const p = Math.min((ts - start) / duration, 1)
+      const ease = 1 - Math.pow(1 - p, 3)
+      setVal(parseFloat((ease * to).toFixed(decimal ? 1 : 0)))
+      if (p < 1) requestAnimationFrame(raf)
     }
-    requestAnimationFrame(step)
-  }, [inView, stat.value])
+    requestAnimationFrame(raf)
+  }, [inView, to, decimal])
 
   return (
-    <div className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/10 p-6 glow-border text-center">
-      <Icon className="w-5 h-5 mx-auto mb-4" style={{ color: stat.color }} />
-      <div className="text-3xl font-black number-mono mb-1" style={{ color: stat.color }}>
-        {stat.displayFn(count)}
-      </div>
-      <div className="text-[10px] font-bold tracking-[0.1em] text-[#4a7a9b] uppercase leading-tight">
-        {stat.label}
-      </div>
-    </div>
+    <span style={{ color: accent }}>
+      {decimal ? val.toFixed(1) : val}{suffix}
+    </span>
   )
 }
 
 export default function AnalyticsSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const maxVal = Math.max(...CHART_DATA)
 
   return (
-    <section id="analytics" className="relative py-24">
-      <div className="absolute inset-0 grid-bg opacity-50" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020b18] via-[#041526]/30 to-[#020b18]" />
+    <section id="analytics" className="relative bg-[#f8f6f2] py-28 overflow-hidden font-inter">
+      {/* Warm top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c4b5a0]/40 to-transparent" />
 
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14 text-center"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[#00d4ff]" />
-            <span className="text-[10px] font-black tracking-[0.3em] text-[#00d4ff] uppercase">Analytics & Performance</span>
-            <div className="w-8 h-px bg-[#00d4ff]" />
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white">
-            AI <span className="text-[#00d4ff] glow-text">분석</span> 성능 지표
+          <p className="text-gray-400 text-xs sm:text-sm tracking-[0.25em] uppercase mb-4 font-medium">
+            The science
+          </p>
+          <h2 className="font-askan text-gray-900 text-[2rem] sm:text-[3rem] md:text-[3.75rem] leading-[1.05] tracking-tight">
+            Results that speak for themselves.
           </h2>
+          <p className="mt-5 text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            Built on decades of clinical research. Validated by therapists. Felt by real people.
+          </p>
         </motion.div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {STATS.map((stat, i) => (
+        {/* Stats grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20">
+          {STATS.map((s, i) => (
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
+              key={s.label}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 text-center shadow-sm"
             >
-              <AnimatedStat stat={stat} inView={inView} />
+              <div className="font-askan text-3xl sm:text-4xl lg:text-5xl mb-3 leading-none">
+                <CountUp to={s.value} suffix={s.suffix} decimal={s.decimal} accent={s.accent} inView={inView} />
+              </div>
+              <p className="text-gray-500 text-xs sm:text-sm leading-snug">{s.label}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Chart */}
+        {/* Scrolling quote strip */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/10 p-6 glow-border"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="relative overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <div className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-1">
-                Monthly Threat Activity Index
-              </div>
-              <div className="text-xs text-[#4a7a9b]">2025년 위협 활동 지수 추이</div>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-[#00d4ff]" />
-              <span className="text-[10px] text-[#4a7a9b]">위협 활동 지수</span>
-            </div>
-          </div>
-
-          <div className="flex items-end gap-2 h-40">
-            {CHART_DATA.map((val, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={inView ? { height: `${(val / maxVal) * 100}%` } : { height: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 + i * 0.05, ease: 'easeOut' }}
-                  className="w-full rounded-t-sm relative overflow-hidden"
-                  style={{
-                    background: `linear-gradient(180deg, #00d4ff, #00d4ff44)`,
-                    minHeight: 4,
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/10" />
-                </motion.div>
-                <span className="text-[8px] text-[#4a7a9b] font-mono">{MONTHS[i]}</span>
-              </div>
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#f8f6f2] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#f8f6f2] to-transparent z-10" />
+          <div className="flex gap-12 animate-[scroll_30s_linear_infinite] whitespace-nowrap">
+            {[...TESTIMONIAL_STRIP, ...TESTIMONIAL_STRIP].map((q, i) => (
+              <span key={i} className="text-gray-400 text-sm sm:text-base italic shrink-0">{q}</span>
             ))}
           </div>
+        </motion.div>
+
+        {/* Trust badges */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="flex flex-wrap justify-center gap-4 mt-16"
+        >
+          {[
+            'Built with licensed therapists',
+            'HIPAA-compliant infrastructure',
+            'End-to-end encrypted sessions',
+            'No data sold — ever',
+          ].map((badge) => (
+            <span key={badge}
+              className="bg-white border border-gray-100 text-gray-500 text-xs px-4 py-2 rounded-full shadow-sm">
+              {badge}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>

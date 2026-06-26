@@ -1,211 +1,104 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { AlertTriangle, CheckCircle, Clock, TrendingUp, Globe, Cpu, Eye, Lock, ChevronRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { useAlerts, LEVEL_COLORS } from '../contexts/AlertContext'
 
-const INITIAL_EVENTS = [
-  { time: '14:32:07', type: 'ALERT', msg: '비정상 신호 패턴 탐지 — 구역 7-B', icon: AlertTriangle, color: '#ff2d55' },
-  { time: '14:31:44', type: 'INFO', msg: 'AI 모델 v3.8 업데이트 완료', icon: CheckCircle, color: '#00ff88' },
-  { time: '14:30:19', type: 'SCAN', msg: '해상 이동 물체 패턴 분석 중...', icon: Clock, color: '#00d4ff' },
-  { time: '14:29:55', type: 'ALERT', msg: '전자기 간섭 이상 감지 — L 대역', icon: AlertTriangle, color: '#ffcc00' },
-  { time: '14:28:33', type: 'INFO', msg: '위성 데이터 동기화 완료 (KSat-12)', icon: CheckCircle, color: '#00ff88' },
-  { time: '14:27:11', type: 'TREND', msg: '북쪽 구역 활동 빈도 +34% 상승', icon: TrendingUp, color: '#ff6b35' },
+const STEPS = [
+  {
+    number: '01',
+    title: 'Share your world',
+    desc: 'Tell Aurai how you feel — what you\'re carrying, what keeps you up at night. There\'s no judgment, only understanding.',
+    accent: '#c4b5a0',
+    detail: 'Voice, text, or guided prompts — you choose how to show up.',
+  },
+  {
+    number: '02',
+    title: 'Aurai learns you',
+    desc: 'Built on frameworks from leading therapists, Aurai maps your emotional patterns and adapts to your unique rhythm over time.',
+    accent: '#a0b5a4',
+    detail: 'Powered by evidence-based CBT, DBT, and mindfulness science.',
+  },
+  {
+    number: '03',
+    title: 'Always there',
+    desc: 'At 3am or 3pm — get real-time support, guided sessions, and gentle insights exactly when you need them most.',
+    accent: '#b5a0c4',
+    detail: 'No appointments. No waiting rooms. No judgment.',
+  },
 ]
-
-const THREAT_LEVELS = [
-  { region: '북방 경계선', level: 'HIGH', score: 87, color: '#ff2d55', href: '/sol/01' },
-  { region: '해상 감시 구역', level: 'MED', score: 52, color: '#ffcc00', href: '/sol/05' },
-  { region: '사이버 방어망', level: 'LOW', score: 23, color: '#00ff88', href: '/sol/02' },
-  { region: '공중 감시 레이더', level: 'MED', score: 61, color: '#ffcc00', href: '/sol/01' },
-  { region: '전자전 모니터링', level: 'HIGH', score: 79, color: '#ff6b35', href: '/sol/04' },
-]
-
-const AI_MODULES = [
-  { icon: Globe, name: '지역 위협 분석', desc: '34개 모니터링 구역', active: true, href: '/sol/03' },
-  { icon: Cpu, name: '패턴 인식 엔진', desc: 'LSTM 이상 탐지', active: true, href: '/sol/01' },
-  { icon: Eye, name: '광학 인텔리전스', desc: '위성/드론 AI 분석', active: false, href: '/sol/05' },
-  { icon: Lock, name: '사이버 방어 AI', desc: '실시간 침투 차단', active: true, href: '/sol/02' },
-]
-
-function LiveEventFeed() {
-  const { alerts } = useAlerts()
-  const [events, setEvents] = useState(INITIAL_EVENTS)
-
-  useEffect(() => {
-    if (alerts.length > 0) {
-      const latest = alerts[0]
-      const icon = latest.level === 'CRITICAL' || latest.level === 'HIGH' ? AlertTriangle
-        : latest.level === 'INFO' ? CheckCircle : TrendingUp
-      const newEvent = {
-        time: latest.timestamp,
-        type: latest.level,
-        msg: `[${latest.source}] ${latest.title} — ${latest.message}`,
-        icon,
-        color: LEVEL_COLORS[latest.level],
-      }
-      setEvents((prev) => [newEvent, ...prev].slice(0, 8))
-    }
-  }, [alerts])
-
-  return (
-    <div className="bg-[#041526]/80 border border-[#00d4ff]/10 clip-corner p-5 h-full">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-          <span className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase">Live Event Feed</span>
-        </div>
-        <span className="text-[9px] text-[#4a7a9b] font-mono">AUTO-REFRESH</span>
-      </div>
-      <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
-        {events.map((ev, i) => {
-          const Icon = ev.icon
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className="flex items-start gap-3 py-2 border-b border-[#0a3050]/50 last:border-0"
-            >
-              <Icon className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: ev.color }} />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span
-                    className="text-[8px] font-black tracking-[0.12em] px-1.5 py-0.5"
-                    style={{ color: ev.color, background: `${ev.color}15` }}
-                  >
-                    {ev.type}
-                  </span>
-                  <span className="text-[9px] text-[#4a7a9b] font-mono">{ev.time}</span>
-                </div>
-                <p className="text-[11px] text-[#8ab8d4] leading-tight line-clamp-1">{ev.msg}</p>
-              </div>
-            </motion.div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
-function ThreatMatrix() {
-  return (
-    <div className="bg-[#041526]/80 border border-[#00d4ff]/10 clip-corner p-5">
-      <div className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-4">Threat Assessment Matrix</div>
-      <div className="space-y-3">
-        {THREAT_LEVELS.map((t) => (
-          <Link key={t.region} to={t.href} className="block group">
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[11px] text-[#8ab8d4] group-hover:text-white transition-colors">{t.region}</span>
-              <div className="flex items-center gap-2">
-                <span className="text-[9px] font-black" style={{ color: t.color }}>{t.level}</span>
-                <span className="text-[10px] font-mono text-white">{t.score}</span>
-                <ChevronRight className="w-3 h-3 text-[#4a7a9b] group-hover:text-[#00d4ff] transition-colors" />
-              </div>
-            </div>
-            <div className="h-1.5 bg-[#0a3050] rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${t.score}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className="h-full rounded-full"
-                style={{ background: `linear-gradient(90deg, ${t.color}88, ${t.color})` }}
-              />
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function AIModules() {
-  return (
-    <div className="bg-[#041526]/80 border border-[#00d4ff]/10 clip-corner p-5">
-      <div className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-4">AI Module Status</div>
-      <div className="grid grid-cols-2 gap-3">
-        {AI_MODULES.map((mod) => {
-          const Icon = mod.icon
-          return (
-            <Link
-              key={mod.name}
-              to={mod.href}
-              className={`p-3 border rounded transition-all group ${
-                mod.active
-                  ? 'border-[#00d4ff]/20 bg-[#00d4ff]/5 hover:border-[#00d4ff]/40'
-                  : 'border-[#0a3050] bg-transparent opacity-50'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <Icon className={`w-4 h-4 ${mod.active ? 'text-[#00d4ff]' : 'text-[#4a7a9b]'}`} />
-                <div
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    mod.active ? 'bg-[#00ff88] animate-pulse' : 'bg-[#4a7a9b]'
-                  }`}
-                />
-              </div>
-              <div className="text-[10px] font-bold text-white mb-0.5 group-hover:text-[#00d4ff] transition-colors">{mod.name}</div>
-              <div className="text-[9px] text-[#4a7a9b]">{mod.desc}</div>
-            </Link>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
 export default function IntelligenceSection() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="intelligence" className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020b18] via-[#041526]/40 to-[#020b18]" />
+    <section id="intelligence" className="relative bg-[#0a0a0a] py-28 overflow-hidden font-inter">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full opacity-[0.06]"
+        style={{ background: 'radial-gradient(ellipse, #c4b5a0 0%, transparent 70%)' }} />
 
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-px bg-[#00d4ff]" />
-                <span className="text-[10px] font-black tracking-[0.3em] text-[#00d4ff] uppercase">Intelligence Center</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
-                실시간 <span className="text-[#00d4ff] glow-text">인텔리전스</span> 대시보드
-              </h2>
-              <p className="mt-3 text-sm text-[#4a7a9b] max-w-lg">
-                AI 엔진이 수집·분석·분류한 위협 데이터를 실시간으로 시각화합니다.
-              </p>
-            </div>
-            <Link
-              to="/command"
-              className="hidden md:flex items-center gap-2 clip-corner-sm px-4 py-2 border border-[#00d4ff]/30 text-[#00d4ff] text-[10px] font-black tracking-[0.1em] uppercase hover:bg-[#00d4ff]/10 transition-all"
-            >
-              지휘 센터 <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+          <p className="text-white/40 text-xs sm:text-sm tracking-[0.25em] uppercase mb-4 font-medium">
+            How it works
+          </p>
+          <h2 className="font-askan text-white text-[2rem] sm:text-[3rem] md:text-[3.75rem] leading-[1.05] tracking-tight max-w-2xl mx-auto">
+            Calm is a practice. We make it possible.
+          </h2>
         </motion.div>
 
+        {/* Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: i * 0.15 }}
+              className="relative group"
+            >
+              {/* Connector line */}
+              {i < STEPS.length - 1 && (
+                <div className="hidden md:block absolute top-8 left-full w-full h-px z-0"
+                  style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0.08), transparent)' }} />
+              )}
+
+              <div className="relative bg-white/[0.03] border border-white/10 rounded-2xl p-7 sm:p-8 hover:bg-white/[0.05] transition-all duration-500">
+                {/* Step number */}
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="font-askan text-[2.5rem] leading-none" style={{ color: step.accent }}>
+                    {step.number}
+                  </span>
+                  <div className="h-px flex-1" style={{ background: `${step.accent}30` }} />
+                </div>
+
+                <h3 className="font-askan text-white text-xl sm:text-2xl mb-3 leading-tight">
+                  {step.title}
+                </h3>
+                <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-5">
+                  {step.desc}
+                </p>
+                <p className="text-white/30 text-xs leading-relaxed border-t border-white/8 pt-4">
+                  {step.detail}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-4"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="text-center mt-16"
         >
-          <div className="lg:col-span-1">
-            <LiveEventFeed />
-          </div>
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            <ThreatMatrix />
-            <AIModules />
-          </div>
+          <p className="text-white/30 text-sm">Designed with clinical psychologists · Available 24/7 · No subscription lock-in</p>
         </motion.div>
       </div>
     </section>

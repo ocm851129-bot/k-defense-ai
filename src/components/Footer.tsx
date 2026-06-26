@@ -1,105 +1,83 @@
-import { Shield, Terminal } from 'lucide-react'
-import { Link } from 'react-router-dom'
+function AuraiLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 256 256" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M 228 0 C 172.772 0 128 44.772 128 100 L 128 0 L 0 0 L 0 28 C 0 83.228 44.772 128 100 128 L 0 128 L 0 256 L 28 256 C 83.228 256 128 211.228 128 156 L 128 256 L 256 256 L 256 228 C 256 172.772 211.228 128 156 128 L 256 128 L 256 0 Z" />
+    </svg>
+  )
+}
 
-const SOL_LINKS = [
-  { code: 'SOL-01', label: '전장 AI', href: '/sol/01' },
-  { code: 'SOL-02', label: '사이버 방어', href: '/sol/02' },
-  { code: 'SOL-03', label: 'GEOINT', href: '/sol/03' },
-  { code: 'SOL-04', label: 'SIGINT', href: '/sol/04' },
-  { code: 'SOL-05', label: 'IMINT', href: '/sol/05' },
-  { code: 'SOL-06', label: '의사결정 AI', href: '/sol/06' },
+const FOOTER_LINKS = [
+  { label: 'How it works', href: '#intelligence' },
+  { label: 'Features', href: '#solutions' },
+  { label: 'Testimonials', href: '#reports' },
+  { label: 'Join waitlist', href: '#contact' },
+]
+
+const LEGAL_LINKS = [
+  { label: 'Privacy Policy', href: '#' },
+  { label: 'Terms of Service', href: '#' },
+  { label: 'Cookie Policy', href: '#' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[#00d4ff]/08 mt-8">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/30 to-transparent" />
+    <footer className="bg-[#0a0a0a] border-t border-white/[0.06] font-inter">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-16">
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-14">
+
           {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-8 h-8">
-                <div className="absolute inset-0 bg-[#00d4ff]/15 rotate-45" />
-                <Shield className="absolute inset-0 m-auto w-4 h-4 text-[#00d4ff]" />
-              </div>
-              <div>
-                <div className="text-[9px] font-bold tracking-[0.3em] text-[#00d4ff]/60 uppercase">Meta ICT</div>
-                <div className="text-[13px] font-black tracking-[0.12em] text-white uppercase">K-Defense AI Intelligence</div>
-              </div>
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-2.5 mb-5">
+              <AuraiLogo className="w-6 h-6 text-white" />
+              <span className="font-askan text-white text-xl tracking-wide">Aurai</span>
             </div>
-            <p className="text-[12px] text-[#4a7a9b] leading-relaxed max-w-xs mb-4">
-              메타아이씨티의 AI 기술로 대한민국 방위 인텔리전스를 혁신합니다. 6대 AI 시스템이 24/7 실시간 분석을 제공합니다.
+            <p className="text-white/40 text-sm leading-relaxed max-w-xs">
+              Your always-on wellness companion. Built by leading therapists. Available whenever you need it.
             </p>
-            <Link
-              to="/command"
-              className="clip-corner-sm inline-flex items-center gap-1.5 px-4 py-2 bg-[#00d4ff]/10 border border-[#00d4ff]/30 text-[#00d4ff] text-[10px] font-black tracking-[0.12em] uppercase hover:bg-[#00d4ff]/20 transition-all"
-            >
-              <Terminal className="w-3 h-3" />
-              지휘 센터 접속
-            </Link>
-          </div>
-
-          {/* Solutions */}
-          <div>
-            <div className="text-[9px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-4">AI 솔루션</div>
-            <ul className="space-y-2">
-              {SOL_LINKS.map((s) => (
-                <li key={s.code}>
-                  <Link
-                    to={s.href}
-                    className="flex items-center gap-2 text-[11px] text-[#4a7a9b] hover:text-[#00d4ff] transition-colors"
-                  >
-                    <span className="text-[8px] font-black text-[#00d4ff]/40">{s.code}</span>
-                    {s.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Navigation */}
           <div>
-            <div className="text-[9px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-4">플랫폼</div>
-            <ul className="space-y-2">
-              {[
-                { label: '메인', href: '/' },
-                { label: '인텔리전스 센터', href: '/#intelligence' },
-                { label: '성능 분석', href: '/#analytics' },
-                { label: '보고서', href: '/#reports' },
-                { label: '도입 문의', href: '/#contact' },
-                { label: '통합 지휘 센터', href: '/command' },
-              ].map((item) => (
-                <li key={item.label}>
-                  <Link
-                    to={item.href}
-                    className="text-[11px] text-[#4a7a9b] hover:text-[#00d4ff] transition-colors block"
-                  >
-                    {item.label}
-                  </Link>
+            <p className="text-white/25 text-[10px] tracking-[0.2em] uppercase font-medium mb-5">Navigate</p>
+            <ul className="space-y-3">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href}
+                    className="text-white/50 text-sm hover:text-white/80 transition-colors">
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
+
+          {/* Waitlist CTA */}
+          <div>
+            <p className="text-white/25 text-[10px] tracking-[0.2em] uppercase font-medium mb-5">Get early access</p>
+            <p className="text-white/40 text-sm mb-4 leading-relaxed">
+              Limited spots available for our beta launch.
+            </p>
+            <a href="#contact"
+              className="inline-block bg-white text-gray-900 text-sm font-medium px-6 py-3 rounded-full hover:bg-white/90 transition-colors">
+              Join the list
+            </a>
+          </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-6 border-t border-[#0a3050] flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-              <span className="text-[9px] font-bold text-[#00ff88] uppercase tracking-[0.15em]">All Systems Operational</span>
-            </div>
-            <span className="text-[#2a4a5e] text-[9px]">·</span>
-            <span className="text-[9px] font-mono text-[#4a7a9b]">v2.4.0</span>
+        <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-white/25 text-xs">
+            © 2026 Aurai. All rights reserved. Made with care.
+          </p>
+          <div className="flex items-center gap-6">
+            {LEGAL_LINKS.map((link) => (
+              <a key={link.label} href={link.href}
+                className="text-white/25 text-xs hover:text-white/50 transition-colors">
+                {link.label}
+              </a>
+            ))}
           </div>
-          <p className="text-[10px] text-[#2a4a5e]">
-            © 2026 메타아이씨티 주식회사. All rights reserved.
-          </p>
-          <p className="text-[9px] font-mono text-[#2a4a5e]">
-            CLASSIFIED SYSTEM // AUTHORIZED ACCESS ONLY
-          </p>
         </div>
       </div>
     </footer>
