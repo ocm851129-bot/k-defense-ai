@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { ChevronRight, Activity, Shield, Zap, Terminal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ParticleField from './ParticleField'
-import WorldThreatMap from './WorldThreatMap'
+import GlobeVisualization from './GlobeVisualization'
 
 const TYPING_TEXTS = [
   'AI 기반 방위 인텔리전스 플랫폼',
@@ -230,21 +230,18 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: World Threat Map */}
+          {/* Right: 3D Globe */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden xl:block"
+            transition={{ duration: 1.0, delay: 0.3 }}
+            className="hidden xl:flex justify-center items-center"
           >
-            <div className="clip-corner bg-[#041526]/60 border border-[#00d4ff]/15 overflow-hidden glow-border">
-              <div className="px-4 pt-4 pb-2 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-                <span className="text-[9px] font-black tracking-[0.2em] text-[#00d4ff] uppercase">
-                  Global Threat Monitor // Live
-                </span>
-              </div>
-              <WorldThreatMap />
+            <div className="relative">
+              {/* 외부 글로우 링 */}
+              <div className="absolute inset-0 rounded-full pointer-events-none"
+                style={{ boxShadow: '0 0 80px 20px rgba(0,212,255,0.08), 0 0 160px 40px rgba(0,212,255,0.04)' }} />
+              <GlobeVisualization />
             </div>
           </motion.div>
         </div>
