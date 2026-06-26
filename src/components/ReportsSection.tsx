@@ -1,51 +1,57 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { ChevronRight, Clock } from 'lucide-react'
 
-const TESTIMONIALS = [
+const REPORTS = [
   {
-    quote: 'I\'ve tried every meditation app out there. Aurai is the first thing that actually felt like someone was listening.',
-    name: 'Maya R.',
-    role: 'Graphic designer, 29',
-    accent: '#c4b5a0',
+    category: '위협 분석', date: '2026-06-18',
+    title: '2026 상반기 사이버 위협 동향 분석',
+    desc: 'AI 기반 탐지 엔진이 분석한 국방 분야 사이버 위협 패턴과 대응 전략을 종합합니다.',
+    tags: ['사이버보안', 'AI분석'],
+    accent: '#ff2d55', level: 'RESTRICTED',
   },
   {
-    quote: 'At 3am during a panic attack, I didn\'t know what to do. Aurai walked me through it step by step. I felt safe.',
-    name: 'James K.',
-    role: 'Software engineer, 34',
-    accent: '#a0b5a4',
+    category: '지역 인텔리전스', date: '2026-06-15',
+    title: '한반도 주변 전략 환경 변화 및 AI 모니터링',
+    desc: '위성 데이터와 오픈소스 인텔리전스를 AI로 융합 분석한 전략 환경 평가서입니다.',
+    tags: ['지역분석', 'GEOINT'],
+    accent: '#00d4ff', level: 'CLASSIFIED',
   },
   {
-    quote: 'It noticed patterns in my mood that I completely missed. That awareness alone has been life-changing.',
-    name: 'Priya S.',
-    role: 'Teacher, 41',
-    accent: '#b5a0c4',
+    category: '기술 동향', date: '2026-06-12',
+    title: '방산 AI 기술 트렌드: 자율 시스템과 융합',
+    desc: '글로벌 방산 AI 기술 동향과 메타아이씨티 R&D 방향성을 정리한 기술 보고서입니다.',
+    tags: ['AI기술', '자율시스템'],
+    accent: '#00ff88', level: 'INTERNAL',
   },
   {
-    quote: 'I was skeptical that AI could help with mental health. Two months in, I\'m a complete convert.',
-    name: 'Daniel W.',
-    role: 'Marketing manager, 27',
-    accent: '#c4b5a0',
+    category: '신호 인텔리전스', date: '2026-06-10',
+    title: 'AI 신호 분류 성능 평가 — 전자전 환경',
+    desc: 'LSTM 기반 신호 분류 모델의 전자전 환경 적용 성능 테스트 결과와 개선 방안을 담습니다.',
+    tags: ['SIGINT', '전자전'],
+    accent: '#ffcc00', level: 'INTERNAL',
   },
   {
-    quote: 'My therapist actually recommended Aurai as a complement to our sessions. That tells you everything.',
-    name: 'Sofia M.',
-    role: 'Graduate student, 24',
-    accent: '#a0b5a4',
+    category: '작전 분석', date: '2026-06-07',
+    title: 'AI 기반 의사결정 지원 시스템 운용 리포트',
+    desc: '전방 지휘소에 배치된 AI 의사결정 지원 시스템의 운용 효과와 개선 사항을 보고합니다.',
+    tags: ['의사결정AI', '지휘통제'],
+    accent: '#ff6b35', level: 'RESTRICTED',
   },
   {
-    quote: 'The guided sessions feel genuinely warm — not robotic at all. Like talking to a calm, wise friend.',
-    name: 'Tom L.',
-    role: 'Freelance writer, 38',
-    accent: '#b5a0c4',
+    category: '연구 결과', date: '2026-06-03',
+    title: '멀티모달 인텔리전스 융합 알고리즘 연구',
+    desc: '이미지·신호·텍스트 데이터를 통합 처리하는 멀티모달 AI 아키텍처의 연구 성과를 공개합니다.',
+    tags: ['멀티모달AI', '알고리즘'],
+    accent: '#c084fc', level: 'INTERNAL',
   },
 ]
 
-const PRESS = [
-  { name: 'TechCrunch', quote: '"The wellness app we\'ve been waiting for."' },
-  { name: 'Forbes', quote: '"Aurai is setting a new standard for digital mental health."' },
-  { name: 'Wired', quote: '"Thoughtfully built, genuinely useful."' },
-  { name: 'Vogue', quote: '"Self-care, elevated."' },
-]
+const LEVEL_BADGE: Record<string, { color: string; bg: string }> = {
+  RESTRICTED: { color: '#ff2d55', bg: '#ff2d5518' },
+  CLASSIFIED: { color: '#ff6b35', bg: '#ff6b3518' },
+  INTERNAL:   { color: '#00ff88', bg: '#00ff8818' },
+}
 
 export default function ReportsSection() {
   const ref = useRef(null)
@@ -53,77 +59,76 @@ export default function ReportsSection() {
 
   return (
     <section id="reports" className="relative bg-[#f8f6f2] py-28 overflow-hidden font-inter">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c4b5a0]/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/15 to-transparent" />
 
-      <div ref={ref} className="relative max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+        {/* 헤더 */}
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <p className="text-gray-400 text-xs sm:text-sm tracking-[0.25em] uppercase mb-4 font-medium">
-            Voices of healing
-          </p>
-          <h2 className="font-askan text-gray-900 text-[2rem] sm:text-[3rem] md:text-[3.75rem] leading-[1.05] tracking-tight">
-            Real people. Real calm.
-          </h2>
-        </motion.div>
-
-        {/* Testimonial grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm flex flex-col"
-            >
-              {/* Quote mark */}
-              <div className="font-askan text-5xl leading-none mb-4" style={{ color: `${t.accent}60` }}>
-                "
-              </div>
-
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed flex-1 mb-6">
-                {t.quote}
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                {/* Avatar placeholder */}
-                <div className="w-9 h-9 rounded-full flex-shrink-0"
-                  style={{ background: `${t.accent}30` }} />
-                <div>
-                  <div className="text-sm font-medium text-gray-900">{t.name}</div>
-                  <div className="text-xs text-gray-400">{t.role}</div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Press section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
-        >
-          <p className="text-center text-gray-400 text-xs tracking-[0.2em] uppercase mb-8 font-medium">
-            As featured in
-          </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {PRESS.map((p) => (
-              <div key={p.name}
-                className="bg-white rounded-xl border border-gray-100 p-5 text-center shadow-sm">
-                <div className="font-askan text-gray-800 text-lg mb-2">{p.name}</div>
-                <p className="text-gray-400 text-xs leading-relaxed italic">{p.quote}</p>
-              </div>
-            ))}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14">
+          <div>
+            <p className="text-gray-400 text-[10px] tracking-[0.3em] uppercase font-black mb-4">Intelligence Reports</p>
+            <h2 className="font-askan text-gray-900 text-[2rem] sm:text-[3rem] lg:text-[3.75rem] leading-[1.05] tracking-tight">
+              최신 보고서
+            </h2>
           </div>
+          <a href="/board/reports"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+            전체 보기 <ChevronRight className="w-4 h-4" />
+          </a>
         </motion.div>
+
+        {/* 보고서 카드 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {REPORTS.map((r, i) => {
+            const badge = LEVEL_BADGE[r.level]
+            return (
+              <motion.article key={i}
+                initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="group bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md hover:border-gray-200 transition-all cursor-pointer flex flex-col">
+
+                {/* 상단 메타 */}
+                <div className="flex items-center justify-between mb-5">
+                  <span className="text-[9px] font-bold px-2.5 py-1 rounded-full"
+                    style={{ color: r.accent, background: `${r.accent}12`, border: `1px solid ${r.accent}20` }}>
+                    {r.category}
+                  </span>
+                  <span className="text-[8px] font-bold px-2 py-1 rounded"
+                    style={{ color: badge.color, background: badge.bg }}>
+                    {r.level}
+                  </span>
+                </div>
+
+                {/* 날짜 */}
+                <div className="flex items-center gap-1.5 mb-3">
+                  <Clock className="w-3 h-3 text-gray-300" />
+                  <span className="text-[10px] text-gray-400 font-mono">{r.date}</span>
+                </div>
+
+                <h3 className="text-sm font-semibold text-gray-900 mb-2 leading-snug group-hover:text-gray-700 transition-colors line-clamp-2 flex-1">
+                  {r.title}
+                </h3>
+                <p className="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-2">
+                  {r.desc}
+                </p>
+
+                {/* 태그 + 읽기 */}
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                  <div className="flex gap-1.5">
+                    {r.tags.map((t) => (
+                      <span key={t} className="text-[9px] text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">{t}</span>
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-medium text-gray-300 group-hover:text-gray-500 transition-colors flex items-center gap-1">
+                    열람 <ChevronRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </motion.article>
+            )
+          })}
+        </div>
       </div>
     </section>
   )

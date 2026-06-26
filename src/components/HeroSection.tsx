@@ -1,20 +1,71 @@
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Terminal, ChevronRight, Shield, Zap, Activity, Menu, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import GlobeVisualization from './GlobeVisualization'
 
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260618_174853_aac61aa2-0f3f-4cf1-bc78-7f657dd11164.mp4'
 
-const FEATURE_PILLS = ['Smart Therapy', 'Real-time Healing', 'Insights into outcomes']
+const TYPING_TEXTS = [
+  'AI 기반 방위 인텔리전스 플랫폼',
+  '실시간 위협 탐지 시스템',
+  '전략적 안보 분석 솔루션',
+  '차세대 방산 AI 기술',
+]
 
-const NAV_LINKS = ['Story', 'Benefits', 'Connect']
+const STATUS_LINES = [
+  { delay: 0,   text: '> INITIALIZING K-DEFENSE AI INTELLIGENCE PLATFORM...' },
+  { delay: 0.4, text: '> LOADING NEURAL NETWORK MODELS [████████████] 100%' },
+  { delay: 0.8, text: '> ESTABLISHING SECURE CONNECTIONS TO 34 SECTORS...' },
+  { delay: 1.2, text: '> ALL SYSTEMS OPERATIONAL ✓' },
+]
 
-// ── Aurai 핀휠 로고 ───────────────────────────────────────────────────────────
+const STATS = [
+  { icon: Activity, value: '99.7%', label: '탐지 정확도' },
+  { icon: Zap,      value: '<0.3s', label: '실시간 분석' },
+  { icon: Shield,   value: '2,400+', label: '위협 패턴 DB' },
+  { icon: Terminal, value: '6개',    label: 'AI 모듈' },
+]
 
-function AuraiLogo({ className }: { className?: string }) {
+const NAV_LINKS = [
+  { label: 'HOME',       href: '/' },
+  { label: 'INTEL',      href: '/#intelligence' },
+  { label: 'SOLUTIONS',  href: '/#solutions' },
+]
+
+// ── 타이핑 텍스트 ─────────────────────────────────────────────────────────────
+
+function TypingText() {
+  const [idx, setIdx]           = useState(0)
+  const [displayed, setDisplayed] = useState('')
+  const [deleting, setDeleting] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
+
+  useEffect(() => {
+    const target = TYPING_TEXTS[idx]
+    if (!deleting) {
+      if (displayed.length < target.length) {
+        timer.current = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), 55)
+      } else {
+        timer.current = setTimeout(() => setDeleting(true), 2200)
+      }
+    } else {
+      if (displayed.length > 0) {
+        timer.current = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 28)
+      } else {
+        setDeleting(false)
+        setIdx((p) => (p + 1) % TYPING_TEXTS.length)
+      }
+    }
+    return () => clearTimeout(timer.current)
+  }, [displayed, deleting, idx])
+
   return (
-    <svg viewBox="0 0 256 256" className={className} fill="currentColor" aria-hidden="true">
-      <path d="M 228 0 C 172.772 0 128 44.772 128 100 L 128 0 L 0 0 L 0 28 C 0 83.228 44.772 128 100 128 L 0 128 L 0 256 L 28 256 C 83.228 256 128 211.228 128 156 L 128 256 L 256 256 L 256 228 C 256 172.772 211.228 128 156 128 L 256 128 L 256 0 Z" />
-    </svg>
+    <span className="text-[#00d4ff]">
+      {displayed}
+      <span className="animate-[blink_1s_step-end_infinite]">|</span>
+    </span>
   )
 }
 
@@ -22,17 +73,9 @@ function AuraiLogo({ className }: { className?: string }) {
 
 export default function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [email, setEmail]       = useState('')
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!email) return
-    alert(`Thank you! We'll reach out to ${email}`)
-    setEmail('')
-  }
 
   return (
-    <section className="relative w-full h-screen overflow-hidden font-inter">
+    <section id="home" className="relative w-full min-h-screen flex flex-col overflow-hidden">
 
       {/* ── 비디오 배경 ── */}
       <video
@@ -42,123 +85,190 @@ export default function HeroSection() {
         <source src={VIDEO_URL} type="video/mp4" />
       </video>
 
-      {/* ── 콘텐츠 레이어 ── */}
-      <div className="absolute inset-0 z-10 flex flex-col px-4 sm:px-10 lg:px-12 py-4 sm:py-8">
+      {/* ── 오버레이 (군사 계조) ── */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#020b18]/85 via-[#041526]/70 to-[#020b18]/80" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,212,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.02)_1px,transparent_1px)] bg-[length:48px_48px]" />
 
-        {/* ── 내비게이션 ── */}
+      {/* 우측 상단 레이더 글로우 */}
+      <div className="absolute top-0 right-0 w-[55%] h-[70%] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at top right, rgba(0,212,255,0.07) 0%, transparent 65%)' }} />
+
+      {/* ── 콘텐츠 레이어 ── */}
+      <div className="relative z-10 flex flex-col flex-1 px-4 sm:px-8 lg:px-12 py-4 sm:py-6">
+
+        {/* ── 네비게이션 ── */}
         <nav className="flex items-center justify-between">
 
-          {/* 왼쪽 글래스 필 */}
-          <div className="bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 px-4 py-2.5 sm:px-6 sm:py-4 flex items-center">
-            <AuraiLogo className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
-            <span className="font-askan text-white text-base sm:text-xl tracking-wide ml-2">
-              Aurai
-            </span>
-            <button
-              onClick={() => setMenuOpen((v) => !v)}
-              aria-label="메뉴"
-              className="ml-4 sm:ml-32 md:ml-64 lg:ml-96 text-white focus:outline-none"
-            >
-              {menuOpen
-                ? <X className="w-5 h-5" />
-                : <Menu className="w-5 h-5" />
-              }
-            </button>
+          {/* 왼쪽 — 브랜드 글래스 필 */}
+          <div className="flex items-center gap-0">
+            <div className="bg-black/25 backdrop-blur-md border border-[#00d4ff]/15 px-4 py-2.5 sm:px-6 sm:py-3.5 flex items-center gap-3">
+              <div className="relative w-6 h-6 shrink-0">
+                <div className="absolute inset-0 bg-[#00d4ff]/20 rotate-45" />
+                <Shield className="absolute inset-0 m-auto w-3.5 h-3.5 text-[#00d4ff]" />
+              </div>
+              <div className="hidden sm:block">
+                <div className="text-[8px] font-black tracking-[0.3em] text-[#00d4ff]/60 uppercase leading-none">Meta ICT</div>
+                <div className="text-[11px] font-black tracking-[0.1em] text-white uppercase leading-none">K-Defense AI</div>
+              </div>
+              <span className="sm:hidden text-sm font-black text-white tracking-wide">K-Defense AI</span>
+
+              {/* 데스크톱 nav 링크 */}
+              <div className="hidden lg:flex items-center gap-0 ml-8">
+                {NAV_LINKS.map((l) => (
+                  <Link key={l.label} to={l.href}
+                    className="px-3 py-1.5 text-[10px] font-black tracking-[0.12em] text-[#8ab8d4] hover:text-[#00d4ff] transition-colors border-r border-[#00d4ff]/10 last:border-0">
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* 모바일 햄버거 */}
+              <button onClick={() => setMenuOpen((v) => !v)}
+                className="lg:hidden ml-4 text-[#00d4ff]">
+                {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
 
-          {/* 오른쪽 버튼 (데스크톱) */}
-          <button className="hidden sm:block bg-white text-gray-900 font-medium text-sm px-6 py-3 rounded-full hover:bg-white/90 transition-colors">
-            Join the list
-          </button>
+          {/* 오른쪽 — 위협 레벨 + CTA */}
+          <div className="hidden sm:flex items-center gap-2">
+            <div className="flex items-center gap-1.5 px-3 py-2 border border-[#ff2d55]/30 bg-[#ff2d55]/10 backdrop-blur-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#ff2d55] animate-pulse" />
+              <span className="text-[8px] font-black tracking-[0.15em] text-[#ff2d55]">THREAT: HIGH</span>
+            </div>
+            <Link to="/command"
+              className="flex items-center gap-1.5 px-4 py-2.5 bg-[#00d4ff] text-[#020b18] text-[9px] font-black tracking-[0.12em] uppercase hover:bg-[#00eeff] transition-colors">
+              <Terminal className="w-3 h-3" /> 지휘 센터
+            </Link>
+          </div>
         </nav>
 
         {/* ── 모바일 메뉴 ── */}
-        {menuOpen && (
-          <div className="sm:hidden absolute top-[4.5rem] left-4 right-4 bg-black/30 backdrop-blur-xl rounded-2xl p-5 border border-white/10 z-20">
-            <div className="flex flex-col gap-4">
-              {NAV_LINKS.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-white font-medium hover:text-white/80 transition-colors"
-                >
-                  {item}
-                </a>
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="lg:hidden absolute top-[4.5rem] left-4 right-4 bg-[#020b18]/95 backdrop-blur-xl border border-[#00d4ff]/15 z-20 p-4">
+              {[...NAV_LINKS,
+                { label: '무기DB', href: '/weapons' },
+                { label: 'COMMAND', href: '/command' },
+                { label: '게시판', href: '/board' },
+              ].map((l) => (
+                <Link key={l.label} to={l.href} onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2 py-2.5 text-[11px] font-black tracking-[0.12em] text-[#8ab8d4] hover:text-[#00d4ff] border-b border-[#0a3050] transition-colors">
+                  <ChevronRight className="w-3 h-3 text-[#00d4ff]/40" /> {l.label}
+                </Link>
               ))}
-              <button className="w-full mt-2 bg-white text-gray-900 font-medium text-sm px-6 py-3 rounded-full hover:bg-white/90 transition-colors">
-                Join the list
-              </button>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* 모바일 스페이서 */}
-        <div className="flex-1 sm:hidden" />
+        <div className="flex-1 min-h-[2rem]" />
 
         {/* ── 메인 콘텐츠 ── */}
-        <div className="flex flex-col sm:flex-1 sm:flex-row sm:items-end pb-4 sm:pb-12 lg:pb-16 sm:mt-auto gap-4 sm:gap-0">
+        <div className="flex flex-col xl:flex-row xl:items-end gap-8 pb-6 sm:pb-10 lg:pb-14">
 
           {/* 왼쪽 컬럼 */}
-          <div className="flex flex-col gap-4">
+          <div className="flex-1">
 
-            {/* 헤딩 */}
-            <h1 className="font-askan text-white text-[2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] leading-[1.05] tracking-tight max-w-[700px]">
-              Your calm is always within.
-            </h1>
-
-            {/* 서브타이틀 */}
-            <p className="text-white/70 text-xs sm:text-base md:text-lg max-w-[520px] leading-relaxed">
-              Aurai is your always-on wellness companion. Built by leading therapists,
-              it brings you the care and clarity right when you need it.
-            </p>
-
-            {/* 이메일 폼 */}
-            <form
-              onSubmit={handleSubmit}
-              className="relative flex items-center bg-black/30 backdrop-blur-md rounded-full border border-white/10 max-w-[480px]"
-            >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                className="flex-1 bg-transparent text-white placeholder-white/50 text-sm px-4 sm:px-6 py-3 sm:py-4 outline-none min-w-0"
-              />
-              <button
-                type="submit"
-                className="absolute right-1.5 bg-white text-gray-900 text-xs sm:text-sm font-medium px-3 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-white/90 transition-colors whitespace-nowrap"
-              >
-                Join the list
-              </button>
-            </form>
-
-            {/* 피처 필 (모바일) */}
-            <div className="flex sm:hidden flex-wrap gap-2 mt-2">
-              {FEATURE_PILLS.map((pill) => (
-                <span
-                  key={pill}
-                  className="bg-black/30 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/10"
-                >
-                  {pill}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* 오른쪽 컬럼 — 피처 필 (데스크톱) */}
-          <div className="hidden sm:flex flex-col items-end gap-2 self-end ml-auto">
-            {FEATURE_PILLS.map((pill) => (
-              <span
-                key={pill}
-                className="bg-black/30 backdrop-blur-md text-white text-xs sm:text-sm px-4 py-2 rounded-full border border-white/10"
-              >
-                {pill}
+            {/* LIVE 배지 */}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 mb-5">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
+              <span className="text-[9px] font-black tracking-[0.3em] text-[#00ff88] uppercase">
+                System Online · Meta ICT Defense Division
               </span>
-            ))}
+            </motion.div>
+
+            {/* 터미널 부트 라인 */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
+              className="font-mono text-[10px] space-y-1 mb-7">
+              {STATUS_LINES.map((l, i) => (
+                <motion.div key={i}
+                  initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: l.delay, duration: 0.4 }}
+                  className={i === STATUS_LINES.length - 1 ? 'text-[#00ff88]' : 'text-[#4a7a9b]'}>
+                  {l.text}
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* 메인 헤딩 */}
+            <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
+              className="mb-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tight">
+                <span className="block text-white">K-DEFENSE</span>
+                <span className="block text-[#00d4ff]" style={{ textShadow: '0 0 40px rgba(0,212,255,0.5)' }}>
+                  AI INTELLIGENCE
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* 타이핑 서브타이틀 */}
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg font-light text-[#8ab8d4] mb-2 min-h-[28px]">
+              <TypingText />
+            </motion.p>
+
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-sm text-[#4a7a9b] max-w-lg mb-8 leading-relaxed">
+              메타아이씨티의 6대 AI 시스템이 실시간으로 전장·사이버·위성·신호·영상·의사결정 인텔리전스를 통합 분석합니다.
+            </motion.p>
+
+            {/* CTA 버튼 */}
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap gap-3 mb-10">
+              <Link to="/command"
+                className="flex items-center gap-2 px-7 py-3.5 bg-[#00d4ff] text-[#020b18] text-[11px] font-black tracking-[0.12em] uppercase hover:bg-[#00eeff] transition-all">
+                <Terminal className="w-4 h-4" /> 통합 지휘 센터 <ChevronRight className="w-4 h-4" />
+              </Link>
+              <Link to="/weapons"
+                className="flex items-center gap-2 px-7 py-3.5 border border-[#00d4ff]/30 text-[#00d4ff] text-[11px] font-black tracking-[0.12em] uppercase hover:border-[#00d4ff]/60 hover:bg-[#00d4ff]/5 transition-all">
+                무기 DB 조회
+              </Link>
+            </motion.div>
+
+            {/* 스탯 카드 */}
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }}
+              className="grid grid-cols-4 gap-2">
+              {STATS.map(({ icon: Icon, value, label }) => (
+                <div key={label}
+                  className="bg-black/30 backdrop-blur-md border border-[#00d4ff]/10 p-3 text-center hover:border-[#00d4ff]/25 transition-all">
+                  <Icon className="w-3.5 h-3.5 text-[#00d4ff]/60 mx-auto mb-1.5" />
+                  <div className="text-lg font-black text-white font-mono">{value}</div>
+                  <div className="text-[8px] font-bold tracking-[0.1em] text-[#4a7a9b] uppercase">{label}</div>
+                </div>
+              ))}
+            </motion.div>
           </div>
+
+          {/* 오른쪽 컬럼 — 글로브 */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.0, delay: 0.3 }}
+            className="hidden xl:flex flex-col items-center shrink-0"
+          >
+            {/* 글로브 헤더 필 */}
+            <div className="flex items-center gap-2 mb-3 px-4 py-2 bg-black/30 backdrop-blur-md border border-[#00d4ff]/15 self-stretch">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
+              <span className="text-[9px] font-black tracking-[0.2em] text-[#00d4ff] uppercase flex-1">
+                Global Threat Monitor // Live
+              </span>
+              <span className="text-[8px] font-mono text-[#ff2d55]">7 ACTIVE THREATS</span>
+            </div>
+            <div className="border border-[#00d4ff]/12 bg-black/20 backdrop-blur-sm">
+              <GlobeVisualization />
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* 하단 페이드 */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#020b18] to-transparent pointer-events-none" />
     </section>
   )
 }
