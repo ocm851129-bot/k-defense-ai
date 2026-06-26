@@ -3,6 +3,7 @@ import './index.css'
 import { AlertProvider } from './contexts/AlertContext'
 import { SystemProvider } from './contexts/SystemContext'
 import { BoardProvider } from './contexts/BoardContext'
+import { WeaponsProvider } from './contexts/WeaponsContext'
 import AlertTicker from './components/AlertTicker'
 import NotificationToast from './components/NotificationToast'
 import Navbar from './components/Navbar'
@@ -37,6 +38,7 @@ import AdminUsers from './pages/admin/AdminUsers'
 
 // Weapons DB
 import WeaponsDB from './pages/WeaponsDB'
+import WeaponsAdmin from './pages/admin/WeaponsAdmin'
 
 function MainPage() {
   return (
@@ -66,6 +68,7 @@ export default function App() {
     <SystemProvider>
       <AlertProvider>
         <BoardProvider>
+        <WeaponsProvider>
           <BrowserRouter>
             <AlertTicker />
             <NotificationToast />
@@ -101,9 +104,11 @@ export default function App() {
                 <Route path="/admin/reports" element={<PageLayout><ReportBoard /></PageLayout>} />
                 <Route path="/admin/intel" element={<PageLayout><IntelBoard /></PageLayout>} />
                 <Route path="/admin/users" element={<PageLayout><AdminUsers /></PageLayout>} />
+                <Route path="/admin/weapons" element={<PageLayout><WeaponsAdmin /></PageLayout>} />
               </Routes>
             </div>
           </BrowserRouter>
+        </WeaponsProvider>
         </BoardProvider>
       </AlertProvider>
     </SystemProvider>

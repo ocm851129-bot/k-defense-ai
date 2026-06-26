@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   Shield, FileText, Radio, Database, Users, Settings,
-  LogOut, ChevronRight, Plus, Trash2,
+  LogOut, ChevronRight, Plus, Trash2, Crosshair,
 } from 'lucide-react'
 import { useBoard, NOTICE_CATEGORY_COLORS, STATUS_COLORS } from '../../contexts/BoardContext'
+import { useWeapons } from '../../contexts/WeaponsContext'
 import ConfirmDialog from '../../components/ui/ConfirmDialog'
 
 const THREAT_COLORS: Record<string, string> = { CRITICAL: '#ff2d55', HIGH: '#ff6b35', MED: '#ffcc00', LOW: '#00ff88' }
@@ -57,15 +58,17 @@ function LoginGate({ onLogin }: { onLogin: (pw: string) => boolean }) {
 
 export default function AdminDashboard() {
   const { notices, reports, intels, operators, isAdmin, login, logout, deleteNotice, deleteReport, deleteIntel } = useBoard()
+  const { weapons, changeLogs } = useWeapons()
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; type: 'notice' | 'report' | 'intel' } | null>(null)
 
   if (!isAdmin) return <LoginGate onLogin={login} />
 
   const stats = [
-    { icon: FileText, label: '공지사항', value: notices.length, sub: `고정 ${notices.filter((n) => n.pinned).length}건`, color: '#00d4ff', href: '/admin/notices' },
-    { icon: Radio, label: '보고서', value: reports.length, sub: `발행 ${reports.filter((r) => r.status === 'PUBLISHED').length}건`, color: '#00ff88', href: '/admin/reports' },
-    { icon: Database, label: '인텔리전스', value: intels.length, sub: `활성 ${intels.filter((i) => i.status === 'ACTIVE').length}건`, color: '#ff6b35', href: '/admin/intel' },
-    { icon: Users, label: '운영자', value: operators.length, sub: `활성 ${operators.filter((o) => o.active).length}명`, color: '#c084fc', href: '/admin/users' },
+    { icon: FileText,   label: '공지사항',     value: notices.length,   sub: `고정 ${notices.filter((n) => n.pinned).length}건`,             color: '#00d4ff', href: '/admin/notices' },
+    { icon: Radio,      label: '보고서',        value: reports.length,   sub: `발행 ${reports.filter((r) => r.status === 'PUBLISHED').length}건`, color: '#00ff88', href: '/admin/reports' },
+    { icon: Database,   label: '인텔리전스',    value: intels.length,    sub: `활성 ${intels.filter((i) => i.status === 'ACTIVE').length}건`,    color: '#ff6b35', href: '/admin/intel' },
+    { icon: Crosshair,  label: '무기 데이터베이스', value: weapons.length, sub: `변경로그 ${changeLogs.length}건`,                            color: '#ff6b35', href: '/admin/weapons' },
+    { icon: Users,      label: '운영자',        value: operators.length, sub: `활성 ${operators.filter((o) => o.active).length}명`,             color: '#c084fc', href: '/admin/users' },
   ]
 
   return (
@@ -106,12 +109,13 @@ export default function AdminDashboard() {
         </div>
 
         {/* Admin nav */}
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-6 flex-wrap">
           {[
-            { href: '/admin/notices', label: '공지 관리', icon: FileText },
-            { href: '/admin/reports', label: '보고서 관리', icon: Radio },
-            { href: '/admin/intel', label: '인텔 관리', icon: Database },
-            { href: '/admin/users', label: '운영자 관리', icon: Users },
+            { href: '/admin/notices',  label: '공지 관리',   icon: FileText },
+            { href: '/admin/reports',  label: '보고서 관리', icon: Radio },
+            { href: '/admin/intel',    label: '인텔 관리',   icon: Database },
+            { href: '/admin/weapons',  label: '무기DB 관리', icon: Crosshair },
+            { href: '/admin/users',    label: '운영자 관리', icon: Users },
           ].map(({ href, label, icon: Icon }) => (
             <Link key={href} to={href}
               className="flex items-center gap-1.5 px-4 py-2 border border-[#0a3050] text-[10px] font-black text-[#4a7a9b] hover:border-[#ffcc00]/40 hover:text-[#ffcc00] transition-all clip-corner-sm">
