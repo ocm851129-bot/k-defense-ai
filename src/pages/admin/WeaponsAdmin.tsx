@@ -2,15 +2,15 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Crosshair, Plus, Pencil, Trash2, X, Search, ChevronLeft,
+  Crosshair, Plus, Pencil, Trash2, X, Search,
   LogOut, Shield, Clock, User, CheckCircle, AlertTriangle,
 } from 'lucide-react'
 import {
   useWeapons, DEFAULT_ACCOUNTS, ROLE_COLOR, ROLE_PERMISSIONS,
-  type OperatorRole,
+  type OperatorRole as _OperatorRole,
 } from '../../contexts/WeaponsContext'
 import {
-  WEAPONS as SEED, CATEGORY_KO, CATEGORY_COLOR, ORIGIN_COLOR, ORIGIN_KO,
+  WEAPONS as _SEED, CATEGORY_KO, CATEGORY_COLOR, ORIGIN_COLOR, ORIGIN_KO,
   STATUS_KO, STATUS_COLOR, THREAT_COLORS,
   type WeaponCategory, type WeaponOrigin, type WeaponStatus, type ThreatRating,
 } from '../../data/weapons'
@@ -18,7 +18,7 @@ import ConfirmDialog from '../../components/ui/ConfirmDialog'
 
 // ── 상수 ───────────────────────────────────────────────────────────────────────
 
-const ALL_CATS   = Object.keys(CATEGORY_KO) as WeaponCategory[]
+
 const ALL_ORIGINS: WeaponOrigin[]  = ['ROK', 'DPRK', 'USA', 'CHINA', 'RUSSIA']
 const ALL_STATUSES: WeaponStatus[] = ['OPERATIONAL', 'DEVELOPMENT', 'TESTING', 'SUSPECTED', 'RETIRED']
 const THREAT_LEVELS: ThreatRating[]= ['CRITICAL', 'HIGH', 'MED', 'LOW']

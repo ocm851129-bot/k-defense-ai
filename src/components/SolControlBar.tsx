@@ -15,7 +15,7 @@ interface Props {
 export default function SolControlBar({ moduleId, children }: Props) {
   const sys = useSystem()
   const { addAlert } = useAlerts()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(typeof window !== 'undefined' && window.innerWidth >= 768)
   const [confirmOff, setConfirmOff] = useState(false)
 
   const mod = sys.modules[moduleId]
@@ -58,8 +58,8 @@ export default function SolControlBar({ moduleId, children }: Props) {
 
         {/* Control body */}
         {open && (
-          <div className="px-6 pb-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="px-3 md:px-6 pb-4 md:pb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
 
               {/* Module power */}
               <div className="bg-[#020b18]/60 border border-[#0a3050] p-4 clip-corner-sm">

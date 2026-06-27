@@ -2,7 +2,7 @@ import {
   createContext, useContext, useState, useCallback, useEffect, type ReactNode,
 } from 'react'
 import { WEAPONS as SEED_WEAPONS, type WeaponSystem } from '../data/weapons'
-import { type Operator } from './BoardContext'
+import { type Operator as _Operator } from './BoardContext'
 
 // ── 권한 정의 ──────────────────────────────────────────────────────────────────
 

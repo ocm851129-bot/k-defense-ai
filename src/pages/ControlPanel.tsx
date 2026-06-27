@@ -75,7 +75,7 @@ export default function ControlPanel() {
         </motion.div>
       )}
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-3 md:px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6 pt-2">
           <div>
@@ -124,12 +124,12 @@ export default function ControlPanel() {
         </div>
 
         {/* Tab navigation */}
-        <div className="flex gap-2 mb-6 border-b border-[#0a3050] pb-1">
+        <div className="flex gap-1 mb-4 md:mb-6 border-b border-[#0a3050] pb-1 overflow-x-auto">
           {([
-            { key: 'modules', label: 'AI 모듈 제어', icon: Cpu },
-            { key: 'sectors', label: '구역 관리', icon: Globe },
-            { key: 'system', label: '시스템 설정', icon: Settings },
-            { key: 'logs', label: '작전 로그', icon: Activity },
+            { key: 'modules', label: 'AI 모듈', icon: Cpu },
+            { key: 'sectors', label: '구역', icon: Globe },
+            { key: 'system', label: '시스템', icon: Settings },
+            { key: 'logs', label: '로그', icon: Activity },
           ] as const).map(({ key, label, icon: Icon }) => (
             <button
               key={key}

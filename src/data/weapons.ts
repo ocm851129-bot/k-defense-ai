@@ -1,4 +1,7 @@
-// Weapon system database — ROK · DPRK · Allied reference systems
+// Weapon system database — ROK · DPRK · Allied · Global reference systems
+import { WEAPONS_WORLD } from './weaponsWorld'
+import { WEAPONS_WIKI } from './weaponsWiki'
+import { WEAPONS_GLOBAL } from './weaponsGlobal'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
@@ -8,7 +11,11 @@ export type WeaponCategory =
   | 'GROUND' | 'ARTILLERY' | 'MLRS'
   | 'UAV' | 'SATELLITE' | 'NUCLEAR' | 'CYBER'
 
-export type WeaponOrigin = 'ROK' | 'DPRK' | 'USA' | 'RUSSIA' | 'CHINA'
+export type WeaponOrigin =
+  | 'ROK' | 'DPRK' | 'USA' | 'RUSSIA' | 'CHINA'
+  | 'UK' | 'FRANCE' | 'GERMANY' | 'JAPAN' | 'INDIA'
+  | 'ISRAEL' | 'TURKEY' | 'IRAN' | 'PAKISTAN' | 'TAIWAN'
+  | 'AUSTRALIA' | 'SWEDEN' | 'UKRAINE' | 'NATO' | 'MULTI'
 export type WeaponStatus = 'OPERATIONAL' | 'DEVELOPMENT' | 'TESTING' | 'SUSPECTED' | 'RETIRED'
 export type ThreatRating = 'CRITICAL' | 'HIGH' | 'MED' | 'LOW'
 
@@ -84,19 +91,23 @@ export const CATEGORY_COLOR: Record<WeaponCategory, string> = {
 }
 
 export const ORIGIN_COLOR: Record<WeaponOrigin, string> = {
-  ROK: '#00ff88',
-  DPRK: '#ff2d55',
-  USA: '#00d4ff',
-  RUSSIA: '#ff6b35',
-  CHINA: '#ffcc00',
+  ROK: '#00ff88', DPRK: '#ff2d55', USA: '#00d4ff',
+  RUSSIA: '#ff6b35', CHINA: '#ffcc00',
+  UK: '#60a5fa', FRANCE: '#818cf8', GERMANY: '#94a3b8',
+  JAPAN: '#f472b6', INDIA: '#fb923c', ISRAEL: '#a3e635',
+  TURKEY: '#f87171', IRAN: '#4ade80', PAKISTAN: '#34d399',
+  TAIWAN: '#38bdf8', AUSTRALIA: '#fbbf24', SWEDEN: '#c084fc',
+  UKRAINE: '#fcd34d', NATO: '#00d4ff', MULTI: '#e2e8f0',
 }
 
 export const ORIGIN_KO: Record<WeaponOrigin, string> = {
-  ROK: '대한민국',
-  DPRK: '북한',
-  USA: '미국',
-  RUSSIA: '러시아',
-  CHINA: '중국',
+  ROK: '대한민국', DPRK: '북한', USA: '미국',
+  RUSSIA: '러시아', CHINA: '중국',
+  UK: '영국', FRANCE: '프랑스', GERMANY: '독일',
+  JAPAN: '일본', INDIA: '인도', ISRAEL: '이스라엘',
+  TURKEY: '터키', IRAN: '이란', PAKISTAN: '파키스탄',
+  TAIWAN: '대만', AUSTRALIA: '호주', SWEDEN: '스웨덴',
+  UKRAINE: '우크라이나', NATO: 'NATO', MULTI: '다국',
 }
 
 export const STATUS_KO: Record<WeaponStatus, string> = {
@@ -1620,4 +1631,7 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
     tags: ['ICBM', '중국', 'MIRV', 'DF-41'],
     sources: ['IISS', 'CSIS', 'NTI'],
   },
+  ...WEAPONS_WORLD,
+  ...WEAPONS_WIKI,
+  ...WEAPONS_GLOBAL,
 ]

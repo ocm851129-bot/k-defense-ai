@@ -5,7 +5,7 @@ import {
   Shield, Activity, AlertTriangle, Lock, Globe, Radio, Eye, Cpu,
   ChevronRight, Maximize2, TrendingUp, Zap, BarChart2,
 } from 'lucide-react'
-import WorldThreatMap from '../components/WorldThreatMap'
+import InteractiveWorldMap from '../components/InteractiveWorldMap'
 import { useAlerts, LEVEL_COLORS } from '../contexts/AlertContext'
 
 const SOL_LINKS = [
@@ -141,20 +141,20 @@ export default function CommandCenter() {
 
   return (
     <div className="min-h-screen bg-[#020b18] pt-4 pb-20">
-      <div className="max-w-[1600px] mx-auto px-6">
+      <div className="max-w-[1600px] mx-auto px-3 md:px-6">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between mb-6"
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 md:mb-6"
         >
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
               <span className="text-[9px] font-black tracking-[0.25em] text-[#00ff88] uppercase">All Systems Operational</span>
             </div>
-            <h1 className="text-3xl font-black text-white">
+            <h1 className="text-2xl md:text-3xl font-black text-white">
               통합 <span className="text-[#00d4ff] glow-text">지휘 센터</span>
             </h1>
           </div>
@@ -174,7 +174,7 @@ export default function CommandCenter() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-5"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-3 mb-4 md:mb-5"
         >
           {[
             { base: 87, delta: 3, color: '#ff2d55', label: '종합 위협도', unit: '' },
@@ -210,7 +210,7 @@ export default function CommandCenter() {
                 </div>
                 <Maximize2 className="w-3.5 h-3.5 text-[#4a7a9b]" />
               </div>
-              <WorldThreatMap />
+              <InteractiveWorldMap />
             </motion.div>
 
             {/* SOL-01~06 Mini Panels */}
@@ -223,7 +223,7 @@ export default function CommandCenter() {
                 <BarChart2 className="w-4 h-4 text-[#00d4ff]" />
                 <span className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase">6대 AI 시스템 현황</span>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-3">
                 {SOL_LINKS.map((sol) => <SolMiniPanel key={sol.id} sol={sol} />)}
               </div>
             </motion.div>

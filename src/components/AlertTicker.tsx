@@ -34,7 +34,7 @@ export default function AlertTicker() {
   const fullText = tickerItems.join('   ·   ')
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-7 bg-[#041526] border-b border-[#00d4ff]/15 flex items-center overflow-hidden">
+    <div className="hidden sm:flex fixed top-0 left-0 right-0 z-[60] h-7 bg-[#041526] border-b border-[#00d4ff]/15 items-center overflow-hidden">
       {/* Live badge */}
       <div className="shrink-0 flex items-center gap-2 px-3 h-full bg-[#00d4ff]/10 border-r border-[#00d4ff]/20">
         <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />

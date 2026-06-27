@@ -40,6 +40,10 @@ import AdminUsers from './pages/admin/AdminUsers'
 import WeaponsDB from './pages/WeaponsDB'
 import WeaponsAdmin from './pages/admin/WeaponsAdmin'
 
+// Global Monitors
+import WorldMonitor from './pages/WorldMonitor'
+import TechMonitor from './pages/TechMonitor'
+
 function MainPage() {
   return (
     <>
@@ -56,7 +60,8 @@ function MainPage() {
 
 function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="pt-[calc(1.75rem+3.5rem)]">
+    // sm 이상: AlertTicker(1.75rem) + Navbar(3.5rem), 모바일: Navbar(3.5rem)만
+    <div className="pt-14 sm:pt-[calc(1.75rem+3.5rem)]">
       {children}
       <Footer />
     </div>
@@ -91,6 +96,10 @@ export default function App() {
 
                 {/* Weapons DB */}
                 <Route path="/weapons" element={<PageLayout><WeaponsDB /></PageLayout>} />
+
+                {/* Global Monitors */}
+                <Route path="/monitor/world" element={<PageLayout><WorldMonitor /></PageLayout>} />
+                <Route path="/monitor/tech" element={<PageLayout><TechMonitor /></PageLayout>} />
 
                 {/* Board */}
                 <Route path="/board" element={<Navigate to="/board/notices" replace />} />

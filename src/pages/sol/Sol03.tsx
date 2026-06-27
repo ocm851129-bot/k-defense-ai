@@ -1,198 +1,433 @@
-import { motion } from 'framer-motion'
-import { Globe, Camera, Layers, ChevronLeft, Target, Eye, TrendingUp } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Globe, Camera, ChevronLeft, Target, Eye, Play, RotateCcw, Trophy, Zap, CheckCircle  } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
+import GisOperationsMap from '../../components/GisOperationsMap'
 import { useSystem } from '../../contexts/SystemContext'
 
-const GEO_TARGETS = [
-  { id: 'GEO-001', type: '지하 시설물', lat: '38.1234N', lng: '127.4521E', area: '남포 지구', change: '+12%', risk: 'HIGH', lastUpdate: '14:52' },
-  { id: 'GEO-002', type: '이동 차량 군집', lat: '38.4512N', lng: '126.8834E', area: '사리원 북부', change: '+340%', risk: 'CRITICAL', lastUpdate: '14:49' },
-  { id: 'GEO-003', type: '항공기 격납고', lat: '39.0123N', lng: '125.7654E', area: '순안 공항', change: '+5%', risk: 'MED', lastUpdate: '14:45' },
-  { id: 'GEO-004', type: '해안 방어 시설', lat: '38.7891N', lng: '124.5532E', area: '서해 해안', change: '-2%', risk: 'LOW', lastUpdate: '14:40' },
-  { id: 'GEO-005', type: '물류 집결지', lat: '39.2341N', lng: '126.1234E', area: '평양 남부', change: '+87%', risk: 'HIGH', lastUpdate: '14:38' },
-]
+// ── 타입 ──────────────────────────────────────────────────────────────────────
+type Phase = 'STANDBY' | 'ACTIVE' | 'RESULT'
+type RiskLevel = 'CRITICAL' | 'HIGH' | 'MED' | 'LOW'
+type TaskStatus = 'PENDING' | 'IMAGING' | 'ANALYZED' | 'MISSED'
 
-const SATELLITE_PASSES = [
-  { sat: 'KSat-12', time: '15:23', coverage: '한반도 전역', res: '0.3m', status: 'SCHEDULED' },
-  { sat: 'KSat-07', time: '16:45', coverage: '서해 및 황해', res: '0.5m', status: 'SCHEDULED' },
-  { sat: 'COSMO-4', time: '14:18', coverage: '비무장지대', res: '1.0m', status: 'COMPLETED' },
-]
-
-const RISK_COLORS: Record<string, string> = {
-  CRITICAL: '#ff2d55',
-  HIGH: '#ff6b35',
-  MED: '#ffcc00',
-  LOW: '#00ff88',
+interface IntelTarget {
+  id: string; name: string; type: string
+  lat: string; lng: string; area: string
+  risk: RiskLevel; change: string; lastUpdate: string
+  imgResolution: string; taskStatus: TaskStatus
+  timeWindow: number; maxTime: number
+  findings: string[]; priority: number
 }
 
-function MapVisualization() {
-  return (
-    <div className="relative bg-[#020b18] border border-[#00d4ff]/10 overflow-hidden" style={{ height: 280 }}>
-      <svg viewBox="0 0 400 280" className="w-full h-full">
-        <defs>
-          <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#00d4ff" strokeOpacity="0.06" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="400" height="280" fill="url(#grid3)" />
-        {/* Simplified peninsula outline */}
-        <path d="M100,30 Q130,25 160,35 Q190,30 220,40 Q240,45 250,60 Q255,80 245,100 Q235,120 230,140 Q220,160 210,175 Q200,190 195,200 Q188,210 180,220 Q170,230 165,235" fill="none" stroke="#1a3a5a" strokeWidth="1.5" />
-        {/* DMZ line */}
-        <line x1="100" y1="130" x2="260" y2="130" stroke="#ff2d55" strokeWidth="1" strokeDasharray="4,2" strokeOpacity="0.6" />
-        <text x="265" y="134" fontSize="6" fill="#ff2d55">DMZ</text>
-        {/* Target blips */}
-        {[
-          { x: 155, y: 100, risk: 'HIGH', id: 'GEO-001' },
-          { x: 130, y: 85, risk: 'CRITICAL', id: 'GEO-002' },
-          { x: 110, y: 65, risk: 'MED', id: 'GEO-003' },
-          { x: 95, y: 95, risk: 'LOW', id: 'GEO-004' },
-          { x: 140, y: 110, risk: 'HIGH', id: 'GEO-005' },
-        ].map((t) => (
-          <g key={t.id}>
-            <circle cx={t.x} cy={t.y} r="5" fill={`${RISK_COLORS[t.risk]}30`} stroke={RISK_COLORS[t.risk]} strokeWidth="0.8" />
-            <circle cx={t.x} cy={t.y} r="2" fill={RISK_COLORS[t.risk]} />
-            <text x={t.x + 7} y={t.y + 3} fontSize="5" fill="#8ab8d4">{t.id}</text>
-          </g>
-        ))}
-        {/* Satellite coverage arc */}
-        <ellipse cx="180" cy="100" rx="120" ry="80" fill="none" stroke="#00d4ff" strokeOpacity="0.1" strokeWidth="0.5" strokeDasharray="3,2" />
-        <text x="290" y="50" fontSize="6" fill="#00d4ff" opacity="0.6">KSat 커버리지</text>
-      </svg>
-      <div className="absolute top-2 left-2 text-[8px] font-mono text-[#4a7a9b]">GEOINT MAP // 보안등급: CLASSIFIED</div>
-      <div className="absolute bottom-2 right-2 text-[8px] font-mono text-[#4a7a9b]">좌표계: WGS-84 // 축척: 1:500K</div>
-    </div>
-  )
+interface SatPass {
+  id: string; sat: string; time: string; coverage: string; res: string
+  status: 'SCHEDULED' | 'TASKED' | 'IMAGING' | 'COMPLETED'
+  targetId: string | null
 }
+
+const RISK_COLORS: Record<RiskLevel, string> = {
+  CRITICAL: '#ff2d55', HIGH: '#ff6b35', MED: '#ffcc00', LOW: '#00ff88',
+}
+
+const INITIAL_TARGETS: IntelTarget[] = [
+  { id:'GT-001', name:'동창리 발사장',  type:'ICBM 발사 시설', lat:'40.0N', lng:'124.7E', area:'북한 서해', risk:'CRITICAL', change:'+340%', lastUpdate:'', imgResolution:'0.3m', taskStatus:'PENDING', timeWindow:18, maxTime:18, priority:1,
+    findings:['ICBM 이동식 발사대 4기 관측','연료 주입 차량 집결','위장망 제거 확인','발사 D-72hr 추정'] },
+  { id:'GT-002', name:'순안 공항',      type:'군용 항공기지', lat:'39.0N', lng:'125.7E', area:'평양 북부',  risk:'HIGH',     change:'+55%',  lastUpdate:'', imgResolution:'0.5m', taskStatus:'PENDING', timeWindow:22, maxTime:22, priority:2,
+    findings:['전투기 24기 추가 배치','이착륙 빈도 3배 증가','지하 격납고 문 개방 확인'] },
+  { id:'GT-003', name:'남포 항만',       type:'해군 기지',     lat:'38.7N', lng:'125.4E', area:'서해 해안',  risk:'HIGH',     change:'+28%',  lastUpdate:'', imgResolution:'0.5m', taskStatus:'PENDING', timeWindow:25, maxTime:25, priority:3,
+    findings:['잠수함 2척 출항 준비','보급선 집결','기뢰 부설선 움직임'] },
+  { id:'GT-004', name:'사리원 기지',     type:'지상군 집결지', lat:'38.5N', lng:'125.8E', area:'황해도',    risk:'HIGH',     change:'+87%',  lastUpdate:'', imgResolution:'1.0m', taskStatus:'PENDING', timeWindow:30, maxTime:30, priority:4,
+    findings:['전차 200여 대 집결','포병 자산 전진 배치','병력 이동 급증'] },
+  { id:'GT-005', name:'개성 공단',       type:'민군 경계 지점', lat:'37.9N', lng:'126.5E', area:'DMZ 인근', risk:'MED',      change:'+12%',  lastUpdate:'', imgResolution:'1.0m', taskStatus:'PENDING', timeWindow:35, maxTime:35, priority:5,
+    findings:['민간 구역 내 군사 장비 확인','감시 카메라 새 설치'] },
+]
+
+const INIT_SATS: SatPass[] = [
+  { id:'SAT-KS12', sat:'KSat-12', time:'15:23', coverage:'한반도 전역',   res:'0.3m', status:'SCHEDULED', targetId:null },
+  { id:'SAT-KS07', sat:'KSat-07', time:'16:45', coverage:'서해 및 황해',  res:'0.5m', status:'SCHEDULED', targetId:null },
+  { id:'SAT-KS03', sat:'KSat-03', time:'17:12', coverage:'북한 중부',     res:'0.5m', status:'SCHEDULED', targetId:null },
+  { id:'SAT-US01', sat:'USA-WV3', time:'14:55', coverage:'한반도 북부',   res:'0.3m', status:'SCHEDULED', targetId:null },
+]
+
+const now = () => new Date().toLocaleTimeString('ko-KR',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'})
 
 export default function Sol03() {
   const sys = useSystem()
+  const [mainTab, setMainTab] = useState<'sim'|'ops'>('sim')
+  void sys.modules.sol03
+  const [phase, setPhase] = useState<Phase>('STANDBY')
+  const [targets, setTargets] = useState<IntelTarget[]>(INITIAL_TARGETS.map(t=>({...t})))
+  const [sats, setSats] = useState<SatPass[]>(INIT_SATS.map(s=>({...s})))
+  const [selectedTarget, setSelectedTarget] = useState<IntelTarget|null>(null)
+  const [selectedSat, setSelectedSat] = useState<SatPass|null>(null)
+  const [score, setScore] = useState(0)
+  const [analyzed, setAnalyzed] = useState(0)
+  const [missed, setMissed] = useState(0)
+  const [logs, setLogs] = useState<{time:string;msg:string;ok:boolean}[]>([])
+  const [phase2Done, setPhase2Done] = useState(false)
+
+  const addLog = useCallback((msg:string,ok:boolean)=>{
+    setLogs(l=>[{time:now(),msg,ok},...l].slice(0,20))
+  },[])
+
+  const start = () => {
+    setPhase('ACTIVE')
+    setTargets(INITIAL_TARGETS.map(t=>({...t,lastUpdate:now()})))
+    setSats(INIT_SATS.map(s=>({...s})))
+    setScore(0); setAnalyzed(0); setMissed(0); setLogs([]); setPhase2Done(false)
+    addLog('위성 정찰 임무 시작 — 5개 우선 표적 대기 중', true)
+  }
+
+  const reset = () => {
+    setPhase('STANDBY'); setTargets(INITIAL_TARGETS.map(t=>({...t})))
+    setSats(INIT_SATS.map(s=>({...s}))); setScore(0); setAnalyzed(0); setMissed(0)
+    setLogs([]); setSelectedTarget(null); setSelectedSat(null)
+  }
+
+  // 표적에 위성 투입 명령
+  const taskSatellite = () => {
+    if (!selectedSat || !selectedTarget) return
+    if (selectedSat.status !== 'SCHEDULED') { addLog('해당 위성은 이미 임무 중', false); return }
+    if (selectedTarget.taskStatus !== 'PENDING') { addLog('이미 촬영 계획된 표적', false); return }
+
+    setSats(prev => prev.map(s => s.id===selectedSat.id ? {...s,status:'TASKED',targetId:selectedTarget.id} : s))
+    setTargets(prev => prev.map(t => t.id===selectedTarget.id ? {...t,taskStatus:'IMAGING'} : t))
+    addLog(`${selectedSat.sat} → ${selectedTarget.name} 촬영 임무 할당`, true)
+
+    // 촬영 시뮬레이션 (3~6초)
+    const delay = 3000 + Math.random()*3000
+    setTimeout(() => {
+      const pts = selectedTarget.risk==='CRITICAL'?250:selectedTarget.risk==='HIGH'?150:75
+      setSats(prev => prev.map(s => s.id===selectedSat.id ? {...s,status:'COMPLETED'} : s))
+      setTargets(prev => prev.map(t => t.id===selectedTarget.id
+        ? {...t, taskStatus:'ANALYZED', lastUpdate:now()}
+        : t))
+      setScore(s => s+pts)
+      setAnalyzed(a => a+1)
+      addLog(`✓ ${selectedTarget.name} 영상 분석 완료 (+${pts}pt)`, true)
+    }, delay)
+
+    setSelectedSat(null); setSelectedTarget(null)
+  }
+
+  // 타임 윈도우 감소
+  useEffect(() => {
+    if (phase !== 'ACTIVE') return
+    const id = setInterval(() => {
+      setTargets(prev => prev.map(t => {
+        if (t.taskStatus !== 'PENDING') return t
+        const newTime = t.timeWindow - 1
+        if (newTime <= 0) {
+          setMissed(m => m+1)
+          addLog(`⚠ ${t.name} 촬영 시간 초과 — 정보 손실`, false)
+          return { ...t, taskStatus:'MISSED', timeWindow:0 }
+        }
+        return { ...t, timeWindow: newTime }
+      }))
+    }, 1500)
+    return () => clearInterval(id)
+  }, [phase, addLog])
+
+  // 완료 체크
+  useEffect(() => {
+    if (phase !== 'ACTIVE') return
+    const done = targets.every(t => t.taskStatus==='ANALYZED' || t.taskStatus==='MISSED')
+    if (done && !phase2Done) {
+      setPhase2Done(true)
+      setTimeout(() => setPhase('RESULT'), 1500)
+    }
+  }, [targets, phase, phase2Done])
+
+  const pendingTargets = targets.filter(t=>t.taskStatus==='PENDING')
+  void sats.filter(s=>s.status==='SCHEDULED') // freeSats - reserved
+
   return (
-    <div className="min-h-screen bg-[#020b18] pt-6 pb-0">
-      <div className="max-w-7xl mx-auto px-6">
-        <Link to="/" className="inline-flex items-center gap-2 text-[11px] font-bold text-[#4a7a9b] hover:text-[#00d4ff] tracking-[0.1em] mb-8 transition-colors">
-          <ChevronLeft className="w-4 h-4" /> 메인으로 돌아가기
-        </Link>
+    <div className="min-h-screen bg-[#020b18] pt-3 pb-16 md:pt-4 md:pb-20">
+      <div className="max-w-[1600px] mx-auto px-6">
+        <SolControlBar moduleId="sol03" />
+        <div className="flex items-center gap-3 mb-5">
+          <Link to="/command" className="flex items-center gap-1.5 text-[10px] font-bold text-[#4a7a9b] hover:text-[#00d4ff]">
+            <ChevronLeft className="w-3.5 h-3.5" /> 지휘 센터
+          </Link>
+          <div className="w-px h-4 bg-[#0a3050]" />
+          <Globe className="w-4 h-4 text-[#00ff88]" />
+          <h1 className="text-lg md:text-xl font-black text-white">SOL-03 <span className="text-[#00ff88]">GEOINT · 위성 정찰 임무</span></h1>
+        </div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[9px] font-black tracking-[0.2em] text-[#00ff88] bg-[#00ff88]/10 px-2 py-1">SOL-03</span>
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-            <span className="text-[10px] text-[#00ff88] font-bold tracking-[0.15em]">IMAGERY ONLINE</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-2">
-            지역 정보 <span className="text-[#00ff88] glow-text">GEOINT 분석</span>
-          </h1>
-          <p className="text-sm text-[#4a7a9b]">위성·항공 영상 AI 분석 · 시설물 식별 · 변화 탐지</p>
-        </motion.div>
+        {/* 모드 탭 */}
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0">
+          {[{id:'sim',label:'시뮬레이션'},{id:'ops',label:'GIS 운영 지도'}].map(({id,label})=>(
+            <button key={id} onClick={()=>setMainTab(id as 'sim'|'ops')}
+              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#00ff88] text-[#00ff88] -mb-px':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px'}>
+              {label}
+            </button>
+          ))}
+        </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          <div className="xl:col-span-2 space-y-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <div className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-2">GEOINT 분석 맵</div>
-              <MapVisualization />
-            </motion.div>
+        {mainTab==='ops' && (
+          <GisOperationsMap solId="sol03" title="SOL-03 GEOINT 위성 운영 지도"
+            activeLayers={['INTEL','EW']} color="#00ff88" />
+        )}
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/10 p-5">
-              <div className="flex items-center gap-2 mb-4">
-                <Target className="w-4 h-4 text-[#00ff88]" />
-                <span className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase">탐지 표적 목록</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-[11px]">
-                  <thead>
-                    <tr className="border-b border-[#0a3050]">
-                      {['ID', '유형', '좌표', '지역', '변화율', '위험도', '갱신'].map((h) => (
-                        <th key={h} className="text-left py-2 pr-3 text-[9px] font-black tracking-[0.1em] text-[#4a7a9b] uppercase">{h}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {GEO_TARGETS.map((t) => (
-                      <tr key={t.id} className="border-b border-[#0a3050]/40 hover:bg-[#00ff88]/3">
-                        <td className="py-2.5 pr-3 font-mono text-[#00d4ff]">{t.id}</td>
-                        <td className="py-2.5 pr-3 text-[#8ab8d4]">{t.type}</td>
-                        <td className="py-2.5 pr-3 font-mono text-[11px] text-[#4a7a9b]">{t.lat}<br />{t.lng}</td>
-                        <td className="py-2.5 pr-3 text-[#8ab8d4]">{t.area}</td>
-                        <td className="py-2.5 pr-3">
-                          <span className="font-bold" style={{ color: t.change.startsWith('+') ? '#ff6b35' : '#00ff88' }}>{t.change}</span>
-                        </td>
-                        <td className="py-2.5 pr-3">
-                          <span className="text-[9px] font-black" style={{ color: RISK_COLORS[t.risk] }}>{t.risk}</span>
-                        </td>
-                        <td className="py-2.5 font-mono text-[#4a7a9b]">{t.lastUpdate}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </motion.div>
-          </div>
+        {mainTab==='sim' && <>
 
-          <div className="xl:col-span-1 space-y-4">
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }}
-              className="grid grid-cols-2 gap-3">
-              {[
-                { icon: Eye, label: '탐지 표적', value: '5', color: '#00ff88' },
-                { icon: Camera, label: '위성 통과', value: '3회', color: '#00d4ff' },
-                { icon: TrendingUp, label: '변화 탐지', value: '12건', color: '#ffcc00' },
-                { icon: Layers, label: '분석 레이어', value: '7', color: '#c084fc' },
-              ].map(({ icon: Icon, label, value, color }) => (
-                <div key={label} className="clip-corner-sm bg-[#041526]/80 border border-[#00d4ff]/10 p-3 text-center">
-                  <Icon className="w-4 h-4 mx-auto mb-1.5" style={{ color }} />
-                  <div className="text-xl font-black number-mono" style={{ color }}>{value}</div>
-                  <div className="text-[9px] text-[#4a7a9b] mt-0.5">{label}</div>
-                </div>
-              ))}
-            </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
-              className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/10 p-5">
-              <div className="text-[10px] font-black tracking-[0.2em] text-[#00d4ff] uppercase mb-4">위성 통과 일정</div>
-              <div className="space-y-3">
-                {SATELLITE_PASSES.map((s) => (
-                  <div key={s.sat} className="p-3 border border-[#0a3050] rounded">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-[11px] font-bold text-white">{s.sat}</span>
-                      <span className={`text-[9px] font-black ${s.status === 'COMPLETED' ? 'text-[#4a7a9b]' : 'text-[#00ff88]'}`}>
-                        {s.status}
+        {phase === 'STANDBY' && (
+          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}}
+            className="clip-corner bg-[#041526]/80 border border-[#00ff88]/20 p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Camera className="w-4 h-4 text-[#00ff88]" />
+              <span className="text-[11px] font-black tracking-[0.2em] text-[#00ff88]">GEOINT 임무 브리핑</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h2 className="text-2xl font-black text-white mb-2">위성 정찰 임무 할당</h2>
+                <p className="text-[12px] text-[#8ab8d4] leading-relaxed mb-4">
+                  긴급 정보 요구가 발생했습니다. 가용한 정찰위성을 5개 우선 표적에 할당하여
+                  영상 정보를 획득하십시오. 각 표적의 촬영 가능 시간이 초과되기 전에
+                  위성을 투입해야 합니다. 우선순위와 위성 해상도를 고려하여 최적 배치를 결정하십시오.
+                </p>
+                <div className="space-y-1.5">
+                  {INITIAL_TARGETS.map(t => (
+                    <div key={t.id} className="flex items-center gap-2 text-[10px]">
+                      <span className="w-5 h-5 flex items-center justify-center font-black rounded-sm shrink-0"
+                        style={{background:`${RISK_COLORS[t.risk]}20`,color:RISK_COLORS[t.risk],border:`1px solid ${RISK_COLORS[t.risk]}40`}}>
+                        {t.priority}
                       </span>
+                      <span className="text-[#8ab8d4]">{t.name} — {t.risk} ({t.area})</span>
                     </div>
-                    <div className="text-[10px] text-[#4a7a9b]">{s.time} KST · {s.coverage}</div>
-                    <div className="text-[9px] text-[#00d4ff] mt-0.5">해상도: {s.res}</div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] font-black tracking-[0.12em] text-[#00ff88] mb-3">가용 위성 자산</div>
+                <div className="space-y-2">
+                  {INIT_SATS.map(s => (
+                    <div key={s.id} className="flex items-center gap-3 bg-[#020b18]/50 border border-[#0a3050] p-2.5">
+                      <Camera className="w-3.5 h-3.5 text-[#00ff88]" />
+                      <div className="flex-1">
+                        <div className="text-[11px] font-bold text-white">{s.sat}</div>
+                        <div className="text-[9px] text-[#4a7a9b]">{s.coverage} | 해상도 {s.res}</div>
+                      </div>
+                      <div className="text-[9px] text-[#00ff88]">{s.time}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <button onClick={start}
+              className="mt-6 flex items-center gap-2 px-8 py-3 bg-[#00ff88] text-[#020b18] font-black text-[12px] clip-corner hover:bg-[#33ffaa] transition-colors">
+              <Play className="w-4 h-4" /> 정찰 임무 시작
+            </button>
+          </motion.div>
+        )}
+
+        {phase === 'ACTIVE' && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-5">
+            {/* 표적 목록 */}
+            <div className="xl:col-span-2 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-black text-[#00ff88] tracking-[0.12em]">
+                  우선 표적 목록 — 대기 {pendingTargets.length} / 분석완료 {analyzed} / 기회손실 {missed}
+                </span>
+                <button onClick={reset} className="text-[9px] text-[#4a7a9b] hover:text-white border border-[#0a3050] px-3 py-1">
+                  <RotateCcw className="w-3 h-3 inline mr-1" />중단
+                </button>
+              </div>
+              <div className="space-y-3">
+                {targets.map(t => (
+                  <motion.div key={t.id} layout
+                    onClick={() => t.taskStatus==='PENDING' && setSelectedTarget(s=>s?.id===t.id?null:t)}
+                    className={`clip-corner border p-4 transition-all ${
+                      t.taskStatus==='ANALYZED' ? 'border-[#00ff88]/20 opacity-50' :
+                      t.taskStatus==='MISSED'   ? 'border-[#ff2d55]/20 opacity-40' :
+                      t.taskStatus==='IMAGING'  ? 'border-[#ffcc00]/40 bg-[#ffcc00]/03' :
+                      selectedTarget?.id===t.id ? `border-current bg-[#041526]` :
+                      'border-[#0a3050] bg-[#041526]/60 hover:border-[#00ff88]/20 cursor-pointer'
+                    }`}
+                    style={selectedTarget?.id===t.id?{borderColor:`${RISK_COLORS[t.risk]}50`}:{}}>
+                    <div className="flex items-start gap-4">
+                      {/* 지도 스팟 */}
+                      <div className="w-14 h-14 shrink-0 flex items-center justify-center rounded"
+                        style={{background:`${RISK_COLORS[t.risk]}10`,border:`1px solid ${RISK_COLORS[t.risk]}30`}}>
+                        <Target className="w-6 h-6" style={{color:RISK_COLORS[t.risk]}} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <div>
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <span className="text-[8px] font-black px-1.5 py-0.5"
+                                style={{color:RISK_COLORS[t.risk],background:`${RISK_COLORS[t.risk]}15`}}>
+                                {t.risk}
+                              </span>
+                              <span className="text-[8px] text-[#4a7a9b]">P{t.priority}</span>
+                              {t.taskStatus==='ANALYZED' && <CheckCircle className="w-3 h-3 text-[#00ff88]" />}
+                              {t.taskStatus==='IMAGING'  && <Eye className="w-3 h-3 text-[#ffcc00] animate-pulse" />}
+                              {t.taskStatus==='MISSED'   && <span className="text-[8px] text-[#ff2d55]">기회손실</span>}
+                            </div>
+                            <div className="text-[14px] font-black text-white">{t.name}</div>
+                            <div className="text-[9px] text-[#4a7a9b]">{t.type} | {t.area} | {t.lat}, {t.lng}</div>
+                          </div>
+                          {t.taskStatus==='PENDING' && (
+                            <div className="text-right shrink-0">
+                              <div className={`text-[20px] font-black font-mono ${t.timeWindow<=5?'text-[#ff2d55] animate-pulse':t.timeWindow<=10?'text-[#ffcc00]':'text-[#00ff88]'}`}>
+                                {t.timeWindow}s
+                              </div>
+                              <div className="text-[8px] text-[#4a7a9b]">촬영 가능</div>
+                            </div>
+                          )}
+                        </div>
+                        {t.taskStatus==='PENDING' && (
+                          <div className="h-1 bg-[#0a3050] rounded-full mb-2">
+                            <div className="h-full rounded-full transition-all"
+                              style={{width:`${(t.timeWindow/t.maxTime)*100}%`,background:t.timeWindow<=5?'#ff2d55':t.timeWindow<=10?'#ffcc00':'#00ff88'}} />
+                          </div>
+                        )}
+                        <div className="text-[9px] text-[#6a9ab8]">변화량: <strong style={{color:RISK_COLORS[t.risk]}}>{t.change}</strong> | 해상도 요구: {t.imgResolution}</div>
+                        {(t.taskStatus==='ANALYZED' || t.taskStatus==='IMAGING') && (
+                          <div className="mt-2 space-y-0.5">
+                            {t.findings.map((f,i) => (
+                              <div key={i} className="flex items-start gap-1.5 text-[9px] text-[#6a9ab8]">
+                                <span className="text-[#00ff88] shrink-0">›</span>{f}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* 우측: 위성 + 임무 할당 */}
+            <div className="space-y-4">
+              {/* 위성 상태 */}
+              <div className="clip-corner bg-[#041526]/80 border border-[#00ff88]/15 p-4">
+                <div className="text-[9px] font-black tracking-[0.12em] text-[#00ff88] mb-3">위성 자산 현황</div>
+                <div className="space-y-2">
+                  {sats.map(s => (
+                    <button key={s.id}
+                      onClick={() => s.status==='SCHEDULED' && setSelectedSat(p=>p?.id===s.id?null:s)}
+                      disabled={s.status!=='SCHEDULED'}
+                      className={`w-full text-left p-2.5 border transition-all clip-corner-sm ${
+                        selectedSat?.id===s.id ? 'border-[#00ff88]/50 bg-[#00ff88]/08' :
+                        s.status==='SCHEDULED' ? 'border-[#0a3050] hover:border-[#00ff88]/30 cursor-pointer' :
+                        'border-[#0a3050] opacity-50 cursor-default'
+                      }`}>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-2 h-2 rounded-full ${
+                          s.status==='COMPLETED'?'bg-[#00ff88]':
+                          s.status==='IMAGING'||s.status==='TASKED'?'bg-[#ffcc00] animate-pulse':'bg-[#00d4ff]'
+                        }`} />
+                        <div className="flex-1">
+                          <div className="text-[10px] font-black text-white">{s.sat}</div>
+                          <div className="text-[8px] text-[#4a7a9b]">{s.coverage} | {s.res}</div>
+                        </div>
+                        <span className={`text-[8px] font-black ${
+                          s.status==='COMPLETED'?'text-[#00ff88]':
+                          s.status==='TASKED'||s.status==='IMAGING'?'text-[#ffcc00]':'text-[#00d4ff]'
+                        }`}>
+                          {s.status==='SCHEDULED'?'대기':s.status==='TASKED'?'투입됨':s.status==='IMAGING'?'촬영중':'완료'}
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 임무 할당 */}
+              <AnimatePresence>
+                {(selectedSat || selectedTarget) && (
+                  <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} exit={{opacity:0}}
+                    className="clip-corner bg-[#041526]/90 border border-[#00ff88]/30 p-4">
+                    <div className="text-[9px] font-black text-[#00ff88] mb-3">임무 할당</div>
+                    <div className="space-y-2 mb-3">
+                      <div className="flex items-center gap-2 text-[10px]">
+                        <Camera className="w-3 h-3 text-[#00ff88]" />
+                        <span className="text-[#4a7a9b]">위성:</span>
+                        <span className={selectedSat?'text-[#00ff88] font-bold':'text-[#2a4a6a]'}>
+                          {selectedSat?.sat ?? '선택 안됨'}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px]">
+                        <Target className="w-3 h-3 text-[#ff6b35]" />
+                        <span className="text-[#4a7a9b]">표적:</span>
+                        <span className={selectedTarget?'text-[#ff6b35] font-bold':'text-[#2a4a6a]'}>
+                          {selectedTarget?.name ?? '선택 안됨'}
+                        </span>
+                      </div>
+                    </div>
+                    <button onClick={taskSatellite}
+                      disabled={!selectedSat||!selectedTarget}
+                      className={`w-full flex items-center justify-center gap-2 py-2.5 font-black text-[10px] clip-corner-sm transition-all ${
+                        selectedSat&&selectedTarget
+                          ? 'bg-[#00ff88] text-[#020b18] hover:bg-[#33ffaa]'
+                          : 'bg-[#0a3050] text-[#2a4a6a] cursor-not-allowed'
+                      }`}>
+                      <Zap className="w-3.5 h-3.5" /> 임무 투입
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* 점수 / 통계 */}
+              <div className="clip-corner bg-[#041526]/80 border border-[#00ff88]/15 p-4">
+                <div className="text-[9px] font-black text-[#00ff88] mb-3">임무 현황</div>
+                <div className="grid grid-cols-3 gap-2">
+                  {[{l:'점수',v:score,c:'#ffcc00'},{l:'분석완료',v:analyzed,c:'#00ff88'},{l:'기회손실',v:missed,c:'#ff2d55'}].map(k=>(
+                    <div key={k.l} className="text-center bg-[#020b18]/50 border border-[#0a3050] p-2">
+                      <div className="text-[8px] text-[#4a7a9b]">{k.l}</div>
+                      <div className="text-[18px] font-black" style={{color:k.c}}>{k.v}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 로그 */}
+              <div className="clip-corner bg-[#041526]/80 border border-[#00ff88]/15 p-4">
+                <div className="text-[9px] font-black text-[#00ff88] mb-2">임무 로그</div>
+                <div className="space-y-1 max-h-36 overflow-y-auto">
+                  {logs.map((l,i)=>(
+                    <div key={i} className="flex gap-1.5 text-[8px]">
+                      <span className="text-[#2a4a6a] shrink-0">{l.time}</span>
+                      <span className={l.ok?'text-[#00ff88]':'text-[#ff6b35]'}>{l.msg}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {phase === 'RESULT' && (
+          <motion.div initial={{opacity:0,scale:0.9}} animate={{opacity:1,scale:1}}
+            className="flex items-center justify-center min-h-[50vh]">
+            <div className="clip-corner bg-[#041526]/90 border border-[#00ff88]/20 p-10 text-center max-w-lg w-full">
+              <Trophy className="w-12 h-12 text-[#ffcc00] mx-auto mb-4" />
+              <div className="text-[10px] font-black tracking-[0.2em] text-[#00ff88] mb-1">GEOINT 임무 완료</div>
+              <h2 className="text-3xl font-black text-white mb-2">
+                {missed===0?'완벽한 정찰':missed<=1?'임무 성공':missed<=2?'부분 성공':'임무 실패'}
+              </h2>
+              <div className="grid grid-cols-3 gap-3 mb-8">
+                {[{l:'최종 점수',v:score,c:'#ffcc00',u:'pt'},{l:'분석 완료',v:analyzed,c:'#00ff88',u:'건'},{l:'기회 손실',v:missed,c:'#ff2d55',u:'건'}].map(k=>(
+                  <div key={k.l} className="bg-[#020b18]/50 border border-[#0a3050] p-3">
+                    <div className="text-[9px] text-[#4a7a9b]">{k.l}</div>
+                    <div className="text-2xl font-black" style={{color:k.c}}>{k.v}<span className="text-sm ml-1">{k.u}</span></div>
                   </div>
                 ))}
               </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 }}
-              className="clip-corner bg-[#041526]/80 border border-[#00ff88]/15 p-5">
-              <div className="flex items-center gap-2 mb-3">
-                <Globe className="w-4 h-4 text-[#00ff88]" />
-                <span className="text-[10px] font-black tracking-[0.2em] text-[#00ff88] uppercase">AI 분석 요약</span>
-              </div>
-              <div className="bg-[#020b18]/60 border border-[#0a3050] p-3 font-mono text-[10px] leading-relaxed text-[#8ab8d4]">
-                <span className="text-[#00ff88]">[GEOINT-AI]</span> 사리원 북부 차량 집결 이상 감지<br />
-                변화율 +340%. 24h 비교 분석 결과 병력 이동 패턴 62%, 물자 이동 38% 추정.<br />
-                <span className="text-[#ffcc00]">위성 KSat-12 15:23 통과 시 고해상도 재확인 예정<span className="cursor-blink">_</span></span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+              <button onClick={()=>{reset();setTimeout(start,100)}}
+                className="flex items-center gap-2 mx-auto px-6 py-2.5 bg-[#00ff88] text-[#020b18] font-black text-[11px] clip-corner">
+                <RotateCcw className="w-4 h-4" /> 재임무
+              </button>
+            </div>
+          </motion.div>
+        )}
+        </>
+        }
       </div>
-
-      <SolControlBar moduleId="sol03">
-        <div className="bg-[#020b18]/60 border border-[#0a3050] p-4 clip-corner-sm">
-          <div className="text-[9px] font-black tracking-[0.15em] text-[#4a7a9b] uppercase mb-2">위성 촬영</div>
-          <button
-            onClick={sys.requestSatelliteTask}
-            disabled={sys.system.satelliteTasking}
-            className="w-full py-2 text-[10px] font-black text-[#020b18] bg-[#00ff88] clip-corner-sm hover:bg-[#00ffaa] transition-all disabled:opacity-50"
-          >
-            {sys.system.satelliteTasking ? '요청 중...' : '긴급 촬영 요청'}
-          </button>
-        </div>
-      </SolControlBar>
     </div>
   )
 }
