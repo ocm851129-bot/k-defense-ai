@@ -617,6 +617,7 @@ function WeaponDemoCanvas({ weapon: w }: { weapon: WeaponSystem }) {
 // ── 무기 상세 패널 ─────────────────────────────────────────────────────────────
 function WeaponDetailPanel({ weapon: w, onClose }: { weapon: WeaponSystem; onClose: () => void }) {
   const [tab, setTab] = useState<'overview'|'specs'|'schematic'|'demo'>('overview')
+  const [imgError, setImgError] = useState(false)
   const specEntries = Object.entries(w.specs).filter(([, v]) => v)
   const specLabels: Record<string, string> = {
     range:'사거리', speed:'속도', payload:'탑재량', length:'전장',
@@ -624,6 +625,7 @@ function WeaponDetailPanel({ weapon: w, onClose }: { weapon: WeaponSystem; onClo
     ceiling:'실용상승한도', crew:'승무원', displacement:'배수량',
     armament:'무장', quantity:'보유수량', firstDeployed:'최초배치',
     manufacturer:'제조사', warhead:'탄두', accuracy:'명중정확도', altitude:'요격고도',
+    caliber:'구경·탄약', capacity:'탄창용량', fireRate:'발사속도', penetration:'관통력',
   }
   const color = CATEGORY_COLOR[w.category]
 
@@ -660,6 +662,12 @@ function WeaponDetailPanel({ weapon: w, onClose }: { weapon: WeaponSystem; onClo
                 style={{ color:THREAT_COLORS[w.threatRating], background:`${THREAT_COLORS[w.threatRating]}15` }}>
                 {w.threatRating}
               </span>
+              {w.wikiUrl && (
+                <a href={w.wikiUrl} target="_blank" rel="noopener noreferrer"
+                  className="text-[8px] font-black px-2 py-0.5 text-[#4a7a9b] hover:text-[#00d4ff] border border-[#0a3050] hover:border-[#00d4ff]/30 transition-all">
+                  Wikipedia ↗
+                </a>
+              )}
             </div>
             <h2 className="text-lg font-black text-white leading-tight">{w.name}</h2>
             <div className="text-[10px] text-[#4a7a9b]">{w.nameEng}{w.designation ? ` · ${w.designation}` : ''}</div>
@@ -687,9 +695,23 @@ function WeaponDetailPanel({ weapon: w, onClose }: { weapon: WeaponSystem; onClo
         {/* 개요 탭 */}
         {tab==='overview' && (
           <div className="p-4 space-y-4">
-            {/* 실루엣 */}
-            <div className="bg-[#020b18]/60 border border-[#0a3050] p-3">
-              <WeaponSilhouette category={w.category} color={color} className="max-h-32" />
+            {/* 실사 이미지 or 실루엣 */}
+            <div className="bg-[#020b18]/60 border border-[#0a3050] p-3 relative overflow-hidden">
+              {w.imageUrl && !imgError ? (
+                <div className="relative">
+                  <img
+                    src={w.imageUrl}
+                    alt={w.nameEng}
+                    className="w-full object-contain max-h-40 rounded"
+                    style={{ background: '#010810' }}
+                    onError={() => setImgError(true)}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#020b18] to-transparent h-8" />
+                  <div className="absolute bottom-1 right-2 text-[7px] text-[#2a4a6a]">© Wikimedia Commons</div>
+                </div>
+              ) : (
+                <WeaponSilhouette category={w.category} color={color} className="max-h-32" />
+              )}
             </div>
             {/* 신뢰도·업데이트 */}
             <div className="grid grid-cols-2 gap-2">

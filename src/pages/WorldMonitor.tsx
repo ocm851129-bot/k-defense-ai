@@ -27,6 +27,80 @@ const LAYERS: { id: LayerId; label: string; color: string; icon: React.ElementTy
   { id: 'outages',   label: 'Outages',    color: '#94a3b8', icon: Wifi,       ko: '인프라장애' },
 ]
 
+// ── 이동 경로 (군사 자산 이동 추적) ──────────────────────────────────────────
+interface MovementTrack {
+  id: string
+  type: 'NAVAL' | 'AIR' | 'MISSILE' | 'GROUND'
+  label: string; labelKo: string
+  color: string
+  points: [number, number][]  // [lat, lon][]
+  speed?: string
+  asset?: string
+  active: boolean
+}
+
+const MOVEMENT_TRACKS: MovementTrack[] = [
+  // 항모전단 이동
+  {
+    id:'mv001', type:'NAVAL', label:'USS Theodore Roosevelt CSG', labelKo:'루스벨트 항모전단 (서태평양)', color:'#00d4ff',
+    points:[[21.3, 157.8],[22.0, 145.0],[24.0, 135.0],[26.5, 128.0],[30.0, 122.0]],
+    speed:'18노트', asset:'CVN-71 + 이지스함 5척 + 잠수함 2척', active:true,
+  },
+  {
+    id:'mv002', type:'NAVAL', label:'Russia Black Sea Fleet', labelKo:'러시아 흑해함대 초계', color:'#ff6b35',
+    points:[[44.6, 33.5],[44.0, 31.5],[43.5, 30.0],[43.0, 28.5]],
+    speed:'12노트', asset:'소형전투함 4척', active:true,
+  },
+  {
+    id:'mv003', type:'NAVAL', label:'China PLAN Exercise', labelKo:'중국 해군 대만해협 기동', color:'#ffcc00',
+    points:[[24.5, 119.0],[23.5, 120.5],[22.0, 121.5],[21.0, 122.0],[23.0, 123.0]],
+    speed:'15노트', asset:'항모 산둥함+구축함 6척', active:true,
+  },
+  {
+    id:'mv004', type:'NAVAL', label:'JMSDF Destroyer Flotilla', labelKo:'일본 해상자위대 훈련', color:'#00ff88',
+    points:[[34.0, 129.5],[33.0, 131.0],[32.0, 132.5],[31.0, 131.0]],
+    speed:'20노트', asset:'이지스 DDG 2척+DD 4척', active:true,
+  },
+  {
+    id:'mv005', type:'NAVAL', label:'Houthi Red Sea Patrols', labelKo:'후티 홍해 초계', color:'#ff2d55',
+    points:[[15.5, 42.5],[14.0, 43.0],[13.0, 44.0],[12.5, 45.0]],
+    speed:'8노트', asset:'소형 함정·고속단정 다수', active:true,
+  },
+  // 항공 경로
+  {
+    id:'mv006', type:'AIR', label:'US B-52 Arctic Patrol', labelKo:'미 B-52 북극 순항', color:'#00d4ff',
+    points:[[40.0, -96.0],[55.0, -100.0],[68.0, -80.0],[75.0, -30.0],[70.0, 10.0],[65.0, 20.0]],
+    speed:'마하 0.86', asset:'B-52H 스트라토포트리스 2대', active:true,
+  },
+  {
+    id:'mv007', type:'AIR', label:'Russia Tu-160 Arctic', labelKo:'러시아 Tu-160 북극 초계', color:'#ff6b35',
+    points:[[55.7, 37.6],[65.0, 50.0],[72.0, 60.0],[78.0, 20.0],[72.0, 0.0],[68.0, -5.0]],
+    speed:'마하 0.9', asset:'Tu-160 화이트 스완 2대', active:true,
+  },
+  {
+    id:'mv008', type:'AIR', label:'China H-6K ADIZ Intrusion', labelKo:'중국 H-6K 대만 ADIZ 침범', color:'#ffcc00',
+    points:[[25.0, 120.0],[23.0, 121.5],[21.5, 123.0],[20.0, 122.0]],
+    speed:'마하 0.75', asset:'H-6K 폭격기 4대', active:true,
+  },
+  // 미사일 궤적 (발사 시뮬레이션)
+  {
+    id:'mv009', type:'MISSILE', label:'DPRK Hwasong-18 Trajectory (Sim)', labelKo:'화성-18 ICBM 궤적 (시뮬)', color:'#ff2d55',
+    points:[[39.7, 124.7],[55.0, 155.0],[65.0, 180.0],[55.0, -150.0],[35.0, -120.0]],
+    speed:'마하 20+', asset:'화성-18 ICBM (MIRV)', active:false,
+  },
+  // 지상 이동
+  {
+    id:'mv010', type:'GROUND', label:'Russian Forces Kursk Oblast', labelKo:'러시아군 쿠르스크 집결', color:'#ff6b35',
+    points:[[50.5, 36.5],[51.0, 35.0],[51.5, 34.0],[51.8, 33.5]],
+    speed:'35km/h', asset:'제41군 BTG 4개 집결', active:true,
+  },
+  {
+    id:'mv011', type:'GROUND', label:'Ukraine Armored Counterattack', labelKo:'우크라이나 기갑 반격 축선', color:'#38bdf8',
+    points:[[48.5, 35.0],[49.0, 36.5],[49.5, 37.5],[50.0, 38.0]],
+    speed:'20km/h', asset:'제82공수여단+전차 Leopard 2', active:true,
+  },
+]
+
 // ── 이벤트 마커 ───────────────────────────────────────────────────────────────
 interface WorldEvent {
   id: string
@@ -39,15 +113,48 @@ interface WorldEvent {
   lastUpdate: string
   casualties?: string
   source?: string
+  timeline?: { time: string; event: string }[]
+  relatedIds?: string[]
 }
 
 const SEV_COLOR = { CRITICAL: '#ff2d55', HIGH: '#ff6b35', MED: '#ffcc00', LOW: '#94a3b8' }
 
 const WORLD_EVENTS: WorldEvent[] = [
   // ── 분쟁 (CONFLICTS) ──────────────────────────────────────────────────────
-  { id:'c001', layer:'conflicts', lat:48.5,  lon:32.0,   label:'Ukraine War',          labelKo:'우크라이나 전쟁',        country:'🇺🇦 우크라이나', severity:'CRITICAL', desc:'러시아-우크라이나 전면전. 드론 공격 급증, Kharkiv 전선 교전 지속.', lastUpdate:'5분 전', casualties:'~1,100,000명 사상', source:'ISW' },
-  { id:'c002', layer:'conflicts', lat:31.5,  lon:34.5,   label:'Gaza Conflict',        labelKo:'가자 분쟁',              country:'🇮🇱 이스라엘/가자', severity:'CRITICAL', desc:'이스라엘-하마스 교전 지속. 가자 남부 라파흐 군사작전 진행 중.', lastUpdate:'12분 전', casualties:'~48,000명 사망', source:'UN OCHA' },
-  { id:'c003', layer:'conflicts', lat:15.0,  lon:31.0,   label:'Sudan Civil War',      labelKo:'수단 내전',              country:'🇸🇩 수단', severity:'CRITICAL', desc:'RSF vs SAF 내전. 하르툼 전투 지속. 최대 규모 인도주의 위기.', lastUpdate:'1시간 전', casualties:'~150,000명 사망', source:'ACLED' },
+  { id:'c001', layer:'conflicts', lat:48.5,  lon:32.0,   label:'Ukraine War',          labelKo:'우크라이나 전쟁',
+    country:'🇺🇦 우크라이나', severity:'CRITICAL',
+    desc:'러시아-우크라이나 전면전. 드론 공격 급증. Kharkiv·Zaporizhzhia 전선 교전 지속. 러시아 오레슈니크 미사일 사용.',
+    lastUpdate:'5분 전', casualties:'~1,100,000명 사상(추정)', source:'ISW',
+    timeline:[
+      { time:'2026-06-28 06:34', event:'드네프르강 교량 드론 타격, 민간 차량 3대 피격' },
+      { time:'2026-06-28 04:12', event:'Kharkiv 방향 러시아군 소규모 기계화 전진 격퇴' },
+      { time:'2026-06-27 22:45', event:'러시아 Kh-101 순항미사일 7발 키이우 방향 발사, 5발 요격' },
+      { time:'2026-06-27 18:30', event:'Zaporizhzhia 핵발전소 지역 포격, IAEA 우려 표명' },
+      { time:'2026-06-27 08:00', event:'우크라이나 F-16 편대 러시아 방공 SA-17 포대 타격 성공' },
+    ],
+    relatedIds:['m006','o004']
+  },
+  { id:'c002', layer:'conflicts', lat:31.5,  lon:34.5,   label:'Gaza Conflict',        labelKo:'가자 분쟁',
+    country:'🇮🇱 이스라엘/가자', severity:'CRITICAL',
+    desc:'이스라엘-하마스 교전 지속. 가자 남부 라파흐 군사작전 진행 중. 인도주의 위기 심화.',
+    lastUpdate:'12분 전', casualties:'~48,000명 사망', source:'UN OCHA',
+    timeline:[
+      { time:'2026-06-28 07:20', event:'IDF 가자시티 북부 표적 정밀 타격 (7건)' },
+      { time:'2026-06-28 03:50', event:'하마스 카삼 로켓 이스라엘 남부 발사, 아이언돔 요격' },
+      { time:'2026-06-27 20:00', event:'UN 인도주의 트럭 100대 가자 북부 진입 허가' },
+      { time:'2026-06-27 15:00', event:'카타르 중재 휴전 협상 결렬 보도' },
+    ]
+  },
+  { id:'c003', layer:'conflicts', lat:15.0,  lon:31.0,   label:'Sudan Civil War',      labelKo:'수단 내전',
+    country:'🇸🇩 수단', severity:'CRITICAL',
+    desc:'RSF vs SAF 내전. 하르툼 전투 지속. 2,500만 명 인도주의 위기. 최대 규모 난민 사태.',
+    lastUpdate:'1시간 전', casualties:'~150,000명 사망', source:'ACLED',
+    timeline:[
+      { time:'2026-06-28 02:00', event:'하르툼 북부 교전. RSF 시가전 지속' },
+      { time:'2026-06-27 14:00', event:'UN 식량 원조 트럭 RSF 저지로 차단' },
+      { time:'2026-06-26', event:'다르푸르 남부 공습, 민간인 사상자 발생' },
+    ]
+  },
   { id:'c004', layer:'conflicts', lat:13.5,  lon:2.0,    label:'Sahel Insurgency',     labelKo:'사헬 반란',              country:'🌍 말리/니제르/부르키나파소', severity:'HIGH', desc:'이슬람 무장세력 활동 증가. 러시아 바그너 그룹 대체 전력 활동.', lastUpdate:'2시간 전', source:'ECOWAS' },
   { id:'c005', layer:'conflicts', lat:15.5,  lon:38.5,   label:'Tigray/Amhara',        labelKo:'에티오피아 분쟁',        country:'🇪🇹 에티오피아', severity:'HIGH', desc:'암하라 지역 민병대 vs 연방군 교전. 휴전 협정 불안정.', lastUpdate:'3시간 전', source:'UN' },
   { id:'c006', layer:'conflicts', lat:34.0,  lon:71.0,   label:'Afghan Conflict',      labelKo:'아프가니스탄 분쟁',      country:'🇦🇫 아프가니스탄', severity:'HIGH', desc:'탈레반 통치 하 IS-K 테러 활동 지속. 국경 지역 긴장 고조.', lastUpdate:'4시간 전', source:'UN Assistance Mission' },
@@ -276,6 +383,14 @@ export default function WorldMonitor() {
   const [filterSeverity, setFilterSeverity] = useState<WorldEvent['severity'] | 'ALL'>('ALL')
   const [cursorPos, setCursorPos] = useState<{ lat: number; lon: number } | null>(null)
   const [statsTab, setStatsTab] = useState<'feed' | 'stats'>('feed')
+  const [showTracks, setShowTracks] = useState(true)
+  const [trackPhase, setTrackPhase] = useState(0)
+
+  // 이동 경로 애니메이션 위상
+  useEffect(() => {
+    const id = setInterval(() => setTrackPhase(p => (p + 1) % 100), 80)
+    return () => clearInterval(id)
+  }, [])
 
   // 맥박 애니메이션
   useEffect(() => {
@@ -355,6 +470,13 @@ export default function WorldMonitor() {
                 </button>
               ))}
             </div>
+            {/* 이동경로 토글 */}
+            <button onClick={() => setShowTracks(v => !v)}
+              className={`hidden sm:flex items-center gap-1.5 text-[8px] font-black px-2 py-1.5 border transition-all ${
+                showTracks ? 'text-[#00ff88] border-[#00ff88]/30 bg-[#00ff88]/10' : 'text-[#4a7a9b] border-[#0a3050]'
+              }`}>
+              <Radio className="w-3 h-3" /> 이동경로
+            </button>
             {/* 라이브 인디케이터 */}
             <div className="flex items-center gap-1.5 px-2 py-1 bg-[#00ff88]/10 border border-[#00ff88]/20">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
@@ -444,6 +566,49 @@ export default function WorldMonitor() {
             {LAND_DOTS.map(([lat, lon], i) => {
               const p = project(lat, lon)
               return <rect key={i} x={p.x - 1.2} y={p.y - 1.2} width={2.4} height={2.4} fill="#0d2a40" />
+            })}
+
+            {/* ── 이동 경로 ── */}
+            {showTracks && MOVEMENT_TRACKS.filter(t => t.active).map(track => {
+              const pts = track.points.map(([lat, lon]) => project(lat, lon))
+              const pathD = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
+              // 애니메이션 점 위치
+              const prog = (trackPhase / 100)
+              const segCount = pts.length - 1
+              const segIdx = Math.min(Math.floor(prog * segCount), segCount - 1)
+              const segProg = (prog * segCount) - segIdx
+              const p1 = pts[segIdx], p2 = pts[Math.min(segIdx + 1, pts.length - 1)]
+              const dotX = p1.x + (p2.x - p1.x) * segProg
+              const dotY = p1.y + (p2.y - p1.y) * segProg
+              const TRACK_ICON = { NAVAL: '◆', AIR: '▲', MISSILE: '⬟', GROUND: '■' }
+
+              return (
+                <g key={track.id}>
+                  {/* 경로 선 */}
+                  <path d={pathD} fill="none" stroke={track.color}
+                    strokeWidth={track.type === 'MISSILE' ? 0.8 : 1.2}
+                    strokeDasharray={track.type === 'AIR' ? '6,3' : track.type === 'MISSILE' ? '4,4' : '8,4'}
+                    opacity="0.45" />
+                  {/* 웨이포인트 */}
+                  {pts.map((p, i) => (
+                    <circle key={i} cx={p.x} cy={p.y} r={i === 0 || i === pts.length-1 ? 3 : 1.5}
+                      fill={track.color} opacity={i === 0 || i === pts.length-1 ? 0.8 : 0.4} />
+                  ))}
+                  {/* 이동 점 */}
+                  <g>
+                    <circle cx={dotX} cy={dotY} r={7} fill="none" stroke={track.color} strokeWidth="0.5" opacity="0.25" />
+                    <circle cx={dotX} cy={dotY} r={4} fill={`${track.color}40`} stroke={track.color} strokeWidth="1"
+                      style={{ filter: `drop-shadow(0 0 5px ${track.color})` }} />
+                    <text x={dotX} y={dotY + 3.5} textAnchor="middle" fontSize="5" fill={track.color} fontWeight="bold">
+                      {TRACK_ICON[track.type]}
+                    </text>
+                  </g>
+                  {/* 라벨 (첫 포인트) */}
+                  <text x={pts[0].x + 6} y={pts[0].y - 4} fontSize="6" fill={track.color} opacity="0.7" fontWeight="bold">
+                    {track.labelKo}
+                  </text>
+                </g>
+              )
             })}
 
             {/* 이벤트 마커 */}
@@ -574,19 +739,19 @@ export default function WorldMonitor() {
                     </button>
                   </div>
                   <p className="text-[9px] text-[#8ab8d4] leading-relaxed mb-2">{selectedEvent.desc}</p>
-                  <div className="space-y-1 text-[8px]">
+                  <div className="space-y-1 text-[8px] mb-2">
                     {selectedEvent.casualties && (
                       <div className="flex justify-between border-b border-[#0a3050]/50 pb-1">
-                        <span className="text-[#4a7a9b]">피해</span>
+                        <span className="text-[#4a7a9b]">피해 규모</span>
                         <span className="font-black text-[#ff6b35]">{selectedEvent.casualties}</span>
                       </div>
                     )}
                     <div className="flex justify-between border-b border-[#0a3050]/50 pb-1">
                       <span className="text-[#4a7a9b]">좌표</span>
-                      <span className="font-mono text-[#00d4ff]">{selectedEvent.lat.toFixed(1)}°N {selectedEvent.lon.toFixed(1)}°E</span>
+                      <span className="font-mono text-[#00d4ff]">{selectedEvent.lat.toFixed(2)}°{selectedEvent.lat>=0?'N':'S'} {Math.abs(selectedEvent.lon).toFixed(2)}°{selectedEvent.lon>=0?'E':'W'}</span>
                     </div>
                     <div className="flex justify-between border-b border-[#0a3050]/50 pb-1">
-                      <span className="text-[#4a7a9b]">업데이트</span>
+                      <span className="text-[#4a7a9b]">최종 업데이트</span>
                       <span className="text-[#00ff88]">{selectedEvent.lastUpdate}</span>
                     </div>
                     {selectedEvent.source && (
@@ -596,6 +761,52 @@ export default function WorldMonitor() {
                       </div>
                     )}
                   </div>
+
+                  {/* 타임라인 */}
+                  {selectedEvent.timeline && selectedEvent.timeline.length > 0 && (
+                    <div>
+                      <div className="text-[7px] font-black tracking-[0.15em] text-[#00d4ff] mb-1.5 flex items-center gap-1">
+                        <Activity className="w-2.5 h-2.5" /> 타임라인
+                      </div>
+                      <div className="space-y-1.5 relative">
+                        <div className="absolute left-[5px] top-0 bottom-0 w-px bg-[#0a3050]" />
+                        {selectedEvent.timeline.map((item, i) => (
+                          <div key={i} className="flex gap-2 pl-3 relative">
+                            <div className="absolute left-[2px] top-[5px] w-[7px] h-[7px] rounded-full bg-[#00d4ff]/60 border border-[#00d4ff]/30 shrink-0" />
+                            <div>
+                              <div className="text-[7px] font-mono text-[#2a5a7a]">{item.time}</div>
+                              <div className="text-[8px] text-[#6a9ab8] leading-tight">{item.event}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 관련 이동 경로 */}
+                  {(() => {
+                    const related = MOVEMENT_TRACKS.filter(t =>
+                      selectedEvent.relatedIds?.includes(t.id) ||
+                      t.points.some(([lat, lon]) =>
+                        Math.abs(lat - selectedEvent.lat) < 5 && Math.abs(lon - selectedEvent.lon) < 8
+                      )
+                    )
+                    if (!related.length) return null
+                    return (
+                      <div className="mt-2">
+                        <div className="text-[7px] font-black tracking-[0.15em] text-[#00ff88] mb-1 flex items-center gap-1">
+                          <Radio className="w-2.5 h-2.5" /> 인근 이동 경로
+                        </div>
+                        {related.map(t => (
+                          <div key={t.id} className="flex items-center gap-2 text-[8px] py-1 border-b border-[#0a3050]/30">
+                            <div className="w-2 h-2 rounded-full shrink-0" style={{ background: t.color }} />
+                            <span className="text-[#6a9ab8] flex-1 truncate">{t.labelKo}</span>
+                            <span className="text-[#2a4a6a] shrink-0">{t.speed}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )
+                  })()}
                 </div>
               </motion.div>
             )}

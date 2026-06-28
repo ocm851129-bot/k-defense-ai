@@ -2,6 +2,7 @@
 import { WEAPONS_WORLD } from './weaponsWorld'
 import { WEAPONS_WIKI } from './weaponsWiki'
 import { WEAPONS_GLOBAL } from './weaponsGlobal'
+import { WEAPONS_SMALL_ARMS } from './weaponsSmallArms'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
@@ -10,6 +11,7 @@ export type WeaponCategory =
   | 'NAVAL' | 'SUBMARINE'
   | 'GROUND' | 'ARTILLERY' | 'MLRS'
   | 'UAV' | 'SATELLITE' | 'NUCLEAR' | 'CYBER'
+  | 'PISTOL' | 'RIFLE' | 'SMG' | 'SNIPER' | 'MG' | 'SHOTGUN' | 'LAUNCHER'
 
 export type WeaponOrigin =
   | 'ROK' | 'DPRK' | 'USA' | 'RUSSIA' | 'CHINA'
@@ -37,6 +39,11 @@ export interface WeaponSpecs {
   warhead?: string
   accuracy?: string
   altitude?: string
+  // 소화기 전용 스펙
+  caliber?: string
+  capacity?: string
+  fireRate?: string
+  penetration?: string
 }
 
 export interface WeaponSystem {
@@ -56,6 +63,8 @@ export interface WeaponSystem {
   relatedIntelIds: string[]
   tags: string[]
   sources: string[]
+  imageUrl?: string
+  wikiUrl?: string
 }
 
 export const CATEGORY_KO: Record<WeaponCategory, string> = {
@@ -79,6 +88,13 @@ export const CATEGORY_KO: Record<WeaponCategory, string> = {
   SATELLITE: '위성',
   NUCLEAR: '핵·WMD',
   CYBER: '사이버 무기',
+  PISTOL: '권총',
+  RIFLE: '소총·돌격소총',
+  SMG: '기관단총',
+  SNIPER: '저격소총',
+  MG: '기관총',
+  SHOTGUN: '산탄총',
+  LAUNCHER: '유탄·로켓 발사기',
 }
 
 export const CATEGORY_COLOR: Record<WeaponCategory, string> = {
@@ -88,6 +104,8 @@ export const CATEGORY_COLOR: Record<WeaponCategory, string> = {
   NAVAL: '#00d4ff', SUBMARINE: '#4a9eff', GROUND: '#a8ff78',
   ARTILLERY: '#ffcc00', MLRS: '#ffcc00', UAV: '#c084fc',
   SATELLITE: '#00d4ff', NUCLEAR: '#ff2d55', CYBER: '#ff2d55',
+  PISTOL: '#f472b6', RIFLE: '#86efac', SMG: '#a3e635',
+  SNIPER: '#fbbf24', MG: '#fb923c', SHOTGUN: '#94a3b8', LAUNCHER: '#f87171',
 }
 
 export const ORIGIN_COLOR: Record<WeaponOrigin, string> = {
@@ -1634,4 +1652,5 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
   ...WEAPONS_WORLD,
   ...WEAPONS_WIKI,
   ...WEAPONS_GLOBAL,
+  ...WEAPONS_SMALL_ARMS,
 ]
