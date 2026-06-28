@@ -25,7 +25,7 @@ const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
 ]
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_KO) as WeaponCategory[]
-const ALL_ORIGINS: WeaponOrigin[] = ['ROK', 'DPRK', 'USA', 'CHINA', 'RUSSIA', 'UK', 'FRANCE', 'GERMANY', 'JAPAN', 'ISRAEL', 'TURKEY', 'IRAN', 'AUSTRALIA', 'NATO', 'MULTI']
+const ALL_ORIGINS: WeaponOrigin[] = ['ROK', 'DPRK', 'USA', 'CHINA', 'RUSSIA', 'UK', 'FRANCE', 'GERMANY', 'JAPAN', 'INDIA', 'ISRAEL', 'TURKEY', 'IRAN', 'PAKISTAN', 'TAIWAN', 'AUSTRALIA', 'SWEDEN', 'UKRAINE', 'NATO', 'MULTI']
 const ALL_STATUSES: WeaponStatus[] = ['OPERATIONAL', 'DEVELOPMENT', 'TESTING', 'SUSPECTED', 'RETIRED']
 const THREAT_LEVELS: ThreatRating[] = ['CRITICAL', 'HIGH', 'MED', 'LOW']
 
