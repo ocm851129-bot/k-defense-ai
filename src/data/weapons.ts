@@ -10,6 +10,8 @@ import { WEAPONS_EXP_RUSSIA } from './weaponsExpandedRussia'
 import { WEAPONS_EXP_CHINA } from './weaponsExpandedChina'
 import { WEAPONS_EXP_EUROPE } from './weaponsExpandedEurope'
 import { WEAPONS_EXP_ASIA } from './weaponsExpandedAsia'
+import { WEAPONS_EXP_ROK2 } from './weaponsExpandedROK2'
+import { WEAPONS_EXP_WORLD2 } from './weaponsExpandedWorld2'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
@@ -1862,4 +1864,6 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
   ...WEAPONS_EXP_CHINA,
   ...WEAPONS_EXP_EUROPE,
   ...WEAPONS_EXP_ASIA,
+  ...WEAPONS_EXP_ROK2,
+  ...WEAPONS_EXP_WORLD2,
 ]
