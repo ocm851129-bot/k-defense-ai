@@ -12,8 +12,8 @@ export const WEAPONS_WIKI: WeaponSystem[] = [
 
   {
     id:'w-rok-w01', name:'KF-21 보라매', nameEng:'KAI KF-21 Boramae', designation:'KF-21',
-    category:'AIRCRAFT', origin:'ROK', status:'DEVELOPMENT', threatRating:'HIGH',
-    description:'한국 최초 국산 4.5세대 전투기. 2026년 9월 실전배치 예정. 한국항공우주산업(KAI) 개발.',
+    category:'AIRCRAFT', origin:'ROK', status:'OPERATIONAL', threatRating:'HIGH',
+    description:'한국 최초 국산 4.5세대 전투기. 2026년 상반기 강릉기지 IOC 달성. 한국항공우주산업(KAI) 개발.',
     detail:`## KAI KF-21 보라매\n\n한국이 독자 개발한 쌍발 초음속 다목적 전투기. 전남 사천 KAI 공장에서 양산 중이며 강릉기지 배치 예정.\n\n### 주요 제원 (Wikipedia)\n- 최고속도: 마하 1.8 이상 (2024년 5월 시험 달성)\n- AESA 레이더: 한화시스템 APY-016K (탐지거리 150~200km)\n- 엔진: GE F414-GE-400K ×2\n- 무장: Meteor AAM, IRIS-T, AIM-120, KALCM 천룡\n- 외부 하드포인트 10개, 탑재량 7,700kg\n\n### 운용 현황 (2026)\n- Block I 40대 발주, 양산 2024년 7월 시작\n- 2026년 9월 강릉기지 최초 배치 계획\n- Block III: 스텔스 다목적 전투기로 발전 예정`,
     specs:{ range:'1,000km(전투행동반경)', speed:'마하 1.8+', payload:'7,700kg', length:'16.9m', weight:'11,000kg', propulsion:'GE F414-GE-400K ×2(각 22,000파운드)', guidance:'APY-016K AESA레이더', ceiling:'12,192m+', crew:'1~2명', firstDeployed:'2026년 9월(예정)', manufacturer:'한국항공우주산업(KAI)', armament:'Meteor/IRIS-T/AIM-120/KALCM 천룡/GBU-12' },
     confidence:92, lastUpdated:'2026-06-27', relatedIntelIds:[], tags:['KF-21','보라매','국산전투기','4.5세대','KAI'], sources:['Wikipedia','KAI','ROKAF'],

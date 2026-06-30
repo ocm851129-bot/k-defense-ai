@@ -1,0 +1,273 @@
+import type { WeaponSystem } from './weapons'
+const w = (id:string,name:string,nameEng:string,cat:WeaponSystem['category'],origin:WeaponSystem['origin'],status:WeaponSystem['status'],threat:WeaponSystem['threatRating'],desc:string,specs:WeaponSystem['specs'],tags:string[],sources:string[],img?:string,wiki?:string,conf=85): WeaponSystem=>({id,name,nameEng,category:cat,origin,status,threatRating:threat,description:desc,detail:`## ${nameEng}\n\n${desc}\n\n### 주요 제원\n${Object.entries(specs).filter(([,v])=>v).map(([k,v])=>`- ${k}: ${v}`).join('\n')}`,specs,confidence:conf,lastUpdated:'2026-07-01',relatedIntelIds:[],tags,sources,imageUrl:img,wikiUrl:wiki})
+
+export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
+
+  // ── 전략 핵 전력 ───────────────────────────────────────────────────────────
+  w('rus-n001','RS-28 사르마트 ICBM','RS-28 Sarmat ICBM','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
+    '러시아 최신 중액체추진 ICBM. 사거리 18,000km. MIRV 15기·극초음속 아방가르드 탑재 가능. 미 MD 무력화 설계.',
+    {range:'18,000km',payload:'MIRV 15기 또는 아방가르드 HGV',propulsion:'액체추진 2단',firstDeployed:'2022년',manufacturer:'마케예프로켓센터'},
+    ['RS-28','사르마트','ICBM','MIRV','아방가르드'],['러시아전략미사일군','RVSN'],
+    undefined,'https://en.wikipedia.org/wiki/RS-28_Sarmat',80),
+
+  w('rus-n002','RS-24 야르스 ICBM','RS-24 Yars ICBM','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
+    '고체추진 이동식 ICBM. 사거리 11,000km. MIRV 3~6기. TEL 운용으로 생존성 극대화. 주력 지상 핵억제.',
+    {range:'11,000km',payload:'MIRV 3~6기(150~300kt)',propulsion:'고체추진 3단',firstDeployed:'2010년',manufacturer:'마이트'},
+    ['RS-24','야르스','ICBM','고체추진','MIRV'],['RVSN'],
+    undefined,'https://en.wikipedia.org/wiki/RS-24_Yars',88),
+
+  w('rus-n003','R-30 불라바 SLBM','R-30 Bulava SLBM','SLBM','RUSSIA','OPERATIONAL','CRITICAL',
+    '보레이급 SSBN 탑재 SLBM. 16발 탑재. MIRV 6~10기. 사거리 8,000~9,300km. 러시아 해상 핵억제 핵심.',
+    {range:'9,300km',payload:'MIRV 6~10기(100~150kt)',propulsion:'3단 고체추진',firstDeployed:'2013년',manufacturer:'MIT'},
+    ['R-30','불라바','SLBM','보레이','해상핵억제'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/R-30_Bulava',85),
+
+  w('rus-n004','Kh-47M2 킨잘 극초음속','Kh-47M2 Kinzhal Hypersonic Missile','CRUISE','RUSSIA','OPERATIONAL','CRITICAL',
+    '공중발사 극초음속 탄도미사일. 마하 10+. MiG-31K·Tu-22M3·Su-57 탑재. 우크라이나 실전 사용.',
+    {range:'2,000km+',speed:'마하 10+',payload:'480kg 재래식 또는 핵탄두',guidance:'관성+GPS',firstDeployed:'2017년',manufacturer:'이스칸데르 파생'},
+    ['킨잘','극초음속','Kh-47M2','MiG-31K','우크라이나'],['러시아공군'],
+    undefined,'https://en.wikipedia.org/wiki/Kh-47M2_Kinzhal',88),
+
+  w('rus-n005','아방가르드 HGV','Avangard Hypersonic Glide Vehicle','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
+    '세계 최초 실전배치 극초음속 활공체. RS-28 탑재. 마하 27. 2019년 실전배치 공식 발표.',
+    {speed:'마하 27',range:'ICBM 사정권(6,000km+)',payload:'핵탄두(추정 2Mt)',firstDeployed:'2019년',manufacturer:'레진코프설계국'},
+    ['아방가르드','HGV','극초음속','마하27','RS-28'],['RVSN'],
+    undefined,'https://en.wikipedia.org/wiki/Avangard_(hypersonic_glide_vehicle)',82),
+
+  w('rus-n006','3M22 치르콘 극초음속 대함','3M22 Zircon Hypersonic ASM','CRUISE','RUSSIA','OPERATIONAL','CRITICAL',
+    '함정발사 극초음속 대함·대지미사일. 마하 8~9. 사거리 1,000km+. 2023년 실전배치. 항모킬러 설계.',
+    {range:'1,000km+',speed:'마하 8~9',payload:'핵·재래식 복합',guidance:'관성+GPS+능동레이더',firstDeployed:'2023년',manufacturer:'NPO마쉬노스트로에니야'},
+    ['치르콘','극초음속','대함미사일','마하9','항모킬러'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/3M22_Zircon',80),
+
+  w('rus-n007','포세이돈 핵추진 어뢰','Poseidon Nuclear-Powered Torpedo','SUBMARINE','RUSSIA','TESTING','CRITICAL',
+    '원자력추진 핵무인수중공격체. 방사성 해일파 생성 목적. 2~100Mt. 벨고로드 SSBN 탑재.',
+    {range:'10,000km+(추정)',speed:'185km/h(추정)',payload:'핵탄두 2Mt+',propulsion:'소형 원자로',firstDeployed:'시험 중'},
+    ['포세이돈','핵어뢰','UUV','방사성해일','WMD'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Poseidon_(weapon)',55),
+
+  w('rus-n008','9M729 이스칸데르-M','9M729 Iskander-M SRBM','SRBM','RUSSIA','OPERATIONAL','CRITICAL',
+    '이동식 단거리 탄도미사일. 변칙기동. 사거리 500km. 핵·재래식 복합. KN-23의 원형. 우크라이나 전선 대량 사용.',
+    {range:'500km',payload:'480~700kg 또는 핵탄두',propulsion:'고체추진',guidance:'INS+GPS+광학',firstDeployed:'2006년',manufacturer:'KBM'},
+    ['이스칸데르-M','SRBM','변칙기동','우크라이나','핵재래식'],['러시아육군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Iskander-M_-_2010_Moscow_Victory_Day_Parade.jpg/320px-Iskander-M_-_2010_Moscow_Victory_Day_Parade.jpg',
+    'https://en.wikipedia.org/wiki/9K720_Iskander',90),
+
+  w('rus-n009','9M729 이스칸데르-K 순항미사일','9M729 Iskander-K GLCM','CRUISE','RUSSIA','OPERATIONAL','HIGH',
+    '이스칸데르 플랫폼에서 발사하는 지상발사 순항미사일. 사거리 2,000km. INF 조약 위반 논란. 우크라이나 사용.',
+    {range:'2,000km',payload:'480kg',propulsion:'터보팬',guidance:'INS+지형추적+DSMAC',firstDeployed:'2008년'},
+    ['이스칸데르-K','지상발사순항','INF위반','우크라이나'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/9M729',85),
+
+  w('rus-n010','Kh-101/Kh-102 공중발사순항','Kh-101/Kh-102 Air-Launched CM','CRUISE','RUSSIA','OPERATIONAL','HIGH',
+    '전략 스텔스 공중발사 순항미사일. Kh-101 재래식·Kh-102 핵. 사거리 5,500km. Tu-95MS·Tu-160 탑재.',
+    {range:'5,500km',speed:'마하 0.77',payload:'400kg 재래식/핵탄두',guidance:'INS+지형추적+광학',firstDeployed:'2013년',manufacturer:'라둔다구야투라'},
+    ['Kh-101','공중발사','스텔스순항','Tu-95','전략폭격'],['러시아공군'],
+    undefined,'https://en.wikipedia.org/wiki/Kh-101_and_Kh-102',85),
+
+  // ── 전투기·항공기 ────────────────────────────────────────────────────────
+  w('rus-a001','Su-57 펠론','Sukhoi Su-57 Felon','AIRCRAFT','RUSSIA','OPERATIONAL','CRITICAL',
+    '러시아 5세대 스텔스 전투기. Sh-121 레이더. 우크라이나 전선에서 Kh-59·R-77 운용. 소량 배치.',
+    {speed:'마하 2.0+',range:'3,500km',ceiling:'20,000m',crew:'1명',armament:'30mm·R-77M·Kh-59MK2·R-37M',firstDeployed:'2020년',manufacturer:'수호이',quantity:'10기+(소량)'},
+    ['Su-57','펠론','5세대','스텔스','러시아'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Sukhoi_Su-57_in_2019_MAKS_%28cropped%29.jpg/320px-Sukhoi_Su-57_in_2019_MAKS_%28cropped%29.jpg',
+    'https://en.wikipedia.org/wiki/Sukhoi_Su-57',80),
+
+  w('rus-a002','Su-35S 플랭커-E','Sukhoi Su-35S Flanker-E','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
+    '4++ 세대 다목적 전투기. 3D 추력편향 엔진. R-37M 장거리 AAM 운용. 우크라이나 전선 주력 전투기.',
+    {speed:'마하 2.25',range:'3,600km',ceiling:'18,000m',crew:'1명',armament:'30mm·R-77M·R-37M·Kh-31',firstDeployed:'2012년',manufacturer:'수호이',quantity:'100기+'},
+    ['Su-35S','플랭커-E','4++세대','우크라이나','러시아전투기'],['러시아공군'],
+    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-35',90),
+
+  w('rus-a003','Su-34 풀백','Sukhoi Su-34 Fullback','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
+    '전폭기. Su-27 파생 나란히 2인승. 정밀유도무장·글라이딩탄 탑재. 우크라이나 전선 주력 타격기.',
+    {speed:'마하 1.8',range:'4,000km',ceiling:'17,000m',crew:'2명(나란히)',armament:'30mm·Kh-31·Kh-35·FAB-500M62·KAB-500S',firstDeployed:'2006년',manufacturer:'수호이',quantity:'140기+'},
+    ['Su-34','풀백','전폭기','우크라이나','글라이딩탄'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Su-34_at_MAKS-2007.jpg/320px-Su-34_at_MAKS-2007.jpg',
+    'https://en.wikipedia.org/wiki/Sukhoi_Su-34',90),
+
+  w('rus-a004','Su-30SM 플랭커-H','Sukhoi Su-30SM Flanker-H','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
+    '복좌 다목적 전투기. 인도·알제리·이란 수출. 추력편향 엔진. 장거리 타격·제공권 겸용.',
+    {speed:'마하 2.0',range:'3,000km',ceiling:'17,300m',crew:'2명',armament:'30mm·R-73·R-77·Kh-29·Kh-31',firstDeployed:'2013년',manufacturer:'이르쿠트',quantity:'120기+'},
+    ['Su-30SM','플랭커-H','복좌전투기','수출형','다목적'],['러시아공군'],
+    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-30',88),
+
+  w('rus-a005','MiG-31BM 폭스하운드','MiG-31BM Foxhound','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
+    '장거리 요격·킨잘 핵운반 플랫폼. 사거리 300km R-37M 탑재. 킨잘 극초음속 4발 탑재 가능.',
+    {speed:'마하 2.83',range:'3,000km',ceiling:'20,600m',crew:'2명',armament:'23mm·R-37M·R-60·킨잘 Kh-47M2',firstDeployed:'1981년(BM 2016)',manufacturer:'미코얀'},
+    ['MiG-31BM','폭스하운드','요격기','킨잘탑재','R-37M'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mig-31_Foxhound.jpg/320px-Mig-31_Foxhound.jpg',
+    'https://en.wikipedia.org/wiki/Mikoyan_MiG-31',88),
+
+  w('rus-a006','Tu-160M 블랙잭','Tu-160M Blackjack','AIRCRAFT','RUSSIA','OPERATIONAL','CRITICAL',
+    '세계 최대·최속 전략폭격기. 가변익. Kh-101/102·Kh-55 탑재. 핵억제 3축 항공 전력.',
+    {speed:'마하 2.05',range:'12,300km',ceiling:'15,000m',crew:'4명',armament:'Kh-101×12·Kh-55×24',firstDeployed:'1987년(M형 2022)',manufacturer:'투폴레프',quantity:'16기(현역)'},
+    ['Tu-160M','블랙잭','전략폭격기','가변익','핵억제'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/TU-160_Blackjack.jpg/320px-TU-160_Blackjack.jpg',
+    'https://en.wikipedia.org/wiki/Tupolev_Tu-160',90),
+
+  w('rus-a007','Tu-95MS 베어','Tu-95MS Bear','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
+    '터보프롭 전략폭격기. Kh-101/55 순항미사일 탑재. 우크라이나 공습 주력. 70년 이상 운용.',
+    {speed:'920km/h',range:'15,000km',ceiling:'12,000m',crew:'7명',armament:'Kh-101×16·Kh-55×16',firstDeployed:'1956년(MS 1983)',manufacturer:'투폴레프',quantity:'55기'},
+    ['Tu-95MS','베어','전략폭격기','터보프롭','우크라이나'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/TU-95MS.jpg/320px-TU-95MS.jpg',
+    'https://en.wikipedia.org/wiki/Tupolev_Tu-95',90),
+
+  w('rus-a008','Tu-22M3 백파이어','Tu-22M3 Backfire-C','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
+    '가변익 초음속 전략·해상타격 폭격기. Kh-32·Kh-22 초음속 대함미사일 탑재. 우크라이나 전선 사용.',
+    {speed:'마하 1.88',range:'7,000km',ceiling:'14,000m',crew:'4명',armament:'Kh-22/32×3·Kh-15 핵미사일',firstDeployed:'1969년(M3 1983)',manufacturer:'투폴레프',quantity:'65기'},
+    ['Tu-22M3','백파이어','전략폭격기','Kh-22','해상타격'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Tupolev_Tu-22M3.jpg/320px-Tupolev_Tu-22M3.jpg',
+    'https://en.wikipedia.org/wiki/Tupolev_Tu-22M',88),
+
+  w('rus-a009','Ka-52 악어','Ka-52 Alligator','HELICOPTER','RUSSIA','OPERATIONAL','HIGH',
+    '동축반전 공격헬기. 탈출 좌석 장착 세계 유일 공격헬기. 우크라이나 전선 대량 격파 손실.',
+    {speed:'300km/h',range:'460km',armament:'30mm 2А42·Vikhr ATGM×12·Kh-25',firstDeployed:'1995년',manufacturer:'카모프·아르세니예프'},
+    ['Ka-52','악어','공격헬기','동축반전','우크라이나'],['러시아육군항공'],
+    undefined,'https://en.wikipedia.org/wiki/Kamov_Ka-52',85),
+
+  w('rus-a010','Mi-28NM 하보크','Mi-28NM Havoc-B','HELICOPTER','RUSSIA','OPERATIONAL','HIGH',
+    '러시아 주력 공격헬기. 30mm 기관포·대전차미사일·로켓. 야간전투 능력 강화형(NM).',
+    {speed:'324km/h',range:'435km',armament:'30mm 2А42·Ataka·S-8 로켓',firstDeployed:'1993년(NM 2019)',manufacturer:'밀'},
+    ['Mi-28NM','하보크','공격헬기','야간전투','ATGM'],['러시아육군항공'],
+    undefined,'https://en.wikipedia.org/wiki/Mil_Mi-28',85),
+
+  // ── 지상 전력 ──────────────────────────────────────────────────────────────
+  w('rus-g001','T-14 아르마타','T-14 Armata MBT','GROUND','RUSSIA','TESTING','HIGH',
+    '무인 포탑·능동방호·원격사격. 차세대 3세대+ MBT. 우크라이나 전선 투입 소량 확인. 양산 지연.',
+    {weight:'55톤',armament:'2А82-1M 125mm 활강포·12.7mm 원격무장,crew:3명(모두 선체 내)',speed:'80km/h',propulsion:'A85-3A 1,500hp',firstDeployed:'시험중(소량)',manufacturer:'우랄바곤자보드'},
+    ['T-14','아르마타','무인포탑','3세대+','능동방호'],['러시아육군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/T-14_Armata_2017.jpg/320px-T-14_Armata_2017.jpg',
+    'https://en.wikipedia.org/wiki/T-14_Armata',70),
+
+  w('rus-g002','T-90M 프로르이프','T-90M Proryv MBT','GROUND','RUSSIA','OPERATIONAL','HIGH',
+    '우크라이나 전선 현역 최신 전차. 접촉-5 반응장갑·Arena APS·열영상 조준경. T-72B3 대비 성능 향상.',
+    {weight:'48톤',armament:'2А46М-5 125mm·12.7mm Kord',crew:'3명',speed:'65km/h',propulsion:'V92S2F 1,130hp',firstDeployed:'2020년',manufacturer:'우랄바곤자보드'},
+    ['T-90M','프로르이프','러시아전차','우크라이나','반응장갑'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/T-90',88),
+
+  w('rus-g003','T-72B3M MBT','T-72B3M Main Battle Tank','GROUND','RUSSIA','OPERATIONAL','HIGH',
+    '우크라이나 전선 손실 주력 전차. 콘타크트-5·T01-02M 열영상. 저가 대량생산형.',
+    {weight:'45.5톤',armament:'2А46М-5 125mm·PKT',crew:'3명',speed:'60km/h',propulsion:'V-92S2 840hp',firstDeployed:'2016년',manufacturer:'우랄바곤자보드'},
+    ['T-72B3M','러시아전차','우크라이나손실','대량','주력'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/T-72',92),
+
+  w('rus-g004','BMP-3','BMP-3 Infantry Fighting Vehicle','GROUND','RUSSIA','OPERATIONAL','HIGH',
+    '러시아 표준 보병전투차. 100mm 포+30mm 기관포 복합. 도하 가능 수상주행. 쿠웨이트·UAE 수출.',
+    {weight:'18.7톤',armament:'2К23(100mm+30mm)+PKT 7.62mm',crew:'3명+7명',speed:'70km/h(도로)/10km/h(수상)',firstDeployed:'1987년',manufacturer:'KMZ'},
+    ['BMP-3','IFV','보병전투차','100mm','수상주행'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/BMP-3',88),
+
+  w('rus-g005','2S19 MSTA-S 자주포','2S19 MSTA-S 152mm SPH','ARTILLERY','RUSSIA','OPERATIONAL','HIGH',
+    '152mm 자주곡사포. 사거리 25km(표준)/40km(RAP). 우크라이나 전선 주력 포병. GPS 유도 Krasnopol 운용.',
+    {armament:'152mm 2А65 곡사포',range:'25km(표준)/40km(RAP)',weight:'42톤',crew:'5명',firstDeployed:'1989년',manufacturer:'우랄트란스마쉬'},
+    ['2S19','MSTA','자주포','152mm','우크라이나'],['러시아육군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/2S19_Msta-S_artillery%2C_Moscow_Victory_Day_Parade%2C_2009.jpg/320px-2S19_Msta-S_artillery%2C_Moscow_Victory_Day_Parade%2C_2009.jpg',
+    'https://en.wikipedia.org/wiki/2S19_Msta',90),
+
+  w('rus-g006','TOS-1A 부라티노 열압력로켓','TOS-1A Solntsepyok Thermobaric MLRS','MLRS','RUSSIA','OPERATIONAL','HIGH',
+    '220mm 24연장 열압력탄두 다연장로켓. T-72 차체. 사거리 6km. 우크라이나 도시 공격에 사용.',
+    {range:'6km',armament:'220mm 열압력로켓 24발',payload:'열압력·소이 탄두',firstDeployed:'2001년',manufacturer:'옴스크트란스마쉬'},
+    ['TOS-1A','부라티노','열압력','소이','우크라이나'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/TOS-1',85),
+
+  w('rus-g007','9К58 스메르치','9K58 Smerch 300mm MLRS','MLRS','RUSSIA','OPERATIONAL','HIGH',
+    '300mm 12연장 다연장로켓. 사거리 90km. 집속탄·자탄·FAE 탄두. 우크라이나·시리아 사용.',
+    {range:'90km',armament:'300mm 로켓 12발',firstDeployed:'1987년',manufacturer:'스플라프'},
+    ['스메르치','300mm','MLRS','집속탄','우크라이나'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/9K58_Smerch',88),
+
+  w('rus-g008','BM-30 스메르치/토르나도-G','Tornado-G 122mm MLRS','MLRS','RUSSIA','OPERATIONAL','HIGH',
+    '122mm 개량형 다연장로켓. 사거리 40km. GPS 유도 탄두. BM-21 그라드 후속.',
+    {range:'40km',armament:'122mm GPS유도로켓 40발',firstDeployed:'2013년(토르나도-G)',manufacturer:'스플라프'},
+    ['토르나도-G','122mm','MLRS','GPS유도','그라드후속'],['러시아육군'],
+    undefined,undefined,85),
+
+  w('rus-g009','S-400 트리움프','S-400 Triumf SAM System','SAM','RUSSIA','OPERATIONAL','HIGH',
+    '러시아 최강 장거리 지대공 미사일. 사거리 400km·고도 30km. 터키·인도·중국 수출. NATO 우려.',
+    {range:'400km',altitude:'30km',guidance:'능동레이더 시커',firstDeployed:'2007년',manufacturer:'알마즈-안테이'},
+    ['S-400','트리움프','장거리SAM','터키','인도수출'],['러시아공군'],
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/S400-russia.jpg/320px-S400-russia.jpg',
+    'https://en.wikipedia.org/wiki/S-400_missile_system',92),
+
+  w('rus-g010','S-500 프로메테우스','S-500 Prometey SAM','SAM','RUSSIA','OPERATIONAL','HIGH',
+    '위성·극초음속 요격 설계 차세대 방공체계. 사거리 600km·고도 200km. S-400과 복합 운용.',
+    {range:'600km',altitude:'200km',guidance:'능동레이더+적외선',firstDeployed:'2021년(소량)',manufacturer:'알마즈-안테이'},
+    ['S-500','프로메테우스','극초음속요격','위성요격','차세대방공'],['러시아공군'],
+    undefined,'https://en.wikipedia.org/wiki/S-500_missile_system',72),
+
+  w('rus-g011','9К720 이스칸데르 시스템 (전체)','9K720 Iskander Weapon System','SRBM','RUSSIA','OPERATIONAL','HIGH',
+    '이스칸데르 복합 시스템. 탄도·순항 겸용. TEL 1대당 2발. 벨라루스·아르메니아 수출.',
+    {range:'500km(탄도)/2,000km(순항)',propulsion:'고체추진',firstDeployed:'2006년',manufacturer:'KBM마쉬노스트로에니야'},
+    ['이스칸데르','SRBM','복합시스템','TEL','수출'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/9K720_Iskander',92),
+
+  w('rus-g012','Buk-M3 바이칼','Buk-M3 Viking SAM','SAM','RUSSIA','OPERATIONAL','HIGH',
+    '중거리 지대공 미사일 최신형. 사거리 70km. 6셀 동시교전. MH17 격추 Buk-M1의 후속형.',
+    {range:'70km',altitude:'35km',guidance:'능동레이더',firstDeployed:'2016년',manufacturer:'티호미로프-NIIP'},
+    ['Buk-M3','바이칼','중거리SAM','MH17후속','우크라이나'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/Buk_missile_system',85),
+
+  w('rus-g013','Tor-M2 SAM','Tor-M2 SAM System','SAM','RUSSIA','OPERATIONAL','HIGH',
+    '전방 야전 단거리 방공체계. 완전 자동화·이동 중 교전 가능. 드론 요격 특화.',
+    {range:'16km',altitude:'12km',guidance:'능동레이더',firstDeployed:'2016년',manufacturer:'이쥬오브스크엑트로메카이체스키'},
+    ['Tor-M2','단거리SAM','야전방공','드론요격','자동화'],['러시아육군'],
+    undefined,'https://en.wikipedia.org/wiki/Tor_missile_system',88),
+
+  // ── 해군 전력 ──────────────────────────────────────────────────────────────
+  w('rus-nav001','보레이-A급 SSBN','Borei-A class SSBN','SUBMARINE','RUSSIA','OPERATIONAL','CRITICAL',
+    '러시아 최신 핵추진 탄도미사일 잠수함. 불라바 SLBM 16발. 5척 취역·5척 건조 중.',
+    {displacement:'24,000톤(수중)',length:'170m',crew:'107명',armament:'불라바 R-30 SLBM×16·어뢰 533mm',propulsion:'OK-650B 원자로',firstDeployed:'2013년',manufacturer:'세베로드빈스크 조선소',quantity:'5척'},
+    ['보레이-A','SSBN','핵잠수함','불라바','핵억제'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Borei-class_submarine',88),
+
+  w('rus-nav002','야센-M급 공격잠수함','Yasen-M class SSGN','SUBMARINE','RUSSIA','OPERATIONAL','HIGH',
+    '러시아 최신 공격잠수함. 치르콘·칼리브르·P-800 오닉스 탑재. 3차원 공격 능력. 3척 취역.',
+    {displacement:'13,800톤(수중)',length:'139m',crew:'90명',armament:'치르콘·칼리브르·P-800 오닉스 VLS 32셀',propulsion:'OK-650B 원자로',firstDeployed:'2014년',manufacturer:'세베로드빈스크',quantity:'3척'},
+    ['야센-M','SSGN','공격잠수함','치르콘','칼리브르'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Yasen-class_submarine',85),
+
+  w('rus-nav003','오스카-II급 SSGN','Oscar-II class SSGN','SUBMARINE','RUSSIA','OPERATIONAL','HIGH',
+    'P-700 그라니트 대함미사일 24발 탑재 순항미사일 잠수함. 쿠르스크함 침몰 세대. 4척 현역.',
+    {displacement:'24,000톤(수중)',length:'154m',armament:'P-700 그라니트×24·어뢰',propulsion:'원자로 2기',firstDeployed:'1986년',quantity:'4척'},
+    ['오스카-II','SSGN','P-700','그라니트','쿠르스크'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Oscar-class_submarine',82),
+
+  w('rus-nav004','키로프급 핵추진 순양함','Kirov-class Nuclear Cruiser','NAVAL','RUSSIA','OPERATIONAL','HIGH',
+    '세계 최대 핵추진 수상 전투함. P-700·S-300F·AK-130. 페트르 벨리키함 현역. 1척 수리 중.',
+    {displacement:'28,000톤',length:'252m',crew:'710명',armament:'P-700 그라니트×20·S-300F VLS·AK-130',propulsion:'원자로 2기+스팀터빈',firstDeployed:'1980년',quantity:'1척(현역)'},
+    ['키로프급','핵순양함','P-700','S-300F','세계최대'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',80),
+
+  w('rus-nav005','어드미럴 나히모프 (개조중)','Admiral Nakhimov Refit Kirov Cruiser','NAVAL','RUSSIA','DEVELOPMENT','HIGH',
+    '키로프급 2번함 현대화 개조 중. 칼리브르·치르콘·S-400F 탑재 예정. 2026년 재취역 목표.',
+    {displacement:'28,000톤',armament:'칼리브르·치르콘·S-400F(예정)',firstDeployed:'2026년 재취역(예정)'},
+    ['나히모프','키로프급','개조','치르콘','S-400F'],['러시아해군'],
+    undefined,undefined,60),
+
+  w('rus-nav006','모스크바급 순양함 (격침)','Moskva Slava-class CG (sunk)','NAVAL','RUSSIA','RETIRED','HIGH',
+    '러시아 흑해함대 기함. 2022년 우크라이나 넵튠 대함미사일에 격침. 전쟁사 최대 순양함 손실.',
+    {displacement:'11,490톤',length:'186m',armament:'P-1000 볼칸×16·S-300F·130mm',firstDeployed:'1982년'},
+    ['모스크바','슬라바급','격침','넵튠','흑해함대'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Russian_cruiser_Moskva',95),
+
+  w('rus-nav007','칼리닌그라드급 초계함 (Karakurt)','Karakurt-class Corvette (Kalibr)','NAVAL','RUSSIA','OPERATIONAL','HIGH',
+    '칼리브르 8발 탑재 소형 초계함. 800톤급. 카스피해·흑해에서 우크라이나 공습. 소형이지만 전략적 위협.',
+    {displacement:'800톤',length:'67m',armament:'칼리브르 순항미사일 8발·76mm 함포',firstDeployed:'2018년',quantity:'8척+'},
+    ['카라쿠르트','초계함','칼리브르','흑해','우크라이나'],['러시아해군'],
+    undefined,'https://en.wikipedia.org/wiki/Karakurt-class_corvette',88),
+
+  // ── 전자전·무인기 ────────────────────────────────────────────────────────
+  w('rus-ew001','Kh-50 자폭드론','Shahed-136 (Iran-supplied) / Geran-2','UAV','RUSSIA','OPERATIONAL','HIGH',
+    '이란제 샤헤드-136을 러시아명 게란-2로 운용. 우크라이나 전력망 공습에 대량 사용. 카미카제 드론.',
+    {range:'2,000km+',payload:'40~50kg 폭발물',speed:'185km/h',propulsion:'MD-550 피스톤엔진',firstDeployed:'2022년(우크라이나)',manufacturer:'이란-HESA'},
+    ['게란-2','샤헤드','카미카제드론','우크라이나공습','전력망'],['러시아군'],
+    undefined,'https://en.wikipedia.org/wiki/HESA_Shahed_136',95),
+
+  w('rus-ew002','오리온 무인기','Orion MALE UAV','UAV','RUSSIA','OPERATIONAL','HIGH',
+    '러시아 최초 자국산 MALE 무인기. 시리아·우크라이나 작전 사용. 헬파이어급 미사일 탑재.',
+    {ceiling:'7,500m',range:'300km(작전)',payload:'200kg',firstDeployed:'2019년',manufacturer:'크로노스'},
+    ['오리온','MALE UAV','러시아드론','시리아','우크라이나'],['러시아공군'],
+    undefined,undefined,72),
+
+]
