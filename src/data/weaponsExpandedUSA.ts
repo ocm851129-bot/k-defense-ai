@@ -448,7 +448,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/USS_Arleigh_Burke.jpg/320px-USS_Arleigh_Burke.jpg',
     'https://en.wikipedia.org/wiki/Arleigh_Burke-class_destroyer',99),
 
-  w('usa-n004','티콘데로가급 이지스 순양함','Ticonderoga-class CG','NAVAL','USA','RETIRING','LOW',
+  w('usa-n004','티콘데로가급 이지스 순양함','Ticonderoga-class CG','NAVAL','USA','RETIRED','LOW',
     '미 해군 이지스 순양함. Mk41 VLS 122셀. 퇴역 진행 중. SM-2·SM-3·토마호크 탑재. 순양함 최후 세대.',
     {displacement:'9,600톤',length:'172.8m',crew:'330명+',armament:'Mk41 VLS 122셀·Mk45 127mm×2·팰랭크스',propulsion:'가스터빈 4기',firstDeployed:'1983년',manufacturer:'잉걸스조선',quantity:'11척(퇴역 진행)'},
     ['티콘데로가','CG','이지스','순양함','VLS'],['USN'],
@@ -538,3 +538,4 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     undefined,'https://en.wikipedia.org/wiki/Boeing_X-37',90),
 
 ]
+

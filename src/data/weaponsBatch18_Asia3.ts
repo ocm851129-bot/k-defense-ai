@@ -1,0 +1,85 @@
+import type { WeaponSystem } from './weapons'
+const w = (id:string,name:string,nameEng:string,cat:WeaponSystem['category'],origin:WeaponSystem['origin'],status:WeaponSystem['status'],threat:WeaponSystem['threatRating'],desc:string,specs:WeaponSystem['specs'],tags:string[],sources:string[],img?:string,wiki?:string,conf=80): WeaponSystem=>({id,name,nameEng,category:cat,origin,status,threatRating:threat,description:desc,detail:`## ${nameEng}\n\n${desc}\n\n### 주요 제원\n${Object.entries(specs).filter(([,v])=>v).map(([k,v])=>`- ${k}: ${v}`).join('\n')}`,specs,confidence:conf,lastUpdated:'2026-07-01',relatedIntelIds:[],tags,sources,imageUrl:img,wikiUrl:wiki})
+
+export const WEAPONS_BATCH18_ASIA3: WeaponSystem[] = [
+
+  // ── 일본 지상 추가 ────────────────────────────────────────────────────────
+  w('as3-jpn001','16식 기동전투차','Type 16 MCV Wheeled Tank Destroyer','GROUND','JAPAN','OPERATIONAL','LOW','일본 8×8 차륜형 105mm 기동전투차. 120대+. 기동성 중시.',{weight:'26t',armament:'105mm 강선포·12.7mm',crew:'4명',speed:'100km/h',firstDeployed:'2016년',manufacturer:'미쓰비시중공업'},['16식MCV','일본','105mm','차륜형','기동'],['미쓰비시','육자대'],undefined,'https://en.wikipedia.org/wiki/Type_16_maneuver_combat_vehicle',85),
+  w('as3-jpn002','99式 자주포 155mm','Type 99 SPH 155mm Japan','ARTILLERY','JAPAN','OPERATIONAL','LOW','일본 99식 자주포. 155mm/52구경장. 25발 탑재. 99대.',{weight:'40t',armament:'155mm/52구경장',crew:'4명',range:'30km',firstDeployed:'1999년',quantity:'99대'},['99식자주포','일본','155mm','99대'],['코마츠','육자대'],undefined,'https://en.wikipedia.org/wiki/Type_99_self-propelled_howitzer',82),
+  w('as3-jpn003','87식 자주고사포','Type 87 SPAAG Japan 35mm','GROUND','JAPAN','OPERATIONAL','MED','일본 87식 자주고사포. 35mm 2연장. 저고도 방공.',{weight:'38t',armament:'Oerlikon 35mm 2연장',crew:'3명',speed:'53km/h',firstDeployed:'1987년'},['87식SPAAG','일본','35mm','자주고사포'],['미쓰비시','육자대'],undefined,'https://en.wikipedia.org/wiki/Type_87_Self-Propelled_Anti-Aircraft_Gun',80),
+  w('as3-jpn004','96式 장갑차','Type 96 APC Japan','GROUND','JAPAN','OPERATIONAL','LOW','일본 89식 후속 APC. 수상 도하 능력. 450대.',{weight:'14.3t',crew:'3+8명',speed:'100km/h',firstDeployed:'1996년',quantity:'450대'},['96식APC','일본장갑차','수상도하'],['코마츠','육자대'],undefined,'https://en.wikipedia.org/wiki/Type_96_armoured_personnel_carrier',80),
+  w('as3-jpn005','90式 전차','Type 90 MBT Japan','GROUND','JAPAN','OPERATIONAL','MED','일본 90식 전차. 341대. 120mm 라인메탈 활강포.',{weight:'50t',armament:'120mm Rh 120 활강포·12.7mm',crew:'3명',speed:'70km/h',firstDeployed:'1990년',quantity:'341대'},['90식전차','일본전차','120mm','341대'],['미쓰비시','육자대'],undefined,'https://en.wikipedia.org/wiki/Type_90_tank',88),
+  w('as3-jpn006','OH-1 관측헬기','OH-1 Ninja Observation Helicopter Japan','HELICOPTER','JAPAN','OPERATIONAL','LOW','일본 독자 OH-1 닌자 정찰헬기. 국산 엔진.',{speed:'278km/h',crew:'2명',firstDeployed:'1996년',manufacturer:'가와사키',quantity:'38기'},['OH-1','닌자','일본정찰헬기','국산엔진'],['가와사키','육자대'],undefined,'https://en.wikipedia.org/wiki/Kawasaki_OH-1',82),
+  w('as3-jpn007','H-60 JA 대잠헬기 (해상자위대)','SH-60J/K ASW Helicopter JMSDF','HELICOPTER','JAPAN','OPERATIONAL','LOW','일본 SH-60J/K 대잠헬기. HPS-104 소나. 96기.',{speed:'270km/h',crew:'4명',armament:'Mk-46 어뢰·소노부이',firstDeployed:'1991년(J)·2003년(K)',quantity:'96기'},['SH-60J','SH-60K','일본대잠헬기','HPS-104'],['가와사키','해자대'],undefined,undefined,82),
+  w('as3-jpn008','C-2 수송기 일본','Kawasaki C-2 Japan Transport','AIRCRAFT','JAPAN','OPERATIONAL','LOW','일본 독자 수송기. 37t 탑재. C-130 대체.',{speed:'890km/h',range:'6,500km',crew:'3명',firstDeployed:'2016년',manufacturer:'가와사키',quantity:'22기'},['C-2','일본수송기','37t','독자개발'],['가와사키','공자대'],undefined,'https://en.wikipedia.org/wiki/Kawasaki_C-2',85),
+
+  // ── 인도 지상 추가 ────────────────────────────────────────────────────────
+  w('as3-ind001','FICV 차기 IFV 인도','FICV Future Infantry Combat Vehicle India','GROUND','INDIA','DEVELOPMENT','MED','인도 BMP-2 사라트 대체 차기 IFV. 30mm 이상 포. 2026년+.',{firstDeployed:'2028년(예상)',manufacturer:'L&T·Tata'},['FICV','인도차기IFV','BMP대체'],['L&T','인도군'],undefined,undefined,55),
+  w('as3-ind002','K9 Vajra 2차 도입','K9 Vajra-T Follow-On India','ARTILLERY','INDIA','OPERATIONAL','LOW','K9 바즈라 2차 100대. 중국 국경.',{firstDeployed:'2024년(2차)',quantity:'100대(2차)'},['K9바즈라2차','인도','중국국경'],['L&T','인도군'],undefined,undefined,80),
+  w('as3-ind003','만트라 K9T 터키-인도 협력','K9 Firtina Turkey India Tech Exchange','ARTILLERY','INDIA','DEVELOPMENT','LOW','인도·터키 K9 기반 기술교환. 파생형 연구.',{firstDeployed:'연구중'},['K9','인도터키','기술교환'],['인도터키군수'],undefined,undefined,45),
+  w('as3-ind004','HAL HJT-16 키란 훈련기','HAL HJT-16 Kiran Mk II Trainer','AIRCRAFT','INDIA','OPERATIONAL','LOW','인도 국산 중급 훈련기. 2기 엔진. 인도공군 400기+.',{speed:'695km/h',crew:'2명',firstDeployed:'1969년'},['키란','인도훈련기','HAL','국산'],['HAL','인도공군'],undefined,undefined,72),
+
+  // ── 대만 추가 무기 ────────────────────────────────────────────────────────
+  w('as3-twn001','CM-21 보병전투차 대만','CM-21 APC Taiwan','GROUND','TAIWAN','OPERATIONAL','LOW','M113 기반 대만 국산 APC. 700대. .50cal 기관총.',{weight:'11.5t',crew:'2+10명',speed:'64km/h',firstDeployed:'1992년',quantity:'700대'},['CM-21','대만APC','M113기반'],['대만군'],undefined,undefined,78),
+  w('as3-twn002','AH-64E 아파치 대만','AH-64E Apache Guardian Taiwan','HELICOPTER','TAIWAN','OPERATIONAL','LOW','대만 AH-64E 29기. 중국 상륙 대응.',{speed:'293km/h',crew:'2명',armament:'AGM-114R·AIM-92',firstDeployed:'2014년(대만)',quantity:'29기'},['아파치','대만','29기','중국상륙대응'],['보잉','대만군'],undefined,undefined,90),
+  w('as3-twn003','UH-60M 블랙호크 대만','UH-60M Black Hawk Taiwan','HELICOPTER','TAIWAN','OPERATIONAL','LOW','대만 UH-60M 60기. 산악구조·병력수송.',{speed:'294km/h',crew:'2+11명',firstDeployed:'2010년',quantity:'60기'},['블랙호크','대만','60기','산악구조'],['시코르스키','대만군'],undefined,undefined,88),
+  w('as3-twn004','AIDC A-1 용응 훈련기','AIDC AT-3 Tzu Chiang Advanced Trainer','AIRCRAFT','TAIWAN','OPERATIONAL','LOW','대만 독자 고등훈련기. 40기. F-CK-1 전환훈련.',{speed:'마하 0.85',crew:'2명',firstDeployed:'1980년',quantity:'40기'},['AT-3','대만훈련기','독자개발'],['AIDC','대만공군'],undefined,undefined,72),
+  w('as3-twn005','THUNDERBOLT 2000 다연장로켓','RT-2000 Thunderbolt Multiple Rocket System Taiwan','MLRS','TAIWAN','OPERATIONAL','MED','대만 독자 MLRS. 이동식. 117mm·180mm·230mm 혼용.',{range:'45km',armament:'117~230mm 혼용',firstDeployed:'1998년'},['썬더볼트2000','대만MLRS','혼용구경'],['NCSIST','대만군'],undefined,undefined,72),
+  w('as3-twn006','MK-48 Mod 6 어뢰 대만','MK-48 Mod 6 Taiwan Navy Torpedo','NAVAL','TAIWAN','OPERATIONAL','HIGH','대만 잠수함 Mk-48 Mod 6 어뢰 보유.',{range:'50km',speed:'55노트',firstDeployed:'2000년대(대만)'},['MK-48','대만어뢰','잠수함'],['대만해군'],undefined,undefined,78),
+
+  // ── 싱가포르 추가 ────────────────────────────────────────────────────────
+  w('as3-sg001','AH-64D 아파치 싱가포르','AH-64D Apache Longbow Singapore','HELICOPTER','USA','OPERATIONAL','LOW','싱가포르 AH-64D 8기. 롱보우 레이더.',{speed:'293km/h',crew:'2명',armament:'AGM-114·롱보우',firstDeployed:'2002년',quantity:'8기'},['아파치D','싱가포르','롱보우','8기'],['보잉','싱가포르공군'],undefined,undefined,85),
+  w('as3-sg002','H225M 슈퍼퓨마 싱가포르','H225M Super Puma Singapore','HELICOPTER','FRANCE','OPERATIONAL','LOW','싱가포르 H225M 퓨마 6기. 탐색구조.',{speed:'324km/h',crew:'2+28명',firstDeployed:'2016년',quantity:'6기'},['H225M','싱가포르','탐색구조'],['에어버스','싱가포르군'],undefined,undefined,80),
+  w('as3-sg003','싱가포르 HIMARS','M142 HIMARS Singapore','MLRS','USA','OPERATIONAL','LOW','싱가포르 HIMARS 18대. GMLRS+ATACMS 가능.',{armament:'GMLRS·ATACMS',firstDeployed:'2018년',quantity:'18대'},['HIMARS','싱가포르','18대','ATACMS'],['록히드마틴','싱가포르군'],undefined,undefined,88),
+
+  // ── 말레이시아 추가 ──────────────────────────────────────────────────────
+  w('as3-mys001','AW-139 말레이시아 해상헬기','Leonardo AW-139 Malaysia SAR/Naval','HELICOPTER','MULTI','OPERATIONAL','LOW','말레이시아 해안경비·SAR용 AW-139 6기.',{speed:'306km/h',crew:'2+8명',firstDeployed:'2006년(말레이시아)',quantity:'6기'},['AW-139','말레이시아','SAR','해상헬기'],['레오나르도','말레이시아경비'],undefined,undefined,78),
+  w('as3-mys002','말레이시아 H225 수퍼퓨마','H225 Super Puma RMAF Malaysia','HELICOPTER','FRANCE','OPERATIONAL','LOW','말레이시아 공군 H225 수퍼퓨마 12기.',{speed:'324km/h',crew:'2+25명',firstDeployed:'2007년(말레이시아)',quantity:'12기'},['H225','말레이시아공군','퓨마'],['에어버스','말레이시아군'],undefined,undefined,78),
+
+  // ── 태국 추가 ─────────────────────────────────────────────────────────────
+  w('as3-tha001','태국 VT4 전차','VT4 (MBT-3000) Thailand','GROUND','CHINA','OPERATIONAL','MED','중국 VT4(MBT-3000) 태국 49대. 동남아 신규 전차.',{weight:'52t',armament:'125mm 활강포·12.7mm',crew:'3명',speed:'65km/h',firstDeployed:'2017년(태국)',quantity:'49대'},['VT4','MBT-3000','태국','중국수출','49대'],['중국군수','태국군'],undefined,'https://en.wikipedia.org/wiki/VT4',78),
+  w('as3-tha002','태국 UH-60L 블랙호크','UH-60L Black Hawk Thailand','HELICOPTER','USA','OPERATIONAL','LOW','태국 UH-60L 6기. 병력수송.',{speed:'294km/h',crew:'2+11명',quantity:'6기'},['블랙호크','태국','6기'],['시코르스키','태국군'],undefined,undefined,80),
+
+  // ── 베트남 추가 ──────────────────────────────────────────────────────────
+  w('as3-vnm001','베트남 Su-30MK2V','Su-30MK2V Vietnam','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','베트남 Su-30MK2V. 36기. 남중국해 분쟁 대응.',{speed:'마하 2.0',crew:'2명',armament:'R-77·R-73·Kh-59',firstDeployed:'2004년',quantity:'36기'},['Su-30MK2V','베트남','36기','남중국해'],['수호이','베트남공군'],undefined,undefined,82),
+  w('as3-vnm002','베트남 Kilo급 잠수함','Project 636 Kilo-class Submarine Vietnam','SUBMARINE','RUSSIA','OPERATIONAL','HIGH','베트남 킬로급 636.1형 6척. Club-S 순항미사일. 남중국해.',{displacement:'3,950t',armament:'Club-S 순항·어뢰',crew:'52명',firstDeployed:'2014년',quantity:'6척'},['킬로급','베트남','6척','Club-S','남중국해'],['러시아','베트남해군'],undefined,'https://en.wikipedia.org/wiki/Kilo-class_submarine',82),
+  w('as3-vnm003','베트남 S-300PMU1 방공','S-300PMU1 Vietnam Air Defense','SAM','RUSSIA','OPERATIONAL','HIGH','베트남 S-300PMU1. 남중국해 방어.',{range:'150km',firstDeployed:'2003년(베트남)'},['S-300PMU1','베트남방공','남중국해'],['러시아','베트남군'],undefined,undefined,78),
+  w('as3-vnm004','베트남 Bastion-P 해안방어','Bastion-P Coastal Defense Missile Vietnam','SSM','RUSSIA','OPERATIONAL','HIGH','베트남 바스티온-P 해안 대함미사일. P-800 오닉스.',{range:'300km',speed:'마하 2.5'},['바스티온P','베트남해안방어','P-800','오닉스'],['러시아','베트남군'],undefined,undefined,78),
+
+  // ── 인도네시아 추가 ──────────────────────────────────────────────────────
+  w('as3-idn001','인도네시아 IFX 전투기 개발','IFX/KF-21 Indonesia Partnership Fighter','AIRCRAFT','INDONESIA','DEVELOPMENT','HIGH','한국 KF-21 공동개발 참여(20%). 분담금 미납 논란.',{firstDeployed:'2030년대(인도네시아형)',manufacturer:'KAI·PT DI'},['IFX','인도네시아','KF-21공동개발','분담금미납'],['KAI','PT DI'],undefined,undefined,65),
+  w('as3-idn002','인도네시아 KF-21 계약','KF-21 Indonesia Partner Delivery','AIRCRAFT','ROK','DEVELOPMENT','MED','인도네시아 KF-21 48기 도입 협상 중.',{quantity:'48기(협상)',firstDeployed:'2030년대(예상)',manufacturer:'KAI'},['KF-21','인도네시아','48기','협상'],['KAI','인도네시아공군'],undefined,undefined,55),
+  w('as3-idn003','인도네시아 MLRS Astros II','Astros II MLRS Indonesia','MLRS','NATO','OPERATIONAL','LOW','브라질 아스트로스 II 다연장로켓. 인도네시아 36문.',{range:'90km',armament:'SS-30·SS-40·SS-60',firstDeployed:'1998년(인도네시아)',quantity:'36문'},['아스트로스II','인도네시아MLRS','브라질수출'],['아비브라스','인도네시아군'],undefined,undefined,75),
+  w('as3-idn004','인도네시아 Caesar 자주포','CAESAR SPH Indonesia','ARTILLERY','FRANCE','OPERATIONAL','LOW','인도네시아 CAESAR 차륜형 자주포 36문.',{armament:'155mm/52구경장',firstDeployed:'2012년(인도네시아)',quantity:'36문'},['CAESAR','인도네시아자주포','프랑스수출'],['넥스터','인도네시아군'],undefined,undefined,82),
+
+  // ── 파키스탄 추가 ─────────────────────────────────────────────────────────
+  w('as3-pak001','파키스탄 미라지 III/V','Dassault Mirage III/V Pakistan','AIRCRAFT','FRANCE','OPERATIONAL','MED','파키스탄 미라쥬 III/V. 핵무기 운반 가능. 110기.',{speed:'마하 2.2',crew:'1명',armament:'핵폭탄 옵션·하르파운·Mk82',firstDeployed:'1967년',quantity:'110기'},['미라쥬III','파키스탄','핵운반','110기'],['다소','파키스탄공군'],undefined,undefined,78),
+  w('as3-pak002','파키스탄 F-7PG','F-7PG Thunder (Pakistan)','AIRCRAFT','CHINA','OPERATIONAL','MED','파키스탄 F-7PG 업그레이드형. 111기. AIM-9P·마이카 탑재.',{speed:'마하 2.2',crew:'1명',firstDeployed:'1990년대',quantity:'111기'},['F-7PG','파키스탄','111기','중국전투기'],['Chengdu','파키스탄공군'],undefined,undefined,72),
+  w('as3-pak003','파키스탄 AGOSTA 90B 2차','Agosta-90B 3번함 Hamza Pakistan','SUBMARINE','FRANCE','OPERATIONAL','HIGH','파키스탄 3번째 아고스타 90B. AIP 옵션. 핵어뢰 탑재 가능.',{displacement:'1,760t',armament:'어뢰관 4문·하푼',crew:'36명',firstDeployed:'2008년'},['아고스타90B','함자','파키스탄잠수함','3번째'],['나발그룹','파키스탄해군'],undefined,undefined,78),
+
+  // ── 방글라데시 추가 ─────────────────────────────────────────────────────
+  w('as3-bgd001','방글라데시 MiG-29B','MiG-29B Bangladesh','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','방글라데시 MiG-29B 8기. 동남아시아 유일 미그-29.',{crew:'1명',firstDeployed:'1999년(방글라데시)',quantity:'8기'},['MiG-29B','방글라데시','8기','동남아유일'],['미코얀','방글라데시공군'],undefined,undefined,72),
+  w('as3-bgd002','방글라데시 F-7MB','F-7MB China Bangladesh Fighter','AIRCRAFT','CHINA','OPERATIONAL','MED','방글라데시 F-7 계열 다수. 주력 전투기.',{crew:'1명',firstDeployed:'1980년대(방글라데시)'},['F-7MB','방글라데시','중국전투기'],['중국','방글라데시공군'],undefined,undefined,65),
+
+  // ── 스리랑카 ────────────────────────────────────────────────────────────
+  w('as3-lka001','스리랑카 MiG-27M 공격기','MiG-27M Flogger Sri Lanka','AIRCRAFT','RUSSIA','OPERATIONAL','LOW','스리랑카 MiG-27M. 타밀 반군 진압 실전.',{speed:'마하 1.7',crew:'1명',firstDeployed:'2000년(스리랑카)'},['MiG-27M','스리랑카','타밀반군','실전'],['미코얀','스리랑카공군'],undefined,undefined,68),
+
+  // ── 미얀마 ───────────────────────────────────────────────────────────────
+  w('as3-mmr001','미얀마 MiG-29B','MiG-29B Myanmar','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','미얀마 MiG-29B. 31기. 쿠데타 군부 보유.',{crew:'1명',firstDeployed:'2001년(미얀마)',quantity:'31기'},['MiG-29B','미얀마','쿠데타군부','31기'],['미코얀','미얀마공군'],undefined,undefined,72),
+  w('as3-mmr002','미얀마 F-7M','F-7M Myanmar','AIRCRAFT','CHINA','OPERATIONAL','MED','미얀마 중국 F-7M 30기. 보유 주력 전투기.',{crew:'1명',firstDeployed:'1990년대(미얀마)',quantity:'30기'},['F-7M','미얀마','중국전투기','30기'],['중국','미얀마공군'],undefined,undefined,65),
+
+  // ── 북한 추가 ─────────────────────────────────────────────────────────────
+  w('as3-dprk001','북한 핵잠수함 김군옥영웅함','Kim Kun Ok Hero-class SSBN North Korea','SUBMARINE','DPRK','OPERATIONAL','CRITICAL','2023년 9월 진수. 핵무기탑재 잠수함. 10개 SLBM 튜브. 구식 선체 개조.',{displacement:'4,000t+(추정)',armament:'SLBM×10(추정)·어뢰관',firstDeployed:'2023년(진수)',manufacturer:'북한 군수'},['김군옥영웅함','북한SSBN','2023년진수','SLBM10발'],['북한국방성','38North'],undefined,undefined,62),
+  w('as3-dprk002','북한 천리마 전투기','North Korea Chollima-0415 Fighter Concept','AIRCRAFT','DPRK','DEVELOPMENT','MED','북한 자체 개발 스텔스 전투기 주장. 실제 성능 불명.',{firstDeployed:'개발중(주장)'},['천리마','북한전투기','스텔스주장','불명'],['북한'],undefined,undefined,30),
+  w('as3-dprk003','북한 반항공 포병 (ZPU-4)','North Korea ZPU-4 Anti-Aircraft Artillery','SAM','DPRK','OPERATIONAL','MED','구소련 ZPU-4 14.5mm 4연장 대공포. 북한 전방 배치.',{armament:'14.5mm KPV 4연장',firstDeployed:'1960년대'},['ZPU-4','북한대공포','14.5mm'],['북한군'],undefined,undefined,78),
+  w('as3-dprk004','북한 해성-5 함대함미사일 (추정)','DPRK Haesong-5 AShM Estimate','SSM','DPRK','DEVELOPMENT','HIGH','북한 신형 함대함 미사일 추정. 구체 사양 불명.',{firstDeployed:'개발중(추정)'},['해성5','북한대함','추정'],['38North'],undefined,undefined,30),
+  w('as3-dprk005','북한 무수단 개량형 (화성-10B 추정)','Hwasong-10B Improved Musudan IRBM','IRBM','DPRK','DEVELOPMENT','CRITICAL','화성-10 개량형 추정. 사거리 4,000km+.',{range:'4,000km+(추정)',firstDeployed:'개발중'},['화성10B','무수단개량','4000km'],['38North','CSIS'],undefined,undefined,45),
+
+  // ── 한국 추가 무기 ────────────────────────────────────────────────────────
+  w('as3-rok001','천리안-5 군사정찰위성 (425사업)','425 Military Reconnaissance Satellite #5','SATELLITE','ROK','DEVELOPMENT','LOW','425사업 5번째 위성. EO형. 2025년 발사 예정.',{altitude:'500km LEO',firstDeployed:'2025년(예상)',manufacturer:'KAI'},['425사업5호','한국군사위성','EO형'],['KAI','방위사업청'],undefined,undefined,80),
+  w('as3-rok002','KAMD 한국형미사일방어','KAMD Korean Air and Missile Defense','SAM','ROK','OPERATIONAL','HIGH','패트리어트+천궁+L-SAM 다층방어. 상향식 통합.',{firstDeployed:'현재 구축중'},['KAMD','한국방공','다층방어','천궁패트리어트'],['방위사업청','공군'],undefined,undefined,82),
+  w('as3-rok003','K-방산 수출 체계','K-Defense Export System Overview','GROUND','ROK','OPERATIONAL','LOW','2022년 K방산 수출 173억달러 역대 최고. K2/K9/FA-50/천무/천궁 5대 품목.',{firstDeployed:'2010년대~현재'},['K방산수출','173억달러','5대품목','폴란드'],['방위사업청'],undefined,undefined,95),
+  w('as3-rok004','한국형 이지스 차세대 소프트웨어','KDX KIRIS Next-Gen Aegis Software','NAVAL','ROK','DEVELOPMENT','HIGH','세종대왕급 이지스 소프트웨어 국산화. 미국 의존 탈피.',{firstDeployed:'2025년(예상)',manufacturer:'한화시스템'},['한국이지스소프트웨어','국산화','KIRIS','세종대왕'],['한화시스템','해군'],undefined,undefined,72),
+  w('as3-rok005','KAI 수리온 수출형 KUH-1E','KUH-1E Surion Export Marineon Variant','HELICOPTER','ROK','OPERATIONAL','LOW','수리온 해병대용(마린온) + 수출형. 페루·이라크 관심.',{speed:'259km/h',crew:'2+12명',firstDeployed:'2015년(마린온)',manufacturer:'KAI'},['마린온','수리온수출','KUH-1E','페루','이라크'],['KAI','방위사업청'],undefined,undefined,75),
+
+]

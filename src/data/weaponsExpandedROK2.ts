@@ -113,7 +113,7 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     ['마리온','수리온해병형','상륙헬기','해병대','KAI'],['해병대','KAI'],
     undefined,undefined,88),
 
-  w('rok2-a006','500MD 공격헬기','500MD Defender (ROK)','HELICOPTER','ROK','RETIRING','LOW',
+  w('rok2-a006','500MD 공격헬기','500MD Defender (ROK)','HELICOPTER','ROK','RETIRED','LOW',
     '한국 육군항공 기존 경공격헬기. TOW 대전차미사일 탑재. 수리온·LAH로 단계 교체 중.',
     {speed:'241km/h',range:'483km',armament:'TOW×4·7.62mm 기관총',firstDeployed:'1976년(한국)',manufacturer:'MD헬리콥터스',quantity:'200기+(단계감축)'},
     ['500MD','경공격헬기','TOW','육군항공','LAH교체'],['육군항공'],
@@ -156,3 +156,4 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     undefined,undefined,82),
 
 ]
+

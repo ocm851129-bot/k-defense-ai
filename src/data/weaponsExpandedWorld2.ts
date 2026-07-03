@@ -18,7 +18,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lockheed_SR-71_Blackbird.jpg/320px-Lockheed_SR-71_Blackbird.jpg',
     'https://en.wikipedia.org/wiki/Lockheed_SR-71_Blackbird',99),
 
-  w('usa2-a003','AV-8B 해리어 II (미 해병)','AV-8B Harrier II (USMC)','AIRCRAFT','USA','RETIRING','LOW',
+  w('usa2-a003','AV-8B 해리어 II (미 해병)','AV-8B Harrier II (USMC)','AIRCRAFT','USA','RETIRED','LOW',
     'V/STOL 수직이착륙 공격기. 강습상륙함 탑재. F-35B 전환 중. 영국 공동 개발.',
     {speed:'1,065km/h',range:'1,360km',crew:'1명',armament:'25mm GAU-12·JDAM·AIM-9',firstDeployed:'1985년',manufacturer:'맥도넬더글라스·BAE',quantity:'80기+(감소 중)'},
     ['AV-8B','해리어','V/STOL','USMC','F-35B교체'],['USMC'],
@@ -73,7 +73,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     ['줌왈트','극초음속개조','CPS','대중국','DDG-1000'],['USN'],
     undefined,undefined,75),
 
-  w('usa2-n002','세계포드급 보급함','Supply-class AOE','NAVAL','USA','RETIRING','LOW',
+  w('usa2-n002','세계포드급 보급함','Supply-class AOE','NAVAL','USA','RETIRED','LOW',
     '미 해군 전속 전투지원함. 항모 전단과 동속 기동하며 연료·탄약·식량 보급. T-AO대체 중.',
     {displacement:'48,800톤',crew:'667명',armament:'팰랭크스·RAM',firstDeployed:'1994년',quantity:'2척(퇴역 진행)'},
     ['AOE','전투지원함','항모전단보급','미해군'],['USN'],
@@ -144,7 +144,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     ['J-10','조룡','중국전투기','AESA','파키스탄수출'],['PLAAF'],
     undefined,'https://en.wikipedia.org/wiki/Chengdu_J-10',80),
 
-  w('chn2-a002','J-8IIF 핀백','J-8IIF Finback','AIRCRAFT','CHINA','RETIRING','MED',
+  w('chn2-a002','J-8IIF 핀백','J-8IIF Finback','AIRCRAFT','CHINA','RETIRED','MED',
     '중국 2세대 요격기. 쌍발·단좌. EP-3 충돌 사건(2001) 기체. 현역 감소 중.',
     {speed:'마하 2.2',range:'2,200km',crew:'1명',armament:'23mm·PL-5·PL-8',firstDeployed:'1981년',quantity:'100기+(감소)'},
     ['J-8IIF','핀백','요격기','EP-3충돌','2세대'],['PLAAF'],
@@ -162,7 +162,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     ['051B','러하이','구축함','냉전기','중국해군'],['중국해군'],
     undefined,undefined,75),
 
-  w('chn2-n003','053H3 장위이급 호위함','Type 053H3 Jiangwei II-class FF','NAVAL','CHINA','RETIRING','LOW',
+  w('chn2-n003','053H3 장위이급 호위함','Type 053H3 Jiangwei II-class FF','NAVAL','CHINA','RETIRED','LOW',
     '중국 구형 호위함. HHQ-7 단거리 SAM. 현역 감소 중. 수출형 파키스탄·태국 운용.',
     {displacement:'2,250톤',armament:'HHQ-7·YJ-82·100mm',crew:'170명',firstDeployed:'1998년',quantity:'4척(감소)'},
     ['053H3','장위이급','구형호위함','수출','파키스탄'],['중국해군'],

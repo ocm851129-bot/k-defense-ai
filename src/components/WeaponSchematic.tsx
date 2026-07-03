@@ -359,6 +359,7 @@ export default function WeaponSchematic({ category, name, color = '#00d4ff' }: P
     SAM:'SAM', UAV:'UAV', SATELLITE:'UAV', CYBER:'CYBER',
     PISTOL:'GROUND', RIFLE:'GROUND', SMG:'GROUND',
     SNIPER:'GROUND', MG:'GROUND', SHOTGUN:'GROUND', LAUNCHER:'MLRS',
+    MISSILE:'CRUISE', SHIP:'NAVAL',
   }
 
   const key = categoryMap[category]

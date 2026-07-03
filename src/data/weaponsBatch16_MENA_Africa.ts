@@ -1,0 +1,94 @@
+import type { WeaponSystem } from './weapons'
+const w = (id:string,name:string,nameEng:string,cat:WeaponSystem['category'],origin:WeaponSystem['origin'],status:WeaponSystem['status'],threat:WeaponSystem['threatRating'],desc:string,specs:WeaponSystem['specs'],tags:string[],sources:string[],img?:string,wiki?:string,conf=75): WeaponSystem=>({id,name,nameEng,category:cat,origin,status,threatRating:threat,description:desc,detail:`## ${nameEng}\n\n${desc}\n\n### 주요 제원\n${Object.entries(specs).filter(([,v])=>v).map(([k,v])=>`- ${k}: ${v}`).join('\n')}`,specs,confidence:conf,lastUpdated:'2026-07-01',relatedIntelIds:[],tags,sources,imageUrl:img,wikiUrl:wiki})
+
+export const WEAPONS_BATCH16_MENA_AFRICA: WeaponSystem[] = [
+
+  // ── 사우디아라비아 ────────────────────────────────────────────────────────
+  w('mena001','사우디 타이푼 Tranche 3','Eurofighter Typhoon Tranche 3 Saudi Arabia','AIRCRAFT','NATO','OPERATIONAL','LOW','사우디 유로파이터 72기. Tranche 2/3. 예멘 공습 실전.',{speed:'마하 2.0',crew:'1명',armament:'미티어·ALARM·스톰섀도우',firstDeployed:'2008년',quantity:'72기'},['타이푼','사우디','예멘공습','72기'],['사우디공군','유로파이터'],undefined,undefined,88),
+  w('mena002','사우디 Tornado IDS','Tornado IDS/ADV Saudi Arabia','AIRCRAFT','NATO','OPERATIONAL','LOW','사우디 토네이도. 96기. 걸프전·예멘 실전 투입.',{speed:'마하 2.2',crew:'2명',armament:'Storm Shadow·BOZ·하푼',firstDeployed:'1986년',quantity:'96기(일부퇴역)'},['토네이도','사우디','걸프전','예멘'],['사우디공군'],undefined,undefined,80),
+  w('mena003','사우디 F-15SA 스트라이크이글','F-15SA Strike Eagle Saudi Arabia','AIRCRAFT','USA','OPERATIONAL','LOW','사우디 F-15SA. 84기 신규 도입+70기 개량. 최신형.',{speed:'마하 2.5',crew:'2명',armament:'AIM-120C·AIM-9X·GBU-28·JDAM',firstDeployed:'2016년',quantity:'84기+'},['F-15SA','사우디','최신형','84기'],['보잉','사우디공군'],undefined,undefined,88),
+  w('mena004','사우디 HIMARS 도입','M142 HIMARS Saudi Arabia','MLRS','USA','OPERATIONAL','LOW','사우디 HIMARS 58대 계약. 후티 대응.',{armament:'GMLRS·ATACMS',firstDeployed:'2023년(예상)',quantity:'58대'},['HIMARS','사우디','후티대응','58대'],['록히드마틴','사우디군'],undefined,undefined,82),
+  w('mena005','사우디 팬텀 II F-4C','F-4C Phantom II Saudi (Retired)','AIRCRAFT','USA','RETIRED','LOW','사우디 F-4 팬텀 구형. 퇴역. F-15로 대체.',{crew:'2명',firstDeployed:'1971년',manufacturer:'맥도넬더글러스'},['F-4','팬텀','사우디','퇴역'],['사우디공군'],undefined,undefined,80),
+
+  // ── UAE ───────────────────────────────────────────────────────────────────
+  w('mena006','UAE Mirage 2000-9','Dassault Mirage 2000-9 UAE','AIRCRAFT','FRANCE','OPERATIONAL','LOW','UAE 미라쥬 2000-9. 36기. 예멘 실전. 세계 최고 레벨 2000 버전.',{speed:'마하 2.2',crew:'1명',armament:'MICA·SCALP·블랙샤힌·레이저유도',firstDeployed:'2003년',quantity:'36기'},['미라쥬2000-9','UAE','예멘실전','MICA'],['다소','UAE공군'],undefined,undefined,88),
+  w('mena007','UAE F-35A 도입 계획','F-35A UAE Planned Purchase','AIRCRAFT','USA','DEVELOPMENT','LOW','UAE F-35A 50기 계획. 2020년 협정 후 인권·화웨이 이슈로 지연.',{firstDeployed:'미정(미국제재조건)',quantity:'50기(계획)'},['F-35A','UAE','지연','인권조건'],['록히드마틴','UAE공군'],undefined,undefined,60),
+  w('mena008','UAE AH-64E 아파치','AH-64E Apache UAE Apaches','HELICOPTER','USA','OPERATIONAL','LOW','UAE 아파치 가디언 30기. 예멘 후티 대응.',{speed:'293km/h',crew:'2명',armament:'AGM-114R·AIM-92',firstDeployed:'2019년',quantity:'30기'},['아파치','UAE','예멘','후티'],['보잉','UAE군'],undefined,undefined,85),
+  w('mena009','UAE Calidus B-250 훈련공격기','Calidus B-250 Light Attack UAE','AIRCRAFT','NATO','OPERATIONAL','LOW','UAE 국산 경공격훈련기. 슈퍼 투카노 경쟁. 탄소섬유.',{speed:'560km/h',crew:'2명',firstDeployed:'2017년',manufacturer:'Calidus'},['B-250','UAE국산','경공격기','탄소섬유'],['Calidus','UAE군'],undefined,undefined,65),
+  w('mena010','UAE 천궁-II 방공','Cheongung-II UAE Air Defense','SAM','ROK','OPERATIONAL','HIGH','UAE 천궁-II 35억달러 수출. 한국 최대 방산수출.',{range:'40km',firstDeployed:'2024년(UAE)',manufacturer:'LIG넥스원'},['천궁II','UAE','35억달러','한국최대수출'],['LIG넥스원','UAE군'],undefined,undefined,95),
+
+  // ── 이스라엘 추가 ────────────────────────────────────────────────────────
+  w('mena011','이스라엘 F-16I 수팜','F-16I Sufa (Storm) Israel','AIRCRAFT','USA','OPERATIONAL','LOW','F-16D 기반 이스라엘 특화형. 102기. 이란·가자 실전. 국산 EW·추가 연료.',{speed:'마하 2.0',crew:'2명',armament:'파이톤5·Derby·스파이스·GBU-28',firstDeployed:'2004년',quantity:'102기'},['F-16I','수팜','이스라엘','이란작전','102기'],['록히드마틴·IAI','이스라엘공군'],undefined,'https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',90),
+  w('mena012','이스라엘 F-15I 라암','F-15I Ra\'am (Thunder) Israel','AIRCRAFT','USA','OPERATIONAL','LOW','F-15I 25기. 이란 핵시설 타격 계획 전력. 장거리 타격 주력.',{speed:'마하 2.5',crew:'2명',armament:'JDAM·GBU-28·하푼·스파이스',firstDeployed:'1998년',quantity:'25기'},['F-15I','라암','이스라엘','이란타격계획'],['보잉','이스라엘공군'],undefined,'https://en.wikipedia.org/wiki/Boeing_F-15E_Strike_Eagle',90),
+  w('mena013','이스라엘 헤론 TP ISR UAV','Heron TP Eitan High-Altitude UAV','UAV','ISRAEL','OPERATIONAL','LOW','IAI 헤론 TP(에이탄). 45시간 체공. 이스라엘 전략정찰.',{speed:'370km/h',ceiling:'13,700m',armament:'정찰 위주',firstDeployed:'2010년',manufacturer:'IAI'},['헤론TP','에이탄','이스라엘UAV','45시간','전략정찰'],['IAI','이스라엘군'],undefined,'https://en.wikipedia.org/wiki/IAI_Heron_TP',88),
+  w('mena014','이스라엘 창날 공격 드론','IAI Harop Anti-Radiation Loitering','UAV','ISRAEL','OPERATIONAL','HIGH','IAI 하롭 대레이더 자폭드론. 아제르바이잔 수출.',{range:'1,000km',firstDeployed:'2010년대',manufacturer:'IAI'},['하롭','SEAD','자폭드론','아제르바이잔'],['IAI','이스라엘군'],undefined,undefined,85),
+
+  // ── 이란 추가 ────────────────────────────────────────────────────────────
+  w('mena015','이란 F-14A 톰캣 (이란 운용)','F-14A Tomcat Iran (IRIAF)','AIRCRAFT','IRAN','OPERATIONAL','MED','이란 혁명 전 도입 F-14A. AIM-54 없어짐. 일부 운용 주장.',{speed:'마하 2.34',crew:'2명',firstDeployed:'1976년(이란)'},['F-14A','톰캣','이란','이란-이라크전'],['이란공군'],undefined,'https://en.wikipedia.org/wiki/Grumman_F-14_Tomcat',65),
+  w('mena016','이란 미그-29A','MiG-29A Iran (IRIAF)','AIRCRAFT','IRAN','OPERATIONAL','HIGH','이란혁명후 이라크 망명 MiG-29 포획·운용. 25기 추정.',{speed:'마하 2.25',crew:'1명',firstDeployed:'1991년(이란)',quantity:'25기(추정)'},['MiG-29','이란','이라크망명기','25기'],['이란공군'],undefined,undefined,60),
+  w('mena017','이란 샤헤드-129 공격드론','Shahed-129 UCAV Iran','UAV','IRAN','OPERATIONAL','HIGH','이란 독자 공격드론. 사거리 1,700km. 헤즈볼라·후티 공급. 이라크·시리아 실전.',{speed:'200km/h',ceiling:'7,300m',armament:'Sadid-1 공대지·4발',firstDeployed:'2012년',manufacturer:'HESA'},['샤헤드129','이란드론','헤즈볼라','후티','시리아'],['HESA','이란군'],undefined,'https://en.wikipedia.org/wiki/HESA_Shahed_129',75),
+  w('mena018','이란 Bavar-373 방공','Bavar-373 Long-Range SAM Iran','SAM','IRAN','OPERATIONAL','HIGH','이란 독자 장거리 방공. S-300 성능 주장. 2019년 배치.',{range:'200km(주장)',firstDeployed:'2019년',manufacturer:'이란 방산'},['바바르373','이란방공','S-300급주장','2019년'],['이란국방부'],undefined,'https://en.wikipedia.org/wiki/Bavar-373',60),
+  w('mena019','이란 3번째 핵잠수함','Iran Fateh-class Submarine','SUBMARINE','IRAN','OPERATIONAL','HIGH','이란 독자 개발 반잠수함 파테급. 수십 발 어뢰.',{displacement:'600t',armament:'어뢰관',firstDeployed:'2019년',manufacturer:'이란 방산'},['파테급','이란잠수함','독자개발'],['이란해군'],undefined,'https://en.wikipedia.org/wiki/Fateh-class_submarine',65),
+
+  // ── 터키 추가 ────────────────────────────────────────────────────────────
+  w('mena020','터키 F-16C 블록 40','F-16C Block 40 Turkey','AIRCRAFT','NATO','OPERATIONAL','LOW','터키 F-16C 블록 40/50. 240기. 그리스와 경쟁.',{speed:'마하 2.0',crew:'1명',armament:'AIM-120B·AIM-9M·JDAM·HARMs',firstDeployed:'1987년',quantity:'240기'},['F-16C','터키','240기','그리스경쟁'],['록히드마틴','터키공군'],undefined,undefined,88),
+  w('mena021','터키 아타크 II 공격헬기 (차세대)','T929 ATAK-II Next-Gen Attack Helicopter','HELICOPTER','TURKEY','DEVELOPMENT','HIGH','T-129 후속 차세대 공격헬기. 국산 엔진 목표. 2025년 시험 예정.',{speed:'310km/h',firstDeployed:'2025년+(예상)',manufacturer:'TAI'},['ATAK-II','터키차세대헬기','T929','국산엔진'],['TAI','터키군'],undefined,undefined,60),
+  w('mena022','터키 AKYA 중어뢰','Akya Heavy Torpedo Turkey','NAVAL','TURKEY','DEVELOPMENT','LOW','터키 독자 533mm 중어뢰. 독일 DM2A4 대체 목표.',{range:'50km',speed:'50노트',firstDeployed:'2025년(예상)',manufacturer:'Roketsan'},['아크야','터키중어뢰','533mm','국산'],['Roketsan','터키해군'],undefined,undefined,68),
+  w('mena023','터키 I-HAWK 방공 업그레이드','Hawk-I Modernized SAM Turkey','SAM','NATO','OPERATIONAL','LOW','호크 방공 터키 현대화형. 레이더·유도 개선.',{range:'45km',firstDeployed:'2005년(I-HAWK)'},['호크I','터키방공','현대화'],['터키군'],undefined,undefined,75),
+
+  // ── 이집트 추가 ──────────────────────────────────────────────────────────
+  w('mena024','이집트 MiG-29M2','MiG-29M2 Egypt','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','이집트 MiG-29M2 46기 계약. 현대화 미그. 리비아 개입 논란.',{speed:'마하 2.25',crew:'1~2명',armament:'R-77-1·R-73·Kh-35',firstDeployed:'2017년(이집트)',quantity:'46기'},['MiG-29M2','이집트','46기','리비아'],['미코얀','이집트공군'],undefined,undefined,78),
+  w('mena025','이집트 Rafale EH','Dassault Rafale EH Egypt','AIRCRAFT','FRANCE','OPERATIONAL','LOW','이집트 라팔 EH. 30기+24기 추가. 아프리카 최초 라팔.',{speed:'마하 1.8',crew:'1명',firstDeployed:'2015년(이집트)',quantity:'30기+24기'},['라팔EH','이집트','아프리카최초','30기'],['다소','이집트공군'],undefined,undefined,90),
+  w('mena026','이집트 K-300P Babur 잠수함발사미사일','Egypt Submarine SSM Program','SSM','NATO','OPERATIONAL','LOW','이집트 209급 잠수함 탑재 서방 대함미사일 체계.',{firstDeployed:'2010년대'},['이집트잠수함대함','K300P','209급'],['이집트해군'],undefined,undefined,65),
+
+  // ── 리비아 ────────────────────────────────────────────────────────────────
+  w('mena027','리비아 Mirage F1','Mirage F1 Libya','AIRCRAFT','FRANCE','RETIRED','MED','카다피 시대 미라주 F1. 현재 내전으로 대부분 손실.',{speed:'마하 2.2',crew:'1~2명',firstDeployed:'1978년(리비아)'},['미라주F1','리비아','카다피','내전'],['리비아공군'],undefined,undefined,60),
+
+  // ── 모로코 추가 ──────────────────────────────────────────────────────────
+  w('mena028','모로코 F-16C 블록 52','F-16C/D Block 52+ Morocco','AIRCRAFT','USA','OPERATIONAL','LOW','모로코 F-16C/D 24기 도입. AESA AN/APG-68(V)9.',{speed:'마하 2.0',crew:'1~2명',firstDeployed:'2011년',quantity:'24기'},['F-16C','모로코','블록52','AESA'],['록히드마틴','모로코공군'],undefined,undefined,85),
+  w('mena029','모로코 F-16V 업그레이드','F-16V Viper Morocco Upgrade','AIRCRAFT','USA','DEVELOPMENT','LOW','모로코 기존 F-16 V형 업그레이드. 공대지 능력 강화.',{firstDeployed:'2025년(예상)'},['F-16V','모로코업그레이드','AESA'],['록히드마틴','모로코군'],undefined,undefined,75),
+
+  // ── 알제리 추가 ──────────────────────────────────────────────────────────
+  w('mena030','알제리 Su-30MKA','Su-30MKA Algeria','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','알제리 Su-30MKA. 53기. 아프리카 최대 수호이 보유.',{speed:'마하 2.0',crew:'2명',armament:'R-77·R-73·Kh-59',firstDeployed:'2007년',quantity:'53기'},['Su-30MKA','알제리','아프리카최대','53기'],['수호이','알제리공군'],undefined,undefined,82),
+  w('mena031','알제리 T-90S 전차','T-90S Algeria','GROUND','RUSSIA','OPERATIONAL','HIGH','알제리 T-90SA 300대+. 북아프리카 최강 기갑력.',{weight:'46.5t',armament:'125mm',crew:'3명',quantity:'300대+'},['T-90SA','알제리','북아프리카','300대'],['러시아','알제리군'],undefined,undefined,80),
+
+  // ── 쿠웨이트 추가 ────────────────────────────────────────────────────────
+  w('mena032','쿠웨이트 FA-18C/D','F/A-18C/D Hornet Kuwait','AIRCRAFT','USA','OPERATIONAL','LOW','쿠웨이트 F/A-18C/D 40기. 걸프전 후 도입.',{speed:'마하 1.8',crew:'1~2명',firstDeployed:'1992년',quantity:'40기'},['F/A-18C','쿠웨이트','40기','걸프전후'],['보잉','쿠웨이트공군'],undefined,undefined,85),
+
+  // ── 요르단 추가 ──────────────────────────────────────────────────────────
+  w('mena033','요르단 F-16AM (피스제스처)','F-16AM Block 20 Jordan','AIRCRAFT','USA','OPERATIONAL','LOW','요르단 F-16AM 60기. IS 공습 실전. 중동 안정 역할.',{speed:'마하 2.0',crew:'1명',armament:'AIM-120B·AIM-9·JDAM',firstDeployed:'1997년',quantity:'60기'},['F-16AM','요르단','IS공습','60기'],['록히드마틴','요르단공군'],undefined,undefined,85),
+
+  // ── 바레인 ────────────────────────────────────────────────────────────────
+  w('mena034','바레인 F-16 블록 70','F-16 Block 70 Bahrain','AIRCRAFT','USA','OPERATIONAL','LOW','바레인 F-16 블록 70. 16기 신규 도입.',{speed:'마하 2.0',crew:'1명',firstDeployed:'2023년(예상)',quantity:'16기'},['F-16','바레인','블록70','16기'],['록히드마틴','바레인공군'],undefined,undefined,80),
+
+  // ── 오만 ──────────────────────────────────────────────────────────────────
+  w('mena035','오만 타이푼','Eurofighter Typhoon Oman','AIRCRAFT','NATO','OPERATIONAL','LOW','오만 유로파이터 12기 도입.',{speed:'마하 2.0',crew:'1명',firstDeployed:'2017년',quantity:'12기'},['타이푼','오만','유로파이터','12기'],['유로파이터','오만공군'],undefined,undefined,82),
+
+  // ── 아프리카 추가 ────────────────────────────────────────────────────────
+  w('mena036','나이지리아 JF-17 Thunder','JF-17 Thunder Nigeria','AIRCRAFT','CHINA','OPERATIONAL','MED','나이지리아 JF-17. 3기 도입. 보코하람 대응.',{speed:'마하 1.8',crew:'1명',firstDeployed:'2021년(나이지리아)',quantity:'3기'},['JF-17','나이지리아','보코하람','3기'],['PAC·CAC','나이지리아공군'],undefined,undefined,65),
+  w('mena037','케냐 L-39ZA 경공격기','L-39ZA Albatros Kenya','AIRCRAFT','NATO','OPERATIONAL','LOW','케냐 L-39ZA 12기. 대테러 작전.',{speed:'마하 0.8',crew:'2명',firstDeployed:'1990년대(케냐)'},['L-39ZA','케냐','대테러','12기'],['케냐공군'],undefined,undefined,65),
+  w('mena038','에티오피아 Su-27UBK','Su-27UBK Ethiopia Flanker','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','에티오피아 Su-27UBK 복좌. 에리트레아전 실전 공대공.',{crew:'2명',firstDeployed:'1998년(에티오피아)'},['Su-27UBK','에티오피아','에리트레아전','실전공대공'],['수호이','에티오피아공군'],undefined,undefined,72),
+  w('mena039','수단 MiG-29SE','MiG-29SE Sudan','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','수단 MiG-29SE. 다르푸르 분쟁 사용 논란.',{crew:'1명',firstDeployed:'2003년(수단)'},['MiG-29SE','수단','다르푸르','분쟁'],['미코얀','수단공군'],undefined,undefined,60),
+  w('mena040','탄자니아 F-7 (MiG-21형)','F-7 Airgaurd Tanzania','AIRCRAFT','CHINA','OPERATIONAL','LOW','탄자니아 중국 F-7 경전투기. 구형. 일부 가동 중.',{crew:'1명',firstDeployed:'1980년대(탄자니아)'},['F-7','탄자니아','중국수출','구형'],['중국','탄자니아공군'],undefined,undefined,55),
+  w('mena041','앙골라 Su-30K','Su-30K Angola','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','앙골라 Su-30K. 7기. 내전 후 재건.',{crew:'2명',firstDeployed:'2000년대(앙골라)'},['Su-30K','앙골라','7기','내전후재건'],['수호이','앙골라공군'],undefined,undefined,65),
+  w('mena042','에티오피아 Su-25 공격기','Su-25 Frogfoot Ethiopia','AIRCRAFT','RUSSIA','OPERATIONAL','MED','에티오피아 Su-25. 티그라이 내전 실전.',{speed:'975km/h',crew:'1명',firstDeployed:'1988년(에티오피아)'},['Su-25','에티오피아','티그라이내전'],['수호이','에티오피아공군'],undefined,undefined,70),
+  w('mena043','카메룬 알파제트 공격기','Alpha Jet Cameroon','AIRCRAFT','NATO','OPERATIONAL','LOW','카메룬 알파제트 7기. 보코하람 대응.',{speed:'마하 0.85',crew:'2명',firstDeployed:'1982년(카메룬)'},['알파제트','카메룬','보코하람','7기'],['다소·도르니에','카메룬공군'],undefined,undefined,65),
+
+  // ── 동아프리카 ───────────────────────────────────────────────────────────
+  w('mena044','소말리아 TB2 수령','Bayraktar TB2 Somalia','UAV','TURKEY','OPERATIONAL','HIGH','소말리아 TB2 수령. 알샤바브 대응.',{firstDeployed:'2022년(소말리아)',manufacturer:'바이락타르'},['TB2','소말리아','알샤바브','터키드론'],['바이락타르','소말리아군'],undefined,undefined,78),
+  w('mena045','지부티 미군 기지 (캠프 레모니어)','Camp Lemonnier AFRICOM Base','GROUND','USA','OPERATIONAL','LOW','아프리카 유일 미군 상설기지. RQ-170·MQ-9·특수전 운용.',{firstDeployed:'2003년',manufacturer:'미국방부'},['캠프레모니어','지부티','AFRICOM','특수전기지'],['미국방부'],undefined,undefined,90),
+
+  // ── 중앙아프리카 ────────────────────────────────────────────────────────
+  w('mena046','DR콩고 Mi-24 공격헬기','Mi-24 Hind DR Congo','HELICOPTER','RUSSIA','OPERATIONAL','HIGH','DR콩고 Mi-24. UN 지원 대반군.',{speed:'335km/h',crew:'2명',armament:'12.7mm·AT-6·로켓'},['Mi-24','DR콩고','UN지원','대반군'],['러시아','콩고군'],undefined,undefined,60),
+
+  // ── 걸프 국가 해군 ───────────────────────────────────────────────────────
+  w('mena047','사우디 Al Riyadh급 호위함','Al Riyadh-class Frigate Saudi Arabia','NAVAL','FRANCE','OPERATIONAL','LOW','라파예트급 기반 사우디 호위함. 3척. 크로탈·엑조세.',{displacement:'4,600t',armament:'크로탈·MM40 엑조세·100mm·어뢰',crew:'145명',speed:'25노트',firstDeployed:'2002년',quantity:'3척'},['리야드급','사우디호위함','라파예트기반'],['나발그룹','사우디해군'],undefined,undefined,80),
+  w('mena048','UAE 아부다비급 초계함','Abu Dhabi-class Corvette UAE','NAVAL','NATO','OPERATIONAL','LOW','UAE 소형 초계함. MM40·말라폰. 8척.',{displacement:'630t',armament:'MM40 엑조세·말라폰·30mm',crew:'45명',speed:'32노트',quantity:'8척'},['아부다비급','UAE초계함','엑조세'],['UAE해군'],undefined,undefined,72),
+  w('mena049','이스라엘 사르-6급 초계함','INS Saar-6 Corvette Israel','NAVAL','ISRAEL','OPERATIONAL','HIGH','독일 건조 이스라엘 최신 초계함. 미사일·아이언돔 함정형.',{displacement:'1,900t',armament:'바락-8·아이언돔·C-Dome·가브리엘V·76mm',crew:'70명',speed:'30노트',firstDeployed:'2020년',quantity:'4척'},['사르6급','이스라엘초계함','C-Dome','바락8','가브리엘V'],['TKMS','이스라엘해군'],undefined,'https://en.wikipedia.org/wiki/Saar_6-class_corvette',85),
+  w('mena050','이집트 미스트랄급 강습상륙함','Mistral-class LHD Egypt','NAVAL','FRANCE','OPERATIONAL','LOW','이집트 미스트랄급 강습상륙함 2척. 헬기 16기. 러시아 거부 물량.',{displacement:'21,300t',armament:'미스트랄·20mm·헬기 16기',crew:'160명+',speed:'18노트',firstDeployed:'2016년',quantity:'2척'},['미스트랄','이집트','강습상륙함','러시아거부물량'],['나발그룹','이집트해군'],undefined,'https://en.wikipedia.org/wiki/Mistral-class_amphibious_assault_ship',88),
+
+  // ── 이란 해군 추가 ───────────────────────────────────────────────────────
+  w('mena051','이란 Moudge급 구축함','Moudge-class Frigate Iran','NAVAL','IRAN','OPERATIONAL','HIGH','이란 독자 개발 구축함. 1,500t. 대함미사일·100mm.',{displacement:'1,500t',armament:'Noor C-802 대함·100mm·어뢰',crew:'140명',speed:'30노트',firstDeployed:'2010년',manufacturer:'이란 방산'},['무즈급','이란구축함','C-802','독자개발'],['이란해군'],undefined,'https://en.wikipedia.org/wiki/Moudge-class_frigate',65),
+  w('mena052','이란 Ghadir급 미니잠수함','Ghadir-class Midget Submarine Iran','SUBMARINE','IRAN','OPERATIONAL','HIGH','이란 독자 반잠수정 100t. 어뢰 2발. 페르시아만 작전.',{displacement:'120t',armament:'어뢰관 2문',crew:'18명',firstDeployed:'2007년',manufacturer:'이란 방산',quantity:'20척+'},['가디르급','이란반잠수정','페르시아만'],['이란해군'],undefined,undefined,68),
+
+]

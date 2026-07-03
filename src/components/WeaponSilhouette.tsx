@@ -230,6 +230,7 @@ export default function WeaponSilhouette({ category, color = '#00d4ff', classNam
     CYBER: 'CYBER',
     PISTOL: 'GROUND', RIFLE: 'GROUND', SMG: 'GROUND',
     SNIPER: 'GROUND', MG: 'GROUND', SHOTGUN: 'GROUND', LAUNCHER: 'MLRS',
+    MISSILE: 'CRUISE', SHIP: 'NAVAL',
   }
 
   const key = svgMap[category] as WeaponCategory

@@ -12,12 +12,54 @@ import { WEAPONS_EXP_EUROPE } from './weaponsExpandedEurope'
 import { WEAPONS_EXP_ASIA } from './weaponsExpandedAsia'
 import { WEAPONS_EXP_ROK2 } from './weaponsExpandedROK2'
 import { WEAPONS_EXP_WORLD2 } from './weaponsExpandedWorld2'
+import { WEAPONS_EXP_USA3 } from './weaponsExpandedUSA3'
+import { WEAPONS_EXP_NATO3 } from './weaponsExpandedNATO3'
+import { WEAPONS_EXP_MENA } from './weaponsExpandedMENA'
+import { WEAPONS_EXP_ASIA4 } from './weaponsExpandedAsia4'
+import { WEAPONS_EXP_GLOBAL3 } from './weaponsExpandedGlobal3'
+import { WEAPONS_EXP_NAVY3 } from './weaponsExpandedNavy3'
+import { WEAPONS_EXP_MISSILES3 } from './weaponsExpandedMissiles3'
+import { WEAPONS_BATCH1_ROK } from './weaponsBatch1_ROK'
+import { WEAPONS_BATCH2_DPRK } from './weaponsBatch2_DPRK'
+import { WEAPONS_BATCH3_USA2 } from './weaponsBatch3_USA2'
+import { WEAPONS_BATCH4_RUSSIA2 } from './weaponsBatch4_Russia2'
+import { WEAPONS_BATCH5_CHINA2 } from './weaponsBatch5_China2'
+import { WEAPONS_BATCH6_EUROPE2 } from './weaponsBatch6_Europe2'
+import { WEAPONS_BATCH7_ASIAPAC2 } from './weaponsBatch7_AsiaPac2'
+import { WEAPONS_BATCH8_SMALLARMS2 } from './weaponsBatch8_SmallArms2'
+import { WEAPONS_BATCH9_UAV_MISSILES } from './weaponsBatch9_UAV_Missiles'
+import { WEAPONS_BATCH10_NAVAL_ARTILLERY } from './weaponsBatch10_Naval_Artillery'
+import { WEAPONS_BATCH11_GROUND } from './weaponsBatch11_Ground'
+import { WEAPONS_BATCH12_MISSILES2 } from './weaponsBatch12_Missiles2'
+import { WEAPONS_BATCH13_AIRCRAFT2 } from './weaponsBatch13_Aircraft2'
+import { WEAPONS_BATCH14_GLOBAL } from './weaponsBatch14_Global'
+import { WEAPONS_BATCH15_COMPREHENSIVE } from './weaponsBatch15_Comprehensive'
+import { WEAPONS_BATCH16_MENA_AFRICA } from './weaponsBatch16_MENA_Africa'
+import { WEAPONS_BATCH17_HISTORICAL_MODERN } from './weaponsBatch17_HistoricalModern'
+import { WEAPONS_BATCH18_ASIA3 } from './weaponsBatch18_Asia3'
+import { WEAPONS_BATCH19_EUROPE3 } from './weaponsBatch19_Europe3'
+import { WEAPONS_BATCH20_NAVAL_COMPLETE } from './weaponsBatch20_NavalComplete'
+import { WEAPONS_BATCH21_ARTILLERY2 } from './weaponsBatch21_Artillery2'
+import { WEAPONS_BATCH22_SMALLARMS3 } from './weaponsBatch22_SmallArms3'
+import { WEAPONS_BATCH23_MISSILES3 } from './weaponsBatch23_Missiles3'
+import { WEAPONS_BATCH24_ROK_MND } from './weaponsBatch24_ROK_MND'
+import { WEAPONS_BATCH25_GLOBAL_AIRCRAFT } from './weaponsBatch25_GlobalAircraft'
+import { WEAPONS_BATCH26_NAVAL_WORLD } from './weaponsBatch26_NavalWorld'
+import { WEAPONS_BATCH27_MISSILES_SAM } from './weaponsBatch27_MissilesSAM'
+import { WEAPONS_BATCH28_GROUND_FORCES } from './weaponsBatch28_GroundForces'
+import { WEAPONS_BATCH29_ASIA_OCEANIA } from './weaponsBatch29_AsiaOceania'
+import { WEAPONS_BATCH30_ME_AFRICA_LATAM } from './weaponsBatch30_MEAfricaLatAm'
+import { WEAPONS_BATCH31_EW_CYBER_SPACE } from './weaponsBatch31_EWCyberSpace'
+import { WEAPONS_BATCH32_HISTORICAL } from './weaponsBatch32_Historical'
+import { WEAPONS_BATCH33_GLOBAL_EXPAND } from './weaponsBatch33_GlobalExpand'
+import { WEAPONS_BATCH34_SMALL_ARMS_EXPAND } from './weaponsBatch34_SmallArmsExpand'
+import { WEAPONS_BATCH35_FINAL_EXPAND } from './weaponsBatch35_FinalExpand'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
-  | 'SAM' | 'AAM' | 'ASM' | 'SSM'
+  | 'SAM' | 'AAM' | 'ASM' | 'SSM' | 'MISSILE'
   | 'AIRCRAFT' | 'HELICOPTER'
-  | 'NAVAL' | 'SUBMARINE'
+  | 'NAVAL' | 'SUBMARINE' | 'SHIP'
   | 'GROUND' | 'ARTILLERY' | 'MLRS'
   | 'UAV' | 'SATELLITE' | 'NUCLEAR' | 'CYBER'
   | 'PISTOL' | 'RIFLE' | 'SMG' | 'SNIPER' | 'MG' | 'SHOTGUN' | 'LAUNCHER'
@@ -27,6 +69,9 @@ export type WeaponOrigin =
   | 'UK' | 'FRANCE' | 'GERMANY' | 'JAPAN' | 'INDIA'
   | 'ISRAEL' | 'TURKEY' | 'IRAN' | 'PAKISTAN' | 'TAIWAN'
   | 'AUSTRALIA' | 'SWEDEN' | 'UKRAINE' | 'NATO' | 'MULTI'
+  | 'EGYPT' | 'INDONESIA' | 'SPAIN' | 'POLAND' | 'NORWAY'
+  | 'BRAZIL' | 'SOUTH_AFRICA' | 'SINGAPORE' | 'THAILAND' | 'MALAYSIA'
+  | 'CZECH' | 'NETHERLANDS' | 'BELGIUM' | 'GREECE' | 'FINLAND'
 export type WeaponStatus = 'OPERATIONAL' | 'DEVELOPMENT' | 'TESTING' | 'SUSPECTED' | 'RETIRED'
 export type ThreatRating = 'CRITICAL' | 'HIGH' | 'MED' | 'LOW'
 
@@ -104,6 +149,8 @@ export const CATEGORY_KO: Record<WeaponCategory, string> = {
   MG: '기관총',
   SHOTGUN: '산탄총',
   LAUNCHER: '유탄·로켓 발사기',
+  MISSILE: '미사일',
+  SHIP: '수상함',
 }
 
 export const CATEGORY_COLOR: Record<WeaponCategory, string> = {
@@ -115,6 +162,7 @@ export const CATEGORY_COLOR: Record<WeaponCategory, string> = {
   SATELLITE: '#00d4ff', NUCLEAR: '#ff2d55', CYBER: '#ff2d55',
   PISTOL: '#f472b6', RIFLE: '#86efac', SMG: '#a3e635',
   SNIPER: '#fbbf24', MG: '#fb923c', SHOTGUN: '#94a3b8', LAUNCHER: '#f87171',
+  MISSILE: '#ff6b35', SHIP: '#00d4ff',
 }
 
 export const ORIGIN_COLOR: Record<WeaponOrigin, string> = {
@@ -125,6 +173,11 @@ export const ORIGIN_COLOR: Record<WeaponOrigin, string> = {
   TURKEY: '#f87171', IRAN: '#4ade80', PAKISTAN: '#34d399',
   TAIWAN: '#38bdf8', AUSTRALIA: '#fbbf24', SWEDEN: '#c084fc',
   UKRAINE: '#fcd34d', NATO: '#00d4ff', MULTI: '#e2e8f0',
+  EGYPT: '#d4a017', INDONESIA: '#cc0001', SPAIN: '#aa151b',
+  POLAND: '#dc143c', NORWAY: '#ef2b2d', BRAZIL: '#009c3b',
+  SOUTH_AFRICA: '#007a4d', SINGAPORE: '#ee2536', THAILAND: '#a51931',
+  MALAYSIA: '#cc0001', CZECH: '#d7141a', NETHERLANDS: '#ae1c28',
+  BELGIUM: '#fdda24', GREECE: '#0d5eaf', FINLAND: '#003580',
 }
 
 export const ORIGIN_KO: Record<WeaponOrigin, string> = {
@@ -135,6 +188,11 @@ export const ORIGIN_KO: Record<WeaponOrigin, string> = {
   TURKEY: '터키', IRAN: '이란', PAKISTAN: '파키스탄',
   TAIWAN: '대만', AUSTRALIA: '호주', SWEDEN: '스웨덴',
   UKRAINE: '우크라이나', NATO: 'NATO', MULTI: '다국',
+  EGYPT: '이집트', INDONESIA: '인도네시아', SPAIN: '스페인',
+  POLAND: '폴란드', NORWAY: '노르웨이', BRAZIL: '브라질',
+  SOUTH_AFRICA: '남아프리카공화국', SINGAPORE: '싱가포르', THAILAND: '태국',
+  MALAYSIA: '말레이시아', CZECH: '체코', NETHERLANDS: '네덜란드',
+  BELGIUM: '벨기에', GREECE: '그리스', FINLAND: '핀란드',
 }
 
 export const STATUS_KO: Record<WeaponStatus, string> = {
@@ -1866,4 +1924,46 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
   ...WEAPONS_EXP_ASIA,
   ...WEAPONS_EXP_ROK2,
   ...WEAPONS_EXP_WORLD2,
+  ...WEAPONS_EXP_USA3,
+  ...WEAPONS_EXP_NATO3,
+  ...WEAPONS_EXP_MENA,
+  ...WEAPONS_EXP_ASIA4,
+  ...WEAPONS_EXP_GLOBAL3,
+  ...WEAPONS_EXP_NAVY3,
+  ...WEAPONS_EXP_MISSILES3,
+  ...WEAPONS_BATCH1_ROK,
+  ...WEAPONS_BATCH2_DPRK,
+  ...WEAPONS_BATCH3_USA2,
+  ...WEAPONS_BATCH4_RUSSIA2,
+  ...WEAPONS_BATCH5_CHINA2,
+  ...WEAPONS_BATCH6_EUROPE2,
+  ...WEAPONS_BATCH7_ASIAPAC2,
+  ...WEAPONS_BATCH8_SMALLARMS2,
+  ...WEAPONS_BATCH9_UAV_MISSILES,
+  ...WEAPONS_BATCH10_NAVAL_ARTILLERY,
+  ...WEAPONS_BATCH11_GROUND,
+  ...WEAPONS_BATCH12_MISSILES2,
+  ...WEAPONS_BATCH13_AIRCRAFT2,
+  ...WEAPONS_BATCH14_GLOBAL,
+  ...WEAPONS_BATCH15_COMPREHENSIVE,
+  ...WEAPONS_BATCH16_MENA_AFRICA,
+  ...WEAPONS_BATCH17_HISTORICAL_MODERN,
+  ...WEAPONS_BATCH18_ASIA3,
+  ...WEAPONS_BATCH19_EUROPE3,
+  ...WEAPONS_BATCH20_NAVAL_COMPLETE,
+  ...WEAPONS_BATCH21_ARTILLERY2,
+  ...WEAPONS_BATCH22_SMALLARMS3,
+  ...WEAPONS_BATCH23_MISSILES3,
+  ...WEAPONS_BATCH24_ROK_MND,
+  ...WEAPONS_BATCH25_GLOBAL_AIRCRAFT,
+  ...WEAPONS_BATCH26_NAVAL_WORLD,
+  ...WEAPONS_BATCH27_MISSILES_SAM,
+  ...WEAPONS_BATCH28_GROUND_FORCES,
+  ...WEAPONS_BATCH29_ASIA_OCEANIA,
+  ...WEAPONS_BATCH30_ME_AFRICA_LATAM,
+  ...WEAPONS_BATCH31_EW_CYBER_SPACE,
+  ...WEAPONS_BATCH32_HISTORICAL,
+  ...WEAPONS_BATCH33_GLOBAL_EXPAND,
+  ...WEAPONS_BATCH34_SMALL_ARMS_EXPAND,
+  ...WEAPONS_BATCH35_FINAL_EXPAND,
 ]

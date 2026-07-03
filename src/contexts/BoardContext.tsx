@@ -193,6 +193,14 @@ const SEED_NOTICES: Notice[] = [
     category: '일반', secLevel: 'INTERNAL', pinned: false, views: 134,
     tags: ['이재명', '트럼프', '북핵', '비핵화외교'],
   },
+  {
+    id: 'n010',
+    title: '[공지] 무기 데이터베이스 대규모 확장 완료 — 647 → 3,000+ 종 (2026-07-03)',
+    content: `■ 업데이트 일시: 2026-07-03\n■ 담당: 무기체계분석팀\n\n【확장 개요】\n무기 DB를 기존 647종에서 3,000종 이상으로 대폭 확장하였습니다.\n국방부 공식 육군 무기체계 현황(data.go.kr OA-9538) 데이터를 포함한\n전 세계 35개 국가·지역의 무기체계를 망라합니다.\n\n【국방부 공식 데이터 반영 (육군 무기체계 현황)】\n\n■ 기동 무기체계\n- K808 바라쿠다 차륜형장갑차, K21 IFV, K200A1, K1 AVLB, K300 공병장갑차\n- K77 포병지휘차량, K10 탄약보급장갑차, 차기 NIFV 개발현황\n\n■ 화력 무기체계\n- K9A2 자주포, K55A1, K105A1, KH179 견인포\n- 천무 다연장로켓(239mm), 구룡(K136), M270 MLRS, ATACMS\n- 현궁 ATGM, 비궁 MANPADS, 스파이크-NLOS, 천궁-II, 패트리어트 PAC-3\n- K4 고속유탄기관총, K6 중기관총, K7 기관단총\n\n■ 항공 무기체계\n- AH-64E 아파치 가디언(36기), AH-1S 코브라\n- CH-47D/F 치누크(55기), UH-60P 블랙호크(130기)\n- KUH-1 수리온, LAH 소형무장헬기, 500MD 의무편대\n\n■ 감시정찰 무기체계\n- 송골매 UAV, 비조 UAV, 하피 자폭드론\n- 글로벌호크 RQ-4B(4대), 백두·금강 정찰기, 중고도무인기(MUAV)\n\n■ 방호 무기체계\n- 비호복합 SHORAD, K30 비호 자주대공포, 신궁 MANPADS, M167 발칸\n\n■ 신규 전력화\n- 워리어 플랫폼, K2 RCV 로봇전투차량, AS21 레드백, 천무 II, 드래곤파이어 레이저\n\n【글로벌 무기체계 확장】\n\n■ 전투기·항공기: F-22A, B-21, Su-57, J-20A, J-35, GCAP, KF-21 등 +80여 종\n■ 해군 함정·잠수함: CVN-78 포드함, 055형, 보레이A, 야센M, QE급 항모 등 +65종\n■ 미사일·방공: 킨잘, 지르콘, DF-17, LRHW, S-500, Iron Dome, Arrow-3 등 +70종\n■ 지상군: M1A2 SEPv3, T-14 아르마타, 레오파르트 2A8, 메르카바 Mk4M 등 +80종\n■ 아시아·오세아니아: AUKUS SSN, K9 인도·폴란드·핀란드, J-10C 등 +60종\n■ 중동·아프리카·남미: 라팔 이집트, KAAN 터키, KC-390 브라질 등 +55종\n■ 전자전·사이버·우주: NGJ-MB, 크라수하-4, ASAT, 스턱스넷, 라자루스 APT 등 +45종\n■ 역사무기: T-34, Tiger I, B-52H, SR-71, V-2, AK-47 역사 등 +45종\n■ 소화기 확장: HK416, M249, M2HB, AK-12, 칼 구스타프 M4 등 +70종\n\n【데이터 출처】\n국방부 공개데이터포털, 방위사업청, KAI, 한화에어로스페이스,\n38North, IISS Military Balance, CSIS, Jane's Defence Weekly,\nGlobalSecurity.org, NTI Nuclear Threat Initiative`,
+    author: '무기체계분석팀', authorUnit: '전력분석처', date: '2026-07-03',
+    category: '공지', secLevel: 'INTERNAL', pinned: true, views: 0,
+    tags: ['DB확장', '3000종', '국방부공식데이터', '육군무기체계', 'K9A2', 'KUH-1', '천무'],
+  },
 ]
 
 const SEED_REPORTS: Report[] = [
