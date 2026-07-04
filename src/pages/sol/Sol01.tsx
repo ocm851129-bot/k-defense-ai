@@ -1,13 +1,23 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Shield, ChevronLeft, Radar, Target, AlertTriangle, Play, RotateCcw, Map, Brain, Zap } from 'lucide-react'
+import { Shield, ChevronLeft, Radar, Target, AlertTriangle, Play, RotateCcw, Map, Brain, Zap, Database, Search, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
 import { useSystem } from '../../contexts/SystemContext'
 import GisOperationsMap from '../../components/GisOperationsMap'
+import { WEAPONS, CATEGORY_KO, type WeaponSystem } from '../../data/weapons'
 
 // ── 타입 ──────────────────────────────────────────────────────────────────────
 type UnitType  = 'MLRS' | 'TANK' | 'UAV' | 'MISSILE' | 'AIRCRAFT'
+
+// 적 유닛 타입 → DB 카테고리 매핑
+const UNIT_CATEGORY_MAP: Record<UnitType, string[]> = {
+  MLRS:     ['MLRS','ARTILLERY'],
+  TANK:     ['GROUND'],
+  UAV:      ['UAV'],
+  MISSILE:  ['ICBM','SRBM','IRBM','SLBM','CRUISE'],
+  AIRCRAFT: ['AIRCRAFT'],
+}
 type DefType   = 'PATRIOT' | 'KDRASS' | 'F35' | 'ARTILLERY'
 type Phase     = 'STANDBY' | 'ACTIVE' | 'RESULT'
 type Difficulty = 'EASY' | 'NORMAL' | 'HARD'
@@ -126,7 +136,15 @@ export default function Sol01() {
   const [wave,       setWave]       = useState(-1)   // -1 = not yet started
   const [difficulty, setDifficulty] = useState<Difficulty>('NORMAL')
   const [autoMode,   setAutoMode]   = useState(true)
-  const [mainTab,    setMainTab]    = useState<'sim'|'ops'>('sim')
+  const [mainTab,    setMainTab]    = useState<'sim'|'ops'|'db'>('sim')
+
+  // 무기 DB 탭 상태
+  const [dbSearch,   setDbSearch]   = useState('')
+  const [dbOrigin,   setDbOrigin]   = useState<string>('DPRK')
+  const [dbThreat,   setDbThreat]   = useState<string>('ALL')
+  const [dbSelected, setDbSelected] = useState<WeaponSystem | null>(null)
+  const [customDefPool, setCustomDefPool] = useState<WeaponSystem[]>([])  // DB에서 추가된 방어자산
+  const [addedMsg, setAddedMsg] = useState<string | null>(null)
 
   // battle state
   const [enemies,    setEnemies]    = useState<EnemyUnit[]>([])
@@ -181,12 +199,13 @@ export default function Sol01() {
     setPhase('ACTIVE')
     setWave(-1)
     setEnemies([])
-    setDefenses(DEF_TPL.map(d => ({ ...d })))
+    const customUnits = customDefPool.map(w => weaponToDefUnit(w))
+    setDefenses([...DEF_TPL.map(d => ({ ...d })), ...customUnits])
     setSelected(null)
     setLogs([])
     setScore(0); setBreached(0); setIntercepts(0)
     setExplosions([]); setProjectiles([]); setWaveStats([])
-    addLog('가상전투 시뮬레이션 시작 — 전 방어 시스템 ONLINE', 'DEPLOY')
+    addLog(`가상전투 시뮬레이션 시작 — 기본 방어 자산 + DB 자산 ${customUnits.length}종 배치`, 'DEPLOY')
   }
 
   const resetSim = () => {
@@ -368,6 +387,85 @@ export default function Sol01() {
   const gradeLabel  = { S:'완벽', A:'우수', B:'양호', C:'보통', D:'미흡' }
   const progress    = wave < 0 ? 0 : Math.min(100, ((wave + 1) / WAVES.length) * 100)
 
+  // ── 무기 DB 필터 ─────────────────────────────────────────────────────────────
+  const filteredWeapons = useMemo(() => {
+    return WEAPONS.filter(w => {
+      if (dbOrigin !== 'ALL' && w.origin !== dbOrigin) return false
+      if (dbThreat !== 'ALL' && w.threatRating !== dbThreat) return false
+      if (dbSearch) {
+        const q = dbSearch.toLowerCase()
+        return w.name.toLowerCase().includes(q) || w.nameEng.toLowerCase().includes(q) || w.tags.some(t => t.toLowerCase().includes(q))
+      }
+      return true
+    }).slice(0, 100)
+  }, [dbOrigin, dbThreat, dbSearch])
+
+  // 적 유닛 클릭 시 연결 무기 조회
+  const getLinkedWeapon = (type: UnitType): WeaponSystem | undefined => {
+    const cats = UNIT_CATEGORY_MAP[type]
+    return WEAPONS.find(w =>
+      (w.origin === 'DPRK' || w.origin === 'RUSSIA' || w.origin === 'CHINA') &&
+      cats.includes(w.category) &&
+      (w.threatRating === 'CRITICAL' || w.threatRating === 'HIGH')
+    )
+  }
+
+  // 상위 위협 목록 (STANDBY 화면용)
+  const topThreats = useMemo(() =>
+    WEAPONS.filter(w => w.origin === 'DPRK' && (w.threatRating === 'CRITICAL' || w.threatRating === 'HIGH'))
+      .slice(0, 6),
+  [])
+
+  // 무기 → 방어 유닛 변환
+  const weaponToDefUnit = (weapon: WeaponSystem): DefUnit => {
+    const catMap: Record<string, DefType> = {
+      SAM:'KDRASS', MISSILE:'KDRASS', ICBM:'PATRIOT', SRBM:'PATRIOT', IRBM:'PATRIOT',
+      AIRCRAFT:'F35', HELICOPTER:'F35',
+      ARTILLERY:'ARTILLERY', MLRS:'ARTILLERY', GROUND:'ARTILLERY',
+    }
+    const type: DefType = catMap[weapon.category] ?? 'KDRASS'
+    const colorMap: Record<DefType, string> = { PATRIOT:'#00d4ff', KDRASS:'#00ff88', F35:'#c084fc', ARTILLERY:'#ffcc00' }
+    const ammoMap: Record<DefType, number> = { PATRIOT:8, KDRASS:12, F35:4, ARTILLERY:20 }
+    const rangeMap: Record<DefType, number> = { PATRIOT:7, KDRASS:5, F35:8, ARTILLERY:5 }
+    return {
+      id: `DB-${weapon.id}`,
+      type,
+      x: Math.floor(Math.random() * 16) + 4,
+      y: Math.floor(Math.random() * 3) + 12,
+      label: weapon.name.slice(0, 8),
+      ammo: ammoMap[type],
+      maxAmmo: ammoMap[type],
+      cooldown: 0,
+      range: rangeMap[type],
+      color: colorMap[type],
+      kills: 0,
+      shots: 0,
+    }
+  }
+
+  // DB에서 방어 자산 추가
+  const addDefenseFromDB = (weapon: WeaponSystem) => {
+    if (customDefPool.some(w => w.id === weapon.id)) return
+    setCustomDefPool(prev => [...prev, weapon])
+    if (phase === 'ACTIVE') {
+      const unit = weaponToDefUnit(weapon)
+      setDefenses(prev => [...prev, unit])
+      addLog(`[DB] ${weapon.name} 방어 자산 배치`, 'DEPLOY')
+    }
+    setAddedMsg(`${weapon.name} 추가됨`)
+    setTimeout(() => setAddedMsg(null), 2000)
+  }
+
+  const removeDefenseFromDB = (weaponId: string) => {
+    setCustomDefPool(prev => prev.filter(w => w.id !== weaponId))
+    setDefenses(prev => prev.filter(d => d.id !== `DB-${weaponId}`))
+  }
+
+  // 친군 무기 (ROK/USA 등)
+  const friendlyOrigins = ['ROK','USA','UK','FRANCE','GERMANY','JAPAN','AUSTRALIA','NATO','SWEDEN','ISRAEL']
+  const isFriendly = (w: WeaponSystem) => friendlyOrigins.includes(w.origin)
+  const isDefendable = (w: WeaponSystem) => ['SAM','AIRCRAFT','HELICOPTER','ARTILLERY','MLRS','GROUND','MISSILE'].includes(w.category)
+
   // ── 렌더 ─────────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-[#020b18] pt-3 pb-16 md:pt-4 md:pb-20">
@@ -385,10 +483,14 @@ export default function Sol01() {
         </div>
 
         {/* 탭 */}
-        <div className="flex gap-1 mb-5 border-b border-[#0a3050]">
-          {[{ id:'sim' as const, label:'가상전투 시뮬레이터', icon:Radar }, { id:'ops' as const, label:'GIS 운영 지도', icon:Map }].map(({ id, label, icon: Icon }) => (
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] overflow-x-auto">
+          {([
+            { id:'sim' as const, label:'가상전투 시뮬레이터', icon:Radar },
+            { id:'ops' as const, label:'GIS 운영 지도', icon:Map },
+            { id:'db'  as const, label:'위협 무기 인텔리전스', icon:Database },
+          ] as const).map(({ id, label, icon: Icon }) => (
             <button key={id} onClick={() => setMainTab(id)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 text-[10px] font-black tracking-[0.1em] border-b-2 -mb-px transition-all ${mainTab === id ? 'text-[#00d4ff] border-[#00d4ff]' : 'text-[#4a7a9b] border-transparent hover:text-[#8ab8d4]'}`}>
+              className={`flex items-center gap-1.5 px-4 py-2.5 text-[10px] font-black tracking-[0.1em] border-b-2 -mb-px transition-all whitespace-nowrap ${mainTab === id ? 'text-[#00d4ff] border-[#00d4ff]' : 'text-[#4a7a9b] border-transparent hover:text-[#8ab8d4]'}`}>
               <Icon className="w-3.5 h-3.5" />{label}
             </button>
           ))}
@@ -397,6 +499,229 @@ export default function Sol01() {
         {mainTab === 'ops' && (
           <GisOperationsMap solId="sol01" title="SOL-01 전장 AI 운영 지도"
             activeLayers={['SAM','AIRCRAFT','ARMOR','MISSILE','NAVAL']} color="#00d4ff" />
+        )}
+
+        {/* ══════════════ 무기 DB 탭 ══════════════ */}
+        {mainTab === 'db' && (
+          <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} className="space-y-4">
+            {/* 필터 바 */}
+            <div className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/15 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Database className="w-4 h-4 text-[#00d4ff]" />
+                <span className="text-[11px] font-black tracking-[0.2em] text-[#00d4ff]">위협 무기 인텔리전스 DB</span>
+                <span className="ml-auto text-[9px] text-[#4a7a9b] font-mono">{filteredWeapons.length}종 표시 / 전체 {WEAPONS.length}종</span>
+              </div>
+              {/* 검색 */}
+              <div className="relative mb-3">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#4a7a9b]" />
+                <input value={dbSearch} onChange={e => setDbSearch(e.target.value)}
+                  placeholder="무기명·태그 검색..."
+                  className="w-full bg-[#020b18] border border-[#0a3050] pl-8 pr-3 py-2 text-[11px] text-white placeholder-[#4a7a9b] focus:border-[#00d4ff]/50 focus:outline-none" />
+                {dbSearch && <button onClick={() => setDbSearch('')} className="absolute right-2.5 top-1/2 -translate-y-1/2"><X className="w-3.5 h-3.5 text-[#4a7a9b]" /></button>}
+              </div>
+              {/* 필터 버튼 */}
+              <div className="flex gap-2 flex-wrap">
+                <div className="flex gap-1">
+                  {['ALL','DPRK','RUSSIA','CHINA','USA','NATO'].map(o => (
+                    <button key={o} onClick={() => setDbOrigin(o)}
+                      className={`px-2 py-1 text-[9px] font-black border transition-all ${dbOrigin===o ? 'border-[#00d4ff] text-[#00d4ff] bg-[#00d4ff]/10' : 'border-[#0a3050] text-[#4a7a9b]'}`}>{o}</button>
+                  ))}
+                </div>
+                <div className="flex gap-1 ml-auto">
+                  {[{k:'ALL',l:'전체'},{k:'CRITICAL',l:'위급'},{k:'HIGH',l:'높음'},{k:'MED',l:'중간'},{k:'LOW',l:'낮음'}].map(({k,l}) => (
+                    <button key={k} onClick={() => setDbThreat(k)}
+                      className={`px-2 py-1 text-[9px] font-black border transition-all ${dbThreat===k
+                        ? k==='CRITICAL'?'border-[#ff2d55] text-[#ff2d55] bg-[#ff2d55]/10'
+                          :k==='HIGH'?'border-[#ff6b35] text-[#ff6b35] bg-[#ff6b35]/10'
+                          :k==='MED'?'border-[#ffcc00] text-[#ffcc00] bg-[#ffcc00]/10'
+                          :'border-[#00ff88] text-[#00ff88] bg-[#00ff88]/10'
+                        : 'border-[#0a3050] text-[#4a7a9b]'}`}>{l}</button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {/* 무기 목록 */}
+              <div className="lg:col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-[70vh] overflow-y-auto pr-1">
+                  {filteredWeapons.map(weapon => {
+                    const tc = weapon.threatRating === 'CRITICAL' ? '#ff2d55' : weapon.threatRating === 'HIGH' ? '#ff6b35' : weapon.threatRating === 'MED' ? '#ffcc00' : '#00ff88'
+                    const sc = weapon.status === 'OPERATIONAL' ? '#00ff88' : weapon.status === 'DEVELOPMENT' ? '#ffcc00' : '#4a7a9b'
+                    const isSelected = dbSelected?.id === weapon.id
+                    const alreadyAdded = customDefPool.some(w => w.id === weapon.id)
+                    const canAdd = isFriendly(weapon) && isDefendable(weapon)
+                    return (
+                      <motion.button key={weapon.id} onClick={() => setDbSelected(isSelected ? null : weapon)}
+                        whileHover={{ scale:1.01 }} whileTap={{ scale:0.99 }}
+                        className={`text-left p-3 border transition-all ${isSelected ? 'border-[#00d4ff] bg-[#00d4ff]/08' : 'border-[#0a3050] bg-[#041526]/60 hover:border-[#00d4ff]/40'}`}>
+                        <div className="flex items-start justify-between gap-1 mb-1.5">
+                          <span className="text-[11px] font-black text-white leading-tight">{weapon.name}</span>
+                          <div className="flex items-center gap-1 shrink-0">
+                            {canAdd && (
+                              <button onClick={(e) => { e.stopPropagation(); alreadyAdded ? removeDefenseFromDB(weapon.id) : addDefenseFromDB(weapon) }}
+                                className={`text-[8px] font-black px-1.5 py-0.5 border transition-all ${
+                                  alreadyAdded ? 'border-[#00ff88] text-[#00ff88] bg-[#00ff88]/10' : 'border-[#00d4ff]/50 text-[#00d4ff] hover:bg-[#00d4ff]/10'
+                                }`}>
+                                {alreadyAdded ? '✓ 등록됨' : '+ 방어 등록'}
+                              </button>
+                            )}
+                            <span className="text-[8px] font-black px-1.5 py-0.5 border" style={{ color:tc, borderColor:`${tc}50`, background:`${tc}10` }}>{weapon.threatRating}</span>
+                          </div>
+                        </div>
+                        <div className="text-[9px] text-[#8ab8d4] mb-1.5 line-clamp-1">{weapon.nameEng}</div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[8px] font-mono text-[#4a7a9b]">{CATEGORY_KO[weapon.category] ?? weapon.category}</span>
+                          <span className="text-[8px] font-black" style={{ color:sc }}>{weapon.status === 'OPERATIONAL' ? '실전' : weapon.status === 'DEVELOPMENT' ? '개발' : '퇴역'}</span>
+                          <span className="text-[8px] font-mono text-[#4a7a9b] ml-auto">{weapon.origin}</span>
+                        </div>
+                        {isSelected && (
+                          <motion.div initial={{ opacity:0, height:0 }} animate={{ opacity:1, height:'auto' }} className="mt-2 pt-2 border-t border-[#0a3050]">
+                            <p className="text-[9px] text-[#8ab8d4] mb-2 line-clamp-3">{weapon.description}</p>
+                            <div className="grid grid-cols-2 gap-x-3 gap-y-0.5">
+                              {weapon.specs.range && <div className="text-[8px]"><span className="text-[#4a7a9b]">사거리</span> <span className="text-[#00d4ff]">{weapon.specs.range}</span></div>}
+                              {weapon.specs.speed && <div className="text-[8px]"><span className="text-[#4a7a9b]">속도</span> <span className="text-[#00d4ff]">{weapon.specs.speed}</span></div>}
+                              {weapon.specs.payload && <div className="text-[8px]"><span className="text-[#4a7a9b]">탄두</span> <span className="text-[#ffcc00]">{weapon.specs.payload}</span></div>}
+                              {weapon.specs.firstDeployed && <div className="text-[8px]"><span className="text-[#4a7a9b]">배치</span> <span className="text-white">{weapon.specs.firstDeployed}</span></div>}
+                              {weapon.specs.manufacturer && <div className="text-[8px] col-span-2"><span className="text-[#4a7a9b]">제조</span> <span className="text-white">{weapon.specs.manufacturer}</span></div>}
+                            </div>
+                            <div className="mt-1.5 flex gap-1 flex-wrap">
+                              {weapon.tags.slice(0,4).map(t => (
+                                <span key={t} className="text-[7px] px-1 py-0.5 bg-[#0a3050] text-[#8ab8d4]">{t}</span>
+                              ))}
+                            </div>
+                            <div className="mt-2 h-1 bg-[#0a3050]">
+                              <div className="h-full bg-[#00d4ff]" style={{ width:`${weapon.confidence}%` }} />
+                            </div>
+                            <div className="text-[7px] text-[#4a7a9b] mt-0.5">정보 신뢰도 {weapon.confidence}%</div>
+                          </motion.div>
+                        )}
+                      </motion.button>
+                    )
+                  })}
+                  {filteredWeapons.length === 0 && (
+                    <div className="col-span-2 text-center py-12 text-[#4a7a9b] text-[11px]">검색 결과 없음</div>
+                  )}
+                </div>
+              </div>
+
+              {/* 우측: 위협 분석 패널 */}
+              <div className="space-y-3">
+                {/* 등록된 방어 자산 목록 */}
+                <div className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/25 p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[10px] font-black text-[#00d4ff] tracking-[0.1em]">▶ DB 등록 방어 자산</div>
+                    <span className="text-[9px] text-[#4a7a9b]">{customDefPool.length}종 등록</span>
+                  </div>
+                  {customDefPool.length === 0 ? (
+                    <div className="text-[9px] text-[#4a7a9b] text-center py-3">
+                      아군(ROK/USA) 무기의 "방어 등록" 버튼을 클릭하세요
+                    </div>
+                  ) : (
+                    <div className="space-y-1.5 max-h-40 overflow-y-auto">
+                      {customDefPool.map(w => (
+                        <div key={w.id} className="flex items-center gap-2 p-2 bg-[#020b18]/50 border border-[#00d4ff]/15">
+                          <span className="text-[9px] font-black text-[#00d4ff] flex-1">{w.name}</span>
+                          <span className="text-[8px] text-[#4a7a9b]">{w.origin}</span>
+                          <button onClick={() => removeDefenseFromDB(w.id)}
+                            className="text-[#4a7a9b] hover:text-[#ff2d55] transition-colors">
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {customDefPool.length > 0 && (
+                    <div className="mt-2 text-[8px] text-[#00d4ff]/60">
+                      시뮬레이션 시작 시 방어 자산으로 자동 배치됩니다
+                    </div>
+                  )}
+                </div>
+
+                {/* 추가 알림 토스트 */}
+                <AnimatePresence>
+                  {addedMsg && (
+                    <motion.div initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0 }}
+                      className="clip-corner bg-[#00d4ff]/10 border border-[#00d4ff]/40 p-3 text-[10px] font-black text-[#00d4ff]">
+                      ✓ {addedMsg}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* 위협 통계 */}
+                <div className="clip-corner bg-[#041526]/80 border border-[#ff2d55]/20 p-4">
+                  <div className="text-[10px] font-black text-[#ff2d55] mb-3 tracking-[0.1em]">▶ 위협 분석 현황</div>
+                  {[
+                    { label:'위급 (CRITICAL)', count: WEAPONS.filter(w => w.threatRating==='CRITICAL' && (dbOrigin==='ALL'||w.origin===dbOrigin)).length, color:'#ff2d55' },
+                    { label:'높음 (HIGH)',     count: WEAPONS.filter(w => w.threatRating==='HIGH'     && (dbOrigin==='ALL'||w.origin===dbOrigin)).length, color:'#ff6b35' },
+                    { label:'중간 (MED)',      count: WEAPONS.filter(w => w.threatRating==='MED'      && (dbOrigin==='ALL'||w.origin===dbOrigin)).length, color:'#ffcc00' },
+                    { label:'낮음 (LOW)',      count: WEAPONS.filter(w => w.threatRating==='LOW'      && (dbOrigin==='ALL'||w.origin===dbOrigin)).length, color:'#00ff88' },
+                  ].map(({label, count, color}) => (
+                    <div key={label} className="mb-2">
+                      <div className="flex justify-between text-[9px] mb-0.5">
+                        <span style={{ color }}>{label}</span>
+                        <span className="text-white font-black">{count}</span>
+                      </div>
+                      <div className="h-1.5 bg-[#020b18]">
+                        <motion.div className="h-full" style={{ background:color }}
+                          initial={{ width:0 }} animate={{ width:`${Math.min(100,(count/WEAPONS.length)*400)}%` }} transition={{ duration:0.8 }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 카테고리별 분포 */}
+                <div className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/15 p-4">
+                  <div className="text-[10px] font-black text-[#00d4ff] mb-3 tracking-[0.1em]">▶ 무기 카테고리 분포</div>
+                  {[
+                    { cat:'MISSILE', label:'미사일' },
+                    { cat:'AIRCRAFT', label:'전투기·항공' },
+                    { cat:'GROUND', label:'기갑·지상' },
+                    { cat:'ARTILLERY', label:'포병·MLRS' },
+                    { cat:'SAM', label:'방공체계' },
+                    { cat:'SUBMARINE', label:'잠수함' },
+                    { cat:'UAV', label:'무인기' },
+                  ].map(({cat, label}) => {
+                    const cnt = WEAPONS.filter(w => w.category === cat && (dbOrigin==='ALL'||w.origin===dbOrigin)).length
+                    return (
+                      <div key={cat} className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[9px] text-[#8ab8d4] w-20 shrink-0">{label}</span>
+                        <div className="flex-1 h-1 bg-[#020b18]">
+                          <div className="h-full bg-[#00d4ff]" style={{ width:`${Math.min(100,(cnt/(WEAPONS.length*0.15))*100)}%` }} />
+                        </div>
+                        <span className="text-[9px] font-mono text-[#00d4ff] w-8 text-right">{cnt}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                {/* 선택된 무기 상세 */}
+                {dbSelected && (
+                  <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }}
+                    className="clip-corner bg-[#041526]/80 border border-[#ffcc00]/30 p-4">
+                    <div className="text-[9px] font-black text-[#ffcc00] mb-2 tracking-[0.1em]">▶ 선택 무기 인텔</div>
+                    <div className="text-[13px] font-black text-white mb-1">{dbSelected.name}</div>
+                    <div className="text-[9px] text-[#8ab8d4] mb-3">{dbSelected.nameEng}</div>
+                    <p className="text-[10px] text-[#8ab8d4] leading-relaxed mb-3">{dbSelected.description}</p>
+                    <div className="space-y-1">
+                      {Object.entries(dbSelected.specs).filter(([,v]) => v).slice(0,8).map(([k,v]) => (
+                        <div key={k} className="flex gap-2 text-[9px]">
+                          <span className="text-[#4a7a9b] w-16 shrink-0">{k}</span>
+                          <span className="text-white">{v as string}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {dbSelected.wikiUrl && (
+                      <a href={dbSelected.wikiUrl} target="_blank" rel="noopener noreferrer"
+                        className="mt-3 flex items-center gap-1 text-[9px] text-[#00d4ff] hover:underline">
+                        Wikipedia 참조 →
+                      </a>
+                    )}
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          </motion.div>
         )}
 
         {mainTab === 'sim' && <>
@@ -483,6 +808,31 @@ export default function Sol01() {
                       ))}
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* 북한 주요 위협 DB 패널 */}
+              <div className="clip-corner bg-[#041526]/80 border border-[#ff2d55]/20 p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <AlertTriangle className="w-3.5 h-3.5 text-[#ff2d55]" />
+                    <span className="text-[10px] font-black tracking-[0.15em] text-[#ff2d55]">DB 연동 — 북한 주요 위협 무기</span>
+                  </div>
+                  <button onClick={() => setMainTab('db')} className="text-[9px] text-[#00d4ff] hover:underline">전체 보기 →</button>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                  {topThreats.map(w => {
+                    const tc = w.threatRating === 'CRITICAL' ? '#ff2d55' : '#ff6b35'
+                    return (
+                      <button key={w.id} onClick={() => { setDbSelected(w); setMainTab('db') }}
+                        className="text-left bg-[#020b18]/60 border border-[#ff2d55]/20 p-2.5 hover:border-[#ff2d55]/60 transition-all">
+                        <div className="text-[9px] font-black mb-1 leading-tight" style={{ color:tc }}>{w.name}</div>
+                        <div className="text-[8px] text-[#4a7a9b] mb-1">{CATEGORY_KO[w.category] ?? w.category}</div>
+                        {w.specs.range && <div className="text-[8px] text-[#8ab8d4]">📡 {w.specs.range}</div>}
+                        <div className="mt-1 text-[7px] font-black px-1 py-0.5 inline-block border" style={{ color:tc, borderColor:`${tc}50` }}>{w.threatRating}</div>
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
 
@@ -737,6 +1087,25 @@ export default function Sol01() {
                     ))}
                   </div>
                 </div>
+
+                {/* DB 연동 — 활성 표적 무기 인텔 */}
+                {enemies.length > 0 && (() => {
+                  const topEnemy = [...enemies].sort((a,b) => b.threat - a.threat)[0]
+                  const linked = getLinkedWeapon(topEnemy.type)
+                  return linked ? (
+                    <div className="clip-corner bg-[#041526]/80 border border-[#ff2d55]/25 p-3">
+                      <div className="text-[8px] font-black text-[#ff2d55] mb-2 tracking-[0.1em]">▶ DB 위협 분석</div>
+                      <div className="text-[9px] font-black text-white mb-0.5">{linked.name}</div>
+                      <div className="text-[8px] text-[#4a7a9b] mb-2">{CATEGORY_KO[linked.category] ?? linked.category}</div>
+                      {linked.specs.range && <div className="text-[8px] text-[#8ab8d4]">사거리: <span className="text-[#ff6b35]">{linked.specs.range}</span></div>}
+                      {linked.specs.speed && <div className="text-[8px] text-[#8ab8d4]">속도: <span className="text-[#ff6b35]">{linked.specs.speed}</span></div>}
+                      <div className="mt-1.5 h-1 bg-[#020b18]">
+                        <div className="h-full bg-[#ff2d55]" style={{ width:`${linked.confidence}%` }} />
+                      </div>
+                      <div className="text-[7px] text-[#4a7a9b] mt-0.5">신뢰도 {linked.confidence}%</div>
+                    </div>
+                  ) : null
+                })()}
 
                 {/* 전투 로그 */}
                 <div className="clip-corner bg-[#041526]/80 border border-[#00d4ff]/15 p-4">

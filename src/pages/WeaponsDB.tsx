@@ -49,6 +49,11 @@ export default function WeaponsDB() {
   const [filterCat, setFilterCat]   = useState<WeaponCategory | 'ALL'>('ALL')
   const [filterStatus, setFilterStatus] = useState<WeaponStatus | 'ALL'>('ALL')
   const [filterThreat, setFilterThreat] = useState<ThreatRating | 'ALL'>('ALL')
+  const [listLimit, setListLimit] = useState(60)
+  const searchRef = useRef<HTMLInputElement>(null)
+
+  // 검색어 변경 시 리스트 초기화
+  const handleSearchChange = (val: string) => { setSearch(val); setListLimit(60) }
 
   const filtered = useMemo(() => {
     return WEAPONS.filter((w) => {
@@ -66,6 +71,8 @@ export default function WeaponsDB() {
       return true
     })
   }, [search, filterOrigin, filterCat, filterStatus, filterThreat])
+
+  const displayedWeapons = filtered.slice(0, listLimit)
 
   const stats = useMemo(() => ({
     total: WEAPONS.length,
@@ -125,13 +132,33 @@ export default function WeaponsDB() {
           <div className={`flex-1 min-w-0 transition-all ${selectedWeapon ? 'hidden md:block md:w-[45%] md:flex-none' : ''}`}>
             {/* 필터 */}
             <div className="space-y-2 mb-4">
+              {/* 즉시 검색 */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#4a7a9b]" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#00d4ff]/60" />
                 <input
-                  value={search} onChange={(e) => setSearch(e.target.value)}
-                  placeholder="무기명, 영문명, 태그 검색..."
-                  className="w-full bg-[#041526]/80 border border-[#0a3050] pl-9 pr-4 py-2 text-[11px] text-white placeholder-[#2a4a6a] focus:outline-none focus:border-[#00d4ff]/50"
+                  ref={searchRef}
+                  value={search} onChange={(e) => handleSearchChange(e.target.value)}
+                  placeholder="무기명·영문명·태그 즉시 검색... (예: K2, 패트리어트, ICBM, Su-57)"
+                  className="w-full bg-[#041526] border-2 border-[#0a3050] pl-9 pr-24 py-3 text-[12px] text-white placeholder-[#2a4a6a] focus:outline-none focus:border-[#00d4ff]/60 transition-all"
                 />
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                  {search && (
+                    <button onClick={() => { handleSearchChange(''); searchRef.current?.focus() }}
+                      className="text-[#4a7a9b] hover:text-white transition-colors p-1">
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                  <motion.span
+                    key={filtered.length}
+                    initial={{ scale:1.2 }} animate={{ scale:1 }}
+                    className={`text-[10px] font-black px-2 py-0.5 border ${
+                      search
+                        ? 'text-[#00d4ff] bg-[#00d4ff]/10 border-[#00d4ff]/40'
+                        : 'text-[#4a7a9b] border-[#0a3050]'
+                    }`}>
+                    {filtered.length.toLocaleString()}
+                  </motion.span>
+                </div>
               </div>
               <div className="flex flex-wrap gap-2">
                 {/* 출처 필터 */}
@@ -178,7 +205,7 @@ export default function WeaponsDB() {
 
             {/* 카드 목록 */}
             <div className="space-y-2 max-h-[calc(100vh-320px)] overflow-y-auto pr-1">
-              {filtered.map((w) => (
+              {displayedWeapons.map((w) => (
                 <motion.button key={w.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                   onClick={() => setSelectedWeapon(selectedWeapon?.id === w.id ? null : w)}
                   className={`w-full text-left clip-corner border transition-all p-3 group ${
@@ -227,7 +254,16 @@ export default function WeaponsDB() {
                 </motion.button>
               ))}
               {filtered.length === 0 && (
-                <div className="py-16 text-center text-[#2a4a6a] text-sm">검색 결과 없음</div>
+                <div className="py-16 text-center">
+                  <div className="text-[#2a4a6a] text-sm mb-2">검색 결과 없음</div>
+                  <button onClick={() => handleSearchChange('')} className="text-[10px] text-[#00d4ff] hover:underline">필터 초기화</button>
+                </div>
+              )}
+              {filtered.length > listLimit && (
+                <button onClick={() => setListLimit(l => l + 60)}
+                  className="w-full py-3 text-[11px] font-black text-[#00d4ff] border border-[#00d4ff]/20 hover:bg-[#00d4ff]/05 transition-all mt-2">
+                  더 보기 ({listLimit}/{filtered.length}) ▼
+                </button>
               )}
             </div>
           </div>

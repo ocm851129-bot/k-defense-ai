@@ -54,6 +54,22 @@ import { WEAPONS_BATCH32_HISTORICAL } from './weaponsBatch32_Historical'
 import { WEAPONS_BATCH33_GLOBAL_EXPAND } from './weaponsBatch33_GlobalExpand'
 import { WEAPONS_BATCH34_SMALL_ARMS_EXPAND } from './weaponsBatch34_SmallArmsExpand'
 import { WEAPONS_BATCH35_FINAL_EXPAND } from './weaponsBatch35_FinalExpand'
+import { WEAPONS_BATCH36_ROK_EXTRA } from './weaponsBatch36_ROK_Extra'
+import { WEAPONS_BATCH37_USA_EXTRA } from './weaponsBatch37_USA_Extra'
+import { WEAPONS_BATCH38_RUSSIA_EXTRA } from './weaponsBatch38_Russia_Extra'
+import { WEAPONS_BATCH39_CHINA_EXTRA } from './weaponsBatch39_China_Extra'
+import { WEAPONS_BATCH40_EUROPE_EXTRA } from './weaponsBatch40_Europe_Extra'
+import { WEAPONS_BATCH41_ASIA_EXTRA } from './weaponsBatch41_Asia_Extra'
+import { WEAPONS_BATCH42_MIDDLE_EAST } from './weaponsBatch42_MiddleEast'
+import { WEAPONS_BATCH43_SMALL_ARMS2 } from './weaponsBatch43_SmallArms2'
+import { WEAPONS_BATCH44_NAVAL_EXPAND2 } from './weaponsBatch44_NavalExpand2'
+import { WEAPONS_BATCH45_MISSILES_EXPAND2 } from './weaponsBatch45_MissilesExpand2'
+import { WEAPONS_BATCH46_AIR_EXPAND2 } from './weaponsBatch46_AirExpand2'
+import { WEAPONS_BATCH47_GROUND_EXTRA } from './weaponsBatch47_GroundExtra'
+import { WEAPONS_BATCH48_NAVAL_AIR } from './weaponsBatch48_NavalAir'
+import { WEAPONS_BATCH49_GLOBAL_SMALL_ARMS } from './weaponsBatch49_GlobalSmallArms'
+import { WEAPONS_BATCH50_DPRK_EXTRA } from './weaponsBatch50_DPRK_Extra'
+import { WEAPONS_BATCH51_GLOBAL_MISC } from './weaponsBatch51_GlobalMisc'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
@@ -1966,4 +1982,20 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
   ...WEAPONS_BATCH33_GLOBAL_EXPAND,
   ...WEAPONS_BATCH34_SMALL_ARMS_EXPAND,
   ...WEAPONS_BATCH35_FINAL_EXPAND,
+  ...WEAPONS_BATCH36_ROK_EXTRA,
+  ...WEAPONS_BATCH37_USA_EXTRA,
+  ...WEAPONS_BATCH38_RUSSIA_EXTRA,
+  ...WEAPONS_BATCH39_CHINA_EXTRA,
+  ...WEAPONS_BATCH40_EUROPE_EXTRA,
+  ...WEAPONS_BATCH41_ASIA_EXTRA,
+  ...WEAPONS_BATCH42_MIDDLE_EAST,
+  ...WEAPONS_BATCH43_SMALL_ARMS2,
+  ...WEAPONS_BATCH44_NAVAL_EXPAND2,
+  ...WEAPONS_BATCH45_MISSILES_EXPAND2,
+  ...WEAPONS_BATCH46_AIR_EXPAND2,
+  ...WEAPONS_BATCH47_GROUND_EXTRA,
+  ...WEAPONS_BATCH48_NAVAL_AIR,
+  ...WEAPONS_BATCH49_GLOBAL_SMALL_ARMS,
+  ...WEAPONS_BATCH50_DPRK_EXTRA,
+  ...WEAPONS_BATCH51_GLOBAL_MISC,
 ]
