@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   Shield, FileText, Radio, Database, Users, Settings,
-  LogOut, ChevronRight, Plus, Trash2, Crosshair,
+  LogOut, ChevronRight, Plus, Trash2, Crosshair, Newspaper,
 } from 'lucide-react'
 import { useBoard, NOTICE_CATEGORY_COLORS, STATUS_COLORS } from '../../contexts/BoardContext'
 import { useWeapons } from '../../contexts/WeaponsContext'
@@ -57,7 +57,7 @@ function LoginGate({ onLogin }: { onLogin: (pw: string) => boolean }) {
 }
 
 export default function AdminDashboard() {
-  const { notices, reports, intels, operators, isAdmin, login, logout, deleteNotice, deleteReport, deleteIntel } = useBoard()
+  const { notices, reports, intels, news, operators, isAdmin, login, logout, deleteNotice, deleteReport, deleteIntel } = useBoard()
   const { weapons, changeLogs } = useWeapons()
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; type: 'notice' | 'report' | 'intel' } | null>(null)
 
@@ -65,6 +65,7 @@ export default function AdminDashboard() {
 
   const stats = [
     { icon: FileText,   label: '공지사항',     value: notices.length,   sub: `고정 ${notices.filter((n) => n.pinned).length}건`,             color: '#00d4ff', href: '/admin/notices' },
+    { icon: Newspaper,  label: '국방뉴스',      value: news.length,      sub: `주요 ${news.filter((n) => n.important).length}건`,               color: '#00d4ff', href: '/admin/news' },
     { icon: Radio,      label: '보고서',        value: reports.length,   sub: `발행 ${reports.filter((r) => r.status === 'PUBLISHED').length}건`, color: '#00ff88', href: '/admin/reports' },
     { icon: Database,   label: '인텔리전스',    value: intels.length,    sub: `활성 ${intels.filter((i) => i.status === 'ACTIVE').length}건`,    color: '#ff6b35', href: '/admin/intel' },
     { icon: Crosshair,  label: '무기 데이터베이스', value: weapons.length, sub: `변경로그 ${changeLogs.length}건`,                            color: '#ff6b35', href: '/admin/weapons' },

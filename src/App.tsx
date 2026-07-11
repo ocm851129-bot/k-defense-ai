@@ -31,6 +31,7 @@ import ControlPanel from './pages/ControlPanel'
 import NoticeBoard from './pages/board/NoticeBoard'
 import ReportBoard from './pages/board/ReportBoard'
 import IntelBoard from './pages/board/IntelBoard'
+import NewsBoard from './pages/board/NewsBoard'
 
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard'
@@ -106,12 +107,14 @@ export default function App() {
                 <Route path="/board/notices" element={<PageLayout><NoticeBoard /></PageLayout>} />
                 <Route path="/board/reports" element={<PageLayout><ReportBoard /></PageLayout>} />
                 <Route path="/board/intel" element={<PageLayout><IntelBoard /></PageLayout>} />
+                <Route path="/board/news" element={<PageLayout><NewsBoard /></PageLayout>} />
 
                 {/* Admin */}
                 <Route path="/admin" element={<PageLayout><AdminDashboard /></PageLayout>} />
                 <Route path="/admin/notices" element={<PageLayout><NoticeBoard /></PageLayout>} />
                 <Route path="/admin/reports" element={<PageLayout><ReportBoard /></PageLayout>} />
                 <Route path="/admin/intel" element={<PageLayout><IntelBoard /></PageLayout>} />
+                <Route path="/admin/news" element={<PageLayout><NewsBoard /></PageLayout>} />
                 <Route path="/admin/users" element={<PageLayout><AdminUsers /></PageLayout>} />
                 <Route path="/admin/weapons" element={<PageLayout><WeaponsAdmin /></PageLayout>} />
               </Routes>

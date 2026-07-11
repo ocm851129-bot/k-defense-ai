@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import {
   Shield, Menu, X, Bell, Terminal, Settings,
   FileText, Database, Radio, LayoutGrid, LogIn, Crosshair,
-  Home, ChevronDown, Globe, Cpu,
+  Home, ChevronDown, Globe, Cpu, Newspaper,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -21,6 +21,7 @@ const SECTION_LINKS = [
 
 const BOARD_LINKS = [
   { label: '공지사항',   href: '/board/notices', icon: FileText },
+  { label: '국방뉴스',   href: '/board/news',    icon: Newspaper },
   { label: '보고서',     href: '/board/reports', icon: Radio },
   { label: '인텔리전스', href: '/board/intel',   icon: Database },
 ]
