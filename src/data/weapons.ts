@@ -77,6 +77,8 @@ import { WEAPONS_BATCH55_NAVAL_SAM_SMALLARMS } from './weaponsBatch55_NavalSAMSm
 import { WEAPONS_BATCH56_NUCLEAR_COASTAL_AIR } from './weaponsBatch56_NuclearCoastalAir'
 import { WEAPONS_BATCH57_AFRICA_CENTRAL_ASIA } from './weaponsBatch57_AfricaCentralAsia'
 import { WEAPONS_BATCH58_COLDWAR_LEGACY } from './weaponsBatch58_ColdWarLegacy'
+import { WEAPONS_BATCH59_SUBMARINES_MINES } from './weaponsBatch59_SubmarinesMines'
+import { WEAPONS_BATCH60_LATEST_2026 } from './weaponsBatch60_Latest2026'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
@@ -2012,4 +2014,6 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
   ...WEAPONS_BATCH56_NUCLEAR_COASTAL_AIR,
   ...WEAPONS_BATCH57_AFRICA_CENTRAL_ASIA,
   ...WEAPONS_BATCH58_COLDWAR_LEGACY,
+  ...WEAPONS_BATCH59_SUBMARINES_MINES,
+  ...WEAPONS_BATCH60_LATEST_2026,
 ]
