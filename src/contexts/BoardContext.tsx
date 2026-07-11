@@ -10,6 +10,23 @@ export type ReportCategory = '위협분석' | '사이버' | 'GEOINT' | 'SIGINT' 
 export type IntelType = 'THREAT' | 'SECTOR' | 'SIGNAL' | 'IMAGE' | 'CYBER' | 'STRATEGIC'
 export type ReportStatus = 'DRAFT' | 'REVIEW' | 'PUBLISHED'
 export type IntelStatus = 'ACTIVE' | 'RESOLVED' | 'PENDING' | 'ARCHIVED'
+export type NewsCategory = '한국방산' | '북한' | '미국' | '중국' | '러시아' | '유럽' | '중동' | '아시아' | '우크라이나' | '사이버' | '우주' | '기술'
+export type NewsSource = 'Jane\'s' | 'IISS' | 'Defense News' | '연합뉴스' | '국방일보' | '38North' | 'CSIS' | 'Reuters' | 'Breaking Defense' | '기타'
+
+export interface NewsItem {
+  id: string
+  title: string
+  summary: string
+  content: string
+  source: NewsSource
+  sourceUrl?: string
+  category: NewsCategory
+  date: string
+  tags: string[]
+  views: number
+  important: boolean
+  autoUpdated?: boolean
+}
 
 export interface Notice {
   id: string
@@ -73,12 +90,13 @@ interface BoardContextType {
   reports: Report[]
   intels: Intel[]
   operators: Operator[]
+  news: NewsItem[]
 
   // Notice CRUD
   addNotice: (n: Omit<Notice, 'id' | 'date' | 'views'>) => Notice
   updateNotice: (id: string, n: Partial<Notice>) => void
   deleteNotice: (id: string) => void
-  incrementView: (id: string, type: 'notice' | 'report' | 'intel') => void
+  incrementView: (id: string, type: 'notice' | 'report' | 'intel' | 'news') => void
 
   // Report CRUD
   addReport: (r: Omit<Report, 'id' | 'date'>) => Report
@@ -89,6 +107,11 @@ interface BoardContextType {
   addIntel: (i: Omit<Intel, 'id' | 'date'>) => Intel
   updateIntel: (id: string, i: Partial<Intel>) => void
   deleteIntel: (id: string) => void
+
+  // News CRUD
+  addNews: (n: Omit<NewsItem, 'id' | 'date' | 'views'>) => NewsItem
+  updateNews: (id: string, n: Partial<NewsItem>) => void
+  deleteNews: (id: string) => void
 
   // Operator CRUD
   addOperator: (o: Omit<Operator, 'id' | 'createdAt' | 'lastLogin'>) => void
@@ -106,7 +129,7 @@ const BoardContext = createContext<BoardContextType | null>(null)
 // ── Storage helpers ────────────────────────────────────────────────────────
 const KEYS = {
   notices: 'kd:notices', reports: 'kd:reports',
-  intels: 'kd:intels', operators: 'kd:operators', auth: 'kd:auth',
+  intels: 'kd:intels', operators: 'kd:operators', auth: 'kd:auth', news: 'kd:news',
 }
 function load<T>(key: string, fallback: T): T {
   try { return JSON.parse(localStorage.getItem(key) ?? '') as T } catch { return fallback }
@@ -201,6 +224,14 @@ const SEED_NOTICES: Notice[] = [
     category: '공지', secLevel: 'INTERNAL', pinned: true, views: 0,
     tags: ['DB확장', '3000종', '국방부공식데이터', '육군무기체계', 'K9A2', 'KUH-1', '천무'],
   },
+  {
+    id: 'n011',
+    title: '[공지] K-Defense AI v3.0 — 무기 DB 4,182종·SOL-01 고도화·실시간 검색 (2026-07-04)',
+    content: `■ 업데이트 일시: 2026-07-04\n■ 담당: 플랫폼개발팀 / 무기체계분석팀\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n【 플랫폼 v3.0 업데이트 개요 】\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n■ 무기 데이터베이스: 3,000 → 4,182종 (전회 대비 +1,182종)\n■ SOL-01 전장AI: 무기 DB 연동 방어자산 등록 시스템 신규 구축\n■ 무기 DB 검색: 즉시 반영 실시간 검색 UX 전면 개편\n■ GitHub: ocm851129-bot/k-defense-ai master 브랜치 업데이트 완료\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n【 1. 무기 DB 신규 추가 현황 (4,182종) 】\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n■ Batch36 — 대한민국 추가 전력 (90종)\n- K808 바라쿠다, KF-21 블록2, K9A1 노르웨이/에스토니아, KTSSM 전술지대지\n- F-35A·KF-21·FA-50GF 수출 현황, ANASIS-II 군사위성, 드론봇전투체계\n\n■ Batch37 — 미국 지상·해군·공군 (90종)\n- M10 부커 경전차, B-21 레이더 폭격기, HIMARS PrSM 블록II\n- F-35 전 버전·운용국, 핵탄두 W88·W76-2·B61-12 최신 현황\n\n■ Batch38 — 러시아 무기체계 (90종)\n- T-14 아르마타, RS-28 사르마트, 야센-M SSGN\n- Su-57, Tu-160M2, 포세이돈 핵어뢰, 판치르-S1\n\n■ Batch39 — 중국 무기체계 (90종)\n- J-20A 흑검, J-35 함재 스텔스, 055형 렌하이급, DF-17 극초음속\n- WZ-10 공격헬기, H-20 차세대 폭격기, SC-19 ASAT\n\n■ Batch40 — 유럽 무기체계 (90종)\n- 레오파르트 2A8, 챌린저 3, 퓨마 VJZ, GCAP 템페스트\n- ARCHER 자주포, NSM 블록IV, Meteor 공대공, SPEAR 3\n\n■ Batch41 — 아시아·태평양 (90종)\n- F-X/GCAP 일본, 테자스 MK1A, 메르카바 Mk4M, KAAN TF-X\n- AUKUS SSN, 화성-18 고체ICBM, 만리경-1 정찰위성\n\n■ Batch42 — 중동 무기체계 (90종)\n- 라팔 이집트·카타르, F-16IQ 이라크, 타이푼 UAE\n- 후티 드론보트·대함미사일, 이스라엘 Iron Beam 100kW 레이저\n\n■ Batch43 — 소화기·경화기 확장 (90종)\n- HK416A5 프랑스 표준, L85A3 영국, MSBS 그롯 폴란드\n- M5 Spear 6.8mm, AIM-9X 블록II, IRIS-T SLM 우크라이나\n\n■ Batch44 — 해군 함정·잠수함 확장 (90종)\n- DDG-1000 줌왈트, CVH 이탈리아 카부르, FREMM 베르가미니\n- 고틀란드급 스웨덴, A26 블레킹에, 인빈시블급 싱가포르\n\n■ Batch45 — 미사일·방공 확장 (90종)\n- Aster 30 Block 1NT 우크라이나, NASAMS 노르웨이·우크라이나\n- ATACMS PrSM, Brimstone 3, SPEAR 3 F-35 내부탑재\n\n■ Batch46 — 전투기·헬기·드론 확장 (90종)\n- F-35A·B·C 전 운용국·납품 현황\n- AW159 와일드캣, Mi-35M 수출형, Wing Loong-III\n\n■ Batch47 — 미사일·방공·SAM 심화 (90종)\n- SM-3 IIA·SM-6 블록1B·ESSM 블록2, Arrow-3 독일 도입\n- 극초음속: LRHW 다크이글, HACM 스크램제트, DF-ZF 글라이더\n\n■ Batch48 — 해군·항공 심화 (90종)\n- USS 포드함 CVN-78, DDG-51 플라이트III, Type 45 영국\n- B-21 레이더 첫 비행, A400M, KC-390 수출국 현황\n\n■ Batch49 — 전 세계 소화기·발사기 (90종)\n- M5/XM250 NGSW 6.8mm 차기 미군, HK433 독일 채택\n- Javelin·NLAW·SMAW-D 우크라이나 공급 현황\n\n■ Batch50 — 북한 전력 심화 (90종)\n- 화성-19 신형 ICBM, 만리경-1·2 군사위성\n- 북한군 러시아 파병 1만2천명, KN-23 러시아 공급 확인\n- 영변 핵시설, 라자루스 암호화폐 30억불 탈취(2023)\n\n■ Batch51 — 한국 무기·전술체계 (90종)\n- PrSM 블록II, GMLRS-ER 150km, 트로피·아이언피스트 APS\n- K21 APS 업그레이드, 3축체계(킬체인·KAMD·KMPR)\n- TICN·ATCIS·KNCCS 전술통신·지휘체계 수록\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n【 2. SOL-01 전장AI 방어자산 DB 등록 신규 기능 】\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n■ 위치: SOL-01 → 위협 무기 인텔리전스 탭\n\n■ 사용 방법\n  1. 출처 필터 → ROK / USA / NATO 등 아군 선택\n  2. 방어 가능 무기(SAM·항공·포병·지상) 카드에\n     "＋ 방어 등록" 버튼 클릭\n  3. 우측 "DB 등록 방어 자산" 패널에서 등록 목록 확인\n  4. 전투 시뮬레이션 시작 → 자동 배치\n  5. 실전 교전 중에도 실시간 추가 가능\n\n■ 지원 무기 유형\n  - SAM / 미사일 계열 → 천궁형(KDRASS) 또는 패트리어트형 방어 유닛\n  - 전투기 / 헬기 → F-35형 방어 유닛\n  - 자주포 / 다연장로켓 / 지상 → K9 포병형 방어 유닛\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n【 3. 무기 DB 실시간 검색 UX 전면 개편 】\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n■ 검색창 입력 즉시 결과 수 실시간 표시 (예: "K2" → 127건)\n■ ✕ 클리어 버튼 — 한 번에 검색어 초기화\n■ 60건 단위 "더 보기" 페이지네이션 (전체 4,182건 탐색 가능)\n■ 검색 결과 0건 시 "필터 초기화" 버튼 제공\n■ 검색 예시: K2 / 패트리어트 / ICBM / Su-57 / 화성 / 천궁\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n【 데이터 출처 】\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n국방부·방위사업청·합참 공개자료, IISS Military Balance 2026,\nJane's Defence Weekly, CSIS Missile Threat DB, 38North,\nSIPRI Military Expenditure DB, GlobalSecurity.org,\nNTI Nuclear Threat Initiative, 각국 공식 국방부 발표`,
+    author: '플랫폼개발팀', authorUnit: '메타아이씨티', date: '2026-07-04',
+    category: '공지', secLevel: 'INTERNAL', pinned: true, views: 0,
+    tags: ['v3.0', '4182종', 'SOL-01고도화', '방어자산등록', '실시간검색', 'DB연동'],
+  },
 ]
 
 const SEED_REPORTS: Report[] = [
@@ -275,6 +306,24 @@ const SEED_REPORTS: Report[] = [
     source: 'SOL-01', author: '김수연', authorUnit: '지역분석실',
     date: '2026-06-15', category: 'GEOINT', secLevel: 'CLASSIFIED',
     status: 'PUBLISHED', tags: ['GEOINT', '전략평가', '한반도', '북한동향'], confidence: 91,
+  },
+  {
+    id: 'r009',
+    title: '북한 러시아 파병 1만2천명 전투 투입 — 전략적 영향 분석',
+    summary: '북한군 쿠르스크·도네츠크 전선 투입 확인. 실전 경험 축적 및 러시아 기술 이전 우려.',
+    content: `## 분석 개요\n**출처**: 미 국방부, NATO 공식 성명, CNA, 38North (2024년 10월~)\n\n## 파병 현황\n- 파병 병력: 12,000명 이상 (2024년 10월 기준)\n- 배치 지역: 쿠르스크 전선 (우크라이나 점령 러시아 영토), 도네츠크\n- 병과 구성: 특수전부대·보병·포병 혼성\n\n## 무기 공급 현황\n- 포탄 공급: 500만발+ (확인)\n- KN-23 SRBM: 우크라이나 공격에 실제 사용 확인 (2024년)\n- 탄약·소형무기 지속 공급 중\n\n## 전략적 영향 평가\n\n### 북한 측 이득\n1. 현대전 실전 경험 — 드론전·포병전·전자전 노하우\n2. 러시아 군사기술 이전 (위성·미사일·핵잠 기술)\n3. 외화 수입 (추정 연 수억 달러)\n4. 러북 군사동맹 강화 → 유엔 대북제재 무력화\n\n### 러시아 측 이득\n1. 병력 손실 보충\n2. 저비용 포탄 대량 수급\n\n### 한반도 안보 함의\n- 전쟁 실전 경험 북한군의 도발 능력 향상\n- 러시아→북한 기술이전으로 전략무기 고도화 가속\n- 한미연합훈련 대응 능력 향상 우려\n\n## SOL-01 AI 위협 평가\n신뢰도: 88% | 위협등급: HIGH → CRITICAL 상향 검토`,
+    source: 'SOL-01', author: '전략분석팀', authorUnit: 'THREAT 분석실',
+    date: '2026-07-04', category: '위협분석', secLevel: 'RESTRICTED',
+    status: 'PUBLISHED', tags: ['북한파병', '러시아', '우크라이나', 'KN-23', '기술이전'], confidence: 88,
+  },
+  {
+    id: 'r010',
+    title: 'K-방산 2026 — 수출 4개국 동시 수주 및 글로벌 시장 점유 현황',
+    summary: '폴란드·이집트·사우디아라비아·에스토니아 동시 대규모 수주. K-방산 세계 4위 목표 달성 임박.',
+    content: `## K-방산 2026년 수출 현황\n**기준일**: 2026-07-04\n\n## 주요 계약 현황\n\n| 국가 | 무기체계 | 계약규모 | 인도 현황 |\n|------|----------|----------|-----------|\n| 폴란드 | K2PL 흑표(820대)+K9A1(672문)+FA-50GF(48기) | 약 20조원 | 1차 인도 완료 |\n| 사우디 | 천궁-II M-SAM 방공체계 | 3.8조원(38억불) | 2025년+ 인도 |\n| 이집트 | K9 비즈르(200대)+라팔(54기) | 약 5조원 | 협상·초도인도 |\n| 에스토니아 | K9A1(18문) | 약 0.3조원 | 2024년 인도 |\n| 호주 | AS21 레드백 IFV(129대, 린스KF31에 패배) | 미수주 | - |\n\n## 2026 K-방산 핵심 성과\n- 누적 수출 실적: 135억불+ (2026 상반기)\n- 수출 국가: 35개국 이상\n- 세계 방산 수출 순위: 5~6위권 (2030년 4위 목표)\n\n## 주요 무기체계별 수출 경쟁력\n\n### K9 자주포\n- 9개국 수출: 노르웨이·핀란드·에스토니아·폴란드·인도·호주·쿠웨이트·이집트·UAE\n- 총 1,200+ 문 계약\n\n### KF-21 보라매\n- 2026년 양산 목표. 수출 잠재국: UAE·이라크·인도네시아·말레이시아\n\n### K2 흑표\n- 폴란드 1,000대(1차180+PL생산820) 역대 최대 전차 단일 수출\n\n## 전략적 의미\n한국 방위산업이 전통적 '수입국'에서 '수출 강국'으로 전환 완료.\n우크라이나 전쟁 계기 유럽 방산 수요 급증이 핵심 동력.`,
+    source: 'SOL-06', author: '방산수출분석팀', authorUnit: '전략분석처',
+    date: '2026-07-04', category: '기술동향', secLevel: 'INTERNAL',
+    status: 'PUBLISHED', tags: ['K방산', '폴란드', '사우디', 'K9', 'K2', 'KF-21', '수출'], confidence: 92,
   },
 ]
 
@@ -431,6 +480,199 @@ const SEED_INTELS: Intel[] = [
     tags: ['IT인력', '사이버사기', '취업사기', 'RGB', '121국', 'WMD자금'],
     threatLevel: 'HIGH',
   },
+  {
+    id: 'i010',
+    title: '[DB연동] SOL-01 방어자산 DB 등록 시스템 가동 — 아군 무기 실시간 배치',
+    description: '무기 DB 4,182종과 SOL-01 전장AI 연동 완료. 아군 무기를 방어 자산으로 즉시 등록·시뮬레이션 배치 가능.',
+    detail: `업데이트 일시: 2026-07-04\n담당: 플랫폼개발팀\n\n■ 신규 기능 개요\n\nSOL-01 전장AI 시뮬레이터와 무기 DB(4,182종)가 완전 연동되었습니다.\n\n■ 사용 방법\n1. SOL-01 → [위협 무기 인텔리전스] 탭\n2. 출처 필터 → ROK / USA / NATO 등 아군 선택\n3. 무기 카드의 [+ 방어 등록] 버튼 클릭\n4. 전투 시뮬레이션 시작 시 자동 배치\n\n■ 지원 무기 유형\n- SAM / 방공 → 천궁형·패트리어트형 배치\n- 전투기·헬기 → F-35형 배치\n- 자주포·MLRS → K9 포병형 배치\n\n■ 활용 예시\n- 천궁-II(ROK·SAM) 등록 → 방공 커버리지 확장\n- F-35A(USA·AIRCRAFT) 등록 → 공중 차단 능력 추가\n- K9A2(ROK·ARTILLERY) 등록 → 지상 화력 강화\n\n■ DB 검색 방법\n검색창에 무기명 입력 즉시 결과 필터링\n예: "천궁" / "F-35" / "패트리어트" / "K9" 입력`,
+    type: 'STRATEGIC', source: 'SOL-01', author: '플랫폼개발팀',
+    date: '2026-07-04', confidence: 100, secLevel: 'INTERNAL', status: 'ACTIVE',
+    tags: ['SOL-01', 'DB연동', '방어자산등록', '4182종', 'v3.0'],
+    threatLevel: 'LOW',
+  },
+  {
+    id: 'i011',
+    title: '[긴급] 북한 화성-19 12축 TEL 신형 ICBM 공개 — 위협 수준 CRITICAL 상향',
+    description: '북한 2024년 10월 12축 TEL 탑재 신형 ICBM 화성-19 공개. 탑재 능력·사거리 화성-17 초과 추정.',
+    detail: `출처: 북한 조선중앙TV, 38North, CSIS\n일자: 2024-10-31 (공개)\n\n■ 주요 특징\n- 발사 플랫폼: 9축(18륜) → 12축(24륜) 확대 TEL\n- 크기: 화성-17 대비 대형\n- 추진: 고체 또는 액체 미상\n- MIRV 탑재 가능성: 평가 중\n\n■ 위협 평가\n- 사거리: 15,000km+ 추정 (미국 전역)\n- 탑재 용량 증가로 다탄두(MIRV) 가능성 증가\n- 세계 최대 규모 이동식 ICBM 중 하나\n\n■ SOL-01 AI 분석\n신뢰도: 65% (공개 영상 기반)\n위협 등급: CRITICAL 유지\n\n■ 권고 사항\n1. 한미 확장억제 협의 강화\n2. 킬체인 대응 시나리오 업데이트\n3. PAC-3·천궁·L-SAM 연동 태세 점검`,
+    type: 'THREAT', source: 'SOL-01', author: '미사일분석팀',
+    date: '2026-07-04', confidence: 65, secLevel: 'CLASSIFIED', status: 'ACTIVE',
+    tags: ['화성19', '12축TEL', 'ICBM', 'MIRV', 'CRITICAL'],
+    threatLevel: 'CRITICAL',
+  },
+  {
+    id: 'i012',
+    title: '[SIGINT] 북한 러시아 파병 병력 전선 배치 확인 — KN-23 실전 사용',
+    description: '북한군 12,000명 쿠르스크 전선 투입 확인. KN-23 SRBM 우크라이나 대상 실제 발사 확인.',
+    detail: `출처: 미 국방부 공식 성명, NATO, CNA, 38North\n일자: 2024-10~2025-06 (누적)\n\n■ 파병 현황\n- 병력: 12,000명 이상\n- 배치: 쿠르스크(러시아 서부)·도네츠크 전선\n- 피해: 수천명 사상 추정 (러시아 발표 부재)\n\n■ 무기 실전 사용 확인\n- KN-23 SRBM: 우크라이나 대상 10발+ 확인\n- 포탄 500만발: 도네츠크 전선 사용 확인\n- 북한산 탄약 불발률: 10~15% (우크라이나 제보)\n\n■ 기술 이전 우려\n- 러시아 → 북한: 위성기술, 핵잠기술, 드론기술\n- 실전 경험 습득: 현대 드론전·전자전·포병전\n\n■ 한반도 안보 영향\n전장 경험 가진 북한 특수전 병력 복귀 후 도발 능력 향상 우려\nSOL-01 위협 평가: HIGH`,
+    type: 'SIGNAL', source: 'SOL-04', author: 'SIGINT분석팀',
+    date: '2026-07-04', confidence: 88, secLevel: 'CLASSIFIED', status: 'ACTIVE',
+    tags: ['북한파병', 'KN-23', '우크라이나실전', '기술이전', '쿠르스크'],
+    threatLevel: 'HIGH',
+  },
+]
+
+const SEED_NEWS: NewsItem[] = [
+  {
+    id: 'nw001',
+    title: '한국 KF-21 보라매 2026년 양산 돌입 — 공군 초도 배치 시작',
+    summary: 'KAI가 개발한 KF-21 보라매 4.5세대 전투기가 2026년 양산에 돌입했다. 공군은 초도 20기를 2026년 내 인도받을 예정이다.',
+    content: `■ 출처: 국방일보, 방위사업청 (2026-07-01)\n\n한국항공우주산업(KAI)이 개발한 KF-21 보라매 전투기가 드디어 양산 단계에 진입했다.\n\n【주요 내용】\n- 양산 계획: 2026년 초도 20기, 2032년까지 총 120기\n- AESA 레이더 탑재 Block 1 표준\n- 무장: IRIS-T(단거리)·미티어(중거리)·JDAM·천검 공대지\n- 소요 예산: 약 8.1조원 (양산 전체)\n\n【전략적 의미】\n- F-4E 팬텀·F-5 제공호 완전 대체\n- 국산 4.5세대 전투기 보유로 방공 자립도 제고\n- KF-21 수출: 인도네시아·이라크·이집트 협상 진행 중\n\n【다음 단계】\n- Block 2 (내부 무장창·추가 스텔스): 2028년 목표\n- 복좌형 KF-21D: 조종사 전환훈련`,
+    source: '국방일보', category: '한국방산', date: '2026-07-01',
+    tags: ['KF-21', '보라매', '양산', 'KAI', '4.5세대'], views: 0, important: true,
+  },
+  {
+    id: 'nw002',
+    title: '북한 화성-19 신형 ICBM 공개 — 12축 TEL 탑재 역대 최대',
+    summary: '북한이 2024년 10월 24륜 12축 이동식 발사대에 탑재된 화성-19형을 공개. 화성-17 초과 규모로 세계 최대급 이동식 ICBM.',
+    content: `■ 출처: 38North, CSIS (2024-10-31 공개·분석)\n\n북한 조선중앙TV가 공개한 화성-19형 ICBM은 기존 화성-17을 능가하는 크기로 주목받았다.\n\n【화성-19 주요 특징】\n- 발사대: 12축 24륜 초대형 TEL (세계 최대 이동식)\n- 추정 사거리: 15,000km 이상 (미국 본토 전역)\n- MIRV 탑재 가능성: 평가 중 (탄두 직경·길이 기준)\n- 추진체 방식: 미상 (고체 또는 액체)\n\n【전략적 평가】\n- 화성-17 대비 탑재 중량 증가 → 다탄두 가능성 높음\n- 이동식 발사 → 위치 추적·선제 무력화 더욱 어려움\n- 한미 확장억제 전략 재검토 촉발\n\n【38North 분석】\n"세계에서 가장 큰 이동식 탄도미사일 중 하나"`,
+    source: '38North', category: '북한', date: '2024-10-31',
+    tags: ['화성19', 'ICBM', '12축TEL', 'MIRV', '북한'], views: 0, important: true,
+  },
+  {
+    id: 'nw003',
+    title: '북한군 러시아 파병 1만2천명 — 쿠르스크 전선 투입 확인',
+    summary: '미 국방부와 NATO가 북한군 12,000명 이상의 쿠르스크·도네츠크 전선 배치를 공식 확인. KN-23 실전 사용도 확인.',
+    content: `■ 출처: 미 국방부, NATO 공식 성명 (2024-10~2025-02)\n\n미국과 NATO 동맹국들이 북한군의 러시아 전선 투입을 공식 인정했다.\n\n【파병 현황】\n- 병력: 12,000명 이상\n- 배치: 쿠르스크(러시아 서부)·도네츠크\n- 병과: 특수전·포병·보병 혼성\n\n【무기 공급 확인】\n- KN-23 SRBM: 우크라이나 대상 실제 발사\n- 포탄: 500만발 이상\n- 추가 공급: 진행 중\n\n【파병 목적 분석】\n1. 러시아 병력 손실 보충\n2. 북한 실전 경험 축적\n3. 러시아 군사기술 이전 대가\n4. 북러 군사동맹 강화\n\n【한국 정부 대응】\n- 우크라이나 무기 지원 검토\n- 한미 확장억제 협의 강화`,
+    source: 'Reuters', category: '북한', date: '2024-11-04',
+    tags: ['북한파병', '러시아', '우크라이나', '쿠르스크', 'KN-23'], views: 0, important: true,
+  },
+  {
+    id: 'nw004',
+    title: '천궁-II 사우디아라비아 38억불 수출 계약 체결 — 한국 방산 역대 최대',
+    summary: '사우디아라비아가 한국 LIG넥스원의 천궁-II(M-SAM) 지대공미사일 체계를 38억불에 계약. 한국 방산 단일 계약 최대 규모.',
+    content: `■ 출처: 방위사업청, 연합뉴스 (2024년)\n\n한국 LIG넥스원이 사우디아라비아와 천궁-II 지대공미사일 체계 수출 계약을 체결했다.\n\n【계약 개요】\n- 규모: 약 38억불(약 5.1조원)\n- 품목: 천궁-II M-SAM 전 체계 (레이더·발사대·지휘통제)\n- 납기: 2025년 이후 단계적 인도\n\n【천궁-II 제원】\n- 사거리: 40km\n- 고도: 20km\n- 탄도미사일 요격 능력 보유\n- 구성: TVM 유도방식·이동식 발사대\n\n【전략적 의미】\n- 사우디 PAC-3 보완 중거리 방공망 구축\n- 한국 방산 중동 시장 본격 진출\n- 추가 수출 협상: UAE·이집트·인도 논의 중\n\n【K-방산 수출 현황】\n2023~2026년 누적 수출액 135억불+ 달성`,
+    source: '연합뉴스', category: '한국방산', date: '2024-09-15',
+    tags: ['천궁II', '사우디', '38억불', 'LIG넥스원', '방산수출'], views: 0, important: true,
+  },
+  {
+    id: 'nw005',
+    title: '폴란드 K2PL 흑표·K9·FA-50 패키지 — 한국 방산 20조 수출',
+    summary: '폴란드가 한국산 K2PL 흑표 전차(1,000대), K9A1 자주포(672문), FA-50GF(48기) 패키지 계약. 유럽 최대 방산 수입.',
+    content: `■ 출처: 방위사업청, Defense News (2022~2023)\n\n폴란드가 한국과 역사적인 대규모 방산 패키지 계약을 체결했다.\n\n【계약 규모】\n- K2PL 흑표 전차: 1,000대 (1차 180대 인도 완료)\n- K9A1 자주포: 672문\n- FA-50GF 경전투기: 48기 (초도 인도 2023년)\n- 총 계약 규모: 약 20조원 이상\n\n【K2PL 특징】\n- 폴란드 현지 생산: 현대로템+PGZ 합작\n- APS·디지털화·폴란드 특화 장비 추가\n\n【배경】\n- 우크라이나 전쟁 계기 방위력 긴급 강화\n- 기존 T-72·PT-91 구형 전차 대체\n- NATO 동부 측면 방어 강화\n\n【수출 의미】\n유럽 NATO 국가 최초 한국산 주력전차 채택`,
+    source: 'Defense News', category: '한국방산', date: '2022-07-27',
+    tags: ['K2PL', '폴란드', 'K9', 'FA-50', '20조수출'], views: 0, important: true,
+  },
+  {
+    id: 'nw006',
+    title: 'B-21 레이더 스텔스 폭격기 첫 비행 성공 — 2025년 배치 목표',
+    summary: '노스럽그루먼의 B-21 레이더 차세대 스텔스 폭격기가 2022년 12월 첫 비행에 성공. B-2 스피릿 대체.',
+    content: `■ 출처: Breaking Defense, USAF (2022-12-10)\n\n미 공군의 차세대 핵전략 스텔스 폭격기 B-21 레이더가 캘리포니아 팜데일에서 첫 비행을 성공적으로 마쳤다.\n\n【B-21 레이더 특징】\n- 유형: 차세대 전익 스텔스 전략폭격기\n- 개발사: 노스럽그루먼\n- 역할: 핵·재래식 이중목적, B-2 대체\n- 탑재: B61-12·JASSM-ER·GBU-57 MOP\n- 목표 수량: 100기 이상\n\n【기술적 특징】\n- B-2 대비 향상된 스텔스·오픈 아키텍처\n- 유인·무인 전환 설계\n- 극초음속 미사일 탑재 가능성\n\n【전략적 의미】\n- 중국 A2/AD 돌파 능력 핵심\n- 2025년 IOC(초도작전능력) 목표\n- 대만 분쟁 억제 자산`,
+    source: 'Breaking Defense', category: '미국', date: '2022-12-10',
+    tags: ['B-21', '레이더', '스텔스폭격기', 'USAF', '핵전략'], views: 0, important: false,
+  },
+  {
+    id: 'nw007',
+    title: '중국 J-35 스텔스 함재기 푸젠 항모 탑재 운용 시작',
+    summary: '중국 PLAN이 3번째 항모 푸젠함(CV-18)에 J-35A 스텔스 함재기를 탑재·운용하기 시작했다. 중국 항모전력 급속 강화.',
+    content: `■ 출처: CSIS, South China Morning Post (2024)\n\n중국이 3번째 항공모함 푸젠함(CV-18, 80,000t급)에 J-35A 스텔스 함재기를 탑재하여 운용을 시작했다.\n\n【푸젠함 특징】\n- 배수량: 80,000t+\n- 발진 시스템: CATOBAR (전자기 사출기)\n- 탑재기: J-35A·J-15T·Z-9·KJ-600\n- 중국 최초 CATOBAR 항모\n\n【J-35A 특징】\n- 유형: 5세대 스텔스 함재기\n- 성능: F-35C 수준 추정\n- 무장: PL-15·PL-10 내부탑재\n\n【전략적 함의】\n- 미 항모전단과의 격차 급속 축소\n- 대만 해협·남중국해 투사 능력 강화\n- 2030년까지 4번째 항모 취역 예정`,
+    source: 'CSIS', category: '중국', date: '2024-05-20',
+    tags: ['J-35A', '푸젠함', '중국항모', 'CATOBAR', '스텔스'], views: 0, important: true,
+  },
+  {
+    id: 'nw008',
+    title: '러시아 3M22 지르콘 극초음속 미사일 실전 배치 선언',
+    summary: '러시아가 마하 9 이상의 극초음속 순항미사일 3M22 지르콘(Tsirkon)을 수상함·잠수함에 실전 배치했다고 선언.',
+    content: `■ 출처: TASS, IISS (2023)\n\n러시아가 마하 9 이상의 속도로 비행하는 극초음속 순항미사일 3M22 지르콘의 실전 배치를 공식 선언했다.\n\n【지르콘 제원】\n- 속도: 마하 9\n- 사거리: 1,000km 이상\n- 탑재체: 수상함·잠수함 발사\n- 탄두: 재래식·핵 이중목적\n\n【현방공 무력화 이유】\n- 마하 9 이상에서 기존 SM-2·ESSM·PAC-3 요격 불가능\n- 비행경로 예측 어려움\n- 레이더 포착→요격 준비 시간 극히 짧음\n\n【배치 함정】\n- 어드미럴 고르시코프 함 (야센M급 SSGN 포함)\n- 야센M급 잠수함 발사 시험 성공\n\n【한반도 영향】\n동해·서해 러시아 함정의 위협 수준 CRITICAL 상향`,
+    source: 'IISS', category: '러시아', date: '2023-01-04',
+    tags: ['지르콘', '극초음속', '러시아', '마하9', '방공무력화'], views: 0, important: true,
+  },
+  {
+    id: 'nw009',
+    title: 'HIMARS 우크라이나 전황 역전 — M270·ATACMS 추가 공급',
+    summary: '미국이 공급한 HIMARS M142 다연장로켓이 우크라이나 전쟁 흐름을 바꿨다. 러시아 탄약고·지휘소 대규모 타격 성공.',
+    content: `■ 출처: Defense News, Breaking Defense (2022-2025)\n\n미국이 공급한 M142 HIMARS가 우크라이나 전쟁의 판도를 바꾸는 핵심 무기로 부상했다.\n\n【HIMARS 성과】\n- 러시아 탄약고 타격: 400개소 이상\n- 러시아 지휘소·보급로 타격\n- 적 방공 레이더·통신 허브 파괴\n\n【공급 현황】\n- GMLRS 정밀로켓: 수만 발 공급\n- ATACMS(300km): 2023년 비밀 공급\n- PrSM(499km): 2024년 공급 검토\n\n【전술적 교훈】\n- 장거리 정밀화력의 현대전 우위 입증\n- 고속 이동 후 사격-재이동 전술 효과\n\n【K-방산 교훈】\n폴란드·에스토니아·핀란드 K9A2·천무 긴급 수요로 연결`,
+    source: 'Defense News', category: '우크라이나', date: '2022-10-01',
+    tags: ['HIMARS', '우크라이나', 'ATACMS', '정밀화력', '전쟁교훈'], views: 0, important: false,
+  },
+  {
+    id: 'nw010',
+    title: 'AUKUS 핵잠수함 협약 — 호주 2030년대 버지니아급 인도',
+    summary: '미국·영국·호주 AUKUS 핵잠수함 협약 구체화. 호주 2030년대 버지니아급 SSN 3~5척 인도 확정.',
+    content: `■ 출처: Breaking Defense, Reuters (2023-03)\n\n미국·영국·호주 3국이 AUKUS 핵잠수함 협약의 세부 이행 계획을 공개했다.\n\n【AUKUS 핵잠 계획】\n- 단계 1 (2027~): 호주 항구에 미·영 핵잠 순환 배치\n- 단계 2 (2030년대): 미 버지니아급 SSN 3~5척 호주 인도\n- 단계 3 (2040년대): 호주·영 공동 SSN-AUKUS 건조\n\n【전략적 의미】\n- 인도태평양 미국 동맹 잠수함 전력 대폭 강화\n- 중국 PLAN 대잠 압박\n- 대만 분쟁 억제 강화\n\n【중국 반응】\n"핵 확산 우려" 강력 반발. 동남아 설득 외교 전개\n\n【한국 영향】\n한국 핵잠수함(SSN) 독자 개발 논의 가속`,
+    source: 'Breaking Defense', category: '미국', date: '2023-03-14',
+    tags: ['AUKUS', '핵잠수함', '호주', '버지니아급', '인도태평양'], views: 0, important: false,
+  },
+  {
+    id: 'nw011',
+    title: '이스라엘-이란 직접 군사 충돌 — 2024년 4월 드론·미사일 공격',
+    summary: '이란이 2024년 4월 이스라엘을 향해 드론 170기·미사일 120발 발사. 이스라엘·미군·요르단 99% 요격 성공.',
+    content: `■ 출처: Reuters, Times of Israel (2024-04-14)\n\n이란이 처음으로 이스라엘 본토를 직접 공격했다. 드론과 탄도미사일을 동시 발사했으나 대부분 요격됐다.\n\n【공격 규모】\n- 샤헤드 드론: 170기\n- 순항미사일: 30발\n- 탄도미사일: 120발\n- 총 320개 발사체\n\n【요격 성과】\n- 전체 요격률: 99%\n- 이스라엘 Iron Dome·David's Sling·Arrow-3\n- 미 해군 SM-2·SM-6\n- 요르단 공군 협력\n\n【Arrow-3 실전 검증】\n외기권(100km+)에서 탄도미사일 요격 첫 실전 성공\n\n【전략 교훈】\n다층 방공 체계(MLM)의 유효성 입증\n한국 KAMD 체계 구축에 중요한 사례`,
+    source: 'Reuters', category: '중동', date: '2024-04-14',
+    tags: ['이란이스라엘', '드론공격', '요격성공', 'Arrow-3', 'Iron Dome'], views: 0, important: true,
+  },
+  {
+    id: 'nw012',
+    title: 'F-35 2,000번째 기체 생산 돌파 — 90개국 확산',
+    summary: 'LM F-35 라이트닝II가 2,000번째 기체를 생산했다. 전 세계 17개국 3,000기 이상 수주 달성.',
+    content: `■ 출처: Lockheed Martin, Breaking Defense (2023)\n\n록히드마틴 F-35 라이트닝 II 프로그램이 2,000번째 기체 생산을 기록했다.\n\n【F-35 현황】\n- 생산: 2,000기+(2023년 기준)\n- 수주: 3,000기 이상\n- 운용국: 미국·영국·이스라엘·한국·일본·호주·이탈리아 등 17개국\n- 버전: A(육상), B(STOVL), C(함재)\n\n【한국 F-35A 현황】\n- 40기 도입 완료 (2019~2021)\n- KF-21 도입 후 60기 추가 검토\n\n【일본 F-35 현황】\n- F-35A·B 147기 도입(목표)\n- F-35B: 이즈모 경항모 탑재\n\n【F-35 실전 성과】\n이스라엘 작전(시리아·이란), 미군 중동 임무 다수`,
+    source: 'Breaking Defense', category: '미국', date: '2023-10-01',
+    tags: ['F-35', '2000기생산', '17개국', 'KF-21', '스텔스'], views: 0, important: false,
+  },
+  {
+    id: 'nw013',
+    title: 'Su-57 우크라이나 전쟁 제한적 투입 — 원거리 미사일 운용만',
+    summary: '러시아 유일 5세대기 Su-57이 우크라이나에서 제한적 운용. 전선 접근 없이 Kh-59MK2 발사만 확인.',
+    content: `■ 출처: Jane's, IISS (2022~2025)\n\n러시아 Su-57 페레크가 우크라이나 전쟁에 소수 투입됐으나 전선 근접 운용은 피하고 있다.\n\n【Su-57 현황】\n- 운용 수량: 28기 (2025년 기준)\n- 우크라이나 사용: Kh-59MK2 원거리 발사\n- 전선 접근: 없음 (격추 우려)\n\n【제한 투입 이유】\n- 소량 생산으로 손실 부담 큼\n- 우크라이나 방공에 의한 손실 위험\n- 선전 효과 목적 운용\n\n【Su-57 향후 계획】\n- 2030년까지 76기 목표\n- WS-10B 엔진 탑재 문제 지속\n\n【교훈】\n5세대기도 현대 방공 앞에서 리스크 존재`,
+    source: 'Jane\'s', category: '러시아', date: '2024-03-01',
+    tags: ['Su-57', '우크라이나', '제한투입', '5세대', '러시아공군'], views: 0, important: false,
+  },
+  {
+    id: 'nw014',
+    title: 'Starlink 위성 우크라이나 군사 통신 혁명 — 드론전 게임체인저',
+    summary: '스페이스X 스타링크 위성인터넷이 우크라이나 전쟁에서 전술통신 게임체인저로 등극. 드론·포병 정밀화력에 핵심.',
+    content: `■ 출처: Breaking Defense, Reuters (2022~2025)\n\n스타링크 저궤도 위성인터넷이 우크라이나 전쟁의 전술통신 판도를 완전히 바꿨다.\n\n【스타링크 군사 활용】\n- 우크라이나 단말기: 42,000개 이상\n- 드론 통제·영상 실시간 전송\n- 포병 사격제원 전달\n- 지휘통제(C2) 네트워크\n\n【러시아 재밍 시도】\n- 다중 주파수·빔포밍으로 재밍 무력화\n- 소프트웨어 업데이트로 재밍 패턴 대응\n\n【군사적 교훈】\n- 저궤도 위성(LEO)의 전술 통신 우위 입증\n- 단일 주파수 의존 통신 취약성 노출\n\n【K-방산 교훈】\n한국 MILSATCOM 차세대 체계 LEO 병행 필요`,
+    source: 'Breaking Defense', category: '우크라이나', date: '2022-12-01',
+    tags: ['스타링크', '우크라이나', 'LEO위성', '드론전', '전술통신'], views: 0, important: false,
+  },
+  {
+    id: 'nw015',
+    title: '인도 라팔 F3R 첫 실전 투입 — 히말라야 중국 억제 작전',
+    summary: '인도 공군 라팔 F3R이 인도-중국 국경 라다크 지역 실전 임무에 투입. 중국 J-20에 대한 억제 자산으로 부상.',
+    content: `■ 출처: Defense News, The Hindu (2021~2024)\n\n인도 공군이 2020년 도입한 다소 라팔 F3R을 중국 국경 히말라야 지역 실전에 투입했다.\n\n【라팔 인도 현황】\n- 도입: 36기 (2020~2023년 인도 완료)\n- 배치: 아그라·암발라 공군기지\n- 무장: 미티어·MICA·HAMMER·SCALP-EG\n\n【실전 투입 내용】\n- 라다크·아루나찰프라데시 순찰\n- Su-30MKI와 함께 북부·동부 방공\n- 중국 J-20 전진기지화에 대한 억제\n\n【인도 전략 가치】\n- 파키스탄 JF-17 대비 압도적 우위\n- 중국 J-20과의 성능 경쟁 중\n\n【2차 계약】\n인도 라팔 해군형 26기 추가 계약 체결`,
+    source: 'Defense News', category: '아시아', date: '2021-09-15',
+    tags: ['라팔', '인도', '히말라야', '중국억제', 'HAMMER'], views: 0, important: false,
+  },
+  {
+    id: 'nw016',
+    title: '한국 만리경-1 군사정찰위성 발사 성공 — 북한 실시간 감시',
+    summary: '한국군의 첫 군사정찰위성 만리경-1이 2023년 12월 발사 성공. EO 광학 카메라로 북한 전역 촬영 능력 확보.',
+    content: `■ 출처: 방위사업청, 연합뉴스 (2023-12-02)\n\n한국군의 첫 전용 군사정찰위성 만리경-1(425사업 1호)이 스페이스X 팔콘9 로켓으로 발사에 성공했다.\n\n【만리경-1 현황】\n- 궤도: 지구저궤도(LEO)\n- 센서: 전자광학(EO) 고해상도\n- 용도: 북한 군사시설·이동표적 촬영\n\n【425사업 전체 계획】\n- 1호(EO): 2023년 12월 발사 ✓\n- 2호(SAR): 2024년 발사 ✓\n- 3~5호: 2025년 완성 예정\n\n【운용 효과】\n- 북한 김정은 전용 열차·이동식 발사대 추적\n- 핵시설·군사훈련 실시간 감시\n\n【북한 반응】\n만리경-1 발사 10일 후 자체 군사위성 발사 대응`,
+    source: '연합뉴스', category: '한국방산', date: '2023-12-02',
+    tags: ['만리경1', '425사업', '군사위성', '북한감시', '스페이스X'], views: 0, important: true,
+  },
+  {
+    id: 'nw017',
+    title: '중국 DF-17 극초음속 글라이더 실전 배치 — 미 항모 대응',
+    summary: '중국이 DF-17 극초음속 글라이딩 비행체(HGV)를 로켓군에 정식 배치. 마하 10, 사거리 2,000km로 태평양 미 항모 위협.',
+    content: `■ 출처: CSIS, Jane's (2019~2022)\n\n중국이 세계 최초로 실전 배치된 극초음속 글라이더 탑재 탄도미사일 DF-17을 PLA 로켓군에 배치했다.\n\n【DF-17 제원】\n- 속도: 마하 10\n- 사거리: 1,800~2,500km\n- 탑재: DF-ZF HGV 글라이더\n- 정확도: CEP 수십m\n\n【위협 대상】\n- 괌·오키나와 미군 기지\n- 서태평양 항모전단\n- 대만 방어 체계\n\n【현방공 취약점】\n- THAAD·SM-3: 고도·속도 불일치로 요격 어려움\n- 기동탄두로 예측 불가\n\n【미국 대응】\n GLIDE BREAKER 극초음속 요격체 개발 착수\n한국 L-SAM 개발과 연계`,
+    source: 'CSIS', category: '중국', date: '2019-10-01',
+    tags: ['DF-17', '극초음속', 'HGV', '중국', '항모위협'], views: 0, important: true,
+  },
+  {
+    id: 'nw018',
+    title: '핀란드·스웨덴 NATO 가입 완료 — 러시아 국경 1,340km 추가',
+    summary: '핀란드(2023.04)·스웨덴(2024.03) NATO 공식 가입 완료. 러시아-NATO 국경 1,340km 추가로 지정학 완전 변화.',
+    content: `■ 출처: NATO, Reuters (2023~2024)\n\n냉전 이후 중립을 유지하던 핀란드와 스웨덴이 러시아 우크라이나 침공을 계기로 NATO에 가입했다.\n\n【가입 일정】\n- 핀란드: 2023년 4월 (32번째 회원국)\n- 스웨덴: 2024년 3월 (33번째 회원국)\n\n【전략 변화】\n- 러시아-NATO 국경: 1,340km 추가\n- 발트해: 사실상 NATO 내해화\n- 아크틱: NATO 영향권 강화\n\n【핀란드 방산 강화】\n- F-35A 64기 도입 확정\n- K9A1 자주포 54문 도입\n- M270 MLRS·NASAMS 배치\n\n【러시아 대응】\n국경 지역 군사력 증강, 서부군관구 확대`,
+    source: 'Reuters', category: '유럽', date: '2023-04-04',
+    tags: ['핀란드NATO', '스웨덴NATO', '러시아국경', '발트해', '냉전종식'], views: 0, important: false,
+  },
+  {
+    id: 'nw019',
+    title: '드론 전쟁 시대 — 우크라이나 FPV 드론 하루 2,000기 생산',
+    summary: '우크라이나가 FPV(1인칭 시점) 자폭 드론을 하루 2,000기 이상 생산. 드론이 현대전의 핵심으로 완전히 자리잡음.',
+    content: `■ 출처: Reuters, Defense News (2023~2025)\n\n우크라이나 전쟁은 소형 드론이 현대 전쟁의 게임체인저로 부상한 역사적 사례가 됐다.\n\n【우크라이나 드론 현황】\n- FPV 드론 생산: 일 2,000기+\n- 누적 생산: 수십만 기\n- 비용: 기당 200~400달러\n- 피해: 러시아 전차 1,000대+ 격파\n\n【러시아 대드론 대응】\n- 전자전 재밍 강화\n- 새장(강철 차양) 장착 전차\n- 재밍 총 배급\n\n【전술 혁명】\n- 저비용 드론 vs 고비용 전차·장갑차 비대칭 성립\n- FPGA 기반 드론 조종: GPS 불필요\n\n【한국 교훈】\n드론봇전투체계 개발 가속, 대드론(C-UAV) 체계 강화`,
+    source: 'Defense News', category: '우크라이나', date: '2023-09-01',
+    tags: ['FPV드론', '우크라이나', '드론전쟁', '게임체인저', '대드론'], views: 0, important: true,
+  },
+  {
+    id: 'nw020',
+    title: '2026 K-방산 수출 135억불 달성 — 세계 5위 방산 수출국 부상',
+    summary: '한국 방위산업 수출이 2026년 상반기 누적 135억불을 달성, 세계 5~6위 방산 수출국으로 자리매김했다.',
+    content: `■ 출처: 방위사업청, SIPRI (2026-07)\n\n한국 방위산업 수출이 2023년 이후 폭발적으로 성장하여 세계 5위권 방산 수출국으로 부상했다.\n\n【연도별 수출 실적】\n- 2021년: 70억불\n- 2022년: 173억불 (폴란드 패키지)\n- 2023년: 135억불\n- 2024년: 180억불 (사우디 천궁-II)\n- 2026년 상반기: 135억불+\n\n【주요 수출 품목】\n- K9 자주포: 9개국 1,200문+\n- K2 전차: 폴란드 1,000대 계약\n- FA-50: 폴란드·필리핀·이라크·태국\n- 천궁-II: 사우디아라비아 38억불\n- 천무 MLRS: UAE 35억불\n\n【세계 방산 수출 순위 (2025)】\n1. 미국 37%\n2. 프랑스 11%\n3. 러시아 10%(급감)\n4. 이스라엘 7%\n5. 한국 6%(급등)↑\n\n【2030 목표】\n수출 300억불, 세계 4위`,
+    source: '국방일보', category: '한국방산', date: '2026-07-01',
+    tags: ['K방산수출', '135억불', '세계5위', 'K9', 'K2', '천궁'], views: 0, important: true,
+  },
 ]
 
 const SEED_OPERATORS: Operator[] = [
@@ -445,7 +687,7 @@ const SEED_OPERATORS: Operator[] = [
 // ── Provider ───────────────────────────────────────────────────────────────
 
 // 데이터 버전: 변경 시 localStorage 자동 리셋하여 최신 시드 적용
-const DATA_VERSION = 'v4-weapons-update-2026-07-01'
+const DATA_VERSION = 'v5-platform-v3-2026-07-04'
 
 export function BoardProvider({ children }: { children: ReactNode }) {
   // 버전 불일치 시 자동 시드 재로드
@@ -476,6 +718,12 @@ export function BoardProvider({ children }: { children: ReactNode }) {
     const stored = load<Operator[]>(KEYS.operators, [])
     return stored.length ? stored : SEED_OPERATORS
   })
+  const [news, setNews] = useState<NewsItem[]>(() => {
+    const ver = localStorage.getItem('kd:version')
+    if (ver !== DATA_VERSION) return SEED_NEWS
+    const stored = load<NewsItem[]>(KEYS.news, [])
+    return stored.length ? stored : SEED_NEWS
+  })
   const [isAdmin, setIsAdmin] = useState(() => load<boolean>(KEYS.auth, false))
 
   // Persist
@@ -483,6 +731,7 @@ export function BoardProvider({ children }: { children: ReactNode }) {
   useEffect(() => { save(KEYS.reports, reports) }, [reports])
   useEffect(() => { save(KEYS.intels, intels) }, [intels])
   useEffect(() => { save(KEYS.operators, operators) }, [operators])
+  useEffect(() => { save(KEYS.news, news) }, [news])
 
   // Notice
   const addNotice = useCallback((n: Omit<Notice, 'id' | 'date' | 'views'>): Notice => {
@@ -517,6 +766,17 @@ export function BoardProvider({ children }: { children: ReactNode }) {
   const deleteIntel = useCallback((id: string) =>
     setIntels((prev) => prev.filter((x) => x.id !== id)), [])
 
+  // News
+  const addNews = useCallback((n: Omit<NewsItem, 'id' | 'date' | 'views'>): NewsItem => {
+    const item: NewsItem = { ...n, id: uid(), date: now(), views: 0 }
+    setNews((prev) => [item, ...prev])
+    return item
+  }, [])
+  const updateNews = useCallback((id: string, n: Partial<NewsItem>) =>
+    setNews((prev) => prev.map((x) => x.id === id ? { ...x, ...n } : x)), [])
+  const deleteNews = useCallback((id: string) =>
+    setNews((prev) => prev.filter((x) => x.id !== id)), [])
+
   // Operator
   const addOperator = useCallback((o: Omit<Operator, 'id' | 'createdAt' | 'lastLogin'>) =>
     setOperators((prev) => [{ ...o, id: uid(), createdAt: now(), lastLogin: '-' }, ...prev]), [])
@@ -526,10 +786,11 @@ export function BoardProvider({ children }: { children: ReactNode }) {
     setOperators((prev) => prev.filter((x) => x.id !== id)), [])
 
   // Views
-  const incrementView = useCallback((id: string, type: 'notice' | 'report' | 'intel') => {
+  const incrementView = useCallback((id: string, type: 'notice' | 'report' | 'intel' | 'news') => {
     if (type === 'notice') setNotices((p) => p.map((x) => x.id === id ? { ...x, views: x.views + 1 } : x))
     if (type === 'report') setReports((p) => p.map((x) => x.id === id ? { ...x } : x))
     if (type === 'intel') setIntels((p) => p.map((x) => x.id === id ? { ...x } : x))
+    if (type === 'news') setNews((p) => p.map((x) => x.id === id ? { ...x, views: x.views + 1 } : x))
   }, [])
 
   // Auth
@@ -542,10 +803,11 @@ export function BoardProvider({ children }: { children: ReactNode }) {
 
   return (
     <BoardContext.Provider value={{
-      notices, reports, intels, operators, isAdmin,
+      notices, reports, intels, operators, news, isAdmin,
       addNotice, updateNotice, deleteNotice,
       addReport, updateReport, deleteReport,
       addIntel, updateIntel, deleteIntel,
+      addNews, updateNews, deleteNews,
       addOperator, updateOperator, deleteOperator,
       incrementView, login, logout,
     }}>
