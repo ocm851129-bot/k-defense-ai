@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Cpu, ChevronLeft, AlertTriangle, CheckCircle, ChevronRight, Play, RotateCcw, Trophy, Zap, Clock  } from 'lucide-react'
+import { Cpu, ChevronLeft, AlertTriangle, CheckCircle, ChevronRight, Play, RotateCcw, Trophy, Zap, Clock, Database  } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
 import GisOperationsMap from '../../components/GisOperationsMap'
+import WeaponIntelPanel from '../../components/sol/WeaponIntelPanel'
 import { useSystem } from '../../contexts/SystemContext'
 import ConfirmDialog from '../../components/ui/ConfirmDialog'
+import { WEAPONS, CATEGORY_KO, type WeaponCategory } from '../../data/weapons'
 
 type Phase = 'STANDBY' | 'BRIEFING' | 'DECISION' | 'CONSEQUENCE' | 'RESULT'
 type Risk   = 'CRITICAL' | 'HIGH' | 'MED' | 'LOW'
@@ -22,6 +24,7 @@ interface Scenario {
   urgency: Risk; countdown: string
   intel: { source: string; data: string; confidence: number }[]
   choices: Choice[]
+  linkedCategories: WeaponCategory[]
 }
 
 const SCENARIOS: Scenario[] = [
@@ -48,7 +51,8 @@ const SCENARIOS: Scenario[] = [
         risk:'LOW', timeToEffect:'1시간', aiRecommend:false, score:80,
         immediate:['발사 억제 가능성 낮음','민간 혼란 최소화','외교적 해결 가능성 유지'],
         longterm:['신뢰성 손상 위험','동맹국 우려 표명','시간 지연 효과'] },
-    ]
+    ],
+    linkedCategories:['ICBM','SRBM','IRBM'],
   },
   {
     id:'SCN-002', title:'사이버 국방망 침투',
@@ -72,7 +76,8 @@ const SCENARIOS: Scenario[] = [
         risk:'MED', timeToEffect:'10분', aiRecommend:false, score:110,
         immediate:['작전계획 DB 보호','통신망 유지','침투 경로 완전 차단 미흡'],
         longterm:['잔존 위협 가능성','재침투 위험'] },
-    ]
+    ],
+    linkedCategories:['CYBER'],
   },
   {
     id:'SCN-003', title:'해상 도발 — 무인 수상함 접근',
@@ -96,7 +101,8 @@ const SCENARIOS: Scenario[] = [
         risk:'HIGH', timeToEffect:'15분', aiRecommend:false, score:80,
         immediate:['위협 즉시 제거','긴장 고조 위험','오산 시 확전 가능'],
         longterm:['군사 충돌 격화','국제 여론 악화'] },
-    ]
+    ],
+    linkedCategories:['NAVAL','UAV'],
   },
 ]
 
@@ -111,7 +117,7 @@ const INTEL_SOURCES = [
 ]
 
 export default function Sol06() {
-  const [mainTab, setMainTab] = useState<'sim'|'ops'>('sim')
+  const [mainTab, setMainTab] = useState<'sim'|'ops'|'db'>('sim')
   void useSystem()
   const [phase, setPhase] = useState<Phase>('STANDBY')
   const [scnIdx, setScnIdx] = useState(0)
@@ -121,6 +127,13 @@ export default function Sol06() {
   const [results, setResults] = useState<{scn:string;choice:Choice}[]>([])
 
   const scenario = SCENARIOS[scnIdx]
+
+  // DB 연동 — 시나리오와 관련된 실제 위협 무기체계 매칭
+  const linkedThreat = useMemo(() => {
+    const pool = WEAPONS.filter(w => w.origin === 'DPRK' && scenario.linkedCategories.includes(w.category)
+      && (w.threatRating === 'CRITICAL' || w.threatRating === 'HIGH'))
+    return pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : undefined
+  }, [scenario])
 
   const start = () => { setPhase('BRIEFING'); setScnIdx(0); setTotalScore(0); setResults([]); setChosen(null) }
   const reset = () => { setPhase('STANDBY'); setChosen(null); setResults([]) }
@@ -155,11 +168,11 @@ export default function Sol06() {
         </div>
 
         {/* 모드 탭 */}
-        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0">
-          {(['sim','ops'] as const).map(id=>(
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0 overflow-x-auto">
+          {(['sim','ops','db'] as const).map(id=>(
             <button key={id} onClick={()=>setMainTab(id)}
-              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#c084fc] text-[#c084fc] -mb-px':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px'}>
-              {id==='sim'?'시뮬레이션':'GIS 운영 지도'}
+              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#c084fc] text-[#c084fc] -mb-px whitespace-nowrap':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px whitespace-nowrap'}>
+              {id==='sim'?'시뮬레이션':id==='ops'?'GIS 운영 지도':'통합 위협 인텔리전스'}
             </button>
           ))}
         </div>
@@ -167,6 +180,11 @@ export default function Sol06() {
         {mainTab==='ops' && (
           <GisOperationsMap solId="sol06" title="SOL-06 AI 의사결정 운영 지도"
             activeLayers={['SAM','AIRCRAFT','ARMOR','MISSILE','NAVAL']} color="#c084fc" />
+        )}
+
+        {mainTab==='db' && (
+          <WeaponIntelPanel title="통합 위협 인텔리전스 DB (전체 5,000종+)" color="#c084fc"
+            defaultOrigin="ALL" originOptions={['ALL','DPRK','RUSSIA','CHINA','USA','ROK']} />
         )}
 
         {mainTab==='sim' && <>
@@ -264,6 +282,23 @@ export default function Sol06() {
                   ))}
                 </div>
               </div>
+
+              {/* DB 연동 — 관련 위협 무기체계 */}
+              {linkedThreat && (
+                <div className="mb-5 bg-[#020b18]/50 border border-[#c084fc]/25 p-3">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <Database className="w-3 h-3 text-[#c084fc]" />
+                    <span className="text-[9px] font-black tracking-[0.1em] text-[#c084fc]">DB 연동 — 관련 위협 무기체계</span>
+                  </div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[11px] font-black text-white">{linkedThreat.name}</span>
+                    <span className="text-[8px] text-[#4a7a9b]">({CATEGORY_KO[linkedThreat.category]})</span>
+                    <span className="text-[8px] font-black px-1.5 py-0.5" style={{ color: linkedThreat.threatRating === 'CRITICAL' ? '#ff2d55' : '#ff6b35', background: linkedThreat.threatRating === 'CRITICAL' ? '#ff2d5515' : '#ff6b3515' }}>{linkedThreat.threatRating}</span>
+                  </div>
+                  <p className="text-[9px] text-[#8ab8d4] mt-1.5 line-clamp-2">{linkedThreat.description}</p>
+                  <button onClick={() => setMainTab('db')} className="text-[8px] text-[#c084fc] hover:underline mt-1">DB에서 상세 보기 →</button>
+                </div>
+              )}
 
               <button onClick={()=>setPhase('DECISION')}
                 className="flex items-center gap-2 px-6 py-2.5 bg-[#c084fc] text-[#020b18] font-black text-[11px] clip-corner hover:bg-[#d4a0ff]">

@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Globe, Camera, ChevronLeft, Target, Eye, Play, RotateCcw, Trophy, Zap, CheckCircle  } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
 import GisOperationsMap from '../../components/GisOperationsMap'
+import WeaponIntelPanel from '../../components/sol/WeaponIntelPanel'
 import { useSystem } from '../../contexts/SystemContext'
+import { WEAPONS, CATEGORY_KO, type WeaponSystem, type WeaponCategory } from '../../data/weapons'
 
 // ── 타입 ──────────────────────────────────────────────────────────────────────
 type Phase = 'STANDBY' | 'ACTIVE' | 'RESULT'
@@ -18,6 +20,7 @@ interface IntelTarget {
   imgResolution: string; taskStatus: TaskStatus
   timeWindow: number; maxTime: number
   findings: string[]; priority: number
+  linkedWeapon?: WeaponSystem
 }
 
 interface SatPass {
@@ -30,18 +33,38 @@ const RISK_COLORS: Record<RiskLevel, string> = {
   CRITICAL: '#ff2d55', HIGH: '#ff6b35', MED: '#ffcc00', LOW: '#00ff88',
 }
 
-const INITIAL_TARGETS: IntelTarget[] = [
-  { id:'GT-001', name:'동창리 발사장',  type:'ICBM 발사 시설', lat:'40.0N', lng:'124.7E', area:'북한 서해', risk:'CRITICAL', change:'+340%', lastUpdate:'', imgResolution:'0.3m', taskStatus:'PENDING', timeWindow:18, maxTime:18, priority:1,
-    findings:['ICBM 이동식 발사대 4기 관측','연료 주입 차량 집결','위장망 제거 확인','발사 D-72hr 추정'] },
-  { id:'GT-002', name:'순안 공항',      type:'군용 항공기지', lat:'39.0N', lng:'125.7E', area:'평양 북부',  risk:'HIGH',     change:'+55%',  lastUpdate:'', imgResolution:'0.5m', taskStatus:'PENDING', timeWindow:22, maxTime:22, priority:2,
-    findings:['전투기 24기 추가 배치','이착륙 빈도 3배 증가','지하 격납고 문 개방 확인'] },
-  { id:'GT-003', name:'남포 항만',       type:'해군 기지',     lat:'38.7N', lng:'125.4E', area:'서해 해안',  risk:'HIGH',     change:'+28%',  lastUpdate:'', imgResolution:'0.5m', taskStatus:'PENDING', timeWindow:25, maxTime:25, priority:3,
-    findings:['잠수함 2척 출항 준비','보급선 집결','기뢰 부설선 움직임'] },
-  { id:'GT-004', name:'사리원 기지',     type:'지상군 집결지', lat:'38.5N', lng:'125.8E', area:'황해도',    risk:'HIGH',     change:'+87%',  lastUpdate:'', imgResolution:'1.0m', taskStatus:'PENDING', timeWindow:30, maxTime:30, priority:4,
-    findings:['전차 200여 대 집결','포병 자산 전진 배치','병력 이동 급증'] },
-  { id:'GT-005', name:'개성 공단',       type:'민군 경계 지점', lat:'37.9N', lng:'126.5E', area:'DMZ 인근', risk:'MED',      change:'+12%',  lastUpdate:'', imgResolution:'1.0m', taskStatus:'PENDING', timeWindow:35, maxTime:35, priority:5,
-    findings:['민간 구역 내 군사 장비 확인','감시 카메라 새 설치'] },
+// DB 연동 — 관측지점별 실제 위협 무기체계 매칭 (사이트 위치는 창작, 무기 데이터는 실제 DB)
+const SITE_TEMPLATES: Omit<IntelTarget, 'findings' | 'risk' | 'linkedWeapon'>[] = [
+  { id:'GT-001', name:'동창리 발사장',  type:'ICBM 발사 시설', lat:'40.0N', lng:'124.7E', area:'북한 서해', change:'+340%', lastUpdate:'', imgResolution:'0.3m', taskStatus:'PENDING', timeWindow:18, maxTime:18, priority:1 },
+  { id:'GT-002', name:'순안 공항',      type:'군용 항공기지', lat:'39.0N', lng:'125.7E', area:'평양 북부',  change:'+55%',  lastUpdate:'', imgResolution:'0.5m', taskStatus:'PENDING', timeWindow:22, maxTime:22, priority:2 },
+  { id:'GT-003', name:'남포 항만',       type:'해군 기지',     lat:'38.7N', lng:'125.4E', area:'서해 해안',  change:'+28%',  lastUpdate:'', imgResolution:'0.5m', taskStatus:'PENDING', timeWindow:25, maxTime:25, priority:3 },
+  { id:'GT-004', name:'사리원 기지',     type:'지상군 집결지', lat:'38.5N', lng:'125.8E', area:'황해도',    change:'+87%',  lastUpdate:'', imgResolution:'1.0m', taskStatus:'PENDING', timeWindow:30, maxTime:30, priority:4 },
+  { id:'GT-005', name:'개성 공단',       type:'민군 경계 지점', lat:'37.9N', lng:'126.5E', area:'DMZ 인근', change:'+12%',  lastUpdate:'', imgResolution:'1.0m', taskStatus:'PENDING', timeWindow:35, maxTime:35, priority:5 },
 ]
+const SITE_CATEGORIES: WeaponCategory[][] = [
+  ['ICBM', 'SRBM', 'IRBM'],
+  ['AIRCRAFT'],
+  ['NAVAL', 'SUBMARINE'],
+  ['GROUND', 'ARTILLERY', 'MLRS'],
+  ['SATELLITE', 'CYBER'],
+]
+
+function pickDprkWeapon(categories: WeaponCategory[]): WeaponSystem | undefined {
+  const pool = WEAPONS.filter(w => w.origin === 'DPRK' && categories.includes(w.category))
+  const critical = pool.filter(w => w.threatRating === 'CRITICAL' || w.threatRating === 'HIGH')
+  const finalPool = critical.length > 0 ? critical : pool
+  return finalPool.length > 0 ? finalPool[Math.floor(Math.random() * finalPool.length)] : undefined
+}
+
+function buildInitialTargets(): IntelTarget[] {
+  return SITE_TEMPLATES.map((site, i) => {
+    const weapon = pickDprkWeapon(SITE_CATEGORIES[i])
+    const findings = weapon
+      ? [weapon.description, `연계 무기체계: ${weapon.name} (${CATEGORY_KO[weapon.category]})`, ...weapon.tags.slice(0, 2).map(t => `태그: ${t}`)]
+      : ['관측 데이터 수집 중']
+    return { ...site, risk: weapon?.threatRating ?? 'MED', findings, linkedWeapon: weapon }
+  })
+}
 
 const INIT_SATS: SatPass[] = [
   { id:'SAT-KS12', sat:'KSat-12', time:'15:23', coverage:'한반도 전역',   res:'0.3m', status:'SCHEDULED', targetId:null },
@@ -54,10 +77,11 @@ const now = () => new Date().toLocaleTimeString('ko-KR',{hour12:false,hour:'2-di
 
 export default function Sol03() {
   const sys = useSystem()
-  const [mainTab, setMainTab] = useState<'sim'|'ops'>('sim')
+  const [mainTab, setMainTab] = useState<'sim'|'ops'|'db'>('sim')
   void sys.modules.sol03
+  const initialTargets = useMemo(() => buildInitialTargets(), [])
   const [phase, setPhase] = useState<Phase>('STANDBY')
-  const [targets, setTargets] = useState<IntelTarget[]>(INITIAL_TARGETS.map(t=>({...t})))
+  const [targets, setTargets] = useState<IntelTarget[]>(initialTargets.map(t=>({...t})))
   const [sats, setSats] = useState<SatPass[]>(INIT_SATS.map(s=>({...s})))
   const [selectedTarget, setSelectedTarget] = useState<IntelTarget|null>(null)
   const [selectedSat, setSelectedSat] = useState<SatPass|null>(null)
@@ -73,14 +97,14 @@ export default function Sol03() {
 
   const start = () => {
     setPhase('ACTIVE')
-    setTargets(INITIAL_TARGETS.map(t=>({...t,lastUpdate:now()})))
+    setTargets(initialTargets.map(t=>({...t,lastUpdate:now()})))
     setSats(INIT_SATS.map(s=>({...s})))
     setScore(0); setAnalyzed(0); setMissed(0); setLogs([]); setPhase2Done(false)
     addLog('위성 정찰 임무 시작 — 5개 우선 표적 대기 중', true)
   }
 
   const reset = () => {
-    setPhase('STANDBY'); setTargets(INITIAL_TARGETS.map(t=>({...t})))
+    setPhase('STANDBY'); setTargets(initialTargets.map(t=>({...t})))
     setSats(INIT_SATS.map(s=>({...s}))); setScore(0); setAnalyzed(0); setMissed(0)
     setLogs([]); setSelectedTarget(null); setSelectedSat(null)
   }
@@ -156,10 +180,10 @@ export default function Sol03() {
         </div>
 
         {/* 모드 탭 */}
-        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0">
-          {[{id:'sim',label:'시뮬레이션'},{id:'ops',label:'GIS 운영 지도'}].map(({id,label})=>(
-            <button key={id} onClick={()=>setMainTab(id as 'sim'|'ops')}
-              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#00ff88] text-[#00ff88] -mb-px':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px'}>
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0 overflow-x-auto">
+          {[{id:'sim',label:'시뮬레이션'},{id:'ops',label:'GIS 운영 지도'},{id:'db',label:'표적 인텔리전스'}].map(({id,label})=>(
+            <button key={id} onClick={()=>setMainTab(id as 'sim'|'ops'|'db')}
+              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#00ff88] text-[#00ff88] -mb-px whitespace-nowrap':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px whitespace-nowrap'}>
               {label}
             </button>
           ))}
@@ -168,6 +192,12 @@ export default function Sol03() {
         {mainTab==='ops' && (
           <GisOperationsMap solId="sol03" title="SOL-03 GEOINT 위성 운영 지도"
             activeLayers={['INTEL','EW']} color="#00ff88" />
+        )}
+
+        {mainTab==='db' && (
+          <WeaponIntelPanel title="정찰 표적 인텔리전스 DB" color="#00ff88"
+            categories={['ICBM','SRBM','IRBM','SLBM','SATELLITE','SUBMARINE','NUCLEAR','AIRCRAFT','NAVAL','GROUND','ARTILLERY','MLRS']}
+            defaultOrigin="DPRK" originOptions={['ALL','DPRK','RUSSIA','CHINA']} />
         )}
 
         {mainTab==='sim' && <>
@@ -189,7 +219,7 @@ export default function Sol03() {
                   위성을 투입해야 합니다. 우선순위와 위성 해상도를 고려하여 최적 배치를 결정하십시오.
                 </p>
                 <div className="space-y-1.5">
-                  {INITIAL_TARGETS.map(t => (
+                  {initialTargets.map(t => (
                     <div key={t.id} className="flex items-center gap-2 text-[10px]">
                       <span className="w-5 h-5 flex items-center justify-center font-black rounded-sm shrink-0"
                         style={{background:`${RISK_COLORS[t.risk]}20`,color:RISK_COLORS[t.risk],border:`1px solid ${RISK_COLORS[t.risk]}40`}}>

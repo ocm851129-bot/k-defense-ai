@@ -4,7 +4,9 @@ import { Eye, AlertTriangle, ChevronLeft, Play, RotateCcw, Trophy, Users, Truck,
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
 import GisOperationsMap from '../../components/GisOperationsMap'
+import WeaponIntelPanel from '../../components/sol/WeaponIntelPanel'
 import { useSystem } from '../../contexts/SystemContext'
+import { WEAPONS, type WeaponSystem, type WeaponCategory } from '../../data/weapons'
 
 type Phase = 'STANDBY' | 'ACTIVE' | 'RESULT'
 type ObjectType = '인원' | '차량' | '장갑차' | '미사일발사대' | '항공기' | '선박'
@@ -21,6 +23,23 @@ interface Detection {
   correctAnswer: ThreatLevel
   timeLeft: number; maxTime: number
   hint: string
+  linkedWeapon?: WeaponSystem
+}
+
+// DB 연동 — 표적 유형별 실제 무기체계 매칭 카테고리
+const OBJ_CATEGORY_MAP: Partial<Record<ObjectType, WeaponCategory[]>> = {
+  '장갑차': ['GROUND'],
+  '차량': ['GROUND', 'ARTILLERY', 'MLRS'],
+  '미사일발사대': ['SRBM', 'MLRS', 'ICBM', 'IRBM'],
+  '항공기': ['AIRCRAFT', 'UAV'],
+  '선박': ['NAVAL', 'SUBMARINE'],
+}
+
+function pickTargetWeapon(objType: ObjectType, threat: ThreatLevel): WeaponSystem | undefined {
+  const cats = OBJ_CATEGORY_MAP[objType]
+  if (!cats || (threat !== 'HOSTILE' && threat !== 'SUSPICIOUS')) return undefined
+  const pool = WEAPONS.filter(w => cats.includes(w.category) && ['DPRK', 'RUSSIA', 'CHINA'].includes(w.origin))
+  return pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : undefined
 }
 
 const CAMERAS = [
@@ -114,7 +133,7 @@ function SimFeed({ det, onClick }: { det: Detection; onClick: ()=>void }) {
 
 export default function Sol05() {
   const sys = useSystem()
-  const [mainTab, setMainTab] = useState<'sim'|'ops'>('sim')
+  const [mainTab, setMainTab] = useState<'sim'|'ops'|'db'>('sim')
   void sys.modules.sol05
   const [phase, setPhase] = useState<Phase>('STANDBY')
   const [detections, setDetections] = useState<Detection[]>([])
@@ -136,7 +155,8 @@ export default function Sol05() {
     const pool=[...DETECTION_POOL].sort(()=>Math.random()-0.5).slice(0,Math.min(count,6))
     const newDets:Detection[]=pool.map(d=>({
       ...d,id:`DET-${Date.now()}-${Math.random()}`,
-      classified:false,userChoice:null,timeLeft:d.maxTime
+      classified:false,userChoice:null,timeLeft:d.maxTime,
+      linkedWeapon: pickTargetWeapon(d.objType, d.correctAnswer),
     }))
     setDetections(newDets)
     addLog(`Wave ${wave+1}: ${newDets.length}개 표적 탐지됨`, true)
@@ -211,11 +231,11 @@ export default function Sol05() {
         </div>
 
         {/* 모드 탭 */}
-        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0">
-          {(['sim','ops'] as const).map(id=>(
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0 overflow-x-auto">
+          {(['sim','ops','db'] as const).map(id=>(
             <button key={id} onClick={()=>setMainTab(id)}
-              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#ff6b35] text-[#ff6b35] -mb-px':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px'}>
-              {id==='sim'?'시뮬레이션':'GIS 운영 지도'}
+              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#ff6b35] text-[#ff6b35] -mb-px whitespace-nowrap':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px whitespace-nowrap'}>
+              {id==='sim'?'시뮬레이션':id==='ops'?'GIS 운영 지도':'표적 식별 인텔리전스'}
             </button>
           ))}
         </div>
@@ -223,6 +243,12 @@ export default function Sol05() {
         {mainTab==='ops' && (
           <GisOperationsMap solId="sol05" title="SOL-05 IMINT 감시 운영 지도"
             activeLayers={['INTEL','EW','AIRCRAFT']} color="#ff6b35" />
+        )}
+
+        {mainTab==='db' && (
+          <WeaponIntelPanel title="표적 식별 인텔리전스 DB" color="#ff6b35"
+            categories={['GROUND','ARTILLERY','MLRS','SRBM','ICBM','IRBM','AIRCRAFT','UAV','NAVAL','SUBMARINE']}
+            defaultOrigin="DPRK" originOptions={['ALL','DPRK','RUSSIA','CHINA']} />
         )}
 
         {mainTab==='sim' && <>
@@ -299,6 +325,9 @@ export default function Sol05() {
                               style={{color:THREAT_COLORS[det.userChoice],background:`${THREAT_COLORS[det.userChoice]}15`}}>
                               {THREAT_LABELS[det.userChoice]}
                             </div>
+                          )}
+                          {det.classified && det.linkedWeapon && (
+                            <div className="mt-1 text-[7px] text-[#4a7a9b]">DB 매칭: {det.linkedWeapon.name}</div>
                           )}
                         </div>
                       </motion.div>

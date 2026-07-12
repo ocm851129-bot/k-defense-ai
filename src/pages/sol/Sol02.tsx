@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Lock, ChevronLeft, AlertTriangle, Wifi, Server, Zap, Play, RotateCcw, Trophy, CheckCircle, XCircle  } from 'lucide-react'
+import { Lock, ChevronLeft, AlertTriangle, Wifi, Server, Zap, Play, RotateCcw, Trophy, CheckCircle, XCircle, Database, Skull } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
 import GisOperationsMap from '../../components/GisOperationsMap'
+import WeaponIntelPanel from '../../components/sol/WeaponIntelPanel'
 import { useSystem } from '../../contexts/SystemContext'
+import { WEAPONS, ORIGIN_KO, type WeaponSystem } from '../../data/weapons'
 
 // ── 타입 ──────────────────────────────────────────────────────────────────────
 type AttackType = 'SQLI' | 'DDOS' | 'ZERODAY' | 'RANSOMWARE' | 'APT' | 'PHISHING'
@@ -24,6 +26,7 @@ interface CyberAttack {
   label: string
   correctResponses: Response[]
   hint: string
+  attacker?: WeaponSystem
 }
 
 interface NodeStatus {
@@ -72,8 +75,11 @@ const WAVE_DEF = [
 
 const now = () => new Date().toLocaleTimeString('ko-KR',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'})
 
-function genAttack(type: AttackType): CyberAttack {
+function genAttack(type: AttackType, threatPool: WeaponSystem[]): CyberAttack {
   const t = ATTACK_TEMPLATES[type]
+  const matching = threatPool.filter(w => w.threatRating === t.severity)
+  const pool = matching.length > 0 ? matching : threatPool
+  const attacker = pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : undefined
   return {
     ...t,
     id: `ATK-${Date.now()}-${Math.random()}`,
@@ -82,13 +88,22 @@ function genAttack(type: AttackType): CyberAttack {
     timeLeft: t.maxTime,
     resolved: false,
     failed: false,
+    attacker,
   }
 }
 
 export default function Sol02() {
-  const [mainTab, setMainTab] = useState<'sim'|'ops'>('sim')
+  const [mainTab, setMainTab] = useState<'sim'|'ops'|'db'>('sim')
   const sys = useSystem()
   const mod = sys.modules.sol02
+
+  // DB 연동 — 사이버 위협행위자 (CYBER 카테고리, 적대국 출처)
+  const cyberThreats = useMemo(() =>
+    WEAPONS.filter(w => w.category === 'CYBER' && ['DPRK', 'RUSSIA', 'CHINA', 'IRAN'].includes(w.origin)),
+  [])
+  const topCyberThreats = useMemo(() =>
+    cyberThreats.filter(w => w.threatRating === 'CRITICAL' || w.threatRating === 'HIGH').slice(0, 6),
+  [cyberThreats])
   const [phase, setPhase] = useState<Phase>('STANDBY')
   const [wave, setWave]   = useState(0)
   const [attacks, setAttacks] = useState<CyberAttack[]>([])
@@ -108,10 +123,10 @@ export default function Sol02() {
   const spawnWave = useCallback((waveIdx: number) => {
     const cfg = WAVE_DEF[waveIdx]
     if (!cfg) return
-    const newAtks = cfg.types.slice(0,cfg.attacks).map(t => genAttack(t))
+    const newAtks = cfg.types.slice(0,cfg.attacks).map(t => genAttack(t, cyberThreats))
     setAttacks(prev => [...prev, ...newAtks])
     addLog(`Wave ${waveIdx+1}: ${cfg.attacks}건의 사이버 공격 감지됨`, false)
-  }, [addLog])
+  }, [addLog, cyberThreats])
 
   const start = () => {
     setPhase('ACTIVE'); setWave(0)
@@ -215,11 +230,11 @@ export default function Sol02() {
         </div>
 
         {/* 모드 탭 */}
-        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0">
-          {(['sim','ops'] as const).map(id=>(
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0 overflow-x-auto">
+          {([{ id:'sim' as const, label:'시뮬레이션' }, { id:'ops' as const, label:'GIS 운영 지도' }, { id:'db' as const, label:'위협행위자 인텔리전스' }]).map(({id,label})=>(
             <button key={id} onClick={()=>setMainTab(id)}
-              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#ff2d55] text-[#ff2d55] -mb-px':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px'}>
-              {id==='sim'?'시뮬레이션':'GIS 운영 지도'}
+              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#ff2d55] text-[#ff2d55] -mb-px whitespace-nowrap':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px whitespace-nowrap'}>
+              {label}
             </button>
           ))}
         </div>
@@ -227,6 +242,11 @@ export default function Sol02() {
         {mainTab==='ops' && (
           <GisOperationsMap solId="sol02" title="SOL-02 사이버 방어 운영 지도"
             activeLayers={['SAM','EW','INTEL']} color="#ff2d55" />
+        )}
+
+        {mainTab==='db' && (
+          <WeaponIntelPanel title="사이버 위협행위자 DB" color="#ff2d55" categories={['CYBER']}
+            defaultOrigin="DPRK" originOptions={['ALL','DPRK','RUSSIA','CHINA','IRAN','USA','ROK','NATO']} />
         )}
 
         {mainTab==='sim' && <>
@@ -274,6 +294,29 @@ export default function Sol02() {
                 className="mt-6 flex items-center gap-2 px-8 py-3 bg-[#ff2d55] text-white font-black text-[12px] tracking-[0.12em] clip-corner hover:bg-[#ff4466] transition-colors">
                 <Play className="w-4 h-4" /> 사이버 방어 훈련 시작
               </button>
+            </div>
+
+            {/* DB 연동 — 실시간 사이버 위협 행위자 */}
+            <div className="clip-corner bg-[#041526]/80 border border-[#ff2d55]/20 p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Skull className="w-3.5 h-3.5 text-[#ff2d55]" />
+                  <span className="text-[10px] font-black tracking-[0.15em] text-[#ff2d55]">DB 연동 — 주요 사이버 위협 행위자 ({cyberThreats.length}종)</span>
+                </div>
+                <button onClick={() => setMainTab('db')} className="text-[9px] text-[#00d4ff] hover:underline">전체 보기 →</button>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                {topCyberThreats.map(w => {
+                  const tc = w.threatRating === 'CRITICAL' ? '#ff2d55' : '#ff6b35'
+                  return (
+                    <div key={w.id} className="text-left bg-[#020b18]/60 border border-[#ff2d55]/20 p-2.5">
+                      <div className="text-[9px] font-black mb-1 leading-tight" style={{ color: tc }}>{w.name}</div>
+                      <div className="text-[8px] text-[#4a7a9b] mb-1">{ORIGIN_KO[w.origin] ?? w.origin}</div>
+                      <div className="mt-1 text-[7px] font-black px-1 py-0.5 inline-block border" style={{ color: tc, borderColor: `${tc}50` }}>{w.threatRating}</div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </motion.div>
         )}
@@ -400,8 +443,14 @@ export default function Sol02() {
                             }} />
                         </div>
                       )}
-                      <div className="text-[9px] text-[#4a7a9b]">출처: {atk.src}</div>
+                      <div className="text-[9px] text-[#4a7a9b]">출처 IP: {atk.src}</div>
                       <div className="text-[9px] text-[#4a7a9b]">표적: {atk.target}</div>
+                      {atk.attacker && (
+                        <div className="text-[9px] mt-1 flex items-center gap-1">
+                          <Database className="w-2.5 h-2.5 text-[#ff2d55]/70 shrink-0" />
+                          <span className="text-[#ff6b35]">DB 매칭: <b>{atk.attacker.name}</b> ({ORIGIN_KO[atk.attacker.origin] ?? atk.attacker.origin})</span>
+                        </div>
+                      )}
                       <div className="text-[9px] text-[#8ab8d4] mt-1">힌트: {atk.hint}</div>
                     </motion.div>
                   ))}

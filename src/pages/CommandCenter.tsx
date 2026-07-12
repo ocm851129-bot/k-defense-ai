@@ -7,13 +7,14 @@ import {
 } from 'lucide-react'
 import InteractiveWorldMap from '../components/InteractiveWorldMap'
 import { useAlerts, LEVEL_COLORS } from '../contexts/AlertContext'
+import { WEAPONS, type WeaponCategory } from '../data/weapons'
 
-const SOL_LINKS = [
+const SOL_LINKS: { id: string; href: string; icon: typeof Shield; color: string; label: string; categories?: WeaponCategory[] }[] = [
   { id: 'SOL-01', href: '/sol/01', icon: Shield, color: '#00d4ff', label: '전장 AI' },
-  { id: 'SOL-02', href: '/sol/02', icon: Lock, color: '#ff2d55', label: '사이버' },
-  { id: 'SOL-03', href: '/sol/03', icon: Globe, color: '#00ff88', label: 'GEOINT' },
-  { id: 'SOL-04', href: '/sol/04', icon: Radio, color: '#ffcc00', label: 'SIGINT' },
-  { id: 'SOL-05', href: '/sol/05', icon: Eye, color: '#ff6b35', label: 'IMINT' },
+  { id: 'SOL-02', href: '/sol/02', icon: Lock, color: '#ff2d55', label: '사이버', categories: ['CYBER'] },
+  { id: 'SOL-03', href: '/sol/03', icon: Globe, color: '#00ff88', label: 'GEOINT', categories: ['ICBM','SRBM','IRBM','SLBM','SATELLITE','SUBMARINE','NUCLEAR','AIRCRAFT','NAVAL','GROUND','ARTILLERY','MLRS'] },
+  { id: 'SOL-04', href: '/sol/04', icon: Radio, color: '#ffcc00', label: 'SIGINT', categories: ['ICBM','SRBM','IRBM','SLBM','CRUISE','SAM','MISSILE','AIRCRAFT'] },
+  { id: 'SOL-05', href: '/sol/05', icon: Eye, color: '#ff6b35', label: 'IMINT', categories: ['GROUND','ARTILLERY','MLRS','SRBM','ICBM','IRBM','AIRCRAFT','UAV','NAVAL','SUBMARINE'] },
   { id: 'SOL-06', href: '/sol/06', icon: Cpu, color: '#c084fc', label: '의사결정 AI' },
 ]
 
@@ -106,6 +107,9 @@ function SystemHealthBar({ label, value, color }: { label: string; value: number
 function SolMiniPanel({ sol }: { sol: typeof SOL_LINKS[number] }) {
   const Icon = sol.icon
   const [status] = useState(Math.random() > 0.15 ? 'ONLINE' : 'DEGRADED')
+  const dbCount = sol.categories
+    ? WEAPONS.filter(w => sol.categories!.includes(w.category)).length
+    : WEAPONS.length
   return (
     <Link
       to={sol.href}
@@ -129,7 +133,10 @@ function SolMiniPanel({ sol }: { sol: typeof SOL_LINKS[number] }) {
       <div className="text-[9px] font-black tracking-[0.1em] mb-0.5" style={{ color: sol.color }}>{sol.id}</div>
       <div className="text-[11px] font-bold text-white mb-2 group-hover:text-[#00d4ff] transition-colors">{sol.label}</div>
       <MiniSparkline color={sol.color} />
-      <div className="mt-2 flex items-center gap-1 text-[9px] text-[#4a7a9b] group-hover:text-[#00d4ff] transition-colors">
+      <div className="mt-1.5 text-[8px] font-mono" style={{ color: `${sol.color}c0` }}>
+        DB 연동 {dbCount.toLocaleString()}종
+      </div>
+      <div className="mt-1.5 flex items-center gap-1 text-[9px] text-[#4a7a9b] group-hover:text-[#00d4ff] transition-colors">
         상세 보기 <ChevronRight className="w-3 h-3" />
       </div>
     </Link>
@@ -138,6 +145,8 @@ function SolMiniPanel({ sol }: { sol: typeof SOL_LINKS[number] }) {
 
 export default function CommandCenter() {
   const { alerts, unreadCount, markAllRead } = useAlerts()
+  const totalWeapons = WEAPONS.length
+  const criticalWeapons = WEAPONS.filter(w => w.threatRating === 'CRITICAL').length
 
   return (
     <div className="min-h-screen bg-[#020b18] pt-4 pb-20">
@@ -177,10 +186,10 @@ export default function CommandCenter() {
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-3 mb-4 md:mb-5"
         >
           {[
-            { base: 87, delta: 3, color: '#ff2d55', label: '종합 위협도', unit: '' },
+            { base: totalWeapons, delta: 0, color: '#00d4ff', label: '무기 DB 등록', unit: '종' },
+            { base: criticalWeapons, delta: 0, color: '#ff2d55', label: 'CRITICAL 위협', unit: '종' },
             { base: 99.7, delta: 0.2, color: '#00ff88', label: '탐지 정확도', unit: '%' },
             { base: 1247, delta: 20, color: '#00d4ff', label: '차단된 위협', unit: '' },
-            { base: 34, delta: 0, color: '#ffcc00', label: '모니터링 구역', unit: '' },
             { base: 5, delta: 0, color: '#00ff88', label: '활성 AI 모듈', unit: '/6' },
             { base: 0.3, delta: 0.1, color: '#c084fc', label: '평균 응답(s)', unit: 's' },
           ].map((m) => (

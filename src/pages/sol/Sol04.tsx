@@ -4,7 +4,9 @@ import { Radio, Activity, ChevronLeft, Play, RotateCcw, Trophy, Lock, Unlock  } 
 import { Link } from 'react-router-dom'
 import SolControlBar from '../../components/SolControlBar'
 import GisOperationsMap from '../../components/GisOperationsMap'
+import WeaponIntelPanel from '../../components/sol/WeaponIntelPanel'
 import { useSystem } from '../../contexts/SystemContext'
+import { WEAPONS, type WeaponSystem } from '../../data/weapons'
 
 type Phase = 'STANDBY' | 'ACTIVE' | 'RESULT'
 
@@ -16,6 +18,19 @@ interface Signal {
   priority: 'CRITICAL' | 'HIGH' | 'MED' | 'LOW'
   decodeOptions: string[]; correctDecode: string; hint: string
   timeLeft: number; maxTime: number
+  linkedWeapon?: WeaponSystem
+}
+
+// DB 연동 — 유도방식 정보가 있는 무기체계를 신호 발신원 후보로 사용
+const GUIDANCE_CATEGORIES = ['ICBM','SRBM','IRBM','SLBM','CRUISE','SAM','MISSILE','AIRCRAFT'] as const
+const GUIDANCE_POOL = WEAPONS.filter(w => w.specs.guidance && (GUIDANCE_CATEGORIES as readonly string[]).includes(w.category))
+
+function pickGuidanceWeapon(priority: Signal['priority']): WeaponSystem | undefined {
+  const hostile = GUIDANCE_POOL.filter(w => ['DPRK','RUSSIA','CHINA'].includes(w.origin))
+  const byThreat = hostile.filter(w => priority === 'CRITICAL' || priority === 'HIGH'
+    ? (w.threatRating === 'CRITICAL' || w.threatRating === 'HIGH') : true)
+  const pool = byThreat.length > 0 ? byThreat : hostile
+  return pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : undefined
 }
 
 const SIGNAL_POOL: Omit<Signal,'id'|'intercepted'|'decoded'|'timeLeft'>[] = [
@@ -42,6 +57,7 @@ function genSignal(): Signal {
     id: `SIG-${Date.now()}-${Math.random()}`,
     intercepted: false, decoded: false,
     timeLeft: tpl.maxTime,
+    linkedWeapon: tpl.anomaly ? pickGuidanceWeapon(tpl.priority) : undefined,
   }
 }
 
@@ -97,7 +113,7 @@ function SpectrumCanvas({ signals }: { signals: Signal[] }) {
 
 export default function Sol04() {
   const sys = useSystem()
-  const [mainTab, setMainTab] = useState<'sim'|'ops'>('sim')
+  const [mainTab, setMainTab] = useState<'sim'|'ops'|'db'>('sim')
   void sys.modules.sol04
   const [phase, setPhase] = useState<Phase>('STANDBY')
   const [signals, setSignals] = useState<Signal[]>([])
@@ -206,10 +222,10 @@ export default function Sol04() {
         </div>
 
         {/* 모드 탭 */}
-        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0">
-          {[{id:'sim',label:'시뮬레이션'},{id:'ops',label:'GIS 운영 지도'}].map(({id,label})=>(
-            <button key={id} onClick={()=>setMainTab(id as 'sim'|'ops')}
-              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#ffcc00] text-[#ffcc00] -mb-px':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px'}>
+        <div className="flex gap-1 mb-5 border-b border-[#0a3050] pb-0 overflow-x-auto">
+          {[{id:'sim',label:'시뮬레이션'},{id:'ops',label:'GIS 운영 지도'},{id:'db',label:'유도체계 인텔리전스'}].map(({id,label})=>(
+            <button key={id} onClick={()=>setMainTab(id as 'sim'|'ops'|'db')}
+              className={mainTab===id?'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-[#ffcc00] text-[#ffcc00] -mb-px whitespace-nowrap':'flex items-center px-4 py-2.5 text-[10px] font-black border-b-2 border-transparent text-[#4a7a9b] -mb-px whitespace-nowrap'}>
               {label}
             </button>
           ))}
@@ -218,6 +234,12 @@ export default function Sol04() {
         {mainTab==='ops' && (
           <GisOperationsMap solId="sol04" title="SOL-04 SIGINT 신호 운영 지도"
             activeLayers={['EW','INTEL','SAM']} color="#ffcc00" />
+        )}
+
+        {mainTab==='db' && (
+          <WeaponIntelPanel title="유도체계 신호원 인텔리전스 DB" color="#ffcc00"
+            categories={['ICBM','SRBM','IRBM','SLBM','CRUISE','SAM','MISSILE','AIRCRAFT']}
+            defaultOrigin="DPRK" originOptions={['ALL','DPRK','RUSSIA','CHINA','USA']} />
         )}
 
         {mainTab==='sim' && <>
@@ -301,6 +323,9 @@ export default function Sol04() {
                         )}
                         <div className="text-[9px] text-[#4a7a9b] mb-0.5">출처: {sig.source} | {sig.type}</div>
                         <div className="text-[9px] text-[#4a7a9b] mb-2">신뢰도: {sig.confidence}% | 전력: {sig.power} dBm</div>
+                        {sig.linkedWeapon && (
+                          <div className="text-[9px] text-[#ffcc00] mb-2">DB 매칭: <b>{sig.linkedWeapon.name}</b> (유도: {sig.linkedWeapon.specs.guidance})</div>
+                        )}
                         {!sig.intercepted && !sig.decoded && sig.timeLeft>0 && (
                           <button onClick={()=>interceptSignal(sig)}
                             className="w-full flex items-center justify-center gap-1.5 py-1.5 border border-[#ffcc00]/30 text-[9px] font-black text-[#ffcc00] hover:bg-[#ffcc00]/10 transition-all clip-corner-sm">
