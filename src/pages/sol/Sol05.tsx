@@ -12,6 +12,8 @@ type Phase = 'STANDBY' | 'ACTIVE' | 'RESULT'
 type ObjectType = '인원' | '차량' | '장갑차' | '미사일발사대' | '항공기' | '선박'
 type ThreatLevel = 'HOSTILE' | 'SUSPICIOUS' | 'CIVILIAN' | 'UNKNOWN'
 
+type SensorType = 'EO' | 'IR' | 'SAR'
+
 interface Detection {
   id: string
   camId: string; camLabel: string
@@ -24,6 +26,9 @@ interface Detection {
   timeLeft: number; maxTime: number
   hint: string
   linkedWeapon?: WeaponSystem
+  // 운영 텔레메트리 — 실제 ISR 피드 방식 (정답과 무관, 분류 전 노출 안전)
+  platform: string; sensorType: SensorType; altitude: number
+  lat: number; lng: number; heading: number; range: number; dtg: string
 }
 
 // DB 연동 — 표적 유형별 실제 무기체계 매칭 카테고리
@@ -42,16 +47,37 @@ function pickTargetWeapon(objType: ObjectType, threat: ThreatLevel): WeaponSyste
   return pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : undefined
 }
 
-const CAMERAS = [
-  { id:'CAM-01', loc:'경계 Gate-A', active:true },
-  { id:'CAM-02', loc:'북방 감시초소', active:true },
-  { id:'CAM-03', loc:'해안선 West-2', active:true },
-  { id:'CAM-04', loc:'DMZ 관측소', active:false },
-  { id:'CAM-05', loc:'드론 T-7 실시간', active:true },
-  { id:'CAM-06', loc:'적외선 IR-C9', active:true },
+const CAMERAS: { id:string; loc:string; active:boolean; platform:string; sensorType:SensorType; altitude:number; baseLat:number; baseLng:number }[] = [
+  { id:'CAM-01', loc:'경계 Gate-A',    active:true,  platform:'고정형 EO 감시카메라',     sensorType:'EO', altitude:12,   baseLat:37.951, baseLng:126.947 },
+  { id:'CAM-02', loc:'북방 감시초소',  active:true,  platform:'고정형 EO 감시카메라',     sensorType:'EO', altitude:85,   baseLat:38.252, baseLng:127.146 },
+  { id:'CAM-03', loc:'해안선 West-2', active:true,  platform:'해안 감시레이더-EO 복합', sensorType:'EO', altitude:22,   baseLat:37.748, baseLng:126.352 },
+  { id:'CAM-04', loc:'DMZ 관측소',    active:false, platform:'야간 IR 관측소',          sensorType:'IR', altitude:60,   baseLat:38.052, baseLng:127.301 },
+  { id:'CAM-05', loc:'드론 T-7 실시간', active:true,  platform:'T-7 정찰드론(MALE급)',    sensorType:'EO', altitude:4572, baseLat:38.104, baseLng:127.052 },
+  { id:'CAM-06', loc:'적외선 IR-C9',  active:true,  platform:'고정형 열상감시탑',        sensorType:'IR', altitude:45,   baseLat:38.011, baseLng:127.203 },
 ]
+const CAM_MAP = new Map(CAMERAS.map(c => [c.id, c]))
 
-const DETECTION_POOL: Omit<Detection,'id'|'classified'|'userChoice'|'timeLeft'>[] = [
+const dtgNow = () => {
+  const d = new Date()
+  const pad = (n:number) => String(n).padStart(2,'0')
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
+  return `${pad(d.getUTCDate())}${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}Z ${months[d.getUTCMonth()]}${String(d.getUTCFullYear()).slice(2)}`
+}
+function genTelemetry(camId: string) {
+  const cam = CAM_MAP.get(camId)!
+  return {
+    platform: cam.platform, sensorType: cam.sensorType, altitude: cam.altitude,
+    lat: cam.baseLat + (Math.random()-0.5)*0.03,
+    lng: cam.baseLng + (Math.random()-0.5)*0.03,
+    heading: Math.floor(Math.random()*360),
+    range: +(Math.random()*7+0.8).toFixed(1),
+    dtg: dtgNow(),
+  }
+}
+const COMPASS = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']
+const headingLabel = (h:number) => `${String(h).padStart(3,'0')}° ${COMPASS[Math.round(h/22.5)%16]}`
+
+const DETECTION_POOL: Omit<Detection,'id'|'classified'|'userChoice'|'timeLeft'|'linkedWeapon'|'platform'|'sensorType'|'altitude'|'lat'|'lng'|'heading'|'range'|'dtg'>[] = [
   { camId:'CAM-05', camLabel:'드론 T-7', objType:'장갑차', count:3, x:35, y:45, confidence:96, maxTime:12, correctAnswer:'HOSTILE',    hint:'식별 번호 없음, 위장 도색, 무장 확인' },
   { camId:'CAM-01', camLabel:'Gate-A',  objType:'인원',   count:2, x:60, y:50, confidence:88, maxTime:15, correctAnswer:'HOSTILE',    hint:'야간 잠복 자세, 소총 휴대' },
   { camId:'CAM-03', camLabel:'해안선',  objType:'선박',   count:1, x:70, y:40, confidence:91, maxTime:12, correctAnswer:'SUSPICIOUS',  hint:'AIS 미등록, 고속 접근 중' },
@@ -78,6 +104,7 @@ function SimFeed({ det, onClick }: { det: Detection; onClick: ()=>void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animRef = useRef<number>(0)
   const frameRef = useRef(0)
+  const isIR = det.sensorType === 'IR'
 
   useEffect(()=>{
     const canvas=canvasRef.current; if(!canvas) return
@@ -87,43 +114,90 @@ function SimFeed({ det, onClick }: { det: Detection; onClick: ()=>void }) {
     const draw=()=>{
       if(stopped) return
       frameRef.current++
-      const imgData=ctx.createImageData(W,H)
+
+      // 지형/열상 배경 — 센서 타입에 따른 그라디언트
+      const grd = ctx.createLinearGradient(0,0,0,H)
+      if (isIR) {
+        grd.addColorStop(0,'#050810'); grd.addColorStop(0.55,'#0a0f1a'); grd.addColorStop(1,'#02040a')
+      } else {
+        grd.addColorStop(0,'#1a2632'); grd.addColorStop(0.42,'#2a3a2e'); grd.addColorStop(1,'#141c14')
+      }
+      ctx.fillStyle=grd; ctx.fillRect(0,0,W,H)
+      // 지평선
+      ctx.strokeStyle=isIR?'rgba(120,160,200,0.15)':'rgba(200,220,180,0.12)'
+      ctx.lineWidth=0.8; ctx.beginPath(); ctx.moveTo(0,H*0.42); ctx.lineTo(W,H*0.42); ctx.stroke()
+      // 센서 그레인 노이즈 (약하게)
+      const imgData=ctx.getImageData(0,0,W,H)
       for(let i=0;i<imgData.data.length;i+=4){
-        const v=Math.floor(Math.random()*12)
-        imgData.data[i]=v; imgData.data[i+1]=v+4; imgData.data[i+2]=v+8; imgData.data[i+3]=255
+        const n=(Math.random()-0.5)*14
+        imgData.data[i]=Math.max(0,Math.min(255,imgData.data[i]+n))
+        imgData.data[i+1]=Math.max(0,Math.min(255,imgData.data[i+1]+n))
+        imgData.data[i+2]=Math.max(0,Math.min(255,imgData.data[i+2]+n))
       }
       ctx.putImageData(imgData,0,0)
-      // overlay grid
-      ctx.strokeStyle='rgba(0,212,255,0.06)'; ctx.lineWidth=0.5
-      for(let x=0;x<W;x+=15){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
-      for(let y=0;y<H;y+=15){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
-      // detection box
+
       const bx=det.x/100*W, by=det.y/100*H
-      const bw=30,bh=25
-      ctx.strokeStyle=det.classified?(det.userChoice?THREAT_COLORS[det.userChoice]:'#00ff88'):'#ffcc00'
-      ctx.lineWidth=1.5; ctx.strokeRect(bx-bw/2,by-bh/2,bw,bh)
-      ctx.strokeStyle=ctx.strokeStyle+'60'; ctx.lineWidth=0.5
-      ctx.strokeRect(bx-bw/2-3,by-bh/2-3,bw+6,bh+6)
-      // confidence bar
-      ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(bx-bw/2,by+bh/2,bw,8)
-      ctx.fillStyle='#00ff88'; ctx.fillRect(bx-bw/2,by+bh/2,bw*(det.confidence/100),8)
-      // scanning effect
-      const scan=(frameRef.current*2)%H
-      ctx.strokeStyle='rgba(0,212,255,0.15)'; ctx.lineWidth=1
+
+      // IR 모드: 표적 위치 열원(화이트핫) 블롭
+      if (isIR) {
+        const hg=ctx.createRadialGradient(bx,by,1,bx,by,16)
+        hg.addColorStop(0,'rgba(255,255,255,0.85)'); hg.addColorStop(0.5,'rgba(220,230,255,0.35)'); hg.addColorStop(1,'rgba(220,230,255,0)')
+        ctx.fillStyle=hg; ctx.beginPath(); ctx.arc(bx,by,16,0,Math.PI*2); ctx.fill()
+      }
+
+      // 미세 격자
+      ctx.strokeStyle='rgba(0,212,255,0.05)'; ctx.lineWidth=0.5
+      for(let x=0;x<W;x+=20){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+      for(let y=0;y<H;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+
+      // 중앙 십자선 (센서 조준점)
+      ctx.strokeStyle='rgba(0,255,136,0.18)'; ctx.lineWidth=0.6
+      ctx.beginPath(); ctx.moveTo(W/2-6,H/2); ctx.lineTo(W/2+6,H/2); ctx.moveTo(W/2,H/2-6); ctx.lineTo(W/2,H/2+6); ctx.stroke()
+
+      // 표적 코너브라켓 레티클
+      const bw=26,bh=22,cl=6
+      const rc=det.classified?(det.userChoice?THREAT_COLORS[det.userChoice]:'#00ff88'):'#ffcc00'
+      ctx.strokeStyle=rc; ctx.lineWidth=1.4
+      const x0=bx-bw/2, x1=bx+bw/2, y0=by-bh/2, y1=by+bh/2
+      const drawCorner=(cx:number,cy:number,dx:number,dy:number)=>{
+        ctx.beginPath(); ctx.moveTo(cx+dx*cl,cy); ctx.lineTo(cx,cy); ctx.lineTo(cx,cy+dy*cl); ctx.stroke()
+      }
+      drawCorner(x0,y0,1,1); drawCorner(x1,y0,-1,1); drawCorner(x0,y1,1,-1); drawCorner(x1,y1,-1,-1)
+
+      // 신뢰도 바
+      ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(x0,y1+3,bw,5)
+      ctx.fillStyle=rc; ctx.fillRect(x0,y1+3,bw*(det.confidence/100),5)
+
+      // 스캔 라인
+      const scan=(frameRef.current*1.4)%H
+      ctx.strokeStyle='rgba(0,212,255,0.12)'; ctx.lineWidth=1
       ctx.beginPath(); ctx.moveTo(0,scan); ctx.lineTo(W,scan); ctx.stroke()
+
       animRef.current=requestAnimationFrame(draw)
     }
     draw()
     return ()=>{stopped=true;cancelAnimationFrame(animRef.current)}
-  },[det])
+  },[det,isIR])
 
   return (
     <div onClick={onClick} className="relative cursor-crosshair">
-      <canvas ref={canvasRef} width={160} height={120} className="w-full rounded" />
-      <div className="absolute top-1 left-1 text-[7px] font-mono text-[#00d4ff] bg-black/50 px-1">{det.camLabel}</div>
-      <div className="absolute top-1 right-1 text-[7px] font-mono text-[#00ff88] bg-black/50 px-1">LIVE</div>
+      <canvas ref={canvasRef} width={220} height={160} className="w-full rounded" />
+      {/* HUD 오버레이 */}
+      <div className="absolute top-1 left-1 text-[7px] font-mono text-[#00d4ff] bg-black/55 px-1 leading-tight">
+        {det.camLabel} <span className="text-[#4a7a9b]">[{det.sensorType}]</span>
+      </div>
+      <div className="absolute top-1 right-1 text-right text-[7px] font-mono leading-tight">
+        <div className="text-[#00ff88] bg-black/55 px-1">● LIVE</div>
+        <div className="text-[#8ab8d4] bg-black/55 px-1 mt-0.5">{det.dtg}</div>
+      </div>
+      <div className="absolute bottom-1 left-1 text-[6.5px] font-mono text-[#8ab8d4] bg-black/55 px-1 leading-tight">
+        {det.lat.toFixed(4)}°N {det.lng.toFixed(4)}°E
+      </div>
+      <div className="absolute bottom-1 right-1 text-right text-[6.5px] font-mono text-[#8ab8d4] bg-black/55 px-1 leading-tight">
+        ALT {det.altitude}m · HDG {headingLabel(det.heading)}<br/>RNG {det.range}km
+      </div>
       {!det.classified && (
-        <div className="absolute bottom-1 left-0 right-0 text-center">
+        <div className="absolute top-1/2 left-0 right-0 text-center -translate-y-1/2 pointer-events-none">
           <span className="text-[8px] font-black text-[#ffcc00] bg-black/60 px-2">분류 필요</span>
         </div>
       )}
@@ -157,6 +231,7 @@ export default function Sol05() {
       ...d,id:`DET-${Date.now()}-${Math.random()}`,
       classified:false,userChoice:null,timeLeft:d.maxTime,
       linkedWeapon: pickTargetWeapon(d.objType, d.correctAnswer),
+      ...genTelemetry(d.camId),
     }))
     setDetections(newDets)
     addLog(`Wave ${wave+1}: ${newDets.length}개 표적 탐지됨`, true)
@@ -275,6 +350,8 @@ export default function Sol05() {
                   <div className={`w-2 h-2 rounded-full mx-auto mb-1 ${c.active?'bg-[#00ff88] animate-pulse':'bg-[#4a7a9b]'}`} />
                   <div className="text-[9px] font-bold text-white">{c.id}</div>
                   <div className="text-[8px] text-[#4a7a9b]">{c.loc}</div>
+                  <div className="text-[7px] text-[#6a9ab8] mt-0.5">{c.platform}</div>
+                  <div className="text-[7px] font-mono text-[#2a4a5e]">{c.sensorType} · {c.altitude}m</div>
                 </div>
               ))}
             </div>
@@ -346,6 +423,11 @@ export default function Sol05() {
                     <div className="text-[9px] font-black text-[#ff6b35] mb-2">표적 분류</div>
                     <div className="text-[12px] font-black text-white mb-1">{selected.objType} × {selected.count}</div>
                     <div className="text-[9px] text-[#4a7a9b] mb-1">{selected.camLabel} | 신뢰도 {selected.confidence}%</div>
+                    <div className="text-[8px] font-mono text-[#4a7a9b] mb-2 leading-relaxed">
+                      {selected.platform} [{selected.sensorType}] · ALT {selected.altitude}m<br/>
+                      {selected.lat.toFixed(4)}°N {selected.lng.toFixed(4)}°E · RNG {selected.range}km · HDG {headingLabel(selected.heading)}<br/>
+                      DTG {selected.dtg}
+                    </div>
                     <div className="text-[9px] text-[#8ab8d4] mb-3 italic">"{selected.hint}"</div>
                     <div className="grid grid-cols-2 gap-2">
                       {(Object.entries(THREAT_LABELS) as [ThreatLevel,string][]).map(([lvl,label])=>(
