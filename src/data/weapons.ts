@@ -95,6 +95,7 @@ import { WEAPONS_BATCH73_FINAL_5000 } from './weaponsBatch73_Final5000'
 import { WEAPONS_BATCH74_ROUND_OUT } from './weaponsBatch74_RoundOut'
 import { WEAPONS_BATCH75_EXSOVIET_MISC } from './weaponsBatch75_ExSovietMisc'
 import { WEAPONS_BATCH76_WORLD_NAVY_AIR_GROUND } from './weaponsBatch76_WorldNavyAirGround'
+import { WEAPONS_BATCH77_MUNITIONS_SENSORS } from './weaponsBatch77_MunitionsSensors'
 
 export type WeaponCategory =
   | 'ICBM' | 'IRBM' | 'SRBM' | 'CRUISE' | 'SLBM'
@@ -2048,4 +2049,5 @@ UN 전문가 패널 추산: 2017~2025년 누적 30억 달러 이상 절취. 이 
   ...WEAPONS_BATCH74_ROUND_OUT,
   ...WEAPONS_BATCH75_EXSOVIET_MISC,
   ...WEAPONS_BATCH76_WORLD_NAVY_AIR_GROUND,
+  ...WEAPONS_BATCH77_MUNITIONS_SENSORS,
 ]
