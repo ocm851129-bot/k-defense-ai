@@ -20,6 +20,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## F-22 Raptor\n\n록히드 마틴·보잉이 공동 개발한 세계 최초 5세대 전투기. 공중우세에 특화되었으며 185대가 생산되었다.\n\n### 주요 특징\n- AN/APG-77(v)1 AESA 레이더\n- 슈퍼크루즈 마하 1.82\n- 추력편향 노즐로 초기동성\n- 내부 무장창 3개\n\n### 한반도 관련성\n유사 시 오산·군산 등 한반도 전개 가능. 북한 방공망 무력화 임무 수행.`,
     specs:{ range:'2,960km', speed:'마하 2.25', payload:'2,270kg(내부)', length:'18.9m', weight:'19,700kg', propulsion:'F119-PW-100 ×2', ceiling:'19,812m', crew:'1명', firstDeployed:'2005년', manufacturer:'록히드 마틴', armament:'AIM-120/AIM-9/M61A2 20mm' },
     confidence:95, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['스텔스','공중우세','슈퍼크루즈'], sources:['USAF','GAO'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/1/1e/F-22_Raptor_edit1_%28cropped%29.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Lockheed_Martin_F-22_Raptor',
   },
   {
     id:'w-usa-005', name:'B-2 스피릿', nameEng:'B-2 Spirit', designation:'B-2A',
@@ -28,6 +29,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## B-2 Spirit\n\n노스롭 그루먼이 개발한 전익기형 스텔스 전략폭격기. 핵폭탄과 재래식 정밀유도폭탄 모두 탑재 가능하다.\n\n### 주요 특징\n- RCS 0.1㎡이하 극비스텔스\n- 사정거리 11,000km 이상(공중급유 무제한)\n- 핵폭탄 B61/B83 탑재 가능\n- 소직경폭탄(SDB) 80발 탑재 가능\n\n### 한반도 관련성\n한반도 긴장 고조 시 괌에서 전개. 대북 확장억제 시위 임무 수행.`,
     specs:{ range:'11,100km', speed:'마하 0.95', payload:'23,000kg', length:'20.9m', weight:'71,700kg', propulsion:'F118-GE-100 ×4', ceiling:'15,200m', crew:'2명', firstDeployed:'1997년', manufacturer:'노스롭 그루먼', armament:'B61핵폭탄/B83/JDAM/SDB II' },
     confidence:90, lastUpdated:'2026-03-01', relatedIntelIds:[], tags:['스텔스','폭격기','핵폭격'], sources:['USAF','DoD'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/7/77/RAF_F-35B_integration_flying_training_with_USAF_B-2_30092019_-_4.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Northrop_Grumman_B-2_Spirit',
   },
   {
     id:'w-usa-006', name:'B-21 레이더', nameEng:'B-21 Raider',
@@ -44,6 +46,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## MQ-9 Reaper\n\n제너럴 아토믹스가 개발한 대형 무장 UAV. 중고도 장시간 체공(MALE) 드론으로 정찰·공격 임무를 수행한다.\n\n### 주요 특징\n- 최대 27시간 체공\n- 헬파이어 미사일 14발 탑재\n- MTS-B 광학·적외선 카메라\n- 위성통신 기반 원격 운용\n\n### 한반도 관련성\n오산기지 등 한반도 인근 운용. 북한 이동식 발사대 추적·감시.`,
     specs:{ range:'5,926km', speed:'482km/h', payload:'1,700kg', length:'11m', weight:'4,760kg', propulsion:'터보프롭 900hp', ceiling:'15,240m', firstDeployed:'2007년', manufacturer:'제너럴 아토믹스', armament:'AGM-114 헬파이어×14/GBU-12' },
     confidence:98, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['드론','MALE','정찰','공격'], sources:['USAF','GA-ASI'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/1/12/MQ-9_Reaper_UAV_%28cropped%29.jpg', wikiUrl:'https://en.wikipedia.org/wiki/General_Atomics_MQ-9_Reaper',
   },
   {
     id:'w-usa-008', name:'RQ-4 글로벌호크', nameEng:'RQ-4 Global Hawk',
@@ -52,6 +55,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## RQ-4 Global Hawk\n\n노스롭 그루먼이 개발한 고고도 전략 정찰 UAV. 24시간 이상 체공하며 광역 지역을 정밀 감시한다.\n\n### 주요 특징\n- 고도 18km에서 운용\n- SAR·EO·IR 복합 센서\n- 100,000㎢ 이상/일 촬영\n- 0.3m 해상도 영상 제공\n\n### 한반도 관련성\n오산기지 등에서 운용. 북한 핵·미사일 시설 실시간 감시.`,
     specs:{ range:'22,780km', speed:'575km/h', payload:'1,360kg', length:'13.5m', weight:'14,628kg', propulsion:'AE3007H 터보팬', ceiling:'18,288m', firstDeployed:'2001년', manufacturer:'노스롭 그루먼', armament:'없음(순수정찰)' },
     confidence:98, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['드론','전략정찰','고고도'], sources:['USAF'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/9/9d/Global_Hawk_1.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Northrop_Grumman_RQ-4_Global_Hawk',
   },
   {
     id:'w-usa-009', name:'BGM-109 토마호크', nameEng:'BGM-109 Tomahawk',
@@ -60,6 +64,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## BGM-109 Tomahawk\n\n레이시온이 제조하는 장거리 순항미사일. 1991년 걸프전 이후 미군의 대표적 원거리 정밀타격 수단이다.\n\n### 주요 특징\n- TERCOM/DSMAC/GPS 복합 유도\n- 사거리 Block V 기준 1,900km\n- CEP 5~10m\n- 함정·잠수함 발사 가능\n\n### 한반도 관련성\n유사 시 이지스함·잠수함에서 발사, 북한 지휘소·미사일 기지 정밀타격 가능.`,
     specs:{ range:'1,900km(Block V)', speed:'마하 0.75(880km/h)', payload:'450kg(WDU-36)', length:'5.56m', weight:'1,590kg', propulsion:'F107-WR-402 터보팬', guidance:'GPS/TERCOM/DSMAC', warhead:'재래식 450kg/핵(퇴역)', firstDeployed:'1983년', manufacturer:'레이시온', accuracy:'CEP 5~10m' },
     confidence:98, lastUpdated:'2026-05-01', relatedIntelIds:[], tags:['순항미사일','함발','정밀타격'], sources:['US Navy','Raytheon'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tomahawk_Block_IV_cruise_missile_-crop.jpg', wikiUrl:'https://en.wikipedia.org/wiki/BGM-109_Tomahawk',
   },
   {
     id:'w-usa-010', name:'M270 HIMARS', nameEng:'M270 HIMARS',
@@ -92,6 +97,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## Virginia-class SSN\n\n제너럴 다이나믹스·헌팅턴 잉갈스가 공동 건조하는 미 해군의 주력 공격핵잠수함이다.\n\n### 주요 특징\n- 토마호크 40발 탑재(Block V VPM)\n- AN/BQQ-10 소나 시스템\n- 핵 추진으로 무제한 항속\n- MK48 ADCAP 어뢰 운용\n\n### 한반도 관련성\n서해·동해 상시 배치. 북한 함대·시설 대상 선제타격 능력.`,
     specs:{ displacement:'10,200톤(수중)', range:'무제한(핵추진)', speed:'25노트 이상', length:'114.9m', crew:'135명', propulsion:'S9G 원자로', armament:'토마호크×40/MK48어뢰×26', firstDeployed:'2004년', manufacturer:'제너럴 다이나믹스' },
     confidence:95, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['핵잠수함','공격잠수함','SSN'], sources:['US Navy','GDEB'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/b/bb/US_Navy_040730-N-1234E-002_PCU_Virginia_%28SSN_774%29_returns_to_the_General_Dynamics_Electric_Boat_shipyard.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Virginia-class_submarine',
   },
   {
     id:'w-usa-014', name:'제럴드 R. 포드급 항공모함', nameEng:'Gerald R. Ford-class CVN',
@@ -100,6 +106,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## Gerald R. Ford CVN-78\n\n헌팅턴 잉갈스가 건조한 미 해군의 최신 슈퍼항공모함 급이다. 전자기 캐터펄트(EMALS)를 최초 적용했다.\n\n### 주요 특징\n- EMALS 전자기 캐터펄트\n- 항공기 75대 탑재\n- 핵추진 무제한 항속\n- RIM-162 ESSM/CIWS 탑재\n\n### 한반도 관련성\n위기 시 F/A-18, F-35C, EA-18G 투입. 북한 전역 정밀타격 및 공중우세 확보.`,
     specs:{ displacement:'100,000톤', range:'무제한(핵추진)', speed:'30노트 이상', length:'337m', crew:'4,539명', propulsion:'A1B 원자로×2', armament:'F/A-18E/F/F-35C×75대+', firstDeployed:'2017년', manufacturer:'헌팅턴 잉갈스' },
     confidence:95, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['항공모함','핵추진','CVN'], sources:['US Navy','HII'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/b/b5/Bow_view_of_USS_Gerald_R._Ford_%28CVN-78%29_underway_on_8_April_2017.JPG', wikiUrl:'https://en.wikipedia.org/wiki/Gerald_R._Ford-class_aircraft_carrier',
   },
   {
     id:'w-usa-015', name:'M1A2 SEP 에이브람스', nameEng:'M1A2 SEPv3 Abrams',
@@ -108,6 +115,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## M1A2 SEPv3 Abrams\n\n제너럴 다이나믹스 랜드 시스템이 제조하는 미국의 3.5세대 주력전차. SEPv3는 사이버 보안 강화·전력관리 시스템 개선 버전이다.\n\n### 주요 특징\n- 120mm M256 활강포\n- 복합장갑(초밥공복합)+ERA\n- 1,500마력 가스터빈 엔진\n- Trophy APS 장착 가능\n\n### 한반도 관련성\n주한미군 2사단 운용. 북한 기갑부대 격퇴 핵심 전력.`,
     specs:{ range:'426km', speed:'67km/h', weight:'66,756kg', length:'9.77m', crew:'4명', propulsion:'AGT1500 가스터빈 1,500hp', armament:'120mm M256×42발+M2 12.7mm', firstDeployed:'1980년(M1)', manufacturer:'제너럴 다이나믹스' },
     confidence:98, lastUpdated:'2026-03-01', relatedIntelIds:[], tags:['전차','MBT','에이브람스'], sources:['US Army','GDLS'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/0/0b/M1A2_SEP_v3.jpg', wikiUrl:'https://en.wikipedia.org/wiki/M1_Abrams',
   },
   {
     id:'w-usa-016', name:'AGM-158 JASSM-ER', nameEng:'AGM-158B JASSM-ER',
