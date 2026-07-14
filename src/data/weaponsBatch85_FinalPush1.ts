@@ -1,0 +1,44 @@
+import type { WeaponSystem } from './weapons'
+const w = (id:string,name:string,nameEng:string,cat:WeaponSystem['category'],origin:WeaponSystem['origin'],status:WeaponSystem['status'],threat:WeaponSystem['threatRating'],desc:string,specs:WeaponSystem['specs'],tags:string[],sources:string[],img?:string,wiki?:string,conf=90): WeaponSystem=>({id,name,nameEng,category:cat,origin,status,threatRating:threat,description:desc,detail:`## ${nameEng}\n\n${desc}`,specs,confidence:conf,lastUpdated:'2026-07-13',relatedIntelIds:[],tags,sources,imageUrl:img,wikiUrl:wiki})
+
+export const WEAPONS_BATCH85_FINAL_PUSH1: WeaponSystem[] = [
+  // ── 세계 코르벳·초계함 마무리 ──────────────────────────
+  w('b85-001','덴마크 크누드라스무센급 초계함','Knud Rasmussen-class Denmark Arctic Patrol Vessel','NAVAL','NATO','OPERATIONAL','LOW','덴마크 크누드라스무센급. 북극권 초계함. 그린란드 해역 주권수호 임무.',{displacement:'1,720t',firstDeployed:'2008년'},['크누드라스무센급','북극권초계함','그린란드주권'],['덴마크해군'],undefined,undefined,68),
+  w('b85-002','캐나다 해리해군초계함 북극형','Harry DeWolf-class Canada Arctic Offshore Patrol Vessel','NAVAL','NATO','OPERATIONAL','LOW','캐나다 해리드울프급. 북극해 초계함. 북서항로 주권 확보 임무.',{displacement:'6,615t',firstDeployed:'2020년'},['해리드울프급','북극해초계함','북서항로주권'],['캐나다해군'],undefined,undefined,68),
+  w('b85-003','베트남 몰니야급 미사일정 국내생산','Molniya-class Vietnam Domestic License Production','NAVAL','RUSSIA','OPERATIONAL','MED','베트남 몰니야급 국내생산. 러시아 라이선스로 남중국해 대응 전력 확충.',{displacement:'510t',firstDeployed:'2014년(국내생산)'},['몰니야급국내생산','남중국해대응'],['베트남해군'],undefined,undefined,68),
+  w('b85-004','필리핀 조세리잘급 추가건조','Jose Rizal-class Philippines Additional Ships Korea','NAVAL','ROK','DEVELOPMENT','MED','필리핀 호세리잘급 추가건조 협상. 한국 K-방산 함정 수출 지속 확대.',{firstDeployed:'협상중'},['호세리잘급추가','K방산함정확대'],['현대중공업'],undefined,undefined,68),
+  w('b85-005','인도네시아 시그마급 호위함','Sigma-class Indonesia Netherlands Frigate Design','NAVAL','NETHERLANDS','OPERATIONAL','LOW','인도네시아 시그마급. 네덜란드 모듈형 설계. 동남아 다수 채택.',{displacement:'2,400t',firstDeployed:'2007년'},['시그마급','네덜란드모듈설계','동남아채택'],['인도네시아해군'],undefined,undefined,68),
+  w('b85-006','모로코 시그마급 호위함','Sigma-class Morocco Netherlands Frigate North Africa','NAVAL','NETHERLANDS','OPERATIONAL','LOW','모로코 시그마급. 북아프리카 네덜란드 모듈설계 함정.',{displacement:'2,075t',firstDeployed:'2011년'},['시그마급모로코','북아프리카'],['모로코해군'],undefined,undefined,65),
+  w('b85-007','대만 퉈장급 스텔스 미사일정','Tuo Chiang-class Taiwan Stealth Missile Corvette Catamaran','NAVAL','TAIWAN','OPERATIONAL','HIGH','대만 퉈장급. 쌍동선체 스텔스 미사일정. 중국 상륙함대 저지 비대칭전력.',{displacement:'685t',firstDeployed:'2014년'},['퉈장급','쌍동선체스텔스','비대칭전력'],['대만해군'],undefined,undefined,75),
+  // ── 세계 훈련함·연습선 나머지 ────────────────────────────
+  w('b85-008','일본 카시마급 연습함','Kashima-class Japan Training Ship Cadet','NAVAL','JAPAN','OPERATIONAL','LOW','일본 카시마급 연습함. 해상자위대 간부후보생 원양항해훈련.',{displacement:'4,050t',firstDeployed:'1995년'},['카시마급','간부후보생훈련','원양항해'],['일본해상자위대'],undefined,undefined,65),
+  w('b85-009','중국 정허함 훈련함','Zheng He Training Ship China Naval Academy','NAVAL','CHINA','OPERATIONAL','LOW','중국 정허함. 해군 사관생도 훈련함. 해외 친선방문 겸용.',{displacement:'5,470t',firstDeployed:'1987년'},['정허함','중국해군훈련','해외친선방문'],['중국해군'],undefined,undefined,62),
+  // ── 세계 지대공 통합체계 마무리 ────────────────────────
+  w('b85-010','노르웨이 NASAMS 원조 개발국','NASAMS Norway Original Developer Norwegian Air Force','SAM','NORWAY','OPERATIONAL','HIGH','노르웨이 NASAMS 원조. 자국 방공체계로 개발 후 세계 수출 표준화.',{range:'25km',firstDeployed:'1998년',manufacturer:'콩스버그'},['NASAMS원조','노르웨이자국방공','수출표준화'],['콩스버그'],undefined,undefined,80),
+  w('b85-011','핀란드 NASAMS 도입','NASAMS Finland Norway Air Defense Acquisition','SAM','NORWAY','OPERATIONAL','MED','핀란드 NASAMS 도입. 나토 가입 이후 방공체계 표준화.',{firstDeployed:'2009년(핀란드)'},['NASAMS핀란드','나토가입표준화'],['콩스버그'],undefined,undefined,72),
+  w('b85-012','리투아니아 NASAMS 도입','NASAMS Lithuania Baltic Air Defense Acquisition','SAM','NORWAY','OPERATIONAL','MED','리투아니아 NASAMS 도입. 발트3국 통합방공망 구축 일환.',{firstDeployed:'2021년(리투아니아)'},['NASAMS리투아니아','발트통합방공망'],['콩스버그'],undefined,undefined,70),
+  // ── 세계 전자전 자산 마무리 ────────────────────────────
+  w('b85-013','미국 EA-18G 그라울러 전자전기','EA-18G Growler USA Electronic Attack Aircraft Standard','AIRCRAFT','USA','OPERATIONAL','HIGH','미 EA-18G 그라울러. 미해군 표준 전자전기. 호주 수출.',{speed:'마하 1.8',firstDeployed:'2009년',manufacturer:'보잉'},['EA-18G','미해군표준전자전기','호주수출'],['보잉'],undefined,undefined,82),
+  w('b85-014','호주 EA-18G 그라울러 도입','EA-18G Growler Australia USA Electronic Warfare Export','AIRCRAFT','USA','OPERATIONAL','MED','호주 EA-18G. 유일한 미국 외 그라울러 운용국. 남태평양 전자전력.',{firstDeployed:'2017년(호주)'},['EA-18G호주','유일외국운용','남태평양전자전력'],['보잉'],undefined,undefined,75),
+  w('b85-015','러시아 Il-22PP 전자전기','Il-22PP Porubshchik Russia Electronic Warfare Aircraft','AIRCRAFT','RUSSIA','OPERATIONAL','MED','러시아 IL-22PP 포루브시크. 대형 전자전기. NATO 레이더 무력화 목적.',{firstDeployed:'2016년'},['IL-22PP','대형전자전기','NATO레이더무력화'],['일류신'],undefined,undefined,70),
+  // ── 세계 대잠전 항공기 마무리 ───────────────────────────
+  w('b85-016','캐나다 CP-140 오로라 대잠초계기','CP-140 Aurora Canada Maritime Patrol P-3 Derivative','AIRCRAFT','USA','OPERATIONAL','MED','캐나다 CP-140 오로라. P-3 파생형. P-8A 전환 전까지 주력 대잠초계기.',{range:'7,400km',firstDeployed:'1980년'},['CP-140오로라','P-3파생','P-8A전환대기'],['록히드마틴'],undefined,undefined,70),
+  w('b85-017','독일 P-8A 포세이돈 도입','P-8A Poseidon Germany USA Maritime Patrol Acquisition','AIRCRAFT','USA','DEVELOPMENT','MED','독일 P-8A 도입. 노후 P-3C 오라이언 대체.',{quantity:'5기',firstDeployed:'인도중',manufacturer:'보잉'},['P-8A독일','P-3C대체'],['보잉'],undefined,undefined,72),
+  w('b85-018','노르웨이 P-8A 포세이돈 배치','P-8A Poseidon Norway Deployed Arctic Surveillance','AIRCRAFT','USA','OPERATIONAL','MED','노르웨이 P-8A 배치. 북극권 러시아 잠수함 감시 임무 수행중.',{firstDeployed:'2022년(배치)'},['P-8A노르웨이배치','북극권잠수함감시'],['보잉'],undefined,undefined,75),
+  // ── 세계 소형 국가 방산 마무리 ─────────────────────────
+  w('b85-019','아이슬란드 비무장 해안경비대','Iceland Coast Guard Unarmed Nation Maritime Security','NAVAL','NATO','OPERATIONAL','LOW','아이슬란드 해안경비대. 비무장국 유일 안보전력. NATO 방공협정 별도.',{firstDeployed:'지속운용'},['아이슬란드해안경비대','비무장국유일전력'],['아이슬란드정부'],undefined,undefined,55),
+  w('b85-020','모나코 소규모 왕실경비대','Monaco Small Royal Guard Ceremonial Security Force','GROUND','MULTI','OPERATIONAL','LOW','모나코 왕실경비대. 초소형국가 상징적 안보전력.',{firstDeployed:'전통유지'},['모나코왕실경비대','초소형국가상징'],['모나코정부'],undefined,undefined,45),
+  w('b85-021','안도라 비무장 상징경비대','Andorra Symbolic Unarmed Guard Historical Tradition','GROUND','MULTI','OPERATIONAL','LOW','안도라 상징경비대. 사실상 비무장국. 스페인·프랑스 안보 의존.',{firstDeployed:'전통유지'},['안도라상징경비대','비무장국','스페인프랑스의존'],['안도라정부'],undefined,undefined,40),
+  w('b85-022','바티칸 스위스근위대','Vatican Swiss Guard Ceremonial Papal Security Oldest','GROUND','MULTI','OPERATIONAL','LOW','바티칸 스위스근위대. 세계 최고령 상비군 중 하나. 교황 경호 전담.',{firstDeployed:'1506년(창설)'},['스위스근위대','세계최고령상비군','교황경호'],['바티칸'],undefined,undefined,50),
+  // ── 세계 최신 방산 통계·순위 마무리 ─────────────────────
+  w('b85-023','세계 드론 수출국 순위 2026','Global Drone Export Nations Ranking 2026 Turkey China USA','UAV','MULTI','OPERATIONAL','LOW','세계 드론 수출국 순위(2026). 튀르키예·중국·미국·이스라엘 상위권.',{firstDeployed:'2026년(순위)'},['드론수출국순위','튀르키예중국미국','2026'],['SIPRI'],undefined,undefined,68),
+  w('b85-024','세계 방산 M&A 딜사이즈 2026','Global Defense M&A Deal Size 2026 Consolidation Wave','GROUND','MULTI','OPERATIONAL','LOW','세계 방산 M&A 규모(2026). 미국 방산업계 통합 물결 지속.',{firstDeployed:'2026년(집계)'},['방산M&A규모','미국통합물결','2026'],['방산업계'],undefined,undefined,60),
+  w('b85-025','한국 방산 벤처투자 유치 2026','Korea Defense Venture Investment 2026 Growth Record','GROUND','ROK','OPERATIONAL','LOW','한국 방산 벤처투자 유치 사상 최대(2026). 민간자본 유입 가속.',{firstDeployed:'2026년(사상최대)'},['방산벤처투자','민간자본유입가속','2026'],['방위사업청'],undefined,undefined,60),
+  // ── 세계 최신 국방 조직개편 ─────────────────────────────
+  w('b85-026','한국 국방혁신 4.0 전력구조 개편','Korea Defense Innovation 4.0 Force Structure Reform 2026','GROUND','ROK','OPERATIONAL','MED','한국 국방혁신4.0 전력구조 개편 지속(2026). AI·유무인복합체계 중심 재편.',{firstDeployed:'진행중'},['국방혁신4.0','AI유무인복합','전력구조재편'],['국방부'],undefined,undefined,68),
+  w('b85-027','미국 국방부 AI 전환전략 2026','US Department Defense AI Transformation Strategy 2026','GROUND','USA','OPERATIONAL','MED','미 국방부 AI 전환전략(2026). 전영역 AI 통합 목표 로드맵 발표.',{firstDeployed:'2026년(발표)'},['미국방부AI전환','전영역통합로드맵'],['미국방부'],undefined,undefined,68),
+  w('b85-028','일본 방위성 AI 활용 확대 2026','Japan Ministry Defense AI Utilization Expansion 2026','GROUND','JAPAN','OPERATIONAL','LOW','일본 방위성 AI 활용 확대(2026). 정찰·물류 분야 우선 적용.',{firstDeployed:'2026년(확대)'},['일본방위성AI확대','정찰물류우선적용'],['방위성'],undefined,undefined,62),
+  // ── 세계 최신 우주방위 협력체 ─────────────────────────
+  w('b85-029','미영호캐뉴 우주정보공유체 익스팬디드','Expanded Five Eyes Space Intelligence Sharing 2026','SATELLITE','MULTI','OPERATIONAL','MED','파이브아이즈 우주정보공유 확대(2026). 상업위성 정보 통합체계 구축.',{firstDeployed:'2026년(확대)'},['파이브아이즈확대','상업위성통합','2026'],['NRO'],undefined,undefined,65),
+  w('b85-030','한미일 우주정보협력 강화 2026','Korea USA Japan Space Intelligence Cooperation 2026','SATELLITE','MULTI','OPERATIONAL','MED','한미일 우주정보협력 강화(2026). 북한 위성·미사일 공동감시 확대.',{firstDeployed:'2026년(강화)'},['한미일우주협력','북한공동감시확대'],['방위사업청'],undefined,undefined,68),
+]
