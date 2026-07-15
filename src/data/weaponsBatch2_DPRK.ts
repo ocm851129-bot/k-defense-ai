@@ -259,7 +259,7 @@ export const WEAPONS_BATCH2_DPRK: WeaponSystem[] = [
   w('dprk-af001','MiG-29 전투기','MiG-29 Fulcrum (KPAF)','AIRCRAFT','DPRK','OPERATIONAL','HIGH',
     '북한 최강 전투기. 40기 운용. 러시아제 4세대. R-73·R-27 공대공미사일 탑재. 주력 제공전투기.',
     {speed:'마하 2.25',range:'2,100km',ceiling:'18,000m',crew:'1명',armament:'R-73·R-27·30mm GSh-30-1',firstDeployed:'1988년',manufacturer:'미코얀',quantity:'40기'},
-    ['MiG-29','북한공군','4세대','제공전투기'],['IISS','38North'],undefined,'https://en.wikipedia.org/wiki/Mikoyan_MiG-29',78),
+    ['MiG-29','북한공군','4세대','제공전투기'],['IISS','38North'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/VVS_100th_IMG_0691_%287727464290%29_%28cropped%29.jpg/330px-VVS_100th_IMG_0691_%287727464290%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Mikoyan_MiG-29',78),
 
   w('dprk-af002','MiG-23 전투기','MiG-23 Flogger (KPAF)','AIRCRAFT','DPRK','OPERATIONAL','MED',
     '가변익 전투기. 56기 운용. 노후화. R-23 공대공·Kh-23 공대지. 수리부품 부족.',

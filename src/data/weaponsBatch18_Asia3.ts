@@ -30,7 +30,7 @@ export const WEAPONS_BATCH18_ASIA3: WeaponSystem[] = [
   // ── 싱가포르 추가 ────────────────────────────────────────────────────────
   w('as3-sg001','AH-64D 아파치 싱가포르','AH-64D Apache Longbow Singapore','HELICOPTER','USA','OPERATIONAL','LOW','싱가포르 AH-64D 8기. 롱보우 레이더.',{speed:'293km/h',crew:'2명',armament:'AGM-114·롱보우',firstDeployed:'2002년',quantity:'8기'},['아파치D','싱가포르','롱보우','8기'],['보잉','싱가포르공군'],undefined,undefined,85),
   w('as3-sg002','H225M 슈퍼퓨마 싱가포르','H225M Super Puma Singapore','HELICOPTER','FRANCE','OPERATIONAL','LOW','싱가포르 H225M 퓨마 6기. 탐색구조.',{speed:'324km/h',crew:'2+28명',firstDeployed:'2016년',quantity:'6기'},['H225M','싱가포르','탐색구조'],['에어버스','싱가포르군'],undefined,undefined,80),
-  w('as3-sg003','싱가포르 HIMARS','M142 HIMARS Singapore','MLRS','USA','OPERATIONAL','LOW','싱가포르 HIMARS 18대. GMLRS+ATACMS 가능.',{armament:'GMLRS·ATACMS',firstDeployed:'2018년',quantity:'18대'},['HIMARS','싱가포르','18대','ATACMS'],['록히드마틴','싱가포르군'],undefined,undefined,88),
+  w('as3-sg003','싱가포르 HIMARS','M142 HIMARS Singapore','MLRS','USA','OPERATIONAL','LOW','싱가포르 HIMARS 18대. GMLRS+ATACMS 가능.',{armament:'GMLRS·ATACMS',firstDeployed:'2018년',quantity:'18대'},['HIMARS','싱가포르','18대','ATACMS'],['록히드마틴','싱가포르군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/HIMARS_-_missile_launched.jpg/330px-HIMARS_-_missile_launched.jpg','https://en.wikipedia.org/wiki/M142_HIMARS',88),
 
   // ── 말레이시아 추가 ──────────────────────────────────────────────────────
   w('as3-mys001','AW-139 말레이시아 해상헬기','Leonardo AW-139 Malaysia SAR/Naval','HELICOPTER','MULTI','OPERATIONAL','LOW','말레이시아 해안경비·SAR용 AW-139 6기.',{speed:'306km/h',crew:'2+8명',firstDeployed:'2006년(말레이시아)',quantity:'6기'},['AW-139','말레이시아','SAR','해상헬기'],['레오나르도','말레이시아경비'],undefined,undefined,78),
@@ -41,7 +41,7 @@ export const WEAPONS_BATCH18_ASIA3: WeaponSystem[] = [
   w('as3-tha002','태국 UH-60L 블랙호크','UH-60L Black Hawk Thailand','HELICOPTER','USA','OPERATIONAL','LOW','태국 UH-60L 6기. 병력수송.',{speed:'294km/h',crew:'2+11명',quantity:'6기'},['블랙호크','태국','6기'],['시코르스키','태국군'],undefined,undefined,80),
 
   // ── 베트남 추가 ──────────────────────────────────────────────────────────
-  w('as3-vnm001','베트남 Su-30MK2V','Su-30MK2V Vietnam','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','베트남 Su-30MK2V. 36기. 남중국해 분쟁 대응.',{speed:'마하 2.0',crew:'2명',armament:'R-77·R-73·Kh-59',firstDeployed:'2004년',quantity:'36기'},['Su-30MK2V','베트남','36기','남중국해'],['수호이','베트남공군'],undefined,undefined,82),
+  w('as3-vnm001','베트남 Su-30MK2V','Su-30MK2V Vietnam','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','베트남 Su-30MK2V. 36기. 남중국해 분쟁 대응.',{speed:'마하 2.0',crew:'2명',armament:'R-77·R-73·Kh-59',firstDeployed:'2004년',quantity:'36기'},['Su-30MK2V','베트남','36기','남중국해'],['수호이','베트남공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Sukhoi_Su-30SM_in_flight_2014.jpg/330px-Sukhoi_Su-30SM_in_flight_2014.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-30',82),
   w('as3-vnm002','베트남 Kilo급 잠수함','Project 636 Kilo-class Submarine Vietnam','SUBMARINE','RUSSIA','OPERATIONAL','HIGH','베트남 킬로급 636.1형 6척. Club-S 순항미사일. 남중국해.',{displacement:'3,950t',armament:'Club-S 순항·어뢰',crew:'52명',firstDeployed:'2014년',quantity:'6척'},['킬로급','베트남','6척','Club-S','남중국해'],['러시아','베트남해군'],undefined,'https://en.wikipedia.org/wiki/Kilo-class_submarine',82),
   w('as3-vnm003','베트남 S-300PMU1 방공','S-300PMU1 Vietnam Air Defense','SAM','RUSSIA','OPERATIONAL','HIGH','베트남 S-300PMU1. 남중국해 방어.',{range:'150km',firstDeployed:'2003년(베트남)'},['S-300PMU1','베트남방공','남중국해'],['러시아','베트남군'],undefined,undefined,78),
   w('as3-vnm004','베트남 Bastion-P 해안방어','Bastion-P Coastal Defense Missile Vietnam','SSM','RUSSIA','OPERATIONAL','HIGH','베트남 바스티온-P 해안 대함미사일. P-800 오닉스.',{range:'300km',speed:'마하 2.5'},['바스티온P','베트남해안방어','P-800','오닉스'],['러시아','베트남군'],undefined,undefined,78),
@@ -58,14 +58,14 @@ export const WEAPONS_BATCH18_ASIA3: WeaponSystem[] = [
   w('as3-pak003','파키스탄 AGOSTA 90B 2차','Agosta-90B 3번함 Hamza Pakistan','SUBMARINE','FRANCE','OPERATIONAL','HIGH','파키스탄 3번째 아고스타 90B. AIP 옵션. 핵어뢰 탑재 가능.',{displacement:'1,760t',armament:'어뢰관 4문·하푼',crew:'36명',firstDeployed:'2008년'},['아고스타90B','함자','파키스탄잠수함','3번째'],['나발그룹','파키스탄해군'],undefined,undefined,78),
 
   // ── 방글라데시 추가 ─────────────────────────────────────────────────────
-  w('as3-bgd001','방글라데시 MiG-29B','MiG-29B Bangladesh','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','방글라데시 MiG-29B 8기. 동남아시아 유일 미그-29.',{crew:'1명',firstDeployed:'1999년(방글라데시)',quantity:'8기'},['MiG-29B','방글라데시','8기','동남아유일'],['미코얀','방글라데시공군'],undefined,undefined,72),
+  w('as3-bgd001','방글라데시 MiG-29B','MiG-29B Bangladesh','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','방글라데시 MiG-29B 8기. 동남아시아 유일 미그-29.',{crew:'1명',firstDeployed:'1999년(방글라데시)',quantity:'8기'},['MiG-29B','방글라데시','8기','동남아유일'],['미코얀','방글라데시공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/VVS_100th_IMG_0691_%287727464290%29_%28cropped%29.jpg/330px-VVS_100th_IMG_0691_%287727464290%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Mikoyan_MiG-29',72),
   w('as3-bgd002','방글라데시 F-7MB','F-7MB China Bangladesh Fighter','AIRCRAFT','CHINA','OPERATIONAL','MED','방글라데시 F-7 계열 다수. 주력 전투기.',{crew:'1명',firstDeployed:'1980년대(방글라데시)'},['F-7MB','방글라데시','중국전투기'],['중국','방글라데시공군'],undefined,undefined,65),
 
   // ── 스리랑카 ────────────────────────────────────────────────────────────
   w('as3-lka001','스리랑카 MiG-27M 공격기','MiG-27M Flogger Sri Lanka','AIRCRAFT','RUSSIA','OPERATIONAL','LOW','스리랑카 MiG-27M. 타밀 반군 진압 실전.',{speed:'마하 1.7',crew:'1명',firstDeployed:'2000년(스리랑카)'},['MiG-27M','스리랑카','타밀반군','실전'],['미코얀','스리랑카공군'],undefined,undefined,68),
 
   // ── 미얀마 ───────────────────────────────────────────────────────────────
-  w('as3-mmr001','미얀마 MiG-29B','MiG-29B Myanmar','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','미얀마 MiG-29B. 31기. 쿠데타 군부 보유.',{crew:'1명',firstDeployed:'2001년(미얀마)',quantity:'31기'},['MiG-29B','미얀마','쿠데타군부','31기'],['미코얀','미얀마공군'],undefined,undefined,72),
+  w('as3-mmr001','미얀마 MiG-29B','MiG-29B Myanmar','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH','미얀마 MiG-29B. 31기. 쿠데타 군부 보유.',{crew:'1명',firstDeployed:'2001년(미얀마)',quantity:'31기'},['MiG-29B','미얀마','쿠데타군부','31기'],['미코얀','미얀마공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/VVS_100th_IMG_0691_%287727464290%29_%28cropped%29.jpg/330px-VVS_100th_IMG_0691_%287727464290%29_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Mikoyan_MiG-29',72),
   w('as3-mmr002','미얀마 F-7M','F-7M Myanmar','AIRCRAFT','CHINA','OPERATIONAL','MED','미얀마 중국 F-7M 30기. 보유 주력 전투기.',{crew:'1명',firstDeployed:'1990년대(미얀마)',quantity:'30기'},['F-7M','미얀마','중국전투기','30기'],['중국','미얀마공군'],undefined,undefined,65),
 
   // ── 북한 추가 ─────────────────────────────────────────────────────────────
@@ -80,6 +80,6 @@ export const WEAPONS_BATCH18_ASIA3: WeaponSystem[] = [
   w('as3-rok002','KAMD 한국형미사일방어','KAMD Korean Air and Missile Defense','SAM','ROK','OPERATIONAL','HIGH','패트리어트+천궁+L-SAM 다층방어. 상향식 통합.',{firstDeployed:'현재 구축중'},['KAMD','한국방공','다층방어','천궁패트리어트'],['방위사업청','공군'],undefined,undefined,82),
   w('as3-rok003','K-방산 수출 체계','K-Defense Export System Overview','GROUND','ROK','OPERATIONAL','LOW','2022년 K방산 수출 173억달러 역대 최고. K2/K9/FA-50/천무/천궁 5대 품목.',{firstDeployed:'2010년대~현재'},['K방산수출','173억달러','5대품목','폴란드'],['방위사업청'],undefined,undefined,95),
   w('as3-rok004','한국형 이지스 차세대 소프트웨어','KDX KIRIS Next-Gen Aegis Software','NAVAL','ROK','DEVELOPMENT','HIGH','세종대왕급 이지스 소프트웨어 국산화. 미국 의존 탈피.',{firstDeployed:'2025년(예상)',manufacturer:'한화시스템'},['한국이지스소프트웨어','국산화','KIRIS','세종대왕'],['한화시스템','해군'],undefined,undefined,72),
-  w('as3-rok005','KAI 수리온 수출형 KUH-1E','KUH-1E Surion Export Marineon Variant','HELICOPTER','ROK','OPERATIONAL','LOW','수리온 해병대용(마린온) + 수출형. 페루·이라크 관심.',{speed:'259km/h',crew:'2+12명',firstDeployed:'2015년(마린온)',manufacturer:'KAI'},['마린온','수리온수출','KUH-1E','페루','이라크'],['KAI','방위사업청'],undefined,undefined,75),
+  w('as3-rok005','KAI 수리온 수출형 KUH-1E','KUH-1E Surion Export Marineon Variant','HELICOPTER','ROK','OPERATIONAL','LOW','수리온 해병대용(마린온) + 수출형. 페루·이라크 관심.',{speed:'259km/h',crew:'2+12명',firstDeployed:'2015년(마린온)',manufacturer:'KAI'},['마린온','수리온수출','KUH-1E','페루','이라크'],['KAI','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/KUH-1_Surion.jpg/320px-KUH-1_Surion.jpg','https://en.wikipedia.org/wiki/KAI_KUH-1_Surion',75),
 
 ]

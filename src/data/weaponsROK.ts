@@ -41,7 +41,7 @@ export const WEAPONS_ROK: WeaponSystem[] = [
     '한국 국산 3세대 대전차유도미사일. 발사 후 망각(Fire & Forget). K21 IFV·헬기·보병 운용. 탠덤 HEAT 탄두.',
     {range:'2,500m',payload:'탠덤 HEAT 탄두 (800mm RHA 관통)',guidance:'IIR 영상 탐색기',firstDeployed:'2015년',manufacturer:'LIG넥스원'},
     ['현궁','ATGM','대전차','IIR','발사후망각'],['LIG넥스원','ADD'],
-    undefined,'https://en.wikipedia.org/wiki/Hyunmoo_(missile)'),
+    'https://upload.wikimedia.org/wikipedia/commons/2/22/AT-1K_Raybolt.png','https://en.wikipedia.org/wiki/Raybolt'),
 
   w('rok-007','천궁-II 지대공미사일','Cheongung-II (KM-SAM) SAM','SAM','ROK','OPERATIONAL','HIGH',
     '한국 국산 중거리 지대공미사일. 사거리 40km. 패트리엇 PAC-2와 호환. UAE·사우디 수출(수출명 M-SAM). TBM 요격 능력.',
@@ -53,7 +53,7 @@ export const WEAPONS_ROK: WeaponSystem[] = [
     '한국 국산 함대함·함대지 순항미사일. 사거리 150km. 한국 수상함 표준 장착. 스텔스 형상.',
     {range:'150km(대함)/200km(대지)',speed:'마하 0.9',payload:'225kg 탄두',guidance:'GPS+INS+능동레이더탐색기',firstDeployed:'2003년',manufacturer:'LIG넥스원'},
     ['해성','SSM-700K','함대함미사일','한국해군'],['LIG넥스원','Jane\'s'],
-    undefined,'https://en.wikipedia.org/wiki/Haeseong'),
+    'https://upload.wikimedia.org/wikipedia/commons/0/03/Hae_fung.jpg','https://en.wikipedia.org/wiki/Haeseong'),
 
   w('rok-009','청상어 경어뢰','Cheong Sangeo Light Torpedo','NAVAL','ROK','OPERATIONAL','MED',
     '한국 국산 324mm 항공투하·함정발사 경어뢰. P-3C·링크스헬기·이지스함 탑재. 대잠전 핵심.',
@@ -126,7 +126,7 @@ export const WEAPONS_ROK: WeaponSystem[] = [
     '한국 국산 적외선 유도 휴대용 대공미사일(MANPADS). 사거리 7km. 고도 3.5km. 스팅어 수준. 한국 보병 방공의 핵심.',
     {range:'7km',altitude:'3,500m',guidance:'적외선 추적',firstDeployed:'2004년',manufacturer:'LIG넥스원'},
     ['신궁','MANPADS','보병방공','적외선'],['LIG넥스원','ADD'],
-    undefined,'https://en.wikipedia.org/wiki/Shingung'),
+    'https://upload.wikimedia.org/wikipedia/commons/a/a7/Promotional_booklet_of_the_Republic_of_Korea_Armed_Forces_2019_-_Chiron_%28Shingung%29_%28cropped%29.png','https://en.wikipedia.org/wiki/Chiron_(missile)'),
 
   w('rok-020','한국형 발사체 누리호','Nuri KSLV-II Space Launch Vehicle','SATELLITE','ROK','OPERATIONAL','MED',
     '한국 최초 독자 개발 우주발사체. 2023년 3차 발사 성공. 실용위성 탑재. 민군 이중용도 우주역량.',

@@ -210,7 +210,7 @@ export const WEAPONS_BATCH32_HISTORICAL: WeaponSystem[] = [
     '한국 최초 독자 개발 전차. 미국 XM1 기술 이전. 1985년 배치. K1A2까지 진화.',
     {weight:'51.1t',armament:'105mm KM68A1 강선포',crew:'4명',firstDeployed:'1985년'},
     ['K1전차','한국최초전차','88전차','105mm','1985년'],['현대정공','국방부'],
-    undefined,'https://en.wikipedia.org/wiki/K1_88-Tank',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/K1A2_MBT.jpg/320px-K1A2_MBT.jpg','https://en.wikipedia.org/wiki/K1_88-Tank',88),
 
   w('hist-mul005','포클랜드 해전 엑조세','Exocet AM-39 Falklands War 1982','MISSILE','FRANCE','RETIRED','HIGH',
     '1982년 포클랜드 해전 슈퍼 에탕다르 발사 엑조세. 셰필드함·아틀란틱 컨베이어함 격침.',

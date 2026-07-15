@@ -7,7 +7,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-t001','K1A2 전차','K1A2 MBT','GROUND','ROK','OPERATIONAL','MED',
     'K1 전차의 3차 개량형. 열상조준경·디지털 전장관리시스템 탑재. 105mm 강선포. 한국군 주력 전차 중 하나.',
     {weight:'51.1t',armament:'105mm KM68A1 강선포·M60D 7.62mm·M2HB 12.7mm',crew:'4명',speed:'65km/h',range:'500km',firstDeployed:'2001년',manufacturer:'현대로템',quantity:'1,000여 대'},
-    ['K1A2','전차','105mm','기갑','한국군'],['현대로템','육군'],undefined,'https://en.wikipedia.org/wiki/K1_88-Tank',92),
+    ['K1A2','전차','105mm','기갑','한국군'],['현대로템','육군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/K1A2_MBT.jpg/320px-K1A2_MBT.jpg','https://en.wikipedia.org/wiki/K1_88-Tank',92),
 
   w('rok-t002','K2 흑표','K2 Black Panther MBT','GROUND','ROK','OPERATIONAL','MED',
     '한국 독자 개발 4세대 주력전차. 120mm 활강포·자동장전장치·능동방호시스템(APS). 세계 최고 수준 전차.',
@@ -41,12 +41,12 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-t007','K200A1 장갑차','K200A1 Armored Personnel Carrier','GROUND','ROK','OPERATIONAL','LOW',
     'K200 기본형 개량. 한국군 기계화보병 핵심 병력수송장갑차. 다양한 파생형 운용 중.',
     {weight:'13.5t',armament:'K6 12.7mm 또는 K4 40mm 유탄기관총',crew:'3+9명',speed:'74km/h',range:'500km',firstDeployed:'1986년(A1:1990년대)',manufacturer:'한화에어로스페이스',quantity:'2,300여 대'},
-    ['K200','APC','장갑차','기계화','병력수송'],['한화에어로스페이스','육군'],undefined,'https://en.wikipedia.org/wiki/K200_KIFV',90),
+    ['K200','APC','장갑차','기계화','병력수송'],['한화에어로스페이스','육군'],'https://upload.wikimedia.org/wikipedia/commons/5/5d/2011.7.5_%EC%88%98%EA%B8%B0%EC%82%AC_%EC%A0%80%ED%83%84%EC%86%8C%EB%85%B9%EC%83%89%EC%84%B1%EC%9E%A5_%287633933564%29.jpg','https://en.wikipedia.org/wiki/K200_KIFV',90),
 
   w('rok-t008','K21-105 경전차','K21-105 Light Tank','GROUND','ROK','DEVELOPMENT','MED',
     'K21 차체에 105mm 저반동 포탑 탑재 경전차. 공수부대·산악전 지원용. 수출 시장 겨냥.',
     {weight:'28t(예상)',armament:'105mm 저반동포',crew:'3명',firstDeployed:'개발중',manufacturer:'한화에어로스페이스'},
-    ['K21-105','경전차','공수','105mm','수출'],['한화에어로스페이스'],undefined,undefined,75),
+    ['K21-105','경전차','공수','105mm','수출'],['한화에어로스페이스'],'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/K21_IFV.jpg/320px-K21_IFV.jpg','https://en.wikipedia.org/wiki/K21',75),
 
   w('rok-t009','K808 차륜형장갑차 (천호)','K808 Wheeled APC (Cheonho)','GROUND','ROK','OPERATIONAL','LOW',
     '8×8 차륜형 장갑차. 기동성·유지비 우수. 평화유지작전·국내 경계 임무. 2020년 전력화.',
@@ -56,7 +56,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-t010','K806 차륜형장갑차','K806 Wheeled APC 6x6','GROUND','ROK','OPERATIONAL','LOW',
     '6×6 소형 차륜형 장갑차. K808과 함께 전력화. 경보병·수색 임무 특화.',
     {weight:'15t',armament:'K6 12.7mm',crew:'2+6명',speed:'100km/h',firstDeployed:'2020년',manufacturer:'현대로템'},
-    ['K806','차륜형','6x6','장갑차','경보병'],['현대로템'],undefined,undefined,88),
+    ['K806','차륜형','6x6','장갑차','경보병'],['현대로템'],'https://upload.wikimedia.org/wikipedia/commons/f/fc/ROKA_K808_APC_river_crossing_training_-_March_2021.jpg','https://en.wikipedia.org/wiki/K808',88),
 
   w('rok-t011','AS21 레드백','AS21 Redback IFV','GROUND','ROK','DEVELOPMENT','MED',
     '한화디펜스-호주 공동 개발 한국형 차세대 IFV. 호주 LAND 400 Phase 3 수주 목표. 능동방호·복합장갑.',
@@ -84,7 +84,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-a003','K10 탄약운반차','K10 Armored Ammunition Resupply Vehicle','ARTILLERY','ROK','OPERATIONAL','LOW',
     'K9 자주포 전용 장갑 탄약보급차. 자동 탄약이송 시스템. K9과 동일 차체. 전장 지속 사격 지원.',
     {weight:'47t',armament:'7.62mm 기관총',crew:'3명',speed:'67km/h',firstDeployed:'2003년',manufacturer:'한화에어로스페이스',quantity:'300여 대'},
-    ['K10','탄약운반차','K9','자주포지원'],['한화에어로스페이스'],undefined,'https://en.wikipedia.org/wiki/K10_ARV',90),
+    ['K10','탄약운반차','K9','자주포지원'],['한화에어로스페이스'],'https://upload.wikimedia.org/wikipedia/commons/0/0a/K10_ARV.jpg','https://en.wikipedia.org/wiki/K10_ammunition_resupply_vehicle',90),
 
   w('rok-a004','K55A1 자주포','K55A1 Self-Propelled Howitzer','ARTILLERY','ROK','OPERATIONAL','LOW',
     'M109A2 성능개량형. 한국화 사격통제장치·항법장치 장착. 155mm/23구경장. 예비사단 운용.',
@@ -122,12 +122,12 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-r003','KTSSM-I (전술지대지미사일)','KTSSM-I Tactical Surface-to-Surface Missile','MLRS','ROK','OPERATIONAL','HIGH',
     '천무 발사대에서 운용. 단거리 정밀 탄도미사일. GPS·INS 복합유도. 북한 장사정포 타격 전용.',
     {weight:'400kg(탄)',range:'180km',payload:'100kg',guidance:'GPS+INS',firstDeployed:'2022년',manufacturer:'한화에어로스페이스'},
-    ['KTSSM','천무','전술지대지','장사정포대응','정밀타격'],['한화에어로스페이스','방위사업청'],undefined,undefined,90),
+    ['KTSSM','천무','전술지대지','장사정포대응','정밀타격'],['한화에어로스페이스','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/8/84/Hanwha_CTM-290_tactical_ballistic_missile.jpg','https://en.wikipedia.org/wiki/CTM-290',90),
 
   w('rok-r004','KTSSM-II','KTSSM-II Extended Range Tactical Missile','MLRS','ROK','DEVELOPMENT','HIGH',
     'KTSSM 개량형. 사거리 290km 이상 확장. 정밀도·파괴력 향상. 2025년 체계개발.',
     {range:'290km+',guidance:'GPS+INS+영상',firstDeployed:'2028년(예상)',manufacturer:'한화에어로스페이스'},
-    ['KTSSM-II','천무','확장형','장거리'],['한화에어로스페이스'],undefined,undefined,75),
+    ['KTSSM-II','천무','확장형','장거리'],['한화에어로스페이스'],'https://upload.wikimedia.org/wikipedia/commons/8/84/Hanwha_CTM-290_tactical_ballistic_missile.jpg','https://en.wikipedia.org/wiki/CTM-290',75),
 
   // ── 지대공미사일 ─────────────────────────────────────────────────────────
   w('rok-s001','천궁-I (M-SAM)','Cheongung I M-SAM','SAM','ROK','OPERATIONAL','HIGH',
@@ -143,32 +143,32 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-s003','L-SAM','L-SAM Long-Range SAM','SAM','ROK','DEVELOPMENT','HIGH',
     '한국 장거리 지대공미사일. 사드급 상층방어. 탄도미사일 대기권 외 요격 목표. 2028년 전력화.',
     {range:'150km+',altitude:'60km(상층)',guidance:'능동 레이더+IR',firstDeployed:'2028년(예상)',manufacturer:'LIG넥스원·한화'},
-    ['L-SAM','장거리','상층방어','사드급','탄도미사일'],['LIG넥스원','방위사업청'],undefined,undefined,75),
+    ['L-SAM','장거리','상층방어','사드급','탄도미사일'],['LIG넥스원','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/5/5f/Long-range_Surface-to-Air_Missile.jpg','https://en.wikipedia.org/wiki/L-SAM',75),
 
   w('rok-s004','신궁 MANPADS','Shingung MANPADS','SAM','ROK','OPERATIONAL','MED',
     '한국 독자 개발 휴대용 지대공미사일. 적외선 유도. 저고도 항공기·헬기 요격. 2004년 전력화.',
     {range:'7km',altitude:'3.5km',speed:'마하 2+',guidance:'IR(적외선 추적)',firstDeployed:'2004년',manufacturer:'LIG넥스원',quantity:'다수'},
-    ['신궁','MANPADS','휴대용','지대공','보병'],['LIG넥스원','방위사업청'],undefined,'https://en.wikipedia.org/wiki/Shingung',90),
+    ['신궁','MANPADS','휴대용','지대공','보병'],['LIG넥스원','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/a/a7/Promotional_booklet_of_the_Republic_of_Korea_Armed_Forces_2019_-_Chiron_%28Shingung%29_%28cropped%29.png','https://en.wikipedia.org/wiki/Chiron_(missile)',90),
 
   w('rok-s005','비호 복합 대공체계','Biyeong Complex Air Defense System','SAM','ROK','OPERATIONAL','MED',
     '30mm 비호 자주대공포에 신궁 미사일 4발 통합. 저고도 복합 방공. 전방부대 배치.',
     {range:'7km(미사일)·3km(포)',speed:'65km/h',crew:'3명',firstDeployed:'2010년대',manufacturer:'한화에어로스페이스·LIG넥스원'},
-    ['비호복합','CIWS','대공','30mm','신궁'],['한화에어로스페이스','LIG넥스원'],undefined,undefined,88),
+    ['비호복합','CIWS','대공','30mm','신궁'],['한화에어로스페이스','LIG넥스원'],'https://upload.wikimedia.org/wikipedia/commons/e/ef/US_Army_photo_160803-A-VV548-006_Standing_Watch_together.jpg','https://en.wikipedia.org/wiki/K30_Biho',88),
 
   w('rok-s006','K30 비호 자주대공포','K30 Biho SPAAG','SAM','ROK','OPERATIONAL','MED',
     '30mm 2연장 자주대공포. K200 차체. 저고도 항공기·헬기·드론 대응. 전자광학 추적.',
     {weight:'24t',armament:'30mm KCB 기관포 2문',crew:'3명',speed:'70km/h',range:'3km(유효)',firstDeployed:'2002년',manufacturer:'한화에어로스페이스'},
-    ['K30','비호','SPAAG','30mm','자주대공'],['한화에어로스페이스','육군'],undefined,'https://en.wikipedia.org/wiki/K30_Biho',88),
+    ['K30','비호','SPAAG','30mm','자주대공'],['한화에어로스페이스','육군'],'https://upload.wikimedia.org/wikipedia/commons/e/ef/US_Army_photo_160803-A-VV548-006_Standing_Watch_together.jpg','https://en.wikipedia.org/wiki/K30_Biho',88),
 
   w('rok-s007','천마 단거리 지대공미사일','Chunma Short-Range SAM','SAM','ROK','OPERATIONAL','MED',
     '국산 단거리 지대공미사일. 트레일러 탑재·차량 기동. IR+레이더 복합 유도. 1990년대 전력화.',
     {range:'9km',altitude:'5km',speed:'마하 2.6',guidance:'IR+SARH',firstDeployed:'1990년대',manufacturer:'삼성탈레스(현 한화시스템)',quantity:'100여 기'},
-    ['천마','단거리','지대공','SAM'],['한화시스템','육군'],undefined,'https://en.wikipedia.org/wiki/Chun-Ma',85),
+    ['천마','단거리','지대공','SAM'],['한화시스템','육군'],'https://upload.wikimedia.org/wikipedia/commons/2/2e/%EC%9C%A1%EA%B5%B0_%287438813574%29.jpg','https://ko.wikipedia.org/wiki/천마_(미사일)',85),
 
   w('rok-s008','패트리어트 PAC-3 MSE','Patriot PAC-3 MSE','SAM','ROK','OPERATIONAL','HIGH',
     '미제 PAC-3 MSE 도입. 한국 방공망 핵심 중층방어. 탄도미사일·항공기 요격. 8개 포대 운용.',
     {range:'60km',altitude:'25km',speed:'마하 5',guidance:'능동레이더 유도',firstDeployed:'2008년(PAC-2)·2016년(PAC-3)',manufacturer:'레이시온·록히드마틴',quantity:'8개 포대'},
-    ['패트리어트','PAC-3','MSE','탄도미사일요격','방공'],['레이시온','미국','방위사업청'],undefined,'https://en.wikipedia.org/wiki/MIM-104_Patriot',97),
+    ['패트리어트','PAC-3','MSE','탄도미사일요격','방공'],['레이시온','미국','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg/330px-U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg','https://en.wikipedia.org/wiki/MIM-104_Patriot',97),
 
   w('rok-s009','M-SAM3 (천궁-III)','M-SAM3 Cheongung III','SAM','ROK','DEVELOPMENT','HIGH',
     '천궁-II 후속. 다중동시교전·능동위상배열 레이더. 사거리 60km 이상. 2030년대 전력화 목표.',
@@ -179,7 +179,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-at001','현궁 대전차미사일','Hyungoong Anti-Tank Missile','GROUND','ROK','OPERATIONAL','MED',
     '한국 독자 개발 단거리 대전차미사일. IR 영상유도·발사 후 망각. 수직 공격 능력. 차량·도보 이동형.',
     {range:'2.5km',payload:'탠덤 HEAT',guidance:'IR 영상',weight:'14.5kg(발사기)',firstDeployed:'2015년',manufacturer:'LIG넥스원'},
-    ['현궁','ATGM','대전차','발사후망각','IR'],['LIG넥스원','방위사업청'],undefined,'https://en.wikipedia.org/wiki/Raybolt',90),
+    ['현궁','ATGM','대전차','발사후망각','IR'],['LIG넥스원','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/2/22/AT-1K_Raybolt.png','https://en.wikipedia.org/wiki/Raybolt',90),
 
   w('rok-at002','비궁 경대전차미사일','Bigung Light Anti-Tank Missile','GROUND','ROK','OPERATIONAL','MED',
     '소형 경량 대전차미사일. 분대급 운용. 헬기·UAV 탑재 가능. 현궁보다 저비용.',
@@ -215,17 +215,17 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-m004','현무-3A 순항미사일','Hyunmoo-3A LACM','CRUISE','ROK','OPERATIONAL','HIGH',
     '사거리 500km 지상발사 순항미사일. 지형대조+GPS 복합유도. CEP 수 m급 정밀타격.',
     {range:'500km',payload:'500kg',guidance:'TERCOM+GPS+영상',speed:'마하 0.8',firstDeployed:'2006년',manufacturer:'LIG넥스원'},
-    ['현무-3A','순항미사일','LACM','500km','정밀'],['LIG넥스원','방위사업청'],undefined,undefined,92),
+    ['현무-3A','순항미사일','LACM','500km','정밀'],['LIG넥스원','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyunmoo-3_missile_carrier.jpg','https://en.wikipedia.org/wiki/Hyunmoo-3',92),
 
   w('rok-m005','현무-3B 순항미사일','Hyunmoo-3B LACM','CRUISE','ROK','OPERATIONAL','HIGH',
     '사거리 1,000km 순항미사일. 중국 북부·일본 전역 타격 권역. 현무-3A 개량형.',
     {range:'1,000km',payload:'500kg',guidance:'TERCOM+GPS',speed:'마하 0.8',firstDeployed:'2010년',manufacturer:'LIG넥스원'},
-    ['현무-3B','1000km','순항미사일'],['LIG넥스원','방위사업청'],undefined,undefined,90),
+    ['현무-3B','1000km','순항미사일'],['LIG넥스원','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyunmoo-3_missile_carrier.jpg','https://en.wikipedia.org/wiki/Hyunmoo-3',90),
 
   w('rok-m006','현무-3C 순항미사일','Hyunmoo-3C LACM','CRUISE','ROK','OPERATIONAL','HIGH',
     '사거리 1,500km 순항미사일. 한국 전략 타격 핵심 자산. 지하벙커 관통 특수탄두.',
     {range:'1,500km',payload:'500kg',guidance:'TERCOM+GPS+IIR',speed:'마하 0.8',firstDeployed:'2012년',manufacturer:'LIG넥스원'},
-    ['현무-3C','1500km','순항미사일','전략'],['LIG넥스원','방위사업청'],undefined,undefined,88),
+    ['현무-3C','1500km','순항미사일','전략'],['LIG넥스원','방위사업청'],'https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyunmoo-3_missile_carrier.jpg','https://en.wikipedia.org/wiki/Hyunmoo-3',88),
 
   w('rok-m007','현무-4-1 탄도미사일','Hyunmoo-4-1 Ballistic Missile','SRBM','ROK','OPERATIONAL','CRITICAL',
     '2t 초대형 탄두 탄도미사일. 지하 갱도·벙커 파괴 전용. 북한 전쟁지도부 겨냥 응징보복 수단.',
@@ -273,52 +273,52 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-n005','충무공이순신함 (DDH-975)','ROKS Chungmugong Yi Sun-sin DDH-975','NAVAL','ROK','OPERATIONAL','MED',
     '충무공이순신급 1번함. SM-2 Block IIIA·하푼·청상어·VLS 탑재. 전천후 방공·대잠 구축함.',
     {displacement:'5,520t',armament:'127mm·VLS 32셀·SM-2·하푼·청상어·K-CIWS',crew:'200명',speed:'29노트',firstDeployed:'2003년',manufacturer:'현대중공업'},
-    ['충무공이순신','DDH','구축함','SM-2','한국해군'],['현대중공업','해군'],undefined,'https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',93),
+    ['충무공이순신','DDH','구축함','SM-2','한국해군'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/65/ROKS_Yi_SunShin_DDH-975.jpg','https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',93),
 
   w('rok-n006','문무대왕함 (DDH-976)','ROKS Munmu the Great DDH-976','NAVAL','ROK','OPERATIONAL','MED',
     '충무공이순신급 2번함. 2번함부터 K-VLS 8셀 추가.',
     {displacement:'5,520t',armament:'127mm·VLS 32셀+K-VLS 8셀·SM-2·하푼',crew:'200명',speed:'29노트',firstDeployed:'2005년',manufacturer:'현대중공업'},
-    ['문무대왕','DDH-976','구축함'],['현대중공업','해군'],undefined,undefined,92),
+    ['문무대왕','DDH-976','구축함'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/65/ROKS_Yi_SunShin_DDH-975.jpg','https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',92),
 
   w('rok-n007','대조영함 (DDH-977)','ROKS Daejogyeong DDH-977','NAVAL','ROK','OPERATIONAL','MED',
     '충무공이순신급 3번함.',
     {displacement:'5,520t',armament:'127mm·VLS 32셀·SM-2·하푼·청상어',crew:'200명',firstDeployed:'2007년',manufacturer:'한진중공업'},
-    ['대조영','DDH-977','구축함'],['한진중공업','해군'],undefined,undefined,92),
+    ['대조영','DDH-977','구축함'],['한진중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/65/ROKS_Yi_SunShin_DDH-975.jpg','https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',92),
 
   w('rok-n008','왕인함 (DDH-978)','ROKS Wang In DDH-978','NAVAL','ROK','OPERATIONAL','MED',
     '충무공이순신급 4번함.',
     {displacement:'5,520t',armament:'127mm·VLS 32셀·SM-2·하푼·청상어',crew:'200명',firstDeployed:'2008년',manufacturer:'대우조선해양'},
-    ['왕인함','DDH-978','구축함'],['대우조선해양','해군'],undefined,undefined,92),
+    ['왕인함','DDH-978','구축함'],['대우조선해양','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/65/ROKS_Yi_SunShin_DDH-975.jpg','https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',92),
 
   w('rok-n009','강감찬함 (DDH-979)','ROKS Gang Gam-chan DDH-979','NAVAL','ROK','OPERATIONAL','MED',
     '충무공이순신급 5번함.',
     {displacement:'5,520t',armament:'127mm·VLS 32셀·SM-2·하푼·청상어',crew:'200명',firstDeployed:'2008년',manufacturer:'현대중공업'},
-    ['강감찬','DDH-979','구축함'],['현대중공업','해군'],undefined,undefined,92),
+    ['강감찬','DDH-979','구축함'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/65/ROKS_Yi_SunShin_DDH-975.jpg','https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',92),
 
   w('rok-n010','최영함 (DDH-981)','ROKS Choe Yeong DDH-981','NAVAL','ROK','OPERATIONAL','MED',
     '충무공이순신급 6번함(마지막). SM-2 Blk IIIA 최신 소프트웨어.',
     {displacement:'5,520t',armament:'127mm·VLS 32셀·SM-2·하푼·청상어',crew:'200명',firstDeployed:'2011년',manufacturer:'한진중공업'},
-    ['최영함','DDH-981','구축함'],['한진중공업','해군'],undefined,undefined,92),
+    ['최영함','DDH-981','구축함'],['한진중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/65/ROKS_Yi_SunShin_DDH-975.jpg','https://en.wikipedia.org/wiki/Chungmugong_Yi_Sun-sin-class_destroyer',92),
 
   w('rok-n011','인천함 (FFX-811)','ROKS Incheon FFX-811','NAVAL','ROK','OPERATIONAL','MED',
     '인천급(FFX-I) 1번함. 국산 신형 호위함. VLS·청상어·해성 탑재. 스텔스 선형.',
     {displacement:'3,300t',armament:'127mm·VLS 16셀·해성-I·청상어·CIWS',crew:'140명',speed:'30노트',firstDeployed:'2013년',manufacturer:'현대중공업'},
-    ['인천함','FFX','호위함','인천급'],['현대중공업','해군'],undefined,'https://en.wikipedia.org/wiki/Incheon-class_frigate',92),
+    ['인천함','FFX','호위함','인천급'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/5/5e/20130626_%EB%8C%80%ED%95%9C%ED%95%B4%ED%98%91_%EC%A0%84%EC%8A%B9%ED%96%89%EC%82%AC_%284%29_%289460603621%29.jpg','https://en.wikipedia.org/wiki/Incheon-class_frigate',92),
 
   w('rok-n012','경기함 (FFX-812)','ROKS Gyeonggi FFX-812','NAVAL','ROK','OPERATIONAL','MED',
     '인천급 2번함.',
     {displacement:'3,300t',armament:'127mm·VLS 16셀·해성-I·청상어',crew:'140명',firstDeployed:'2014년',manufacturer:'현대중공업'},
-    ['경기함','FFX-812','호위함'],['현대중공업','해군'],undefined,undefined,90),
+    ['경기함','FFX-812','호위함'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/5/5e/20130626_%EB%8C%80%ED%95%9C%ED%95%B4%ED%98%91_%EC%A0%84%EC%8A%B9%ED%96%89%EC%82%AC_%284%29_%289460603621%29.jpg','https://en.wikipedia.org/wiki/Incheon-class_frigate',90),
 
   w('rok-n013','전북함 (FFX-813)','ROKS Jeonbuk FFX-813','NAVAL','ROK','OPERATIONAL','MED',
     '인천급 3번함.',
     {displacement:'3,300t',armament:'127mm·VLS 16셀·해성-I·청상어',crew:'140명',firstDeployed:'2015년',manufacturer:'대우조선해양'},
-    ['전북함','FFX-813','호위함'],['대우조선해양','해군'],undefined,undefined,90),
+    ['전북함','FFX-813','호위함'],['대우조선해양','해군'],'https://upload.wikimedia.org/wikipedia/commons/5/5e/20130626_%EB%8C%80%ED%95%9C%ED%95%B4%ED%98%91_%EC%A0%84%EC%8A%B9%ED%96%89%EC%82%AC_%284%29_%289460603621%29.jpg','https://en.wikipedia.org/wiki/Incheon-class_frigate',90),
 
   w('rok-n014','충북함 (FFX-821)','ROKS Chungbuk FFX-821 (FFX-II)','NAVAL','ROK','OPERATIONAL','MED',
     '대구급(FFX-II) 1번함. 인천급 개량형. 홍상어 ASROC·장거리 대공미사일 탑재.',
     {displacement:'3,600t',armament:'127mm·K-VLS 24셀·SM-2·홍상어·해성·CIWS',crew:'140명',speed:'30노트',firstDeployed:'2018년',manufacturer:'현대중공업'},
-    ['대구급','FFX-II','호위함','홍상어','SM-2'],['현대중공업','해군'],undefined,'https://en.wikipedia.org/wiki/Daegu-class_frigate',93),
+    ['대구급','FFX-II','호위함','홍상어','SM-2'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/0/0f/ROKS_Seoul_%28FFG-821%29_underway_in_the_Yellow_Sea_during_the_commemoration_of_the_73rd_anniversary_of_the_Battle_of_Incheon_on_14_September_2023_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Daegu-class_frigate',93),
 
   w('rok-n015','충남함 (FFX-831)','ROKS Chungnam FFX-831 (FFX-III)','NAVAL','ROK','DEVELOPMENT','MED',
     'FFX-III 천안급 1번함. 스텔스 선형 강화·국산 AESA 레이더·해성-III 탑재 예정. 건조 중.',
@@ -340,7 +340,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-n018','마라도함 (LPH-6112)','ROKS Marado LPH-6112','NAVAL','ROK','OPERATIONAL','MED',
     '독도급 2번함. 독도함 대비 개량. F-35B 탑재 검토. 한국 경항모 사업 논의.',
     {displacement:'19,500t',armament:'CIWS·RIM-116·해성',crew:'330명+상륙병력700명',speed:'22노트',firstDeployed:'2021년',manufacturer:'한진중공업'},
-    ['마라도함','LPH-6112','경항모','수송함'],['한진중공업','해군'],undefined,undefined,95),
+    ['마라도함','LPH-6112','경항모','수송함'],['한진중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/4/4d/ROKS_Dokdo_%28LPH_6111%29_-_Invincible_Spirit.jpg','https://en.wikipedia.org/wiki/Dokdo-class_amphibious_assault_ship',95),
 
   w('rok-n019','도산안창호함 (SS-083)','ROKS Dosan Ahn Chang-ho SS-083','SUBMARINE','ROK','OPERATIONAL','HIGH',
     '장보고-III Batch-I 1번함. 3,000t급 국산 잠수함. 수직발사관 6셀(현무-2B·해성-III). 리튬이온 배터리.',
@@ -355,27 +355,27 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-n021','장보고-I급 잠수함 (SS-061~069)','Chang Bogo-class Submarine (Type 209)','SUBMARINE','ROK','OPERATIONAL','MED',
     'Type 209/1200 기반 국산 건조 잠수함. 9척 운용. 어뢰관 8문. 재래식 추진.',
     {displacement:'1,200t',armament:'533mm 어뢰관 8문·Mk37 어뢰',crew:'33명',speed:'22노트(수중)',firstDeployed:'1993년',manufacturer:'대우조선해양·현대중공업',quantity:'9척'},
-    ['장보고I','209형','잠수함','1200t'],['대우조선해양','해군'],undefined,'https://en.wikipedia.org/wiki/Chang_Bogo-class_submarine',90),
+    ['장보고I','209형','잠수함','1200t'],['대우조선해양','해군'],'https://upload.wikimedia.org/wikipedia/commons/6/6c/ROKS_Park_Wi.jpg','https://en.wikipedia.org/wiki/Chang_Bogo-class_submarine',90),
 
   w('rok-n022','손원일급 잠수함 (SS-072~079)','Son Won-il-class Submarine (Type 214)','SUBMARINE','ROK','OPERATIONAL','HIGH',
     'Type 214 기반 AIP 잠수함. 수소연료전지(AIP). 어뢰관 8문+하푼 캡슐발사. 장기 잠항.',
     {displacement:'1,800t',armament:'533mm 어뢰관 8문·하푼 UGM-84',crew:'27명',speed:'20노트',firstDeployed:'2007년',manufacturer:'대우조선해양·현대중공업',quantity:'9척'},
-    ['손원일급','214형','AIP','잠수함','하푼'],['대우조선해양','해군'],undefined,'https://en.wikipedia.org/wiki/Son_Won-il-class_submarine',93),
+    ['손원일급','214형','AIP','잠수함','하푼'],['대우조선해양','해군'],'https://upload.wikimedia.org/wikipedia/commons/4/49/ROKS_Yun_Bonggil_%28SS_077%29_190605-N-SS370-0028.jpg','https://en.wikipedia.org/wiki/Son_Won-il-class_submarine',93),
 
   w('rok-n023','해성-I 함대함미사일','Haeseong I Anti-Ship Missile','SSM','ROK','OPERATIONAL','HIGH',
     '국산 함대함 순항미사일. 터보팬 추진. GPS+TERCOM+IIR 유도. 수상함·PKG 탑재.',
     {range:'150km',speed:'마하 0.9',payload:'250kg',guidance:'TERCOM+GPS+IIR',firstDeployed:'2003년',manufacturer:'LIG넥스원'},
-    ['해성I','함대함','순항미사일','국산'],['LIG넥스원','해군'],undefined,'https://en.wikipedia.org/wiki/Haeseong',92),
+    ['해성I','함대함','순항미사일','국산'],['LIG넥스원','해군'],'https://upload.wikimedia.org/wikipedia/commons/0/03/Hae_fung.jpg','https://en.wikipedia.org/wiki/Haeseong',92),
 
   w('rok-n024','해성-II 함대지 순항미사일','Haeseong II Land-Attack Cruise Missile','CRUISE','ROK','OPERATIONAL','HIGH',
     '해성-I 지상타격 개량형. 함정 발사 지상공격용. GPS+TERCOM. 사거리 500km.',
     {range:'500km',speed:'마하 0.9',payload:'500kg',guidance:'TERCOM+GPS+IIR',firstDeployed:'2015년',manufacturer:'LIG넥스원'},
-    ['해성II','함대지','순항미사일','500km'],['LIG넥스원','해군'],undefined,undefined,90),
+    ['해성II','함대지','순항미사일','500km'],['LIG넥스원','해군'],'https://upload.wikimedia.org/wikipedia/commons/0/03/Hae_fung.jpg','https://en.wikipedia.org/wiki/Haeseong',90),
 
   w('rok-n025','해성-III 잠수함발사 순항미사일','Haeseong III SLCM','CRUISE','ROK','OPERATIONAL','HIGH',
     '잠수함 수직발사관 발사 지상공격 순항미사일. 도산안창호급 탑재. 사거리 1,000km+.',
     {range:'1,000km+',guidance:'TERCOM+GPS+IIR',propulsion:'터보팬',firstDeployed:'2021년',manufacturer:'LIG넥스원'},
-    ['해성III','SLCM','잠수함','순항미사일','1000km'],['LIG넥스원','해군'],undefined,undefined,88),
+    ['해성III','SLCM','잠수함','순항미사일','1000km'],['LIG넥스원','해군'],'https://upload.wikimedia.org/wikipedia/commons/0/03/Hae_fung.jpg','https://en.wikipedia.org/wiki/Haeseong',88),
 
   w('rok-n026','홍상어 대잠로켓','Hongsangeo Anti-Submarine Rocket','NAVAL','ROK','OPERATIONAL','MED',
     '국산 함정발사 대잠로켓(ASROC 대체). 청상어 경어뢰 탑재 로켓. 사거리 20km. FFX-II 탑재.',
@@ -427,7 +427,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-af006','KF-16C/D 블록52+','KF-16C/D Block 52+','AIRCRAFT','ROK','OPERATIONAL','LOW',
     '한국형 F-16C/D. AESA 레이더(AN/APG-83) 업그레이드 진행중. 사거리 연장·정밀무기 통합.',
     {speed:'마하 2.0',range:'3,200km',crew:'1~2명',armament:'AIM-120C·AIM-9X·JDAM·Maverick·SLAM-ER',firstDeployed:'1995년',manufacturer:'KAI·록히드마틴',quantity:'134기'},
-    ['KF-16','블록52+','AESA업그레이드','한국공군'],['KAI','록히드마틴','공군'],undefined,'https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',93),
+    ['KF-16','블록52+','AESA업그레이드','한국공군'],['KAI','록히드마틴','공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/F-16_June_2008.jpg/330px-F-16_June_2008.jpg','https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',93),
 
   w('rok-af007','FA-50 경공격기','FA-50 Golden Eagle Light Combat Aircraft','AIRCRAFT','ROK','OPERATIONAL','LOW',
     'T-50 기반 경공격기. AESA 레이더·AIM-9L 공대공·Mk82 폭탄. 폴란드·이라크·필리핀 수출.',
@@ -439,7 +439,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-af008','T-50 골든이글 고등훈련기','T-50 Golden Eagle Advanced Trainer','AIRCRAFT','ROK','OPERATIONAL','LOW',
     '한국 독자 개발(KAI+록히드마틴) 초음속 고등훈련기. F-16 조종사 전환 훈련. 다국 수출.',
     {speed:'마하 1.5',range:'1,851km',crew:'2명',armament:'공대공·공대지 기본 통합',firstDeployed:'2005년',manufacturer:'KAI',quantity:'60기+수출'},
-    ['T-50','골든이글','훈련기','초음속','KAI수출'],['KAI','공군'],undefined,'https://en.wikipedia.org/wiki/KAI_T-50_Golden_Eagle',95),
+    ['T-50','골든이글','훈련기','초음속','KAI수출'],['KAI','공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ROKAF_T-50_Golden_Eagle.jpg/320px-ROKAF_T-50_Golden_Eagle.jpg','https://en.wikipedia.org/wiki/KAI_T-50_Golden_Eagle',95),
 
   w('rok-af009','E-737 피스아이 AEW&C','E-737 Peace Eye AEW&C','AIRCRAFT','ROK','OPERATIONAL','HIGH',
     '보잉 737 기반 공중조기경보통제기(AEW&C). 360도 MESA 레이더. 공중지휘통제 핵심 자산. 4기 보유.',
@@ -635,17 +635,17 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-etc013','광개토대왕함 (DDH-971)','ROKS Gwanggaeto the Great DDH-971','NAVAL','ROK','OPERATIONAL','MED',
     '광개토대왕급(KDX-I) 1번함. 한국 최초 이지스급 구축함 선행. 미국제 RGM-84 하푼·SM-1 탑재.',
     {displacement:'3,900t',armament:'127mm·SM-1·하푼·청상어·CIWS',crew:'170명',speed:'30노트',firstDeployed:'1998년',manufacturer:'현대중공업'},
-    ['광개토대왕','KDX-I','구축함','SM-1'],['현대중공업','해군'],undefined,'https://en.wikipedia.org/wiki/Gwanggaeto_the_Great-class_destroyer',90),
+    ['광개토대왕','KDX-I','구축함','SM-1'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/a/a6/2009%EB%85%845%EC%9B%9415%EC%9D%BC_%ED%95%B4%EA%B5%B0_1%ED%95%A8%EB%8C%80%ED%9B%88%EB%A0%A8_%287193824738%29.jpg','https://en.wikipedia.org/wiki/Gwanggaeto_the_Great-class_destroyer',90),
 
   w('rok-etc014','을지문덕함 (DDH-972)','ROKS Eulji Mundeok DDH-972','NAVAL','ROK','OPERATIONAL','MED',
     '광개토대왕급 2번함.',
     {displacement:'3,900t',armament:'127mm·SM-1·하푼·청상어',crew:'170명',firstDeployed:'1999년',manufacturer:'대우조선해양'},
-    ['을지문덕','DDH-972','KDX-I'],['대우조선해양','해군'],undefined,undefined,90),
+    ['을지문덕','DDH-972','KDX-I'],['대우조선해양','해군'],'https://upload.wikimedia.org/wikipedia/commons/a/a6/2009%EB%85%845%EC%9B%9415%EC%9D%BC_%ED%95%B4%EA%B5%B0_1%ED%95%A8%EB%8C%80%ED%9B%88%EB%A0%A8_%287193824738%29.jpg','https://en.wikipedia.org/wiki/Gwanggaeto_the_Great-class_destroyer',90),
 
   w('rok-etc015','양만춘함 (DDH-973)','ROKS Yang Man-chun DDH-973','NAVAL','ROK','OPERATIONAL','MED',
     '광개토대왕급 3번함.',
     {displacement:'3,900t',armament:'127mm·SM-1·하푼·청상어',crew:'170명',firstDeployed:'2000년',manufacturer:'현대중공업'},
-    ['양만춘','DDH-973','KDX-I'],['현대중공업','해군'],undefined,undefined,90),
+    ['양만춘','DDH-973','KDX-I'],['현대중공업','해군'],'https://upload.wikimedia.org/wikipedia/commons/a/a6/2009%EB%85%845%EC%9B%9415%EC%9D%BC_%ED%95%B4%EA%B5%B0_1%ED%95%A8%EB%8C%80%ED%9B%88%EB%A0%A8_%287193824738%29.jpg','https://en.wikipedia.org/wiki/Gwanggaeto_the_Great-class_destroyer',90),
 
   w('rok-etc016','K방산 수출 천무 폴란드형','K239 Chunmoo Export (Poland)','MLRS','ROK','OPERATIONAL','HIGH',
     '폴란드 수출형 천무. 288대 계약(2022년). 현지 면허생산 포함. NATO 탄약 호환.',
@@ -665,7 +665,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-etc019','FA-50PL 수출형 (폴란드)','FA-50PL Export (Poland)','AIRCRAFT','ROK','OPERATIONAL','LOW',
     'FA-50 폴란드 수출형. 48기 계약. AESA·미티어 통합. 2023년 인도 개시.',
     {speed:'마하 1.5',armament:'미티어·AIM-9X·JDAM·AGM-65',firstDeployed:'2023년(폴란드)',manufacturer:'KAI',quantity:'48기'},
-    ['FA-50PL','폴란드수출','48기','방산'],['KAI','폴란드공군'],undefined,undefined,97),
+    ['FA-50PL','폴란드수출','48기','방산'],['KAI','폴란드공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FA-50_ROKAF.jpg/320px-FA-50_ROKAF.jpg','https://en.wikipedia.org/wiki/KAI_T-50_Golden_Eagle',97),
 
   w('rok-etc020','K2PL 수출형 전차 (폴란드)','K2PL Export (Poland)','GROUND','ROK','DEVELOPMENT','MED',
     '폴란드 수출형 K2 전차. 820대 면허생산 계약. 폴란드 ERA·능동방호 현지사양. 2026년 양산 예정.',

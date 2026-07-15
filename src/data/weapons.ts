@@ -429,6 +429,8 @@ export const WEAPONS: WeaponSystem[] = [
     relatedIntelIds: [],
     tags: ['순항미사일', '지대지', '현무', '장거리'],
     sources: ['방위사업청', 'IISS', 'CSIS Missile Defense Project'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyunmoo-3_missile_carrier.jpg',
+    wikiUrl: 'https://en.wikipedia.org/wiki/Hyunmoo-3',
   },
 
   {
@@ -538,6 +540,8 @@ export const WEAPONS: WeaponSystem[] = [
     relatedIntelIds: [],
     tags: ['전술미사일', '장사정포대응', '대화력전'],
     sources: ['방위사업청', 'KIDA'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Hanwha_CTM-290_tactical_ballistic_missile.jpg',
+    wikiUrl: 'https://en.wikipedia.org/wiki/CTM-290',
   },
 
   {
@@ -650,6 +654,8 @@ export const WEAPONS: WeaponSystem[] = [
     relatedIntelIds: [],
     tags: ['지대공', '고고도방어', 'KAMD', '미사일방어'],
     sources: ['방위사업청', 'KIDA', '국방부'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Long-range_Surface-to-Air_Missile.jpg',
+    wikiUrl: 'https://en.wikipedia.org/wiki/L-SAM',
   },
 
   // ── 대한민국 항공전력 ────────────────────────────────────────────────────────

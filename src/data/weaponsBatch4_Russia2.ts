@@ -52,7 +52,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '4.5세대 초기동 전투기. 추력편향 노즐·이바르스(IBAR) 능동위상배열 레이더. R-37M 400km 공대공.',
     {speed:'마하 2.25',range:'3,600km',ceiling:'18,000m',crew:'1명',armament:'R-37M·R-77-1·Kh-31P·30mm GSh-30-1',firstDeployed:'2014년',manufacturer:'수호이',quantity:'150기+'},
     ['Su-35S','슈퍼플랭커','4.5세대','추력편향','R-37M'],['러시아공군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-35',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Russian_Air_Force%2C_RF-81719%2C_Sukhoi_Su-35S_%2849581740157%29.jpg/330px-Russian_Air_Force%2C_RF-81719%2C_Sukhoi_Su-35S_%2849581740157%29.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-35',88),
 
   w('rus2-af003','Su-34 풀백 폭격기','Su-34 Fullback Strike Fighter','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
     'Su-27 기반 전폭기. 나란히 앉는 복좌 조종석. Kh-59·Kh-101 공대지. 우크라이나 전쟁 주요 타격기.',

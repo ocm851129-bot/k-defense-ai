@@ -27,7 +27,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     'F-15E 최신 개량형. EPAWSS 전자전·디지털 조종석. 4.5세대. 12개 하드포인트·13,000kg 탑재.',
     {speed:'마하 2.5',range:'3,900km',crew:'1~2명',armament:'AIM-120D·AIM-9X·JASSM·SDB II',firstDeployed:'2021년',manufacturer:'보잉',quantity:'144기 계획'},
     ['F-15EX','이글II','4.5세대','EPAWSS','공중타격'],['USAF','보잉'],
-    undefined,'https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15E_Strike_Eagle',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/F-15EX_first_flight.jpg/320px-F-15EX_first_flight.jpg','https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15E_Strike_Eagle',95),
 
   w('usa-a005','F-16C 블록 70 바이퍼','F-16C Block 70 Viper','AIRCRAFT','USA','OPERATIONAL','LOW',
     'F-16 최신 생산형. AESA 레이더·JHMCS II 헬멧 조준기. 세계 28개국 운용 다목적 전투기.',

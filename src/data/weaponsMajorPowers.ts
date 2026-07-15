@@ -414,5 +414,5 @@ export const WEAPONS_MAJOR_POWERS: WeaponSystem[] = [
     '사우디 공군 최신 F-15SA. EPAWSS+APG-63(v)3 AESA. 예멘 공습 주력. 84대 보유.',
     {range:'3,900km',speed:'마하 2.5',payload:'12,000kg',firstDeployed:'2017년',quantity:'84대',armament:'AIM-120C+AIM-9M+GBU-28+JDAM'},
     ['F-15SA','사우디','예멘공습','AESA','미국수출'],['Boeing','RSAF'],
-    undefined,'https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle_variants#F-15S/SA',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg/330px-F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg','https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle_variants#F-15S/SA',90),
 ]

@@ -8,7 +8,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '영국 공군 유로파이터. 미티어·AIM-132 ASRAAM·스톰 섀도우. 최신 E-스캔 CAPTOR-E 레이더 업그레이드.',
     {speed:'마하 2.0',range:'2,900km',crew:'1~2명',armament:'미티어·AIM-132·스톰섀도우·브림스톤',firstDeployed:'2007년',manufacturer:'BAE Systems',quantity:'160기'},
     ['타이푼','유로파이터','FGR4','미티어','스톰섀도우'],['BAE Systems','RAF'],
-    undefined,'https://en.wikipedia.org/wiki/Eurofighter_Typhoon',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/330px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg','https://en.wikipedia.org/wiki/Eurofighter_Typhoon',95),
 
   w('uk2-af002','F-35B 라이트닝 II (영국)','F-35B Lightning II (RAF/RN)','AIRCRAFT','UK','OPERATIONAL','LOW',
     '영국 공군·해군 공동 운용. 퀸 엘리자베스급 항모 탑재. 48기 도입 완료.',
@@ -130,7 +130,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '독일 공군 유로파이터. 141기 운용. AESA CAPTOR-E 업그레이드. 타우러스 KEPD 350 탑재.',
     {speed:'마하 2.0',range:'2,900km',crew:'1명',armament:'미티어·AIM-9X·타우러스KEPD350·BWS',firstDeployed:'2004년',manufacturer:'Eurofighter GmbH',quantity:'141기'},
     ['타이푼','독일공군','CAPTOR-E','타우러스'],['Eurofighter','독일공군'],
-    undefined,'https://en.wikipedia.org/wiki/Eurofighter_Typhoon',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/330px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg','https://en.wikipedia.org/wiki/Eurofighter_Typhoon',95),
 
   w('de2-m001','PzH2000 155mm 자주포','PzH2000 Self-Propelled Howitzer','ARTILLERY','GERMANY','OPERATIONAL','LOW',
     '세계 최고 자주포. 155mm/52구경장·자동 탄약 처리(분당 13발). 사거리 56km. 우크라이나 지원.',
@@ -160,7 +160,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
   w('it2-af001','유로파이터 타이푼 (이탈리아)','Eurofighter Typhoon (Italy AMI)','AIRCRAFT','NATO','OPERATIONAL','LOW',
     '이탈리아 공군 타이푼. 96기. 미티어·AIM-120C. CAPTOR-E 업그레이드 예정.',
     {speed:'마하 2.0',range:'2,900km',crew:'1명',armament:'미티어·AIM-120C·IRIS-T',firstDeployed:'2004년',manufacturer:'Eurofighter',quantity:'96기'},
-    ['타이푼','이탈리아','유로파이터'],['이탈리아공군'],undefined,undefined,90),
+    ['타이푼','이탈리아','유로파이터'],['이탈리아공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/330px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg','https://en.wikipedia.org/wiki/Eurofighter_Typhoon',90),
 
   w('it2-n001','카보우르 STOVL 항모','ITS Cavour STOVL Aircraft Carrier','NAVAL','NATO','OPERATIONAL','LOW',
     '이탈리아 STOVL 항모. 27,000t. F-35B 탑재 가능(2021년 개조). AV-8B+ 선행 운용.',
@@ -245,7 +245,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
   w('esp2-af001','유로파이터 타이푼 (스페인)','Eurofighter Typhoon (Spanish Air Force)','AIRCRAFT','NATO','OPERATIONAL','LOW',
     '스페인 공군 타이푼. 73기. 미티어·AIM-9X·타우러스 탑재.',
     {speed:'마하 2.0',range:'2,900km',crew:'1명',armament:'미티어·AIM-9X·타우러스',firstDeployed:'2003년',manufacturer:'EADS·CASA',quantity:'73기'},
-    ['타이푼','스페인','유로파이터'],['스페인공군'],undefined,undefined,90),
+    ['타이푼','스페인','유로파이터'],['스페인공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/330px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg','https://en.wikipedia.org/wiki/Eurofighter_Typhoon',90),
 
   // ── 핀란드 ────────────────────────────────────────────────────────────────
   w('fin2-af001','F-35A (핀란드)','F-35A Lightning II (Finland)','AIRCRAFT','NATO','OPERATIONAL','LOW',
@@ -257,7 +257,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
   w('gr2-af001','라팔 F3R (그리스)','Rafale F3R (Hellenic Air Force)','AIRCRAFT','NATO','OPERATIONAL','LOW',
     '그리스 라팔 18기 도입. 2021~2022년 인도. 터키 F-16v 대응.',
     {speed:'마하 1.8',range:'3,700km',crew:'1명',armament:'미티어·MICA·SCALP·ASMP-A',firstDeployed:'2021년',manufacturer:'다소',quantity:'18기+6(중고)+18(신규)'},
-    ['라팔','그리스','터키대응','다소'],['다소','그리스공군'],undefined,undefined,95),
+    ['라팔','그리스','터키대응','다소'],['다소','그리스공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rafale_-_RIAT_2009_%283751416421%29.jpg/330px-Rafale_-_RIAT_2009_%283751416421%29.jpg','https://en.wikipedia.org/wiki/Dassault_Rafale',95),
 
   // ── 벨기에 ───────────────────────────────────────────────────────────────
   w('bel2-af001','F-35A (벨기에)','F-35A Lightning II (Belgium)','AIRCRAFT','NATO','DEVELOPMENT','LOW',

@@ -22,7 +22,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     'K200 장갑차 개량형. 엔진·변속기 업그레이드. K6 12.7mm 탑재. 보병 수송 주력. 노후화로 K21/K808 전환 중.',
     {weight:'13.5t',armament:'K6 12.7mm HMG',crew:'3+9명',speed:'74km/h',range:'480km',firstDeployed:'1985년(A1: 1993년)',manufacturer:'한국기계연구소→현대로템',quantity:'2,800여대'},
     ['K200A1','장갑차','APC','보병수송'],['국방부','방위사업청'],
-    undefined,'https://en.wikipedia.org/wiki/K200_APC',88),
+    'https://upload.wikimedia.org/wikipedia/commons/5/5d/2011.7.5_%EC%88%98%EA%B8%B0%EC%82%AC_%EC%A0%80%ED%83%84%EC%86%8C%EB%85%B9%EC%83%89%EC%84%B1%EC%9E%A5_%287633933564%29.jpg','https://en.wikipedia.org/wiki/K200_KIFV',88),
 
   w('mnd-mob004','M48A5K 전차 퇴역','M48A5K Patton ROK Retired','GROUND','ROK','RETIRED','LOW',
     '한국군 M48 패튼 최종 개량형. 105mm 강선포·엔진 업그레이드. 2023년까지 전량 퇴역 완료.',
@@ -34,7 +34,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     'K9 자주포 전용 탄약보급장갑차. 무인 자동 이송. 전장 보급 능력 혁신. K9와 1:1 세트 운용.',
     {weight:'47t',armament:'없음(보급 전용)',crew:'3명',speed:'60km/h',firstDeployed:'2004년',manufacturer:'삼성테크윈(현 한화에어로스페이스)',quantity:'100여대'},
     ['K10','탄약보급','ARV','K9세트'],['한화에어로스페이스','육군'],
-    undefined,undefined,90),
+    'https://upload.wikimedia.org/wikipedia/commons/0/0a/K10_ARV.jpg','https://en.wikipedia.org/wiki/K10_ammunition_resupply_vehicle',90),
 
   w('mnd-mob006','K1 구난전차','K1 Armored Recovery Vehicle','GROUND','ROK','OPERATIONAL','LOW',
     'K1 전차 기반 구난장갑차. 20t 윈치·크레인 탑재. 전장 파손 전차 견인·구난.',
@@ -119,7 +119,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     '한국 독자 개발 3세대 대전차미사일. 이중 모드(자동/반자동). K21 IFV 탑재 및 보병 휴대형.',
     {weight:'20kg(미사일)',range:'2.5km',firstDeployed:'2015년',manufacturer:'LIG넥스원'},
     ['현궁','ATGM','대전차미사일','K21'],['LIG넥스원','방위사업청'],
-    undefined,undefined,90),
+    'https://upload.wikimedia.org/wikipedia/commons/2/22/AT-1K_Raybolt.png','https://en.wikipedia.org/wiki/Raybolt',90),
 
   w('mnd-fire010','스파이크-NLOS','Spike NLOS Anti-Tank Missile','MISSILE','ISRAEL','OPERATIONAL','HIGH',
     '이스라엘 스파이크 NLOS. 한국 육군 도입. 25km 비가시선 정밀 타격. TV/IR 이중 탐색기.',
@@ -161,7 +161,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     '한국 공군 운용 PAC-3 MSE. 탄도미사일 직격요격(Hit-to-Kill). 수도권 핵심 방어.',
     {range:'40km',ceiling:'25km',firstDeployed:'2008년(PAC-2)/2022년(PAC-3MSE)',manufacturer:'레이시언'},
     ['PAC-3','패트리어트','탄도미사일방어','수도권방어'],['레이시언','공군'],
-    undefined,'https://en.wikipedia.org/wiki/MIM-104_Patriot',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg/330px-U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg','https://en.wikipedia.org/wiki/MIM-104_Patriot',92),
 
   // ══ 항공 무기체계 ════════════════════════════════════════════════════════════
   w('mnd-air001','AH-64E 아파치 가디언','AH-64E Apache Guardian ROK','HELICOPTER','USA','OPERATIONAL','HIGH',
@@ -256,19 +256,19 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     '자주대공포+신궁 복합 단거리방공. K30 비호 30mm 자주대공포에 신궁 미사일 추가.',
     {ceiling:'3km',range:'5.5km(미사일)/3km(포)',firstDeployed:'2013년',manufacturer:'한화디펜스'},
     ['비호복합','SHORAD','단거리방공','자주대공포','신궁'],['한화디펜스','방위사업청'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/e/ef/US_Army_photo_160803-A-VV548-006_Standing_Watch_together.jpg','https://en.wikipedia.org/wiki/K30_Biho',88),
 
   w('mnd-prot002','K30 비호 자주대공포','K30 Biho 30mm SPAAG','SAM','ROK','OPERATIONAL','MED',
     '한국 독자 개발 30mm 자주대공포. 쌍열포탑. K21 차체 기반. 분당 600발. 저고도 방공.',
     {weight:'25.6t',armament:'30mm 쌍열 자동포',ceiling:'3km',range:'3km',firstDeployed:'1999년',manufacturer:'한화디펜스'},
     ['K30','비호','SPAAG','30mm','자주대공'],['한화디펜스','국방부'],
-    undefined,'https://en.wikipedia.org/wiki/K30_Biho',88),
+    'https://upload.wikimedia.org/wikipedia/commons/e/ef/US_Army_photo_160803-A-VV548-006_Standing_Watch_together.jpg','https://en.wikipedia.org/wiki/K30_Biho',88),
 
   w('mnd-prot003','신궁 휴대대공미사일','Shingung MANPADS Korea','SAM','ROK','OPERATIONAL','MED',
     '한국 독자 개발 2세대 휴대대공미사일. IIR 탐색기(전방위). 재머 저항성. 비호복합 탑재.',
     {weight:'23kg(발사기)',range:'7km',ceiling:'3.5km',firstDeployed:'2004년',manufacturer:'LIG넥스원'},
     ['신궁','MANPADS','휴대대공','IIR'],['LIG넥스원','방위사업청'],
-    undefined,'https://en.wikipedia.org/wiki/Shingung',88),
+    'https://upload.wikimedia.org/wikipedia/commons/a/a7/Promotional_booklet_of_the_Republic_of_Korea_Armed_Forces_2019_-_Chiron_%28Shingung%29_%28cropped%29.png','https://en.wikipedia.org/wiki/Chiron_(missile)',88),
 
   w('mnd-prot004','M167 발칸','M167 VADS Anti-Aircraft Gun ROK','GROUND','USA','OPERATIONAL','LOW',
     '미국 M167 발칸 대공포 한국군 운용. 20mm 6연장 회전포신. 후방 기지 방공.',
@@ -311,7 +311,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     'K21 차체 기반 105mm 경전차. 도서·산악 지역 작전. 공중 수송 가능. 2023년 시제.',
     {weight:'26t',armament:'105mm 강선포',crew:'3명',manufacturer:'현대로템'},
     ['K21-105','경전차','105mm','공중수송'],['현대로템','방위사업청'],
-    undefined,undefined,70),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/K21_IFV.jpg/320px-K21_IFV.jpg','https://en.wikipedia.org/wiki/K21',70),
 
   // ══ 공군 지원 전력 ════════════════════════════════════════════════════════
   w('mnd-af001','F-35A 스텔스전투기 한국','F-35A Lightning II ROK','AIRCRAFT','USA','OPERATIONAL','HIGH',
@@ -331,7 +331,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     'T-50 기반 경전투기. 20mm 기관포·AIM-9·Mk82. 폴란드·필리핀·이라크 수출.',
     {speed:'마하 1.5',crew:'2명',armament:'20mm M61A1·AIM-9·Mk82·GBU-38',firstDeployed:'2013년',quantity:'60기',manufacturer:'KAI'},
     ['FA-50','파이팅이글','경전투기','폴란드수출','T-50'],['KAI','방위사업청'],
-    undefined,'https://en.wikipedia.org/wiki/KAI_T-50_Golden_Eagle',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FA-50_ROKAF.jpg/320px-FA-50_ROKAF.jpg','https://en.wikipedia.org/wiki/KAI_T-50_Golden_Eagle',90),
 
   // ══ 해군 핵심 전력 ════════════════════════════════════════════════════════
   w('mnd-navy001','세종대왕급 이지스함','KDX-III Sejong Daewang-class Destroyer','SHIP','ROK','OPERATIONAL','HIGH',
@@ -350,7 +350,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     '한국 경항모급 상륙함. 항공기·수직이착륙기 탑재 가능. 상륙전 지원·재난구호.',
     {displacement:'18,800t',armament:'CIWS·미스트랄·함포',crew:'330명+병력700명',firstDeployed:'2007년',quantity:'1척(+마라도함)',manufacturer:'한진중공업'},
     ['독도함','상륙함','LPH','경항모','독도'],['한진중공업','해군'],
-    undefined,'https://en.wikipedia.org/wiki/Korean_amphibious_assault_ship_Dokdo',88),
+    'https://upload.wikimedia.org/wikipedia/commons/4/4d/ROKS_Dokdo_%28LPH_6111%29_-_Invincible_Spirit.jpg','https://en.wikipedia.org/wiki/Dokdo-class_amphibious_assault_ship',88),
 
   // ══ 전략 미사일 ════════════════════════════════════════════════════════════
   w('mnd-strat001','현무-4 탄도미사일','Hyunmoo-4 Ballistic Missile','MISSILE','ROK','OPERATIONAL','HIGH',
@@ -369,6 +369,6 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     '한국 최장거리 순항미사일. 사거리 1,500km. 지형대조·GPS 복합유도. 평양~베이징 타격 가능.',
     {range:'1,500km',payload:'500kg',speed:'마하 0.9',firstDeployed:'2010년대',manufacturer:'ADD·LIG넥스원'},
     ['현무3C','순항미사일','1500km','스텔스','TERCOM'],['ADD','방위사업청'],
-    undefined,undefined,78),
+    'https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyunmoo-3_missile_carrier.jpg','https://en.wikipedia.org/wiki/Hyunmoo-3',78),
 
 ]

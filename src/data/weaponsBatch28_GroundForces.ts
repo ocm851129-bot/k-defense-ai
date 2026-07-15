@@ -44,7 +44,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     '고기동 다연장로켓. M270 절반 탑재. GMLRS·ATACMS. 우크라이나 전세 역전 핵심.',
     {weight:'16.4t',armament:'GMLRS×6발 또는 ATACMS×2발',range:'300km(ATACMS)',firstDeployed:'2005년',manufacturer:'록히드마틴'},
     ['HIMARS','M142','다연장로켓','GMLRS','우크라이나역전'],['록히드마틴','미육군'],
-    undefined,'https://en.wikipedia.org/wiki/M142_HIMARS',98),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/HIMARS_-_missile_launched.jpg/330px-HIMARS_-_missile_launched.jpg','https://en.wikipedia.org/wiki/M142_HIMARS',98),
 
   // ── 러시아 지상군 추가 ────────────────────────────────────────────────
   w('gf-rus001','T-90M 프로르이브-3 전차','T-90M Proryv-3 MBT Russia','GROUND','RUSSIA','OPERATIONAL','HIGH',
@@ -208,7 +208,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     '한국 복합소총. 5.56mm+20mm 공중폭발탄. 적 엄폐물 뒤 타격. 2010년 전력화. 신뢰성 논란.',
     {weight:'6.1kg',caliber:'5.56mm(하부)+20mm(상부)',firstDeployed:'2010년',manufacturer:'S&T모티브'},
     ['K11','복합소총','공중폭발탄','20mm','한국'],['S&T모티브','육군'],
-    undefined,'https://en.wikipedia.org/wiki/K11_air_burst_weapon',80),
+    'https://upload.wikimedia.org/wikipedia/commons/d/d6/Daewoo_K11_Rifle_noBG.png','https://en.wikipedia.org/wiki/K11_air_burst_weapon',80),
 
   w('gf-sf004','K14 저격소총 한국','K14 7.62mm Sniper Rifle Korea','GROUND','ROK','OPERATIONAL','LOW',
     '한국 국산 저격소총. 7.62mm. 볼트액션. 800m 유효. 특수부대·저격수 지급.',

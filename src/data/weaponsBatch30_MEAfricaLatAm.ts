@@ -167,7 +167,7 @@ export const WEAPONS_BATCH30_ME_AFRICA_LATAM: WeaponSystem[] = [
     '이라크 F-16IQ 블록52. 36기. IS 공습 핵심. 이란과의 복잡한 안보지형.',
     {speed:'마하 2.0',crew:'1명',armament:'AIM-120·JDAM·AGM-65',firstDeployed:'2015년(이라크)',quantity:'36기(목표)',manufacturer:'록히드마틴'},
     ['F-16IQ','이라크','블록52','IS공습'],['록히드마틴','이라크공군'],
-    undefined,undefined,82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/F-16_June_2008.jpg/330px-F-16_June_2008.jpg','https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',82),
 
   // ── 아프가니스탄(탈레반 노획) ──────────────────────────────────────────
   w('me-afg001','탈레반 UH-60 노획 블랙호크','UH-60 Blackhawk Taliban Captured Afghanistan','HELICOPTER','USA','OPERATIONAL','LOW',
@@ -194,7 +194,7 @@ export const WEAPONS_BATCH30_ME_AFRICA_LATAM: WeaponSystem[] = [
     'FA-50 필리핀 수출. 12기. 남중국해 영유권 분쟁 대응 핵심.',
     {speed:'마하 1.5',crew:'2명',armament:'20mm·AIM-9',firstDeployed:'2015년(필리핀)',quantity:'12기',manufacturer:'KAI'},
     ['FA-50PH','필리핀','KAI','남중국해','12기'],['KAI','필리핀공군'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FA-50_ROKAF.jpg/320px-FA-50_ROKAF.jpg','https://en.wikipedia.org/wiki/KAI_T-50_Golden_Eagle',88),
 
   w('exp-rok002','K9 폴란드 수출','K9A1 K9PL Krab Successor Poland 672門','ARTILLERY','ROK','OPERATIONAL','LOW',
     '폴란드 K9 대규모 수출. 672문 계약. 유럽 방산 최대 계약 중 하나. 우크라이나 전쟁 촉발.',

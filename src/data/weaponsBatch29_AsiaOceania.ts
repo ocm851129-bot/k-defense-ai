@@ -152,7 +152,7 @@ export const WEAPONS_BATCH29_ASIA_OCEANIA: WeaponSystem[] = [
     '말레이시아 Su-30MKM. 18기. R-77·Kh-31A·KAB-500T. 인도·알제리형과 유사.',
     {speed:'마하 2.0',crew:'2명',armament:'R-77·Kh-31A·R-73',firstDeployed:'2007년(말레이시아)',quantity:'18기',manufacturer:'수호이'},
     ['Su-30MKM','말레이시아','Flanker','R-77'],['수호이','말레이시아공군'],
-    undefined,undefined,82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Sukhoi_Su-30SM_in_flight_2014.jpg/330px-Sukhoi_Su-30SM_in_flight_2014.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-30',82),
 
   // ── 인도네시아 무기 추가 ─────────────────────────────────────────────
   w('ao-idn001','레오파르트 2A4 인도네시아','Leopard 2A4 Indonesia Army Tank','GROUND','GERMANY','OPERATIONAL','HIGH',
@@ -209,7 +209,7 @@ export const WEAPONS_BATCH29_ASIA_OCEANIA: WeaponSystem[] = [
     '카자흐스탄 Su-30SM. 12기. CSTO 회원. 러시아 장비 주력.',
     {speed:'마하 2.0',crew:'2명',armament:'R-77·R-73·Kh-31',firstDeployed:'2015년(카자흐스탄)',quantity:'12기',manufacturer:'수호이'},
     ['Su-30SM','카자흐스탄','CSTO','러시아장비'],['수호이','카자흐스탄공군'],
-    undefined,undefined,78),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Sukhoi_Su-30SM_in_flight_2014.jpg/330px-Sukhoi_Su-30SM_in_flight_2014.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-30',78),
 
   w('ao-azb001','바이락타르 TB2 아제르바이잔','Bayraktar TB2 Azerbaijan Nagorno-Karabakh','UAV','TURKEY','OPERATIONAL','HIGH',
     '아제르바이잔 TB2. 나고르노-카라바흐 전쟁 핵심. 아르메니아 방공·지상군 제압.',

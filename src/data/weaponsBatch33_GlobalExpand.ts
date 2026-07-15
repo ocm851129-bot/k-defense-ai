@@ -222,7 +222,7 @@ export const WEAPONS_BATCH33_GLOBAL_EXPAND: WeaponSystem[] = [
     '루마니아 F-16AM. 우크라이나 훈련 기지 지원. 비직접 전투 지원.',
     {speed:'마하 2.0',crew:'1명',firstDeployed:'2023년(루마니아)'},
     ['F-16AM','루마니아','우크라이나훈련지원','NATO'],['루마니아공군'],
-    undefined,undefined,80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/F-16_June_2008.jpg/330px-F-16_June_2008.jpg','https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',80),
 
   w('misc-015','Leopard 1A5 우크라이나 독일 구형','Leopard 1A5 Ukraine German Old Tanks','GROUND','GERMANY','OPERATIONAL','LOW',
     '독일·벨기에·덴마크 레오파르트 1A5 우크라이나 공급. 200대+. 성능 부족 논란.',

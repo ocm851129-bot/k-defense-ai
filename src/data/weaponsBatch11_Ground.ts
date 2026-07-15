@@ -8,15 +8,15 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-ita002','프레챠 IFV','Freccia IFV 25mm','GROUND','NATO','OPERATIONAL','LOW','이탈리아 신형 IFV. 25mm 기관포·스파이크LR. 핀마카니카/이베코 개발.',{weight:'26t',armament:'25mm 기관포·스파이크LR',crew:'3+8명',speed:'70km/h',firstDeployed:'2009년',manufacturer:'핀마카니카'},['프레챠','IFV','이탈리아','25mm'],['핀마카니카','이탈리아군'],undefined,'https://en.wikipedia.org/wiki/VBM_Freccia',82),
 
   // ── 스페인 지상 ───────────────────────────────────────────────────────────
-  w('gnd-esp001','레오파르트 2A4 스페인','Leopard 2A4 Spain','GROUND','NATO','OPERATIONAL','LOW','독일 레오파르트 2A4 스페인 운용형. 235대. 120mm L44.',{weight:'55t',armament:'120mm L44·7.62mm×2',crew:'4명',firstDeployed:'1995년',manufacturer:'Rheinmetall',quantity:'235대'},['레오파르트','스페인전차','120mm'],['스페인군'],undefined,undefined,85),
+  w('gnd-esp001','레오파르트 2A4 스페인','Leopard 2A4 Spain','GROUND','NATO','OPERATIONAL','LOW','독일 레오파르트 2A4 스페인 운용형. 235대. 120mm L44.',{weight:'55t',armament:'120mm L44·7.62mm×2',crew:'4명',firstDeployed:'1995년',manufacturer:'Rheinmetall',quantity:'235대'},['레오파르트','스페인전차','120mm'],['스페인군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
   w('gnd-esp002','AMV 8×8 (스페인 VBCI형)','AMV 8x8 VBCI Spain','GROUND','NATO','OPERATIONAL','LOW','핀란드 AMV 기반 스페인 도입 8×8 장갑차. 롤스로이스 엔진.',{weight:'26t',crew:'2+11명',speed:'105km/h',firstDeployed:'2010년대',manufacturer:'Patria'},['AMV','8x8','스페인','장갑차'],['Patria','스페인군'],undefined,undefined,80),
 
   // ── 캐나다 지상 ───────────────────────────────────────────────────────────
-  w('gnd-can001','레오파르트 2A6M 캐나다','Leopard 2A6M (Canada)','GROUND','NATO','OPERATIONAL','LOW','독일제 레오파르트 2A6 캐나다 운용. 아프간 전쟁 실전. 82대 보유.',{weight:'63t',armament:'120mm L55·7.62mm×2',crew:'4명',firstDeployed:'2007년(캐나다)',quantity:'82대'},['레오파르트','캐나다','아프간실전'],['캐나다군'],undefined,undefined,88),
+  w('gnd-can001','레오파르트 2A6M 캐나다','Leopard 2A6M (Canada)','GROUND','NATO','OPERATIONAL','LOW','독일제 레오파르트 2A6 캐나다 운용. 아프간 전쟁 실전. 82대 보유.',{weight:'63t',armament:'120mm L55·7.62mm×2',crew:'4명',firstDeployed:'2007년(캐나다)',quantity:'82대'},['레오파르트','캐나다','아프간실전'],['캐나다군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',88),
   w('gnd-can002','LAV 6.0 장갑차','LAV 6.0 Armored Vehicle','GROUND','NATO','OPERATIONAL','LOW','캐나다 차세대 LAV. 8×8. 30mm 기관포. 이집트·사우디 수출. 500대+.',{weight:'30.5t',armament:'M242 30mm·7.62mm',crew:'3+8명',speed:'100km/h',firstDeployed:'2017년',manufacturer:'GD 캐나다'},['LAV6','캐나다','30mm','8x8'],['제너럴다이나믹스','캐나다군'],undefined,'https://en.wikipedia.org/wiki/LAV_6.0',88),
 
   // ── 네덜란드 지상 ─────────────────────────────────────────────────────────
-  w('gnd-nl001','레오파르트 2A6 네덜란드','Leopard 2A6 Netherlands','GROUND','NATO','OPERATIONAL','LOW','네덜란드 레오파르트 2A6. 우크라이나 일부 지원.',{weight:'62.3t',armament:'120mm L55·7.62mm×2',crew:'4명',firstDeployed:'2000년대',quantity:'61대(현역)+우크라이나지원'},['레오파르트','네덜란드','우크라이나지원'],['네덜란드군'],undefined,undefined,88),
+  w('gnd-nl001','레오파르트 2A6 네덜란드','Leopard 2A6 Netherlands','GROUND','NATO','OPERATIONAL','LOW','네덜란드 레오파르트 2A6. 우크라이나 일부 지원.',{weight:'62.3t',armament:'120mm L55·7.62mm×2',crew:'4명',firstDeployed:'2000년대',quantity:'61대(현역)+우크라이나지원'},['레오파르트','네덜란드','우크라이나지원'],['네덜란드군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',88),
 
   // ── 인도 지상 ─────────────────────────────────────────────────────────────
   w('gnd-ind001','T-90S 비쉬마 전차','T-90S Bhishma MBT (India)','GROUND','INDIA','OPERATIONAL','HIGH','러시아 T-90S 면허생산 인도형. 1,657대. 파키스탄 대응.',{weight:'46t',armament:'125mm 2A46M-4·12.7mm·7.62mm',crew:'3명',speed:'60km/h',firstDeployed:'2001년',manufacturer:'HVF(면허생산)',quantity:'1,657대'},['T-90S','비쉬마','인도전차','면허생산'],['HVF','인도육군'],undefined,'https://en.wikipedia.org/wiki/T-90S_Bhishma',85),
@@ -60,13 +60,13 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-irn003','BMP-2 이란 운용형','BMP-2 (Iran Boragh)','GROUND','IRAN','OPERATIONAL','MED','소련 BMP-2 이란 복제·개량형(보라). 수백 대 운용.',{weight:'14t',armament:'73mm 2A28 또는 23mm 2A7',crew:'3+7명',firstDeployed:'1990년대'},['보라','BMP-2','이란IFV'],['이란군'],undefined,undefined,68),
 
   // ── 튀르키예 지상 ─────────────────────────────────────────────────────────
-  w('gnd-tur001','레오파르트 2A4 터키','Leopard 2A4 Turkey','GROUND','TURKEY','OPERATIONAL','MED','터키 레오파르트 2A4. 시리아 내전 일부 격파. 339대 운용.',{weight:'55t',armament:'120mm L44',crew:'4명',quantity:'339대'},['레오파르트2A4','터키','시리아'],['터키군'],undefined,undefined,85),
+  w('gnd-tur001','레오파르트 2A4 터키','Leopard 2A4 Turkey','GROUND','TURKEY','OPERATIONAL','MED','터키 레오파르트 2A4. 시리아 내전 일부 격파. 339대 운용.',{weight:'55t',armament:'120mm L44',crew:'4명',quantity:'339대'},['레오파르트2A4','터키','시리아'],['터키군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
   w('gnd-tur002','M60T 사브라 전차','M60T Sabra (Turkey)','GROUND','TURKEY','OPERATIONAL','MED','M60A3 이스라엘 IMI 개량형 터키 운용. 120mm 활강포·ERA.',{weight:'59t',armament:'120mm MG-253 활강포·ERA',crew:'4명',firstDeployed:'2002년',manufacturer:'IMI'},['M60T','사브라','터키전차','120mm이스라엘'],['IMI','터키군'],undefined,'https://en.wikipedia.org/wiki/M60T_Sabra',82),
   w('gnd-tur003','키르피 MRAP','Kirpi MRAP','GROUND','TURKEY','OPERATIONAL','LOW','터키 독자 개발 MRAP. IED 방호. 쿠르드 반군 작전 실전. 수출 성공.',{weight:'14t',crew:'2+8명',speed:'110km/h',firstDeployed:'2009년',manufacturer:'BMC'},['키르피','MRAP','터키','IED방호'],['BMC','터키군'],undefined,'https://en.wikipedia.org/wiki/Kirpi_(MRAP)',82),
   w('gnd-tur004','ACV-15 IFV 터키','ACV-15 Armored Combat Vehicle','GROUND','TURKEY','OPERATIONAL','MED','미국 AIFV 기반 터키 면허생산 IFV. 25mm 기관포. 850대.',{weight:'14.7t',armament:'25mm Oerlikon·7.62mm·TOW',crew:'3+9명',firstDeployed:'1988년',quantity:'850대'},['ACV-15','터키IFV','25mm','면허생산'],['FNSS','터키군'],undefined,undefined,80),
 
   // ── 그리스 지상 ───────────────────────────────────────────────────────────
-  w('gnd-gr001','레오파르트 2HEL 그리스','Leopard 2HEL Greece','GROUND','NATO','OPERATIONAL','LOW','그리스 레오파르트 2A6·2A4 개량형 170대.',{weight:'62.5t',armament:'120mm L55',crew:'4명',quantity:'170대'},['레오파르트2HEL','그리스전차','120mm'],['그리스군'],undefined,undefined,85),
+  w('gnd-gr001','레오파르트 2HEL 그리스','Leopard 2HEL Greece','GROUND','NATO','OPERATIONAL','LOW','그리스 레오파르트 2A6·2A4 개량형 170대.',{weight:'62.5t',armament:'120mm L55',crew:'4명',quantity:'170대'},['레오파르트2HEL','그리스전차','120mm'],['그리스군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
   w('gnd-gr002','M48A5 그리스','M48A5 Patton Greece','GROUND','NATO','OPERATIONAL','LOW','그리스 M48A5 개량형. 파튼 계열. 350대 예비.',{weight:'49.7t',armament:'105mm M68',crew:'4명',quantity:'350대(예비)'},['M48A5','파튼','그리스'],['그리스군'],undefined,undefined,75),
 
   // ── 루마니아 지상 ─────────────────────────────────────────────────────────
@@ -81,16 +81,16 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-ukr002','BTR-4E 부크세타브스카 IFV','BTR-4E Bucephalus IFV','GROUND','UKRAINE','OPERATIONAL','HIGH','우크라이나 독자 IFV. 30mm 기관포·AT-13 대전차미사일. 나이지리아·이라크 수출.',{weight:'17t',armament:'30mm ZTM-1·AT-13',crew:'3+7명',firstDeployed:'2008년',manufacturer:'하르키우기계'},['BTR-4E','우크라이나IFV','30mm','수출'],['하르키우기계','우크라이나군'],undefined,'https://en.wikipedia.org/wiki/BTR-4',78),
 
   // ── 스위스 지상 ───────────────────────────────────────────────────────────
-  w('gnd-swi001','Pz87 레오파르트 스위스','Pz 87 Leo (Leopard 2A4 Switzerland)','GROUND','NATO','OPERATIONAL','LOW','스위스 레오파르트 2A4 운용. 130대. 중립국이나 고성능 전차 보유.',{weight:'55t',armament:'120mm L44',crew:'4명',quantity:'130대'},['레오파르트','스위스','중립국'],['스위스군'],undefined,undefined,85),
+  w('gnd-swi001','Pz87 레오파르트 스위스','Pz 87 Leo (Leopard 2A4 Switzerland)','GROUND','NATO','OPERATIONAL','LOW','스위스 레오파르트 2A4 운용. 130대. 중립국이나 고성능 전차 보유.',{weight:'55t',armament:'120mm L44',crew:'4명',quantity:'130대'},['레오파르트','스위스','중립국'],['스위스군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
 
   // ── 노르웨이 지상 ─────────────────────────────────────────────────────────
-  w('gnd-nor001','레오파르트 2A7NO 노르웨이','Leopard 2A7NO Norway','GROUND','NATO','DEVELOPMENT','LOW','노르웨이 레오파르트 2 최신 개량. 54대. APS 통합 예정.',{weight:'67t',armament:'120mm L55A1',crew:'4명',firstDeployed:'2025년(예상)',quantity:'54대'},['레오파르트2A7NO','노르웨이','APS'],['Rheinmetall','노르웨이군'],undefined,undefined,78),
+  w('gnd-nor001','레오파르트 2A7NO 노르웨이','Leopard 2A7NO Norway','GROUND','NATO','DEVELOPMENT','LOW','노르웨이 레오파르트 2 최신 개량. 54대. APS 통합 예정.',{weight:'67t',armament:'120mm L55A1',crew:'4명',firstDeployed:'2025년(예상)',quantity:'54대'},['레오파르트2A7NO','노르웨이','APS'],['Rheinmetall','노르웨이군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',78),
 
   // ── 덴마크 지상 ───────────────────────────────────────────────────────────
-  w('gnd-dnk001','레오파르트 2A7DK 덴마크','Leopard 2A7DK Denmark','GROUND','NATO','OPERATIONAL','LOW','덴마크 레오파르트 2A7 44대. 적극 우크라이나 지원.',{weight:'66t',armament:'120mm L55A1',crew:'4명',firstDeployed:'2023년',quantity:'44대'},['레오파르트2A7DK','덴마크','우크라이나지원'],['덴마크군'],undefined,undefined,88),
+  w('gnd-dnk001','레오파르트 2A7DK 덴마크','Leopard 2A7DK Denmark','GROUND','NATO','OPERATIONAL','LOW','덴마크 레오파르트 2A7 44대. 적극 우크라이나 지원.',{weight:'66t',armament:'120mm L55A1',crew:'4명',firstDeployed:'2023년',quantity:'44대'},['레오파르트2A7DK','덴마크','우크라이나지원'],['덴마크군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',88),
 
   // ── 핀란드 지상 ───────────────────────────────────────────────────────────
-  w('gnd-fin001','레오파르트 2A6FIN 핀란드','Leopard 2A6FIN Finland','GROUND','NATO','OPERATIONAL','LOW','핀란드 레오파르트 2A6. 200대. NATO 가입 후 군사력 급강화.',{weight:'62.3t',armament:'120mm L55',crew:'4명',quantity:'200대'},['레오파르트2A6','핀란드','200대','NATO'],['핀란드군'],undefined,undefined,88),
+  w('gnd-fin001','레오파르트 2A6FIN 핀란드','Leopard 2A6FIN Finland','GROUND','NATO','OPERATIONAL','LOW','핀란드 레오파르트 2A6. 200대. NATO 가입 후 군사력 급강화.',{weight:'62.3t',armament:'120mm L55',crew:'4명',quantity:'200대'},['레오파르트2A6','핀란드','200대','NATO'],['핀란드군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',88),
 
   // ── 체코 지상 ─────────────────────────────────────────────────────────────
   w('gnd-cze001','T-72M4CZ 전차','T-72M4CZ Czech Republic','GROUND','NATO','OPERATIONAL','MED','T-72 체코 개량형. 프랑스 TURMS 사격통제·독일 MTU 엔진. 30대.',{weight:'48t',armament:'125mm 2A46M',crew:'3명',firstDeployed:'2004년',quantity:'30대'},['T-72M4CZ','체코전차','프랑스사격통제'],['체코군'],undefined,undefined,78),
@@ -99,14 +99,14 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-svk001','T-72M1 슬로바키아','T-72M1 Slovakia','GROUND','NATO','OPERATIONAL','MED','슬로바키아 T-72M1. 우크라이나 지원으로 보유량 감소.',{armament:'125mm 2A46',crew:'3명',quantity:'30대(우크라이나지원후)'},['T-72M1','슬로바키아','우크라이나지원'],['슬로바키아군'],undefined,undefined,80),
 
   // ── 포르투갈 지상 ─────────────────────────────────────────────────────────
-  w('gnd-por001','레오파르트 2A6 포르투갈','Leopard 2A6 Portugal','GROUND','NATO','OPERATIONAL','LOW','포르투갈 레오파르트 2A6. 37대.',{weight:'62.3t',armament:'120mm L55',crew:'4명',quantity:'37대'},['레오파르트','포르투갈','37대'],['포르투갈군'],undefined,undefined,82),
+  w('gnd-por001','레오파르트 2A6 포르투갈','Leopard 2A6 Portugal','GROUND','NATO','OPERATIONAL','LOW','포르투갈 레오파르트 2A6. 37대.',{weight:'62.3t',armament:'120mm L55',crew:'4명',quantity:'37대'},['레오파르트','포르투갈','37대'],['포르투갈군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',82),
 
   // ── 헝가리 지상 ───────────────────────────────────────────────────────────
-  w('gnd-hun001','레오파르트 2A7+ 헝가리','Leopard 2A7+ Hungary','GROUND','NATO','OPERATIONAL','LOW','헝가리 레오파르트 2A7+ 44대 도입. 2024년부터.',{weight:'67t',armament:'120mm L55A1',crew:'4명',firstDeployed:'2023년',quantity:'44대'},['레오파르트2A7','헝가리','44대'],['Rheinmetall','헝가리군'],undefined,undefined,85),
+  w('gnd-hun001','레오파르트 2A7+ 헝가리','Leopard 2A7+ Hungary','GROUND','NATO','OPERATIONAL','LOW','헝가리 레오파르트 2A7+ 44대 도입. 2024년부터.',{weight:'67t',armament:'120mm L55A1',crew:'4명',firstDeployed:'2023년',quantity:'44대'},['레오파르트2A7','헝가리','44대'],['Rheinmetall','헝가리군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
   w('gnd-hun002','Lynx KF41 헝가리','Lynx KF41 IFV Hungary','GROUND','NATO','DEVELOPMENT','LOW','Rheinmetall Lynx KF41 헝가리 218대 계약. 현지생산.',{weight:'44t',armament:'35mm MK35·스파이크LR2',crew:'3+8명',firstDeployed:'2025년(예상)',manufacturer:'Rheinmetall Hungary',quantity:'218대'},['Lynx','헝가리','IFV','Rheinmetall'],['Rheinmetall','헝가리군'],undefined,undefined,82),
 
   // ── 루마니아 지상 추가 ────────────────────────────────────────────────────
-  w('gnd-rom002','레오파르트 2A8 루마니아','Leopard 2A8 Romania','GROUND','NATO','DEVELOPMENT','LOW','루마니아 레오파르트 2A8 200대 계약(2024년). 최신형.',{firstDeployed:'2026년+(예상)',quantity:'200대(계약)'},['레오파르트2A8','루마니아','200대','신규'],['Rheinmetall','루마니아군'],undefined,undefined,80),
+  w('gnd-rom002','레오파르트 2A8 루마니아','Leopard 2A8 Romania','GROUND','NATO','DEVELOPMENT','LOW','루마니아 레오파르트 2A8 200대 계약(2024년). 최신형.',{firstDeployed:'2026년+(예상)',quantity:'200대(계약)'},['레오파르트2A8','루마니아','200대','신규'],['Rheinmetall','루마니아군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',80),
 
   // ── 모로코 지상 ───────────────────────────────────────────────────────────
   w('gnd-mar001','M1A1 에이브람스 모로코','M1A1 Abrams Morocco SA','GROUND','NATO','OPERATIONAL','LOW','모로코 M1A1 에이브람스 222대. 북아프리카 최강 기갑력.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2012년',quantity:'222대'},['M1A1','모로코','북아프리카'],['제너럴다이나믹스','모로코군'],undefined,undefined,85),
@@ -129,7 +129,7 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-isr003','에이탄 차륜형 APC','Eitan 8x8 Wheeled APC','GROUND','ISRAEL','OPERATIONAL','LOW','이스라엘 최신 8×8 중장갑 APC. 30mm 기관포 원격무장. 트로피 APS.',{weight:'35t',armament:'30mm 기관포 RCWS·12.7mm·트로피APS',crew:'3+9명',speed:'90km/h',firstDeployed:'2020년'},['에이탄','이스라엘APC','8x8','트로피'],['이스라엘군'],undefined,'https://en.wikipedia.org/wiki/Eitan_(APC)',82),
 
   // ── 싱가포르 지상 ────────────────────────────────────────────────────────
-  w('gnd-sg001','레오파르트 2A4 싱가포르','Leopard 2A4 Singapore','GROUND','NATO','OPERATIONAL','LOW','싱가포르 레오파르트 2A4SG. 66대. 도시전 개조.',{weight:'55t',armament:'120mm L44',crew:'4명',firstDeployed:'2007년',quantity:'66대'},['레오파르트','싱가포르','도시전개조'],['싱가포르군'],undefined,undefined,85),
+  w('gnd-sg001','레오파르트 2A4 싱가포르','Leopard 2A4 Singapore','GROUND','NATO','OPERATIONAL','LOW','싱가포르 레오파르트 2A4SG. 66대. 도시전 개조.',{weight:'55t',armament:'120mm L44',crew:'4명',firstDeployed:'2007년',quantity:'66대'},['레오파르트','싱가포르','도시전개조'],['싱가포르군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
   w('gnd-sg002','IFV-25 Bionix 싱가포르','Bionix II IFV Singapore','GROUND','NATO','OPERATIONAL','LOW','싱가포르 독자 IFV. 25mm 기관포·AT-5. 800대.',{weight:'23t',armament:'25mm EX-35·7.62mm·AT-5',crew:'3+7명',speed:'70km/h',firstDeployed:'1997년',quantity:'800대'},['Bionix II','싱가포르IFV','25mm'],['ST Engineering','싱가포르군'],undefined,'https://en.wikipedia.org/wiki/Bionix',85),
 
   // ── 말레이시아 지상 ───────────────────────────────────────────────────────
@@ -139,7 +139,7 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-tha001','T-84U 오플로트-T 태국','T-84 Oplot-T Thailand','GROUND','NATO','OPERATIONAL','MED','우크라이나 T-84U 오플로트 태국 49대 도입. 납품 지연 논란.',{weight:'51t',armament:'125mm KBA-3',crew:'3명',firstDeployed:'2015년',quantity:'49대'},['오플로트','태국','우크라이나수출','납품지연'],['우크라이나','태국군'],undefined,undefined,72),
 
   // ── 인도네시아 지상 ───────────────────────────────────────────────────────
-  w('gnd-idn001','레오파르트 2A4 인도네시아','Leopard 2A4 Indonesia','GROUND','NATO','OPERATIONAL','LOW','독일 레오파르트 2A4 인도네시아 103대. 동남아 최다 레오파르트.',{weight:'55t',armament:'120mm L44',crew:'4명',firstDeployed:'2014년',quantity:'103대'},['레오파르트','인도네시아','동남아최다'],['인도네시아군'],undefined,undefined,85),
+  w('gnd-idn001','레오파르트 2A4 인도네시아','Leopard 2A4 Indonesia','GROUND','NATO','OPERATIONAL','LOW','독일 레오파르트 2A4 인도네시아 103대. 동남아 최다 레오파르트.',{weight:'55t',armament:'120mm L44',crew:'4명',firstDeployed:'2014년',quantity:'103대'},['레오파르트','인도네시아','동남아최다'],['인도네시아군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
 
   // ── 베트남 지상 ───────────────────────────────────────────────────────────
   w('gnd-vnm001','T-90SK 베트남','T-90SK Vietnam','GROUND','NATO','OPERATIONAL','HIGH','러시아 T-90S 베트남 도입. 64대. 중국 남중국해 긴장 대응.',{weight:'46.5t',armament:'125mm 2A46M-4',crew:'3명',firstDeployed:'2019년',quantity:'64대'},['T-90SK','베트남','중국대응','남중국해'],['러시아','베트남군'],undefined,undefined,82),

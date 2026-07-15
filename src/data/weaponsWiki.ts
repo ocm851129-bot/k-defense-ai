@@ -33,6 +33,7 @@ export const WEAPONS_WIKI: WeaponSystem[] = [
     detail:`## 현무-3C 순항미사일\n\n한국이 독자 개발한 아음속 지형추적 순항미사일 계열의 최장거리 버전.\n\n### 주요 제원\n- 사거리: 1,500km\n- 탄두: 500kg\n- 추진: 터보팬 엔진\n- 유도: 지형추적(TRN)+GPS+INS\n- 비행 고도: 저고도(10~30m) 지형추적\n\n### 운용 현황\n2012년 배치. 지상·함정·항공기 발사 가능. 현무-3D(3,000km) 개발 중.`,
     specs:{ range:'1,500km', payload:'500kg', propulsion:'터보팬', guidance:'지형추적+GPS+INS', firstDeployed:'2012년', manufacturer:'한화에어로스페이스' },
     confidence:92, lastUpdated:'2026-06-27', relatedIntelIds:[], tags:['현무-3C','순항미사일','1500km'], sources:['Wikipedia','CSIS'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyunmoo-3_missile_carrier.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Hyunmoo-3',
   },
   {
     id:'w-rok-w04', name:'현무-4', nameEng:'Hyunmoo-4 Ballistic Missile',

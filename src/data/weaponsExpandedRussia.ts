@@ -77,7 +77,7 @@ export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
     '4++ 세대 다목적 전투기. 3D 추력편향 엔진. R-37M 장거리 AAM 운용. 우크라이나 전선 주력 전투기.',
     {speed:'마하 2.25',range:'3,600km',ceiling:'18,000m',crew:'1명',armament:'30mm·R-77M·R-37M·Kh-31',firstDeployed:'2012년',manufacturer:'수호이',quantity:'100기+'},
     ['Su-35S','플랭커-E','4++세대','우크라이나','러시아전투기'],['러시아공군'],
-    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-35',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Russian_Air_Force%2C_RF-81719%2C_Sukhoi_Su-35S_%2849581740157%29.jpg/330px-Russian_Air_Force%2C_RF-81719%2C_Sukhoi_Su-35S_%2849581740157%29.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-35',90),
 
   w('rus-a003','Su-34 풀백','Sukhoi Su-34 Fullback','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
     '전폭기. Su-27 파생 나란히 2인승. 정밀유도무장·글라이딩탄 탑재. 우크라이나 전선 주력 타격기.',

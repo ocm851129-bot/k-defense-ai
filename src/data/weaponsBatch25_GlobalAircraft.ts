@@ -102,13 +102,13 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '유로파이터 트란슈 4. E-SCAN AESA·MBDA 미티어·ALARM SEAD. 쿠웨이트·카타르·이탈리아 공군 도입 예정.',
     {speed:'마하 2.0',crew:'1명',armament:'미티어·AMRAAM·ASRAAM·브림스톤',firstDeployed:'2025년(목표)',manufacturer:'에어버스/BAE/레오나르도'},
     ['타이푼','트란슈4','유로파이터','미티어','AESA'],['에어버스','BAE','레오나르도'],
-    undefined,'https://en.wikipedia.org/wiki/Eurofighter_Typhoon',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg/330px-RAF_Eurofighter_EF-2000_Typhoon_F2_Lofting-1.jpg','https://en.wikipedia.org/wiki/Eurofighter_Typhoon',88),
 
   w('ga-eu002','다소 라팔 F4','Dassault Rafale F4 Multirole','AIRCRAFT','FRANCE','OPERATIONAL','HIGH',
     '라팔 F4 표준. AESA RBE2 레이더·타레스 스펙트라 EW. SCALP-EG·미티어·핵미사일(ASMP-A). 인도·이집트 수출.',
     {speed:'마하 1.8',crew:'1명(복좌형별도)',armament:'ASMP-A·미티어·SCALP-EG·mica',firstDeployed:'2021년(F4)',quantity:'100여기(프랑스)',manufacturer:'다소'},
     ['라팔F4','다소','ASMP-A','미티어','인도수출'],['다소','프랑스공군'],
-    undefined,'https://en.wikipedia.org/wiki/Dassault_Rafale',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rafale_-_RIAT_2009_%283751416421%29.jpg/330px-Rafale_-_RIAT_2009_%283751416421%29.jpg','https://en.wikipedia.org/wiki/Dassault_Rafale',92),
 
   w('ga-eu003','그리펜 E','JAS 39E Gripen E Fighter','AIRCRAFT','SWEDEN','OPERATIONAL','HIGH',
     '스웨덴 단발 4.5세대. 스파이-7 AESA. 에어버스 미티어 탑재. 브라질·헝가리 수출. 우크라이나 요청.',
@@ -157,32 +157,32 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '대만 F-16V 업그레이드. APG-83 AESA·링크16. 66기 신규+141기 업그레이드. 대중 억제.',
     {speed:'마하 2.0',crew:'1명',armament:'AIM-120D·AIM-9X·GBU-31',firstDeployed:'2021년(대만V)',quantity:'207기(목표)',manufacturer:'록히드마틴'},
     ['F-16V','대만','APG-83','블록70','AESA'],['록히드마틴','ROCAF'],
-    undefined,'https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/F-16_June_2008.jpg/330px-F-16_June_2008.jpg','https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon',90),
 
   w('ga-as006','라팔 F3R 인도','Rafale F3R India Air Force','AIRCRAFT','FRANCE','OPERATIONAL','HIGH',
     '인도 공군 라팔. 36기 도입. 히말라야 고고도 작전. 파키스탄·중국 억제. HAMMER 폭탄 탑재.',
     {speed:'마하 1.8',crew:'1명',armament:'미티어·MICA·HAMMER·SCALP',firstDeployed:'2020년(인도)',quantity:'36기',manufacturer:'다소'},
     ['라팔','인도','36기','HAMMER','히말라야'],['다소','IAF'],
-    undefined,undefined,90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rafale_-_RIAT_2009_%283751416421%29.jpg/330px-Rafale_-_RIAT_2009_%283751416421%29.jpg','https://en.wikipedia.org/wiki/Dassault_Rafale',90),
 
   // ── 중동 전투기 ─────────────────────────────────────────────────────
   w('ga-me001','F-15SA 이글 사우디','F-15SA Eagle Saudi Arabia','AIRCRAFT','USA','OPERATIONAL','HIGH',
     '사우디 F-15SA. 84기+FMS. AESA·컨포멀탱크·JDAM·SDB. 예멘 공습 주력.',
     {speed:'마하 2.5',crew:'1명',armament:'AIM-120D·GBU-31·SDB·AIM-9X',firstDeployed:'2012년',quantity:'84기',manufacturer:'보잉'},
     ['F-15SA','사우디','예멘공습','AESA','이글'],['보잉','RSAF'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg/330px-F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg','https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle',88),
 
   w('ga-me002','라팔 카타르','Rafale F3R Qatar Emirate Force','AIRCRAFT','FRANCE','OPERATIONAL','HIGH',
     '카타르 라팔. 36기. 중동 최신 라팔. 미티어·SCALP EG. 유럽 비축 대안.',
     {speed:'마하 1.8',crew:'1명',armament:'미티어·SCALP EG·MICA',firstDeployed:'2021년(카타르)',quantity:'36기',manufacturer:'다소'},
     ['라팔','카타르','36기','미티어'],['다소','QEAF'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rafale_-_RIAT_2009_%283751416421%29.jpg/330px-Rafale_-_RIAT_2009_%283751416421%29.jpg','https://en.wikipedia.org/wiki/Dassault_Rafale',88),
 
   w('ga-me003','F-15EX 이스라엘 요청','F-15EX Eagle II Israel','AIRCRAFT','USA','DEVELOPMENT','HIGH',
     '이스라엘 F-15EX 차세대 이글 도입 논의. 구형 F-15C/D 대체. APG-82 AESA.',
     {speed:'마하 2.5',crew:'1명',armament:'AIM-120D·GBU-28 벙커버스터',firstDeployed:'2025년+(이스라엘)',manufacturer:'보잉'},
     ['F-15EX','이스라엘','이글II','APG-82'],['보잉','IAF'],
-    undefined,undefined,68),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg/330px-F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg','https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle',68),
 
   // ── 훈련기/기타 항공 ─────────────────────────────────────────────────
   w('ga-tr001','T-7A 레드호크','T-7A Red Hawk Trainer USAF','AIRCRAFT','USA','DEVELOPMENT','MED',

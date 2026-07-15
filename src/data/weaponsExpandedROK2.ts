@@ -8,7 +8,7 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '한국 최초 독자 개발 주력전차. M48A5K 대체. 1988년 서울올림픽에서 이름을 딴 K1. 1,000여대 운용.',
     {weight:'51.1톤',armament:'M68A1 105mm 강선포·M60D·M2HB',crew:'4명',speed:'65km/h',propulsion:'MTU MB 871 Ka-501 1,200hp',firstDeployed:'1987년',manufacturer:'현대정공(현대로템)',quantity:'1,027대'},
     ['K1','88전차','한국최초전차','현대로템','M48대체'],['현대로템','육군'],
-    undefined,'https://en.wikipedia.org/wiki/K1_88-Tank',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/K1A2_MBT.jpg/320px-K1A2_MBT.jpg','https://en.wikipedia.org/wiki/K1_88-Tank',92),
 
   w('rok2-g002','K277 장갑차','K277 KAAV Armored Personnel Carrier','GROUND','ROK','OPERATIONAL','LOW',
     '한국형 M113A1 장갑차. 육군 기계화보병 표준 병력수송장갑차. K21 도입 전 주력. 2,000대 이상 운용.',
@@ -38,13 +38,13 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '30mm 트윈 자주대공포. 신궁 MANPADS 통합(비호복합). 저고도 드론·헬기 대응. 육군 야전 방공.',
     {armament:'30mm 2연장 기관포+신궁 MANPADS',range:'3km(포)',altitude:'2km',crew:'3명',firstDeployed:'1999년',manufacturer:'두산DST(현 한화에어로스페이스)'},
     ['K30','비호','자주대공포','30mm','드론대응'],['육군','한화에어로스페이스'],
-    undefined,'https://en.wikipedia.org/wiki/K30_Biho',88),
+    'https://upload.wikimedia.org/wikipedia/commons/e/ef/US_Army_photo_160803-A-VV548-006_Standing_Watch_together.jpg','https://en.wikipedia.org/wiki/K30_Biho',88),
 
   w('rok2-g007','천마 단거리 지대공미사일','Cheonma (KM-SAM) SHORAD','SAM','ROK','OPERATIONAL','MED',
     '러시아 9K330 Tor 기반 한국형 야전 단거리 방공. 사거리 10km. 육군 전방 방공의 핵심.',
     {range:'10km',altitude:'5km',guidance:'레이더+적외선',firstDeployed:'2000년',manufacturer:'LIG넥스원'},
     ['천마','SHORAD','야전방공','KM-SAM','LIG넥스원'],['육군','LIG넥스원'],
-    undefined,'https://en.wikipedia.org/wiki/Cheonma',85),
+    'https://upload.wikimedia.org/wikipedia/commons/2/2e/%EC%9C%A1%EA%B5%B0_%287438813574%29.jpg','https://ko.wikipedia.org/wiki/천마_(미사일)',85),
 
   w('rok2-g008','K-SAAM 함대공미사일','Korean Ship-to-Air Missile','SAM','ROK','OPERATIONAL','MED',
     '한국 국산 단거리 함대공미사일. 인천급 FFX 탑재. 사거리 10km. 해궁 하위체계.',
@@ -62,13 +62,13 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '한국 차기 호위함 1차. 2,300톤. K-SAM·해성·청상어. 6척 취역. FFX-II로 개량.',
     {displacement:'2,300톤',length:'114m',crew:'140명',armament:'OTO76mm·K-SAM·해성·청상어',propulsion:'CODOG',firstDeployed:'2013년',manufacturer:'현대중공업',quantity:'6척'},
     ['인천급','FFX-I','호위함','한국해군','2300톤'],['해군','현대중공업'],
-    undefined,'https://en.wikipedia.org/wiki/Incheon-class_frigate',90),
+    'https://upload.wikimedia.org/wikipedia/commons/5/5e/20130626_%EB%8C%80%ED%95%9C%ED%95%B4%ED%98%91_%EC%A0%84%EC%8A%B9%ED%96%89%EC%82%AC_%284%29_%289460603621%29.jpg','https://en.wikipedia.org/wiki/Incheon-class_frigate',90),
 
   w('rok2-n002','대구급 호위함 (FFX-II)','Daegu-class FFX-II Frigate','NAVAL','ROK','OPERATIONAL','MED',
     '인천급 개량형 FFX-II. 해궁 탑재·IRST. 2,800톤. 4척 취역. 선체 소음 개선.',
     {displacement:'2,800톤',length:'122m',crew:'140명',armament:'해궁·해성·청상어·76mm',propulsion:'CODOG',firstDeployed:'2018년',manufacturer:'현대중공업·대우조선',quantity:'4척'},
     ['대구급','FFX-II','호위함','해궁','2800톤'],['해군'],
-    undefined,undefined,90),
+    'https://upload.wikimedia.org/wikipedia/commons/0/0f/ROKS_Seoul_%28FFG-821%29_underway_in_the_Yellow_Sea_during_the_commemoration_of_the_73rd_anniversary_of_the_Battle_of_Incheon_on_14_September_2023_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Daegu-class_frigate',90),
 
   w('rok2-n003','청해진급 기뢰부설함','Cheonghaeiin-class Minelayer','NAVAL','ROK','OPERATIONAL','LOW',
     '한국 해군 기뢰부설함. 한반도 연안 기뢰전 대비. 해양 거부 전략의 일환.',
@@ -80,7 +80,7 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '한국 1,800톤급 재래식 잠수함. 독일 212급 기반. 9척 취역. 하푼·중어뢰·기뢰. AIP 탑재.',
     {displacement:'1,800톤(수중)',length:'65.3m',crew:'40명',armament:'하푼·MK48 533mm 어뢰·기뢰',propulsion:'MTU 디젤+연료전지 AIP',firstDeployed:'2007년',manufacturer:'대우조선(현 한화오션)',quantity:'9척'},
     ['손원일급','장보고II','잠수함','AIP','한국해군'],['해군','한화오션'],
-    undefined,'https://en.wikipedia.org/wiki/Son_Won-il-class_submarine',92),
+    'https://upload.wikimedia.org/wikipedia/commons/4/49/ROKS_Yun_Bonggil_%28SS_077%29_190605-N-SS370-0028.jpg','https://en.wikipedia.org/wiki/Son_Won-il-class_submarine',92),
 
   w('rok2-a001','T-50 골든이글','T-50 Golden Eagle Advanced Trainer','AIRCRAFT','ROK','OPERATIONAL','LOW',
     '초음속 고등훈련기. KAI-록히드마틴 공동. FA-50 경공격기 기반. 인도네시아·태국·이라크 수출.',
@@ -111,7 +111,7 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '수리온 해병대 상륙기동헬기형. 해수 환경 내식성 강화. 대구급 함정 탑재 가능.',
     {weight:'8,300kg',speed:'259km/h',range:'480km',crew:'2+15명',firstDeployed:'2017년',manufacturer:'KAI',quantity:'40기+'},
     ['마리온','수리온해병형','상륙헬기','해병대','KAI'],['해병대','KAI'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/KUH-1_Surion.jpg/320px-KUH-1_Surion.jpg','https://en.wikipedia.org/wiki/KAI_KUH-1_Surion',88),
 
   w('rok2-a006','500MD 공격헬기','500MD Defender (ROK)','HELICOPTER','ROK','RETIRED','LOW',
     '한국 육군항공 기존 경공격헬기. TOW 대전차미사일 탑재. 수리온·LAH로 단계 교체 중.',
@@ -123,7 +123,7 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '북한 장사정포 진지 정밀 타격. 사거리 180km. HIMARS급. 천무 발사대 호환.',
     {range:'180km',payload:'500kg',guidance:'GPS+INS',firstDeployed:'2017년',manufacturer:'한화에어로스페이스'},
     ['KTSSM-I','전술지대지','장사정포타격','천무','정밀'],['육군','한화에어로스페이스'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/8/84/Hanwha_CTM-290_tactical_ballistic_missile.jpg','https://en.wikipedia.org/wiki/CTM-290',88),
 
   w('rok2-m002','천룡 KALCM 공대지순항','KALCM Cheonryong Air-Launched Cruise Missile','ASM','ROK','OPERATIONAL','HIGH',
     '한국 국산 공대지 순항미사일. F-35A·FA-50 탑재 예정. 8m 이중화 탄두. 사거리 500~800km.',
@@ -135,7 +135,7 @@ export const WEAPONS_EXP_ROK2: WeaponSystem[] = [
     '패트리어트 PAC-2와 연동 운용하는 한국형 보완 방공체계. 사거리 40km. 복합 방공망 구성.',
     {range:'40km',altitude:'15km',guidance:'반능동레이더',firstDeployed:'2012년',manufacturer:'한화시스템'},
     ['철매II','PAC-2연동','방공','한국형SAM','복합방공'],['공군','한화시스템'],
-    undefined,undefined,80),
+    'https://upload.wikimedia.org/wikipedia/commons/6/6a/A_scale_model_of_the_KM-SAM_Block_2_missile.jpg','https://en.wikipedia.org/wiki/KM-SAM',80),
 
   w('rok2-uav001','캐비어-150 정찰드론','Caviar-150 MALE Reconnaissance UAV','UAV','ROK','OPERATIONAL','LOW',
     '국산 중고도 장기체공 정찰드론. EO/SAR 탑재. 국방과학연구소 개발. 24시간 체공.',

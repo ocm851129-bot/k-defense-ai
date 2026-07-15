@@ -113,7 +113,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
     'PAC-3 미사일 세그먼트 강화형. 탄도미사일+순항미사일 요격. 사거리 35km+. 세계 20개국 운용.',
     {range:'35km',altitude:'25km',speed:'마하 5',guidance:'능동레이더 직격',firstDeployed:'2008년',manufacturer:'록히드마틴',quantity:'세계 240+ 포대'},
     ['PAC-3','MSE','패트리어트','탄도미사일','동맹국'],['록히드마틴','레이시온','USARMY'],
-    undefined,'https://en.wikipedia.org/wiki/Patriot_(missile)',98),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg/330px-U-s-service-members-stand-by-a-patriot-missile-battery-in-gaziantep-turkey.jpg','https://en.wikipedia.org/wiki/Patriot_(missile)',98),
 
   w('usa2-s002','THAAD 사드','THAAD Terminal High Altitude Area Defense','SAM','USA','OPERATIONAL','LOW',
     '종말단계 고고도 방공. 탄도미사일 대기권 내외 요격. 7개 포대. 한국·사우디·UAE 배치.',

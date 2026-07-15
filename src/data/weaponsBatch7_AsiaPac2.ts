@@ -24,7 +24,7 @@ export const WEAPONS_BATCH7_ASIAPAC2: WeaponSystem[] = [
   w('jpn2-af004','F-15J(改) MSP 개량','F-15JSI Modernized Super Interceptor','AIRCRAFT','JAPAN','DEVELOPMENT','LOW',
     'F-15J 98기 MSP 개량. 능동 AESA AN/APG-82V1·JSM 통합·전자전 강화. 2024년 본격화.',
     {speed:'마하 2.5',range:'4,600km',crew:'1명',armament:'AAM-4B·AIM-120D·JSM·AAM-5B',firstDeployed:'2024년(개량)',manufacturer:'미쓰비시·보잉'},
-    ['F-15JSI','MSP개량','AESA','JSM','일본'],['미쓰비시','공자대'],undefined,undefined,82),
+    ['F-15JSI','MSP개량','AESA','JSM','일본'],['미쓰비시','공자대'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg/330px-F-15C_Eagle_from_the_44th_Fighter_Squadron_flies_during_a_routine_training_exercise_April_15%2C_2019.jpg','https://en.wikipedia.org/wiki/McDonnell_Douglas_F-15_Eagle',82),
 
   w('jpn2-af005','F-3 (차세대 전투기 GCAP)','F-3 GCAP Next Generation Fighter','AIRCRAFT','JAPAN','DEVELOPMENT','LOW',
     '일본·영국·이탈리아 공동 개발 GCAP(글로벌전투항공프로그램). 6세대급. 2035년 전력화 목표.',
@@ -91,7 +91,7 @@ export const WEAPONS_BATCH7_ASIAPAC2: WeaponSystem[] = [
     '인도 공군 라팔. 36기 + 추가 26기 계약. 스칼프·미카 NG. 파키스탄·중국 대응.',
     {speed:'마하 1.8',range:'3,700km',crew:'1~2명',armament:'MICA NG·미티어·SCALP·HAMMER',firstDeployed:'2020년',manufacturer:'다소',quantity:'36기+26기'},
     ['라팔','인도공군','36기','중국파키스탄대응','다소'],['다소','인도공군'],
-    undefined,'https://en.wikipedia.org/wiki/Dassault_Rafale',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rafale_-_RIAT_2009_%283751416421%29.jpg/330px-Rafale_-_RIAT_2009_%283751416421%29.jpg','https://en.wikipedia.org/wiki/Dassault_Rafale',95),
 
   w('ind2-af002','Su-30MKI 전투기','Su-30MKI Flanker-H (IAF)','AIRCRAFT','INDIA','OPERATIONAL','HIGH',
     '러시아·인도 공동 커스터마이징 Su-30. 265기 면허생산(HAL). 브라모스·아스트라 통합.',
