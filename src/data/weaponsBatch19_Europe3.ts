@@ -36,7 +36,7 @@ export const WEAPONS_BATCH19_EUROPE3: WeaponSystem[] = [
 
   // ── 네덜란드 추가 ────────────────────────────────────────────────────────
   w('eu3-nl001','네덜란드 CV90 IFV','CV90 IFV Netherlands','GROUND','NATO','OPERATIONAL','LOW','네덜란드 CV90 IFV. 200대. 40mm 부슈마스터.',{weight:'23t',armament:'40mm Bushmaster·7.62mm',crew:'3+8명',speed:'70km/h',firstDeployed:'1996년(네덜란드)',quantity:'200대'},['CV90','네덜란드','40mm','부슈마스터'],['BAE Systems','네덜란드군'],undefined,'https://en.wikipedia.org/wiki/Combat_Vehicle_90',82),
-  w('eu3-nl002','네덜란드 Panzerhaubitze 2000','PzH2000 Netherlands','ARTILLERY','NATO','OPERATIONAL','LOW','네덜란드 PzH2000 57문. 우크라이나 일부 공급.',{weight:'55.3t',armament:'155mm L52',crew:'5명',range:'56km',quantity:'57문'},['PzH2000','네덜란드','우크라이나지원','57문'],['네덜란드군'],undefined,undefined,85),
+  w('eu3-nl002','네덜란드 Panzerhaubitze 2000','PzH2000 Netherlands','ARTILLERY','NATO','OPERATIONAL','LOW','네덜란드 PzH2000 57문. 우크라이나 일부 공급.',{weight:'55.3t',armament:'155mm L52',crew:'5명',range:'56km',quantity:'57문'},['PzH2000','네덜란드','우크라이나지원','57문'],['네덜란드군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lithuanian_PzH_2000_%282%29.jpg/330px-Lithuanian_PzH_2000_%282%29.jpg','https://en.wikipedia.org/wiki/PzH_2000',85),
   w('eu3-nl003','아파치 AH-64D 네덜란드','AH-64D Apache Netherlands','HELICOPTER','USA','OPERATIONAL','LOW','네덜란드 아파치 AH-64D 28기.',{speed:'293km/h',crew:'2명',armament:'30mm·헬파이어·하이드라',firstDeployed:'1998년(네덜란드)',quantity:'28기'},['아파치D','네덜란드','28기'],['보잉','네덜란드군'],undefined,undefined,85),
 
   // ── 벨기에 추가 ──────────────────────────────────────────────────────────

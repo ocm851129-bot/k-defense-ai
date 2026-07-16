@@ -94,7 +94,7 @@ export const WEAPONS_MAJOR_POWERS: WeaponSystem[] = [
     '러시아 차세대 중(重)ICBM. 200톤급. MIRV 최대 15발. 사거리 18,000km. 액체연료. R-36M2 보예보다 대체.',
     {range:'18,000km',payload:'MIRV 최대 15발(10~15Mt급)',propulsion:'액체연료 2단',firstDeployed:'2023년(시험전력화)',manufacturer:'마케예프 설계국'},
     ['사르마트','RS-28','ICBM','MIRV','핵','러시아'],['러시아국방부','FAS','CSIS'],
-    undefined,'https://en.wikipedia.org/wiki/RS-28_Sarmat',75),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sarmat-launch.webm/330px--Sarmat-launch.webm.jpg','https://en.wikipedia.org/wiki/RS-28_Sarmat',75),
 
   w('rus-e07','아반가르드 극초음속활공체','Avangard Hypersonic Glide Vehicle','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
     'UR-100N(SS-19) 탑재 극초음속 활공체. 마하 20+. 현존 요격 불가능. 2019년 실전배치. 핵탄두 탑재.',

@@ -139,7 +139,7 @@ export const WEAPONS_BATCH29_ASIA_OCEANIA: WeaponSystem[] = [
     '태국 그리펜 12기. AIM-120·Derby·Derby ER. 중간 규모 공군 현대화.',
     {speed:'마하 2.0',crew:'1명(C)/2명(D)',armament:'AIM-120·Derby·Rb.74',firstDeployed:'2011년(태국)',quantity:'12기',manufacturer:'사브'},
     ['그리펜','태국','12기','AIM-120'],['사브','태국공군'],
-    undefined,undefined,82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/330px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg','https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',82),
 
   // ── 말레이시아 무기 ─────────────────────────────────────────────────
   w('ao-mys001','PT-91M 전차 말레이시아','PT-91M Pendekar MBT Malaysia','GROUND','POLAND','OPERATIONAL','MED',

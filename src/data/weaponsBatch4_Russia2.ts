@@ -8,13 +8,13 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '세계 최중량 ICBM. 탑재중량 10t. 다탄두(MIRV 15기). 아방가르드 극초음속 탑재 가능. 사거리 18,000km.',
     {range:'18,000km',payload:'10t MIRV×15 또는 아방가르드',propulsion:'액체연료 2단',firstDeployed:'2022년',manufacturer:'마케예프 설계국'},
     ['사르마트','RS-28','ICBM','세계최중량','MIRV'],['러시아국방부','38North'],
-    undefined,'https://en.wikipedia.org/wiki/RS-28_Sarmat',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sarmat-launch.webm/330px--Sarmat-launch.webm.jpg','https://en.wikipedia.org/wiki/RS-28_Sarmat',80),
 
   w('rus2-i002','RS-24 야르스 ICBM','RS-24 Yars ICBM','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
     '고체연료 도로기동 ICBM. MIRV 4기. 사거리 12,000km. 러시아 핵 3축 핵심. 대량 배치.',
     {range:'12,000km',payload:'MIRV×4(~300kt)',propulsion:'고체연료 3단',firstDeployed:'2010년',manufacturer:'MIT 모스크바 열공학연구소',quantity:'180기+'},
     ['야르스','RS-24','ICBM','고체','도로기동'],['IISS','러시아국방부'],
-    undefined,'https://en.wikipedia.org/wiki/RS-24_Yars',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/RS-24_Yars.webm/330px--RS-24_Yars.webm.jpg','https://en.wikipedia.org/wiki/RS-24_Yars',88),
 
   w('rus2-i003','R-36M2 보예보다 (SS-18)','R-36M2 Voevoda (SS-18 Satan)','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
     '액체연료 사일로 ICBM. MIRV 10기×750kt. 사거리 16,000km. 사르마트가 대체 중. 세계 최대 탑재량.',
@@ -26,7 +26,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '고체연료 사일로·도로기동 ICBM. 사거리 11,000km. 단탄두 550kt. 야르스로 업그레이드 중.',
     {range:'11,000km',payload:'단탄두 550kt',propulsion:'고체연료 3단',firstDeployed:'1997년',manufacturer:'MIT',quantity:'78기'},
     ['토폴M','SS-27','ICBM','고체','사일로'],['IISS','Jane\'s'],
-    undefined,'https://en.wikipedia.org/wiki/RT-2PM2_Topol-M',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/%D0%98%D1%81%D0%BF%D1%8B%D1%82%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BF%D1%83%D1%81%D0%BA-%D1%80%D0%B0%D0%BA%D0%B5%D1%82%D1%8B-%C2%AB%D0%A2%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C-%D0%9C%C2%BB-%D0%BD%D0%B0-%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D0%B4%D1%80%D0%BE%D0%BC%D0%B5-%D0%9F%D0%BB%D0%B5%D1%81%D0%B5%D1%86%D0%BA.gif/330px-%D0%98%D1%81%D0%BF%D1%8B%D1%82%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BF%D1%83%D1%81%D0%BA-%D1%80%D0%B0%D0%BA%D0%B5%D1%82%D1%8B-%C2%AB%D0%A2%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C-%D0%9C%C2%BB-%D0%BD%D0%B0-%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D0%B4%D1%80%D0%BE%D0%BC%D0%B5-%D0%9F%D0%BB%D0%B5%D1%81%D0%B5%D1%86%D0%BA.gif','https://en.wikipedia.org/wiki/RT-2PM2_Topol-M',88),
 
   w('rus2-i005','아방가르드 극초음속 활공체','Avangard Hypersonic Glide Vehicle','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
     '핵탄두 탑재 극초음속 활공체. UR-100N·RS-28 탑재. 마하 20+. 기동으로 미사일 방어 무력화.',
@@ -38,7 +38,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '보레이급 핵잠수함 탑재 SLBM. 고체연료. MIRV 6기. 사거리 9,300km. 러시아 해상 핵전력 핵심.',
     {range:'9,300km',payload:'MIRV×6(150kt)',propulsion:'고체연료 3단',firstDeployed:'2012년',manufacturer:'MIT',quantity:'160기+'},
     ['불라바','SS-N-32','SLBM','보레이급','MIRV'],['IISS','러시아해군'],
-    undefined,'https://en.wikipedia.org/wiki/Bulava_(missile)',88),
+    'https://upload.wikimedia.org/wikipedia/commons/6/6f/Bulava_SLBM_launched_by_Yuri_Dolgoruky_submarine_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Bulava_(missile)',88),
 
   // ── 항공기 ────────────────────────────────────────────────────────────────
   w('rus2-af001','Su-57 펠론','Su-57 Felon Stealth Fighter','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
@@ -135,7 +135,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '잠수함·수상함 발사 지상공격 순항미사일. 마하 0.8. 사거리 2,500km. 카스피해에서 시리아 타격.',
     {range:'2,500km',speed:'마하 0.8',payload:'450kg HE',guidance:'INS+TERCOM+EO',firstDeployed:'2012년',manufacturer:'Novator'},
     ['칼리브르','3M-14','SLCM','시리아','카스피해'],['러시아해군','CSIS'],
-    undefined,'https://en.wikipedia.org/wiki/Kalibr_(missile_family)',93),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/3M-54E1.jpg/330px-3M-54E1.jpg','https://en.wikipedia.org/wiki/Kalibr_(missile_family)',93),
 
   w('rus2-m009','Kh-55SM 핵순항미사일','Kh-55SM Strategic Cruise Missile','CRUISE','RUSSIA','OPERATIONAL','CRITICAL',
     'Tu-95·Tu-160 탑재 핵순항미사일. 3,000km 사거리. 200kt 핵탄두. Kh-101으로 대체 중.',
@@ -154,7 +154,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '러시아 장거리 방공시스템. 사거리 400km. 동시 36목표 교전. 중국·인도·터키 수출. 40개국 수요.',
     {range:'400km',altitude:'30km',speed:'마하 14(탄)',guidance:'능동레이더+반능동',firstDeployed:'2007년',manufacturer:'Almaz-Antey',quantity:'18개 연대+'},
     ['S-400','트리움프','400km','방공','터키수출'],['러시아군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/S-400_missile_system',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/%D0%A1-400_%C2%AB%D0%A2%D1%80%D0%B8%D1%83%D0%BC%D1%84%C2%BB.JPG/330px-%D0%A1-400_%C2%AB%D0%A2%D1%80%D0%B8%D1%83%D0%BC%D1%84%C2%BB.JPG','https://en.wikipedia.org/wiki/S-400_missile_system',97),
 
   w('rus2-s003','S-350E 비탸지','S-350E Vityaz SAM','SAM','RUSSIA','OPERATIONAL','HIGH',
     '중거리 방공시스템. S-300 대체. 12발 16연장 VLS. 스텔스기·드론 대응 특화.',
@@ -165,7 +165,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '30mm 기관포+미사일 복합 단거리 방공. 사거리 20km. 대드론·순항미사일 방어. 시리아 실전.',
     {range:'20km',altitude:'15km',armament:'2A38M 30mm 기관포×2+미사일 12발',firstDeployed:'2015년',manufacturer:'KBP'},
     ['판치르S2','SPAAG','복합방공','대드론','시리아'],['러시아군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Pantsir_missile_system',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/MAKS_Airshow_2013_%28Ramenskoye_Airport%2C_Russia%29_%28521-05%29.jpg/330px-MAKS_Airshow_2013_%28Ramenskoye_Airport%2C_Russia%29_%28521-05%29.jpg','https://en.wikipedia.org/wiki/Pantsir_missile_system',88),
 
   w('rus2-s005','토르-M2E 단거리 방공','Tor-M2E Short-Range SAM','SAM','RUSSIA','OPERATIONAL','HIGH',
     '자주 단거리 지대공미사일. 사거리 16km. 저고도 항공기·드론 대응. 우크라이나 실전 운용.',
@@ -176,7 +176,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     'MH17 격추 부크의 최신형. 사거리 70km. 6발 ULVPU 탑재. 스텔스 및 고기동 표적 대응.',
     {range:'70km',altitude:'35km',firstDeployed:'2017년',manufacturer:'Fakel'},
     ['부크M3','중거리방공','70km','스텔스대응'],['러시아군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Buk_missile_system',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Buk-M1-2_air_defence_system_in_2010.jpg/330px-Buk-M1-2_air_defence_system_in_2010.jpg','https://en.wikipedia.org/wiki/Buk_missile_system',85),
 
   // ── 전차·기갑 ─────────────────────────────────────────────────────────────
   w('rus2-t001','T-14 아르마타 전차','T-14 Armata MBT','GROUND','RUSSIA','DEVELOPMENT','HIGH',
@@ -189,7 +189,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     'T-90 최신 개량형. 콘탁트-5 ERA·르리쪼 열상·125mm 2A46M-4. 우크라이나 배치 주력.',
     {weight:'48t',armament:'125mm 2A46M-4·12.7mm NSVT·7.62mm PKT',crew:'3명',speed:'65km/h',firstDeployed:'2020년',manufacturer:'우랄바곤자보드'},
     ['T-90M','프랴로베크','ERA','열상','우크라이나'],['러시아군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/T-90',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/T-90M.jpg/330px-T-90M.jpg','https://en.wikipedia.org/wiki/T-90',88),
 
   w('rus2-t003','T-80BVM 전차','T-80BVM MBT','GROUND','RUSSIA','OPERATIONAL','HIGH',
     'T-80 가스터빈 전차 현대화형. 렐릭트 ERA·소스나-U 열상·KONTAKT-5. 극지 작전 적합.',
@@ -200,7 +200,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     'T-72B3 추가 개량. 반응장갑·소스나-U 열상·Shtora-1 광전자방어. 우크라이나 전쟁 주력.',
     {weight:'46t',armament:'125mm 2A46M-5·12.7mm·7.62mm',crew:'3명',speed:'60km/h',firstDeployed:'2016년',manufacturer:'우랄바곤자보드'},
     ['T-72B3M','우크라이나','주력전차','ERA'],['러시아군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/T-72',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/330px-Alabino05042017-40.jpg','https://en.wikipedia.org/wiki/T-72',88),
 
   w('rus2-t005','BMP-3M 보병전투차','BMP-3M IFV Upgrade','GROUND','RUSSIA','OPERATIONAL','MED',
     'BMP-3 현대화형. 100mm 2A70+30mm 2A72 복합 무장. 수상도하 능력.',

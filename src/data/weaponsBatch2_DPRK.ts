@@ -295,12 +295,12 @@ export const WEAPONS_BATCH2_DPRK: WeaponSystem[] = [
   w('dprk-sa001','58식 소총 (AK-47 복제)','Type 58 Assault Rifle','RIFLE','DPRK','OPERATIONAL','MED',
     '소련 AK-47 복제 북한 표준소총. 7.62mm×39mm. 북한군 보병 기본화기.',
     {caliber:'7.62×39mm',weight:'4.3kg',fireRate:'600rpm',capacity:'30발',firstDeployed:'1958년',manufacturer:'북한 군수'},
-    ['58식','AK-47','북한소총','7.62mm'],['Jane\'s','IISS'],undefined,undefined,82),
+    ['58식','AK-47','북한소총','7.62mm'],['Jane\'s','IISS'],'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/AK-47_type_II_Part_DM-ST-89-01131.jpg/320px-AK-47_type_II_Part_DM-ST-89-01131.jpg','https://en.wikipedia.org/wiki/AK-47',82),
 
   w('dprk-sa002','68식 소총 (AKM 복제)','Type 68 Assault Rifle','RIFLE','DPRK','OPERATIONAL','MED',
     '소련 AKM 복제. 스탬핑 방식. 7.62mm. 58식 후속.',
     {caliber:'7.62×39mm',weight:'3.6kg',fireRate:'600rpm',capacity:'30발',firstDeployed:'1968년',manufacturer:'북한 군수'},
-    ['68식','AKM','북한소총'],['Jane\'s','IISS'],undefined,undefined,80),
+    ['68식','AKM','북한소총'],['Jane\'s','IISS'],'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/AK-47_type_II_Part_DM-ST-89-01131.jpg/320px-AK-47_type_II_Part_DM-ST-89-01131.jpg','https://en.wikipedia.org/wiki/AKM',80),
 
   w('dprk-sa003','88식 소총','Type 88 Assault Rifle','RIFLE','DPRK','OPERATIONAL','MED',
     '북한 독자 개발 5.45mm 돌격소총. AK-74 유사 설계. 현재 북한군 주력 개인화기.',

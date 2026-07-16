@@ -110,7 +110,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     '러시아 다목적 순항미사일. 함정·잠수함 발사. 사거리 2,500km. 우크라이나 공습 주력 무기.',
     {range:'2,500km',speed:'마하 0.8+마하3(종말)',payload:'450kg',guidance:'INS+GPS+능동레이더',firstDeployed:'2012년',manufacturer:'노바토르'},
     ['칼리브르','러시아순항','우크라이나','함정발사','3M-54'],['러시아해군'],
-    undefined,'https://en.wikipedia.org/wiki/3M-54_Kalibr',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/3M-54E1.jpg/330px-3M-54E1.jpg','https://en.wikipedia.org/wiki/3M-54_Kalibr',92),
 
   w('rus2-m003','Kh-35U Uran 대함순항','Kh-35U Uran Anti-Ship Missile','SSM','RUSSIA','OPERATIONAL','HIGH',
     '러시아판 하푼. 함정·항공기·육상 발사. 사거리 260km. 인도·베트남 등 수출.',

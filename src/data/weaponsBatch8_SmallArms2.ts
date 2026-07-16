@@ -8,7 +8,7 @@ export const WEAPONS_BATCH8_SMALLARMS2: WeaponSystem[] = [
     'HK 가스피스톤 AR-15 계열. 미 해병대 IAR·델타포스 주력 소총. 노르웨이·프랑스(HK416F)·독일 채택.',
     {caliber:'5.56×45mm NATO',weight:'3.6kg',fireRate:'700~900rpm',capacity:'30발',firstDeployed:'2005년',manufacturer:'Heckler & Koch'},
     ['HK416','미군특수전','가스피스톤','노르웨이','프랑스'],['HK','USSOCOM'],
-    undefined,'https://en.wikipedia.org/wiki/HK416',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/HK416-A5.jpg/320px-HK416-A5.jpg','https://en.wikipedia.org/wiki/HK416',95),
 
   w('sa2-usa002','SIG MCX 스페아 LMG','SIG MCX SPEAR LMG','MG','USA','DEVELOPMENT','LOW',
     'NGSW 차기분대화기 프로그램 선정. 6.8mm×51mm 탄. M249 대체. 빔-투어 규격 NGSW-AR.',
@@ -47,7 +47,7 @@ export const WEAPONS_BATCH8_SMALLARMS2: WeaponSystem[] = [
     'FBI·CIA·특수전 선호 9mm 컴팩트 권총. 스트라이커 방식. 미 특수전 및 민수시장 세계 1위.',
     {caliber:'9×19mm',weight:'595g',capacity:'15+1발',firstDeployed:'1988년',manufacturer:'Glock(오스트리아)'},
     ['글록19','9mm','특수전','FBI','CIA'],['Glock','USSOCOM'],
-    undefined,'https://en.wikipedia.org/wiki/Glock_19',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glock_17.jpg/320px-Glock_17.jpg','https://en.wikipedia.org/wiki/Glock_19',95),
 
   // ── 러시아 소화기 ─────────────────────────────────────────────────────────
   w('sa2-rus001','AK-74M 소총','AK-74M Assault Rifle','RIFLE','RUSSIA','OPERATIONAL','MED',
@@ -66,7 +66,7 @@ export const WEAPONS_BATCH8_SMALLARMS2: WeaponSystem[] = [
     '7.62mm 범용기관총. 1969년 채택. 경량·신뢰성 높음. 세계 60개국+ 운용. 우크라이나 양측 사용.',
     {caliber:'7.62×54mmR',weight:'7.5kg',fireRate:'650~750rpm',range:'1,000m(양각대)',firstDeployed:'1969년',manufacturer:'이즈마쉬'},
     ['PKM','기관총','7.62mm','60개국','범용'],['이즈마쉬','다수국가'],
-    undefined,'https://en.wikipedia.org/wiki/PK_machine_gun',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/PKM_machine_gun.jpg/320px-PKM_machine_gun.jpg','https://en.wikipedia.org/wiki/PK_machine_gun',92),
 
   w('sa2-rus004','GSh-18 권총','GSh-18 Pistol','PISTOL','RUSSIA','OPERATIONAL','LOW',
     '18발 폴리머 프레임 권총. 특수합금 관통탄 사용. 러시아군·경찰 지급.',
@@ -141,7 +141,7 @@ export const WEAPONS_BATCH8_SMALLARMS2: WeaponSystem[] = [
     'HK416 프랑스 채택형. FAMAS 대체. 5.56mm. 2017년 배치 시작. 레지옹에트랑제르 포함.',
     {caliber:'5.56×45mm NATO',weight:'3.6kg',fireRate:'700~900rpm',capacity:'30발',firstDeployed:'2017년',manufacturer:'HK'},
     ['HK416F','프랑스소총','FAMAS대체','레지옹에트랑제르'],['HK','프랑스군'],
-    undefined,'https://en.wikipedia.org/wiki/HK416',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/HK416-A5.jpg/320px-HK416-A5.jpg','https://en.wikipedia.org/wiki/HK416',90),
 
   w('sa2-fr002','FAMAS G2 불펍소총 (구형)','FAMAS G2 Bullpup Rifle','RIFLE','FRANCE','OPERATIONAL','LOW',
     '프랑스 독자 불펍소총. 5.56mm. 1978년 채택. HK416F로 단계적 대체 중.',
@@ -285,7 +285,7 @@ export const WEAPONS_BATCH8_SMALLARMS2: WeaponSystem[] = [
     '84mm 4세대 무반동포. 5.5kg 경량화. 다목적탄·온도보정 조준기. 세계 40국 이상 운용.',
     {caliber:'84mm',weight:'6.6kg(발사기)',range:'1,000m(HEAT)',firstDeployed:'2014년(M4)',manufacturer:'Saab Dynamics'},
     ['M4','칼구스타프','84mm','경량화','40국'],['Saab','다수국가'],
-    undefined,'https://en.wikipedia.org/wiki/Carl_Gustaf_recoilless_rifle',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Carl_Gustav_M4_%281%29_%28brightened%2C_no_background%29_%28leveled%29.png/330px-Carl_Gustav_M4_%281%29_%28brightened%2C_no_background%29_%28leveled%29.png','https://en.wikipedia.org/wiki/Carl_Gustaf_8.4_cm_recoilless_rifle',92),
 
   w('sa2-other004','스파이크 SR 단거리 ATGM','Spike-SR Short Range ATGM','LAUNCHER','ISRAEL','OPERATIONAL','MED',
     '분대급 단거리 ATGM. 발사 후 망각. EO 영상. 1.5~2km. 매우 경량·저가.',

@@ -90,7 +90,7 @@ export const WEAPONS_BATCH32_HISTORICAL: WeaponSystem[] = [
     '세계 최초 채용 반자동소총. 2차대전 미군 표준. 아이젠하워 "전쟁을 이긴 무기."',
     {weight:'4.37kg',caliber:'30-06 스프링필드',capacity:'8발 클립',firstDeployed:'1937년'},
     ['M1개런드','반자동소총','미국','2차대전','클립'],['스프링필드'],
-    undefined,'https://en.wikipedia.org/wiki/M1_Garand',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/M1_Garand_rifle_USA_noBG_new.png/330px-M1_Garand_rifle_USA_noBG_new.png','https://en.wikipedia.org/wiki/M1_Garand',88),
 
   // ── 한국전쟁 무기 ─────────────────────────────────────────────────────
   w('hist-kor001','MiG-15 한국전쟁','MiG-15 Fagot Korea War Soviet Jet','AIRCRAFT','RUSSIA','RETIRED','HIGH',
@@ -134,7 +134,7 @@ export const WEAPONS_BATCH32_HISTORICAL: WeaponSystem[] = [
     '칼라슈니코프 AK-47. 베트남 공산군 표준. 정글 신뢰성 최고. 7000만 정 생산. 최다 생산 소총.',
     {weight:'4.3kg',caliber:'7.62×39mm',capacity:'30발',fireRate:'600rpm',firstDeployed:'1947년'},
     ['AK-47','칼라슈니코프','베트남','7000만정','최다생산'],['이제프스크조병창'],
-    undefined,'https://en.wikipedia.org/wiki/AK-47',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/AK-47_type_II_Part_DM-ST-89-01131.jpg/320px-AK-47_type_II_Part_DM-ST-89-01131.jpg','https://en.wikipedia.org/wiki/AK-47',95),
 
   // ── 냉전기 주요 무기 ─────────────────────────────────────────────────
   w('hist-cw001','SR-71 블랙버드','SR-71 Blackbird Mach 3 Recon USA','AIRCRAFT','USA','RETIRED','HIGH',

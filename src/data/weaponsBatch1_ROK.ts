@@ -590,7 +590,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-etc004','미티어 공대공미사일','Meteor BVRAAM','AAM','ROK','OPERATIONAL','HIGH',
     '유럽 MBDA 미티어 초장거리 공대공미사일. KF-21 탑재 예정. 최대 200km 사거리. 무동력 No-Escape Zone 최대.',
     {range:'200km+',speed:'마하 4+',guidance:'능동레이더(AESA)',firstDeployed:'KF-21 전력화 시',manufacturer:'MBDA'},
-    ['미티어','공대공','BVRAAM','KF-21','장거리'],['MBDA','공군'],undefined,'https://en.wikipedia.org/wiki/Meteor_(missile)',92),
+    ['미티어','공대공','BVRAAM','KF-21','장거리'],['MBDA','공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/ILA_2008_PD_446.JPG/330px-ILA_2008_PD_446.JPG','https://en.wikipedia.org/wiki/Meteor_(missile)',92),
 
   w('rok-etc005','K917 교량전차','K917 Armored Vehicle Launched Bridge','GROUND','ROK','OPERATIONAL','LOW',
     'K1 전차 차체 기반 자주 교량전차. 30m 단주교 또는 조립교 부설 가능. 도하작전 지원.',

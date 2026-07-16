@@ -8,7 +8,7 @@ export const WEAPONS_BATCH5_CHINA2: WeaponSystem[] = [
     '중국 최신 고체연료 ICBM. 사거리 14,000km. MIRV 10기. 도로기동·사일로 겸용. 미 전역 타격.',
     {range:'14,000km',payload:'MIRV×10(핵탄두)',propulsion:'고체연료 3단',firstDeployed:'2019년',manufacturer:'중국항천과기집단(CASC)'},
     ['DF-41','동풍41','ICBM','MIRV','고체연료'],['IISS','DoD China Report'],
-    undefined,'https://en.wikipedia.org/wiki/DF-41',78),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/120%E7%A7%92%E7%9C%8B%E5%A4%A7%E9%98%85%E5%85%B5%E9%9C%87%E6%92%BC%E7%9E%AC%E9%97%B4%EF%BC%811.png/330px-120%E7%A7%92%E7%9C%8B%E5%A4%A7%E9%98%85%E5%85%B5%E9%9C%87%E6%92%BC%E7%9E%AC%E9%97%B4%EF%BC%811.png','https://en.wikipedia.org/wiki/DF-41',78),
 
   w('chn2-i002','DF-5B ICBM','DF-5B (Dongfeng-5B) ICBM','ICBM','CHINA','OPERATIONAL','CRITICAL',
     '액체연료 사일로 ICBM. MIRV 3~5기. 사거리 13,000km. 최초 중국 MIRV 탑재 ICBM.',
@@ -20,7 +20,7 @@ export const WEAPONS_BATCH5_CHINA2: WeaponSystem[] = [
     'DF-31A 개량형. 도로기동 TEL. 사거리 11,200km. 고체연료. 단탄두 1Mt.',
     {range:'11,200km',payload:'단탄두 1Mt',propulsion:'고체연료',firstDeployed:'2017년',manufacturer:'CASC'},
     ['DF-31AG','ICBM','도로기동','고체'],['DoD','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/DF-31',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/DF-31_ballistic_missiles_20170919.jpg/330px-DF-31_ballistic_missiles_20170919.jpg','https://en.wikipedia.org/wiki/DF-31',80),
 
   w('chn2-i004','JL-3 SLBM','JL-3 (Julang-3) SLBM','SLBM','CHINA','DEVELOPMENT','CRITICAL',
     '094B·096형 핵잠수함 탑재 신형 SLBM. JL-2 대체. 사거리 10,000km+. MIRV 가능.',

@@ -66,12 +66,12 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
     '39구경장 155mm 초경량 견인포. 4.2t. 헬기 공수 가능. GPS 정밀유도탄(Excalibur) 운용. 우크라이나 지원.',
     {weight:'4,218kg',armament:'155mm/39구경장',crew:'8명',range:'40km(Excalibur)',firstDeployed:'2005년',manufacturer:'BAE Systems',quantity:'1,100+문'},
     ['M777','경량곡사포','엑스칼리버','공수가능','우크라이나지원'],['BAE Systems','USARMY','USMC'],
-    undefined,'https://en.wikipedia.org/wiki/M777_howitzer',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/M777_howitzer_rear.jpg/330px-M777_howitzer_rear.jpg','https://en.wikipedia.org/wiki/M777_howitzer',97),
 
   w('usa2-a003','엑스칼리버 Ib 정밀유도포탄','M982 Excalibur Ib GPS Shell','ARTILLERY','USA','OPERATIONAL','LOW',
     '155mm GPS+INS 정밀유도포탄. CEP 4m. 사거리 57km. M777·M109·K9 운용. 우크라이나 전쟁 실전.',
     {range:'57km',payload:'10kg 파편탄두',guidance:'GPS+INS',firstDeployed:'2007년',manufacturer:'레이시온·BAE Systems'},
-    ['엑스칼리버','GPS포탄','정밀유도','M982','155mm'],['레이시온','USARMY'],undefined,'https://en.wikipedia.org/wiki/M982_Excalibur',97),
+    ['엑스칼리버','GPS포탄','정밀유도','M982','155mm'],['레이시온','USARMY'],'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/XM982_Excalibur_inert_%28cropped%29.jpg/330px-XM982_Excalibur_inert_%28cropped%29.jpg','https://en.wikipedia.org/wiki/M982_Excalibur',97),
 
   w('usa2-a004','ERCA (확장사거리 자주포)','XM1299 ERCA Extended Range Cannon Artillery','ARTILLERY','USA','DEVELOPMENT','LOW',
     'M109 기반 58구경장 강화 포신 자주포. 사거리 70km+(엑스칼리버 ER). 2026년 전력화 목표.',
@@ -135,7 +135,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
     '보병 휴대용 지대공미사일. 적외선 추적. 사거리 8km. 아프간·우크라이나 실전. 72개국 운용.',
     {range:'8km',altitude:'3.8km',speed:'마하 2.2',guidance:'IR 추적',firstDeployed:'1981년',manufacturer:'레이시온',quantity:'세계 다수'},
     ['스팅어','MANPADS','FIM-92','휴대용','우크라이나'],['레이시온','USARMY'],
-    undefined,'https://en.wikipedia.org/wiki/FIM-92_Stinger',98),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Voorzijde_van_een_Stinger_lanceerbuis_met_richt-afvuurapparatuur_%282086-065-004%29.jpg/330px-Voorzijde_van_een_Stinger_lanceerbuis_met_richt-afvuurapparatuur_%282086-065-004%29.jpg','https://en.wikipedia.org/wiki/FIM-92_Stinger',98),
 
   // ── 헬기 ─────────────────────────────────────────────────────────────────
   w('usa2-h001','AH-64E 아파치 가디언','AH-64E Apache Guardian','HELICOPTER','USA','OPERATIONAL','LOW',
@@ -177,7 +177,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
     'TOW 최신형. 상부공격(EFP) 탄두. 와이어 유도. 3,750m. 험비·브래들리·헬기 탑재.',
     {range:'3,750m',payload:'EFP 2중 탄두',guidance:'와이어 SACLOS',firstDeployed:'1992년',manufacturer:'레이시온'},
     ['TOW2B','대전차미사일','ATGM','EFP','상부공격'],['레이시온','USARMY'],
-    undefined,'https://en.wikipedia.org/wiki/BGM-71_TOW',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Hires_090509-A-4842R-001a.jpg/330px-Hires_090509-A-4842R-001a.jpg','https://en.wikipedia.org/wiki/BGM-71_TOW',95),
 
   w('usa2-at002','FGM-148 재블린','FGM-148 Javelin ATGM','GROUND','USA','OPERATIONAL','LOW',
     '발사 후 망각 ATGM. 적외선 영상 탐색기. 상부 공격 모드. 우크라이나 전쟁 대활약. 세계 최강 ATGM.',
@@ -189,7 +189,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
   w('usa2-at003','M3 칼 구스타프 무반동포','M3 Carl Gustaf Recoilless Rifle','GROUND','USA','OPERATIONAL','LOW',
     '스웨덴제 84mm 무반동포. 미 특수전·공수부대 주력 대전차 화기. 다양한 탄종 운용.',
     {caliber:'84mm',weight:'7.5kg(발사기)',range:'1,000m(HEAT)',firstDeployed:'1990년대(미군)',manufacturer:'Saab(스웨덴)'},
-    ['칼구스타프','M3','무반동포','84mm','특수전'],['Saab','USSOCOM','USARMY'],undefined,'https://en.wikipedia.org/wiki/Carl_Gustaf_recoilless_rifle',92),
+    ['칼구스타프','M3','무반동포','84mm','특수전'],['Saab','USSOCOM','USARMY'],'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Carl_Gustav_M4_%281%29_%28brightened%2C_no_background%29_%28leveled%29.png/330px-Carl_Gustav_M4_%281%29_%28brightened%2C_no_background%29_%28leveled%29.png','https://en.wikipedia.org/wiki/Carl_Gustaf_8.4_cm_recoilless_rifle',92),
 
   w('usa2-at004','M72 LAW 경대전차로켓','M72 LAW Light Anti-Armor Weapon','LAUNCHER','USA','OPERATIONAL','LOW',
     '1회용 66mm 경대전차로켓. 경량·저비용. 비정규전·도시전 특화. 50년+ 운용. 개량형 지속 공급.',
@@ -201,7 +201,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
     '미군 표준 개인화기. 5.56mm. 14.5인치 총열. SOPMOD 부착물. 세계 최다 운용 돌격소총 중 하나.',
     {caliber:'5.56×45mm NATO',weight:'2.8kg',length:'838mm(개머리 전개)',fireRate:'700~950rpm',capacity:'30발',firstDeployed:'1994년',manufacturer:'콜트·FNH USA'},
     ['M4A1','카빈','5.56mm','미군표준','SOPMOD'],['콜트','FNH','USARMY'],
-    undefined,'https://en.wikipedia.org/wiki/M4_carbine',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/M4-Carbine-Sand.jpg/320px-M4-Carbine-Sand.jpg','https://en.wikipedia.org/wiki/M4_carbine',97),
 
   w('usa2-sa002','M27 IAR 분대자동소총','M27 IAR Infantry Automatic Rifle','MG','USA','OPERATIONAL','LOW',
     'HK416 기반 미 해병대 분대자동소총. M249 대체. 5.56mm. 정확도·신뢰성 우수.',

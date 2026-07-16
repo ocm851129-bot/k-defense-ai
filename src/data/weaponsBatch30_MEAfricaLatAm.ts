@@ -116,7 +116,7 @@ export const WEAPONS_BATCH30_ME_AFRICA_LATAM: WeaponSystem[] = [
     '브라질 그리펜 NG. 36기 계약. 2019년 초도기 인도. 기술이전·현지생산 포함.',
     {speed:'마하 2.0',crew:'1명(A)/2명(B)',armament:'A-Darter·Derby·IRIS-T',firstDeployed:'2019년(브라질)',quantity:'36기',manufacturer:'사브·엠브라에르'},
     ['그리펜NG','브라질','36기','기술이전','엠브라에르'],['사브','브라질공군'],
-    undefined,undefined,85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/330px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg','https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',85),
 
   w('la-bra002','브라질 KC-390 밀레니엄','KC-390 Millennium Transport Brazil','AIRCRAFT','BRAZIL','OPERATIONAL','MED',
     '엠브라에르 KC-390. 브라질 독자 군수송기. C-130 대체. 포르투갈·네덜란드·체코 수출.',

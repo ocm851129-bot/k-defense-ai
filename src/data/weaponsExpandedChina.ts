@@ -20,7 +20,7 @@ export const WEAPONS_EXP_CHINA: WeaponSystem[] = [
     'DF-31 이동식 ICBM 최신형. 8축 TEL. 단탄두 또는 소형 MIRV. 사거리 11,200km.',
     {range:'11,200km',payload:'단탄두 또는 MIRV',propulsion:'3단 고체추진',firstDeployed:'2018년'},
     ['DF-31AG','ICBM','이동식','TEL','고체추진'],['PLARF'],
-    undefined,'https://en.wikipedia.org/wiki/DF-31',78),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/DF-31_ballistic_missiles_20170919.jpg/330px-DF-31_ballistic_missiles_20170919.jpg','https://en.wikipedia.org/wiki/DF-31',78),
 
   w('chn-m004','JL-3 SLBM','JL-3 (CSS-NX-20) SLBM','SLBM','CHINA','OPERATIONAL','CRITICAL',
     '094A형 SSBN 탑재 신형 SLBM. 사거리 10,000km+. MIRV 3~6기. JL-2의 후속. 중국 해상 핵억제 핵심.',

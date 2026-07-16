@@ -51,13 +51,13 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     'T-90 최신 프로르이브-3. 우크라이나 실전 투입 주력. 개선 복합장갑·Kontakt-5 ERA. SOSNA-U 조준.',
     {weight:'48t',armament:'125mm 2A46M-4·코넷·ATGM',crew:'3명',speed:'60km/h',firstDeployed:'2016년',quantity:'100여대(추가 증산)',manufacturer:'우랄바곤자보드'},
     ['T-90M','프로르이브3','러시아전차','우크라이나','125mm'],['우랄바곤자보드','러시아군'],
-    undefined,'https://en.wikipedia.org/wiki/T-90',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/T-90M.jpg/330px-T-90M.jpg','https://en.wikipedia.org/wiki/T-90',88),
 
   w('gf-rus002','T-14 아르마타 전차','T-14 Armata Next-Gen MBT Russia','GROUND','RUSSIA','DEVELOPMENT','CRITICAL',
     '러시아 4세대 전차. 무인포탑·APS 아프가니트·네트워크 전투. 우크라이나 소수 투입. 대량생산 지연.',
     {weight:'55t',armament:'125mm 2A82-1M/152mm(예정)',crew:'3명(전차 앞 캡슐)',firstDeployed:'2022년(소량)',manufacturer:'우랄바곤자보드'},
     ['T-14','아르마타','무인포탑','4세대전차','아프가니트'],['우랄바곤자보드','러시아국방부'],
-    undefined,'https://en.wikipedia.org/wiki/T-14_Armata',75),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/VDayRehearsal05052016-28.jpg/330px-VDayRehearsal05052016-28.jpg','https://en.wikipedia.org/wiki/T-14_Armata',75),
 
   w('gf-rus003','BMP-3 개량형 러시아','BMP-3 IFV Russia Upgraded','GROUND','RUSSIA','OPERATIONAL','HIGH',
     'BMP-3 개량형. 100mm포+30mm 동축. 코넷-EM ATGM. 우크라이나 대규모 손실에도 생산 지속.',
@@ -81,7 +81,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     'Buk-M2 9M317 미사일. 우크라이나 교전 다수. MH17 격추 모델(M1 계열). 사거리 45km.',
     {range:'45km',ceiling:'25km',firstDeployed:'2008년(M2)',manufacturer:'NPO Almaz'},
     ['BukM2','SA-17','방공','러시아SAM','우크라이나'],['Almaz','러시아군'],
-    undefined,'https://en.wikipedia.org/wiki/Buk_missile_system',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Buk-M1-2_air_defence_system_in_2010.jpg/330px-Buk-M1-2_air_defence_system_in_2010.jpg','https://en.wikipedia.org/wiki/Buk_missile_system',85),
 
   // ── 중국 지상군 추가 ────────────────────────────────────────────────
   w('gf-chn001','ZTZ-99A 전차','ZTZ-99A Type 99A MBT China','GROUND','CHINA','OPERATIONAL','HIGH',
@@ -196,7 +196,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     '미 특수전 M4A1. 다중 레일·야시경·소음기·AN/PEQ-15. SOF 표준 소총.',
     {weight:'2.52kg(빈몸)',caliber:'5.56×45mm NATO',capacity:'30발',range:'500m(유효)',manufacturer:'콜트·FNH USA'},
     ['M4A1','SOPMOD','특수전','SOCOM','소음기'],['콜트','FNH','미특수전'],
-    undefined,'https://en.wikipedia.org/wiki/M4_carbine',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/M4-Carbine-Sand.jpg/320px-M4-Carbine-Sand.jpg','https://en.wikipedia.org/wiki/M4_carbine',92),
 
   w('gf-sf002','SCAR-H Mk.17 FNH','SCAR-H Mk17 7.62mm SOCOM Rifle','GROUND','USA','OPERATIONAL','MED',
     'FNH SCAR-H 7.62mm. 미 해군 특수전(DEVGRU). DMR 겸용. 정밀·돌격 이중 역할.',

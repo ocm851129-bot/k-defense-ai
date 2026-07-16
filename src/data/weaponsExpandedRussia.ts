@@ -8,19 +8,19 @@ export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
     '러시아 최신 중액체추진 ICBM. 사거리 18,000km. MIRV 15기·극초음속 아방가르드 탑재 가능. 미 MD 무력화 설계.',
     {range:'18,000km',payload:'MIRV 15기 또는 아방가르드 HGV',propulsion:'액체추진 2단',firstDeployed:'2022년',manufacturer:'마케예프로켓센터'},
     ['RS-28','사르마트','ICBM','MIRV','아방가르드'],['러시아전략미사일군','RVSN'],
-    undefined,'https://en.wikipedia.org/wiki/RS-28_Sarmat',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sarmat-launch.webm/330px--Sarmat-launch.webm.jpg','https://en.wikipedia.org/wiki/RS-28_Sarmat',80),
 
   w('rus-n002','RS-24 야르스 ICBM','RS-24 Yars ICBM','ICBM','RUSSIA','OPERATIONAL','CRITICAL',
     '고체추진 이동식 ICBM. 사거리 11,000km. MIRV 3~6기. TEL 운용으로 생존성 극대화. 주력 지상 핵억제.',
     {range:'11,000km',payload:'MIRV 3~6기(150~300kt)',propulsion:'고체추진 3단',firstDeployed:'2010년',manufacturer:'마이트'},
     ['RS-24','야르스','ICBM','고체추진','MIRV'],['RVSN'],
-    undefined,'https://en.wikipedia.org/wiki/RS-24_Yars',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/RS-24_Yars.webm/330px--RS-24_Yars.webm.jpg','https://en.wikipedia.org/wiki/RS-24_Yars',88),
 
   w('rus-n003','R-30 불라바 SLBM','R-30 Bulava SLBM','SLBM','RUSSIA','OPERATIONAL','CRITICAL',
     '보레이급 SSBN 탑재 SLBM. 16발 탑재. MIRV 6~10기. 사거리 8,000~9,300km. 러시아 해상 핵억제 핵심.',
     {range:'9,300km',payload:'MIRV 6~10기(100~150kt)',propulsion:'3단 고체추진',firstDeployed:'2013년',manufacturer:'MIT'},
     ['R-30','불라바','SLBM','보레이','해상핵억제'],['러시아해군'],
-    undefined,'https://en.wikipedia.org/wiki/R-30_Bulava',85),
+    'https://upload.wikimedia.org/wikipedia/commons/6/6f/Bulava_SLBM_launched_by_Yuri_Dolgoruky_submarine_%28cropped%29.jpg','https://en.wikipedia.org/wiki/R-30_Bulava',85),
 
   w('rus-n004','Kh-47M2 킨잘 극초음속','Kh-47M2 Kinzhal Hypersonic Missile','CRUISE','RUSSIA','OPERATIONAL','CRITICAL',
     '공중발사 극초음속 탄도미사일. 마하 10+. MiG-31K·Tu-22M3·Su-57 탑재. 우크라이나 실전 사용.',
@@ -144,13 +144,13 @@ export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
     '우크라이나 전선 현역 최신 전차. 접촉-5 반응장갑·Arena APS·열영상 조준경. T-72B3 대비 성능 향상.',
     {weight:'48톤',armament:'2А46М-5 125mm·12.7mm Kord',crew:'3명',speed:'65km/h',propulsion:'V92S2F 1,130hp',firstDeployed:'2020년',manufacturer:'우랄바곤자보드'},
     ['T-90M','프로르이프','러시아전차','우크라이나','반응장갑'],['러시아육군'],
-    undefined,'https://en.wikipedia.org/wiki/T-90',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/T-90M.jpg/330px-T-90M.jpg','https://en.wikipedia.org/wiki/T-90',88),
 
   w('rus-g003','T-72B3M MBT','T-72B3M Main Battle Tank','GROUND','RUSSIA','OPERATIONAL','HIGH',
     '우크라이나 전선 손실 주력 전차. 콘타크트-5·T01-02M 열영상. 저가 대량생산형.',
     {weight:'45.5톤',armament:'2А46М-5 125mm·PKT',crew:'3명',speed:'60km/h',propulsion:'V-92S2 840hp',firstDeployed:'2016년',manufacturer:'우랄바곤자보드'},
     ['T-72B3M','러시아전차','우크라이나손실','대량','주력'],['러시아육군'],
-    undefined,'https://en.wikipedia.org/wiki/T-72',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/330px-Alabino05042017-40.jpg','https://en.wikipedia.org/wiki/T-72',92),
 
   w('rus-g004','BMP-3','BMP-3 Infantry Fighting Vehicle','GROUND','RUSSIA','OPERATIONAL','HIGH',
     '러시아 표준 보병전투차. 100mm 포+30mm 기관포 복합. 도하 가능 수상주행. 쿠웨이트·UAE 수출.',
@@ -206,7 +206,7 @@ export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
     '중거리 지대공 미사일 최신형. 사거리 70km. 6셀 동시교전. MH17 격추 Buk-M1의 후속형.',
     {range:'70km',altitude:'35km',guidance:'능동레이더',firstDeployed:'2016년',manufacturer:'티호미로프-NIIP'},
     ['Buk-M3','바이칼','중거리SAM','MH17후속','우크라이나'],['러시아육군'],
-    undefined,'https://en.wikipedia.org/wiki/Buk_missile_system',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Buk-M1-2_air_defence_system_in_2010.jpg/330px-Buk-M1-2_air_defence_system_in_2010.jpg','https://en.wikipedia.org/wiki/Buk_missile_system',85),
 
   w('rus-g013','Tor-M2 SAM','Tor-M2 SAM System','SAM','RUSSIA','OPERATIONAL','HIGH',
     '전방 야전 단거리 방공체계. 완전 자동화·이동 중 교전 가능. 드론 요격 특화.',

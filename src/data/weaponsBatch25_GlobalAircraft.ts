@@ -52,7 +52,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '러시아 유일 5세대 전투기. AESA 레이더·내부 무장창. 우크라이나 전쟁 제한적 투입. 양산 지연.',
     {speed:'마하 2.0',crew:'1명',armament:'R-77M·Kh-58UShKE·30mm GSh-30-1',firstDeployed:'2020년',quantity:'28기(2025)',manufacturer:'수호이'},
     ['Su-57','페레크','5세대','러시아스텔스'],['수호이','러시아공군'],
-    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-57',82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Sukhoi_Design_Bureau%2C_054%2C_Sukhoi_T-50_%28Su-57_prototype%29_%2849581303977%29.jpg/330px-Sukhoi_Design_Bureau%2C_054%2C_Sukhoi_T-50_%28Su-57_prototype%29_%2849581303977%29.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-57',82),
 
   w('ga-rus002','Tu-22M3 역화염','Tu-22M3 Backfire-C Bomber','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
     '러시아 중거리 전략폭격기. 가변익. Kh-22/32 대함미사일 탑재. 우크라이나 공격에 적극 사용.',
@@ -77,7 +77,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '중국 유일 5세대 스텔스. 강화형 J-20A(WS-15 엔진). AESA·내부무장창. 대만·남중국해 억제.',
     {speed:'마하 2.0+(추정)',crew:'1명',armament:'PL-15·PL-10·중력폭탄',firstDeployed:'2017년',quantity:'200여기(추정)',manufacturer:'청두항공'},
     ['J-20','흑검','5세대','중국스텔스','PL-15'],['청두항공','PLAAF'],
-    undefined,'https://en.wikipedia.org/wiki/Chengdu_J-20',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/J-20_at_CCAS2022_%2820220827103424%29.jpg/330px-J-20_at_CCAS2022_%2820220827103424%29.jpg','https://en.wikipedia.org/wiki/Chengdu_J-20',80),
 
   w('ga-chn002','J-16 전폭기','J-16 Multi-Role Strike Fighter','AIRCRAFT','CHINA','OPERATIONAL','HIGH',
     'Su-30MKK 기반 중국 독자 개발 다목적 전폭기. AESA·PL-15·YJ-12. PLAAF 핵심 타격전력.',
@@ -114,7 +114,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '스웨덴 단발 4.5세대. 스파이-7 AESA. 에어버스 미티어 탑재. 브라질·헝가리 수출. 우크라이나 요청.',
     {speed:'마하 2.0',crew:'1명',armament:'미티어·AIM-9L·SDB II',firstDeployed:'2020년(스웨덴/E형)',manufacturer:'사브'},
     ['그리펜E','JAS39E','스웨덴','미티어','AESA'],['사브','스웨덴공군'],
-    undefined,'https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/330px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg','https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',90),
 
   w('ga-eu004','토네이도 IDS 독일','Tornado IDS Germany Nuclear','AIRCRAFT','NATO','OPERATIONAL','MED',
     '독일 공군 핵폭탄 운반 임무 특화 토네이도. B61-12 탑재. F-35A로 교체 중.',
@@ -126,7 +126,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '체코 임차 그리펜. 14기. NATO 표준 무장 통합. 2024년 임차 계약 연장.',
     {speed:'마하 2.0',crew:'1명',armament:'AIM-120·AIM-9·Bk.90',firstDeployed:'2005년(체코)',quantity:'14기',manufacturer:'사브'},
     ['그리펜','체코','임차','JAS39C'],['사브','체코공군'],
-    undefined,undefined,85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/330px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg','https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',85),
 
   // ── 아시아 전투기 추가 ─────────────────────────────────────────────────
   w('ga-as001','HAL 테자스 MK1A','HAL Tejas MK1A Light Fighter India','AIRCRAFT','INDIA','OPERATIONAL','MED',

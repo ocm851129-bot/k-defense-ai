@@ -19,13 +19,13 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     'MBDA 장거리 공중발사 순항미사일. 사거리 560km. BROACH 탄두(지하 관통). 우크라이나 공급.',
     {range:'560km',speed:'마하 0.8',payload:'BROACH 관통·파편 탄두',guidance:'INS+TERCOM+IIR',firstDeployed:'2003년',manufacturer:'MBDA'},
     ['스톰섀도우','SCALP-EG','ALCM','우크라이나','관통탄두'],['MBDA','RAF','우크라이나'],
-    undefined,'https://en.wikipedia.org/wiki/Storm_Shadow',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/RAF_Museum%2C_Colindale%2C_London_-_DSC06025.JPG/330px-RAF_Museum%2C_Colindale%2C_London_-_DSC06025.JPG','https://en.wikipedia.org/wiki/Storm_Shadow',95),
 
   w('uk2-m002','브림스톤 2 대전차미사일','Brimstone 2 Anti-Armor Missile','ASM','UK','OPERATIONAL','HIGH',
     'Tornardo/Typhoon/Reaper 탑재. 밀리미터파 레이더+IR 이중 탐색기. 이동표적 자동 추적.',
     {range:'60km(공중)',payload:'탠덤 HEAT·EFP',guidance:'mmW 레이더+IR',firstDeployed:'2016년',manufacturer:'MBDA'},
     ['브림스톤2','mmW','대전차','이동표적','자동추적'],['MBDA','RAF'],
-    undefined,'https://en.wikipedia.org/wiki/Brimstone_missile',93),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Missile_MBDA_Brimstone.jpg/330px-Missile_MBDA_Brimstone.jpg','https://en.wikipedia.org/wiki/Brimstone_(missile)',93),
 
   w('uk2-m003','미티어 (영국)','Meteor BVRAAM (RAF)','AAM','UK','OPERATIONAL','LOW',
     'MBDA 미티어 영국 공군 운용. 마하 4+. 200km+. No-Escape Zone 최대. Typhoon·F-35 탑재.',
@@ -75,7 +75,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     'CAMIONHmated 6×6 자주포. 자주 이동·자동발사. 사거리 42km. 우크라이나·인도네시아·사우디 수출.',
     {weight:'18.5t',armament:'155mm/52구경장 TR-F1',crew:'5명',range:'42km',speed:'100km/h',firstDeployed:'2003년',manufacturer:'넥스터'},
     ['CAESAR','155mm','차륜형자주포','우크라이나수출','넥스터'],['넥스터','프랑스군'],
-    undefined,'https://en.wikipedia.org/wiki/CAESAR_self-propelled_howitzer',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/French_Caesar_self-propelled_howitzer_in_Iraq.jpg/330px-French_Caesar_self-propelled_howitzer_in_Iraq.jpg','https://en.wikipedia.org/wiki/CAESAR_self-propelled_howitzer',95),
 
   w('fr2-m001','ASMP-A 핵순항미사일','ASMP-A Nuclear Air-to-Surface Missile','CRUISE','FRANCE','OPERATIONAL','CRITICAL',
     '프랑스 공중발사 핵순항미사일. 라팔·미라쥬 2000N 탑재. 300kt 핵탄두. 사거리 500km+.',
@@ -136,7 +136,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '세계 최고 자주포. 155mm/52구경장·자동 탄약 처리(분당 13발). 사거리 56km. 우크라이나 지원.',
     {weight:'55.3t',armament:'155mm L52 곡사포',crew:'3명',range:'56km(V-LAP)',speed:'60km/h',firstDeployed:'1998년',manufacturer:'Rheinmetall·KMW',quantity:'250+문'},
     ['PzH2000','155mm','자주포','분당13발','우크라이나지원'],['Rheinmetall','독일군'],
-    undefined,'https://en.wikipedia.org/wiki/PzH_2000',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lithuanian_PzH_2000_%282%29.jpg/330px-Lithuanian_PzH_2000_%282%29.jpg','https://en.wikipedia.org/wiki/PzH_2000',97),
 
   w('de2-m002','IRIS-T SLM 방공','IRIS-T SLM Ground-Based Air Defense','SAM','GERMANY','OPERATIONAL','LOW',
     '독일 독자 지상 발사 IRIS-T. 사거리 40km. 우크라이나 지원 핵심 방공무기. 적극 주목.',
@@ -173,7 +173,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '스웨덴 사브 그리펜 E형. 미티어 통합. AESA ES-05 레이더. 브라질·스위스·핀란드 수주.',
     {speed:'마하 2.0',range:'3,000km',crew:'1명',armament:'미티어·IRIS-T·사이드윈더·영상유도폭탄',firstDeployed:'2021년',manufacturer:'사브'},
     ['그리펜E','JAS39E','스웨덴','미티어','수출'],['사브','스웨덴공군'],
-    undefined,'https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/330px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg','https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',90),
 
   w('swe2-m001','RBS-15 대함미사일','RBS-15 Mk3 Anti-Ship Missile','SSM','SWEDEN','OPERATIONAL','LOW',
     '스웨덴 함대함·공대함·지대함 다목적 순항미사일. 사거리 400km. 지상공격 가능.',
@@ -239,7 +239,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '개량형 HARM. GPS+수동 레이더 유도 복합. 사거리 270km. F/A-18E·F-35 탑재. 우크라이나 F-16 공급.',
     {range:'270km',guidance:'GPS+IIR+수동레이더',firstDeployed:'2022년(AARGM-ER)',manufacturer:'노스롭그루먼'},
     ['AARGM-ER','AGM-88E','대레이더미사일','HARM후속','우크라이나F-16'],['노스롭그루먼','미해군','NATO'],
-    undefined,'https://en.wikipedia.org/wiki/AGM-88_HARM',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/AGM-88_HARM_on_F-4G.jpg/330px-AGM-88_HARM_on_F-4G.jpg','https://en.wikipedia.org/wiki/AGM-88_HARM',90),
 
   // ── 스페인 ────────────────────────────────────────────────────────────────
   w('esp2-af001','유로파이터 타이푼 (스페인)','Eurofighter Typhoon (Spanish Air Force)','AIRCRAFT','NATO','OPERATIONAL','LOW',

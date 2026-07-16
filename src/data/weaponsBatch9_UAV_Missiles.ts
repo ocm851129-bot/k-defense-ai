@@ -138,13 +138,13 @@ export const WEAPONS_BATCH9_UAV_MISSILES: WeaponSystem[] = [
     '단거리 공대공미사일 최신형. 오프보어사이트 90°+. 잠금 전 발사(LOAL). 조종사 헬멧지시.',
     {range:'35km',speed:'마하 3+',guidance:'IR 영상 탐색기',firstDeployed:'2015년(Blk II)',manufacturer:'레이시온'},
     ['AIM-9X','사이드와인더','HOBS','오프보어사이트','IR'],['레이시온','미공군'],
-    undefined,'https://en.wikipedia.org/wiki/AIM-9_Sidewinder',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/AIM_9L_Sidewinder_%28modified%29_copy.jpg/330px-AIM_9L_Sidewinder_%28modified%29_copy.jpg','https://en.wikipedia.org/wiki/AIM-9_Sidewinder',97),
 
   w('mis-usa009','AIM-120D 암람','AIM-120D AMRAAM Active Radar AAM','AAM','USA','OPERATIONAL','LOW',
     'AIM-120 최신형. 사거리 180km. 데이터링크·능동레이더. 세계 표준 BVRAAM. F-35 내부 탑재.',
     {range:'180km',speed:'마하 4',guidance:'INS+데이터링크+능동레이더',firstDeployed:'2014년(D)',manufacturer:'레이시온',quantity:'세계 40국+ 운용'},
     ['AIM-120D','암람','BVRAAM','180km','세계표준'],['레이시온','미공군'],
-    undefined,'https://en.wikipedia.org/wiki/AIM-120_AMRAAM',99),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/20180328_AIM-120_Udvar-Hazy.jpg/330px-20180328_AIM-120_Udvar-Hazy.jpg','https://en.wikipedia.org/wiki/AIM-120_AMRAAM',99),
 
   w('mis-nato001','MICA-NG 공대공','MICA-NG New Generation AAM','AAM','NATO','DEVELOPMENT','LOW',
     'MBDA MICA 후속. 이중모드(능동레이더+IIR) 탐색기. 라팔·타이푼 탑재 예정. 2026년 서비스.',

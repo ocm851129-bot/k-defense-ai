@@ -40,13 +40,13 @@ export const WEAPONS_EXP_EUROPE: WeaponSystem[] = [
     '영국·프랑스 공동 스텔스 공대지 순항미사일. 사거리 560km+. 우크라이나 제공·실전 사용. F-35·타이푼 탑재.',
     {range:'560km+',speed:'마하 0.8',payload:'450kg 탠덤 탄두',guidance:'INS+지형추적+IIR',firstDeployed:'2003년',manufacturer:'MBDA'},
     ['스톰섀도','SCALP','공대지순항','우크라이나','스텔스'],['RAF','MBDA'],
-    undefined,'https://en.wikipedia.org/wiki/Storm_Shadow',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/RAF_Museum%2C_Colindale%2C_London_-_DSC06025.JPG/330px-RAF_Museum%2C_Colindale%2C_London_-_DSC06025.JPG','https://en.wikipedia.org/wiki/Storm_Shadow',97),
 
   w('uk-m002','브림스톤 2','Brimstone 2 ASM','ASM','UK','OPERATIONAL','LOW',
     '밀리미터파 레이더+레이저 복합 유도 공대지미사일. 이동표적 자동추적. 타이푼·토네이도 탑재. 우크라이나 제공.',
     {range:'12km(저고도)/60km(고고도)',payload:'6.3kg 성형작약',guidance:'밀리파레이더+SAL',firstDeployed:'2005년(2형 2016)',manufacturer:'MBDA'},
     ['브림스톤','밀리미터파','공대지','이동표적','우크라이나'],['RAF','MBDA'],
-    undefined,'https://en.wikipedia.org/wiki/Brimstone_(missile)',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Missile_MBDA_Brimstone.jpg/330px-Missile_MBDA_Brimstone.jpg','https://en.wikipedia.org/wiki/Brimstone_(missile)',95),
 
   w('uk-m003','AIM-132 ASRAAM','AIM-132 ASRAAM Short-Range AAM','AAM','UK','OPERATIONAL','LOW',
     '영국 개발 단거리 IR 유도 AAM. 마하 3+. 헬멧 연동 사격. 타이푼·F-35B 탑재.',

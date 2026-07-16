@@ -19,7 +19,7 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-nl001','레오파르트 2A6 네덜란드','Leopard 2A6 Netherlands','GROUND','NATO','OPERATIONAL','LOW','네덜란드 레오파르트 2A6. 우크라이나 일부 지원.',{weight:'62.3t',armament:'120mm L55·7.62mm×2',crew:'4명',firstDeployed:'2000년대',quantity:'61대(현역)+우크라이나지원'},['레오파르트','네덜란드','우크라이나지원'],['네덜란드군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',88),
 
   // ── 인도 지상 ─────────────────────────────────────────────────────────────
-  w('gnd-ind001','T-90S 비쉬마 전차','T-90S Bhishma MBT (India)','GROUND','INDIA','OPERATIONAL','HIGH','러시아 T-90S 면허생산 인도형. 1,657대. 파키스탄 대응.',{weight:'46t',armament:'125mm 2A46M-4·12.7mm·7.62mm',crew:'3명',speed:'60km/h',firstDeployed:'2001년',manufacturer:'HVF(면허생산)',quantity:'1,657대'},['T-90S','비쉬마','인도전차','면허생산'],['HVF','인도육군'],undefined,'https://en.wikipedia.org/wiki/T-90S_Bhishma',85),
+  w('gnd-ind001','T-90S 비쉬마 전차','T-90S Bhishma MBT (India)','GROUND','INDIA','OPERATIONAL','HIGH','러시아 T-90S 면허생산 인도형. 1,657대. 파키스탄 대응.',{weight:'46t',armament:'125mm 2A46M-4·12.7mm·7.62mm',crew:'3명',speed:'60km/h',firstDeployed:'2001년',manufacturer:'HVF(면허생산)',quantity:'1,657대'},['T-90S','비쉬마','인도전차','면허생산'],['HVF','인도육군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/T-90M.jpg/330px-T-90M.jpg','https://en.wikipedia.org/wiki/T-90S_Bhishma',85),
   w('gnd-ind002','BMP-2 사라트 IFV','BMP-2 Sarath IFV (India)','GROUND','INDIA','OPERATIONAL','MED','소련 BMP-2 면허생산 인도형. 1,400대+. 30mm 기관포.',{weight:'14t',armament:'30mm 2A42·7.62mm·AT-5',crew:'3+7명',firstDeployed:'1988년',manufacturer:'OFB(면허생산)',quantity:'1,400대+'},['BMP-2','사라트','인도IFV','30mm'],['OFB','인도육군'],undefined,undefined,82),
   w('gnd-ind003','K9 바즈라 자주포','K9 Vajra-T 155mm SPH (India)','ARTILLERY','INDIA','OPERATIONAL','LOW','한국 K9 인도 현지생산형(L&T). 100대 계약. 파키스탄 국경 배치.',{weight:'47t',armament:'155mm/52구경장',crew:'5명',range:'40km',firstDeployed:'2019년',manufacturer:'L&T(면허생산)',quantity:'100대'},['K9바즈라','인도자주포','L&T면허','파키스탄국경'],['L&T','한화에어로스페이스','인도육군'],undefined,undefined,88),
 
@@ -73,7 +73,7 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-rom001','TR-85M1 비존 전차','TR-85M1 Bizon MBT','GROUND','NATO','OPERATIONAL','MED','루마니아 독자 개발 전차. T-55 기반 현대화. 100mm 강선포. NATO 회원국 중 독특한 전차.',{weight:'50t',armament:'100mm D-10TS 강선포·14.5mm·7.62mm',crew:'4명',firstDeployed:'1986년(M1:1999년)',quantity:'254대'},['TR-85M1','루마니아전차','100mm','NATO'],['루마니아군'],undefined,'https://en.wikipedia.org/wiki/TR-85',75),
 
   // ── 폴란드 지상 (추가) ────────────────────────────────────────────────────
-  w('gnd-pol001','PT-91 트바르디 전차','PT-91 Twardy MBT (Poland)','GROUND','NATO','OPERATIONAL','MED','T-72M 폴란드 개량형. ERA·열상·사격통제. 말레이시아 수출.',{weight:'45.9t',armament:'125mm 2A46 활강포·12.7mm·7.62mm',crew:'3명',firstDeployed:'1993년',quantity:'232대(+말레이시아 수출)'},['PT-91','트바르디','폴란드','T-72개량'],['폴란드군'],undefined,'https://en.wikipedia.org/wiki/PT-91',82),
+  w('gnd-pol001','PT-91 트바르디 전차','PT-91 Twardy MBT (Poland)','GROUND','NATO','OPERATIONAL','MED','T-72M 폴란드 개량형. ERA·열상·사격통제. 말레이시아 수출.',{weight:'45.9t',armament:'125mm 2A46 활강포·12.7mm·7.62mm',crew:'3명',firstDeployed:'1993년',quantity:'232대(+말레이시아 수출)'},['PT-91','트바르디','폴란드','T-72개량'],['폴란드군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/330px-Alabino05042017-40.jpg','https://en.wikipedia.org/wiki/PT-91',82),
   w('gnd-pol002','KTO 로소막 장갑차','KTO Rosomak APC','GROUND','NATO','OPERATIONAL','LOW','핀란드 AMV 기반 폴란드 면허생산. 690대. 25mm 기관포.',{weight:'22t',armament:'Mk44 25mm·7.62mm',crew:'2+8명',speed:'100km/h',firstDeployed:'2004년',manufacturer:'Rosomak SA'},['로소막','폴란드','AMV기반','25mm'],['Rosomak SA','폴란드군'],undefined,'https://en.wikipedia.org/wiki/Rosomak',82),
 
   // ── 우크라이나 지상 ───────────────────────────────────────────────────────
@@ -93,10 +93,10 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-fin001','레오파르트 2A6FIN 핀란드','Leopard 2A6FIN Finland','GROUND','NATO','OPERATIONAL','LOW','핀란드 레오파르트 2A6. 200대. NATO 가입 후 군사력 급강화.',{weight:'62.3t',armament:'120mm L55',crew:'4명',quantity:'200대'},['레오파르트2A6','핀란드','200대','NATO'],['핀란드군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',88),
 
   // ── 체코 지상 ─────────────────────────────────────────────────────────────
-  w('gnd-cze001','T-72M4CZ 전차','T-72M4CZ Czech Republic','GROUND','NATO','OPERATIONAL','MED','T-72 체코 개량형. 프랑스 TURMS 사격통제·독일 MTU 엔진. 30대.',{weight:'48t',armament:'125mm 2A46M',crew:'3명',firstDeployed:'2004년',quantity:'30대'},['T-72M4CZ','체코전차','프랑스사격통제'],['체코군'],undefined,undefined,78),
+  w('gnd-cze001','T-72M4CZ 전차','T-72M4CZ Czech Republic','GROUND','NATO','OPERATIONAL','MED','T-72 체코 개량형. 프랑스 TURMS 사격통제·독일 MTU 엔진. 30대.',{weight:'48t',armament:'125mm 2A46M',crew:'3명',firstDeployed:'2004년',quantity:'30대'},['T-72M4CZ','체코전차','프랑스사격통제'],['체코군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/330px-Alabino05042017-40.jpg','https://en.wikipedia.org/wiki/T-72',78),
 
   // ── 슬로바키아 지상 ───────────────────────────────────────────────────────
-  w('gnd-svk001','T-72M1 슬로바키아','T-72M1 Slovakia','GROUND','NATO','OPERATIONAL','MED','슬로바키아 T-72M1. 우크라이나 지원으로 보유량 감소.',{armament:'125mm 2A46',crew:'3명',quantity:'30대(우크라이나지원후)'},['T-72M1','슬로바키아','우크라이나지원'],['슬로바키아군'],undefined,undefined,80),
+  w('gnd-svk001','T-72M1 슬로바키아','T-72M1 Slovakia','GROUND','NATO','OPERATIONAL','MED','슬로바키아 T-72M1. 우크라이나 지원으로 보유량 감소.',{armament:'125mm 2A46',crew:'3명',quantity:'30대(우크라이나지원후)'},['T-72M1','슬로바키아','우크라이나지원'],['슬로바키아군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/330px-Alabino05042017-40.jpg','https://en.wikipedia.org/wiki/T-72',80),
 
   // ── 포르투갈 지상 ─────────────────────────────────────────────────────────
   w('gnd-por001','레오파르트 2A6 포르투갈','Leopard 2A6 Portugal','GROUND','NATO','OPERATIONAL','LOW','포르투갈 레오파르트 2A6. 37대.',{weight:'62.3t',armament:'120mm L55',crew:'4명',quantity:'37대'},['레오파르트','포르투갈','37대'],['포르투갈군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',82),
@@ -142,6 +142,6 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-idn001','레오파르트 2A4 인도네시아','Leopard 2A4 Indonesia','GROUND','NATO','OPERATIONAL','LOW','독일 레오파르트 2A4 인도네시아 103대. 동남아 최다 레오파르트.',{weight:'55t',armament:'120mm L44',crew:'4명',firstDeployed:'2014년',quantity:'103대'},['레오파르트','인도네시아','동남아최다'],['인도네시아군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',85),
 
   // ── 베트남 지상 ───────────────────────────────────────────────────────────
-  w('gnd-vnm001','T-90SK 베트남','T-90SK Vietnam','GROUND','NATO','OPERATIONAL','HIGH','러시아 T-90S 베트남 도입. 64대. 중국 남중국해 긴장 대응.',{weight:'46.5t',armament:'125mm 2A46M-4',crew:'3명',firstDeployed:'2019년',quantity:'64대'},['T-90SK','베트남','중국대응','남중국해'],['러시아','베트남군'],undefined,undefined,82),
+  w('gnd-vnm001','T-90SK 베트남','T-90SK Vietnam','GROUND','NATO','OPERATIONAL','HIGH','러시아 T-90S 베트남 도입. 64대. 중국 남중국해 긴장 대응.',{weight:'46.5t',armament:'125mm 2A46M-4',crew:'3명',firstDeployed:'2019년',quantity:'64대'},['T-90SK','베트남','중국대응','남중국해'],['러시아','베트남군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/T-90M.jpg/330px-T-90M.jpg','https://en.wikipedia.org/wiki/T-90',82),
 
 ]

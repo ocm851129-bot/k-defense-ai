@@ -8,7 +8,7 @@ export const WEAPONS_BATCH33_GLOBAL_EXPAND: WeaponSystem[] = [
     'H&K HK416. 단기통식 가스. USMC·노르웨이·프랑스 표준. 오사마 빈라덴 제거 작전 사용.',
     {weight:'3.6kg',caliber:'5.56×45mm NATO',capacity:'30발',fireRate:'900rpm',manufacturer:'헤클러&코흐'},
     ['HK416','독일소총','USMC','프랑스표준','빈라덴작전'],['헤클러코흐','특수부대'],
-    undefined,'https://en.wikipedia.org/wiki/Heckler_%26_Koch_HK416',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/HK416-A5.jpg/320px-HK416-A5.jpg','https://en.wikipedia.org/wiki/Heckler_%26_Koch_HK416',92),
 
   w('sa-g002','FN SCAR-L Mk16 소총','FN SCAR-L Mk16 Assault Rifle Belgium','GROUND','BELGIUM','OPERATIONAL','MED',
     'FN SCAR-L 5.56mm. SOCOM 채택. 모듈식 설계. 다수 특수부대 운용.',
@@ -75,7 +75,7 @@ export const WEAPONS_BATCH33_GLOBAL_EXPAND: WeaponSystem[] = [
     '미국 스팅어 최신 블록1 개량. IIR 탐색기·교란 저항. 우크라이나·아프간·리비아 실전.',
     {range:'8km',speed:'마하 2.2',firstDeployed:'1981년(F형: 2003년)',manufacturer:'레이시언'},
     ['스팅어','FIM-92F','MANPADS','IIR','우크라이나'],['레이시언','미군'],
-    undefined,'https://en.wikipedia.org/wiki/FIM-92_Stinger',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Voorzijde_van_een_Stinger_lanceerbuis_met_richt-afvuurapparatuur_%282086-065-004%29.jpg/330px-Voorzijde_van_een_Stinger_lanceerbuis_met_richt-afvuurapparatuur_%282086-065-004%29.jpg','https://en.wikipedia.org/wiki/FIM-92_Stinger',92),
 
   w('ad-add005','HQ-17A 단거리방공 중국','HQ-17A Tor-M2KM Derivative China','SAM','CHINA','OPERATIONAL','HIGH',
     '중국 Tor-M2 기반 단거리방공. HQ-17. 드론·순항미사일 대응. 차량 탑재.',
@@ -234,6 +234,6 @@ export const WEAPONS_BATCH33_GLOBAL_EXPAND: WeaponSystem[] = [
     '폴란드·체코 T-72M1 대규모 우크라이나 공급. 러시아 전차 대응 구소련 전차.',
     {weight:'41.5t',armament:'125mm 2A46M',crew:'3명',firstDeployed:'1973년(기본)/1993년(M1R)'},
     ['T-72M1','폴란드체코','우크라이나공급','구소련전차'],['폴란드체코','우크라이나군'],
-    undefined,undefined,80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alabino05042017-40.jpg/330px-Alabino05042017-40.jpg','https://en.wikipedia.org/wiki/T-72',80),
 
 ]

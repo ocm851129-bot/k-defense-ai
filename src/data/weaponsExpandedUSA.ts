@@ -255,7 +255,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '보병 휴대형 적외선유도 대공미사일. 우크라이나·아프간 전선에서 효과 입증. 세계 30개국+ 운용.',
     {range:'4.5km',altitude:'3,800m',guidance:'적외선 추적',firstDeployed:'1981년',manufacturer:'레이시온'},
     ['스팅어','MANPADS','보병방공','적외선','우크라이나'],['US Army','레이시온'],
-    undefined,'https://en.wikipedia.org/wiki/FIM-92_Stinger',99),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Voorzijde_van_een_Stinger_lanceerbuis_met_richt-afvuurapparatuur_%282086-065-004%29.jpg/330px-Voorzijde_van_een_Stinger_lanceerbuis_met_richt-afvuurapparatuur_%282086-065-004%29.jpg','https://en.wikipedia.org/wiki/FIM-92_Stinger',99),
 
   w('usa-m008','AIM-120D AMRAAM','AIM-120D Advanced Medium Range AAM','AAM','USA','OPERATIONAL','LOW',
     '중거리 공대공 레이더 유도 미사일. 세계 표준 BVR AAM. 사거리 160km+. F-22·F-35·FA-18 탑재.',
@@ -267,7 +267,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '단거리 공대공 미사일. 오프보어사이트 기능·HOBS. 60년 역사의 지속 발전. 헬멧 조준 연동.',
     {range:'35km',speed:'마하 2.5',guidance:'적외선 영상 시커',firstDeployed:'1956년(9X 2003)',manufacturer:'레이시온'},
     ['AIM-9X','사이드와인더','단거리AAM','HOBS','오프보어'],['USAF','레이시온'],
-    undefined,'https://en.wikipedia.org/wiki/AIM-9_Sidewinder',99),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/AIM_9L_Sidewinder_%28modified%29_copy.jpg/330px-AIM_9L_Sidewinder_%28modified%29_copy.jpg','https://en.wikipedia.org/wiki/AIM-9_Sidewinder',99),
 
   w('usa-m010','AIM-260 JATM','AIM-260 Joint Advanced Tactical Missile','AAM','USA','DEVELOPMENT','LOW',
     'AIM-120 대체 차세대 중거리 공대공미사일. 중국 PL-15에 대응. F-22·F-35 내부 무장창 탑재 설계.',
@@ -355,7 +355,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '유선 유도 대전차미사일. 차량·헬기·보병 발사. 50년 역사·45개국 운용. TOW 2B는 탑공격 가능.',
     {range:'3,750m(TOW 2B)',payload:'탠덤 HEAT',guidance:'유선유도+SACLOS',firstDeployed:'1970년',manufacturer:'레이시온'},
     ['TOW','대전차미사일','유선유도','차량발사','M901'],['US Army','레이시온'],
-    undefined,'https://en.wikipedia.org/wiki/BGM-71_TOW',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Hires_090509-A-4842R-001a.jpg/330px-Hires_090509-A-4842R-001a.jpg','https://en.wikipedia.org/wiki/BGM-71_TOW',97),
 
   w('usa-m024','AGM-65 매버릭','AGM-65 Maverick ASM','ASM','USA','OPERATIONAL','LOW',
     '공대지 전술미사일. TV·레이저·적외선 유도 다종. A-10·F-16·FA-18·AH-64 등 탑재.',
@@ -367,7 +367,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '대방사미사일(ARM). 적 레이더 방사 즉시 추적·격파. EA-18G·F-16 탑재. GPS+수동레이더+INS 복합.',
     {range:'150km+',speed:'마하 2',guidance:'수동레이더+GPS+INS',firstDeployed:'2010년',manufacturer:'노스럽그러먼'},
     ['AARGM','대방사미사일','ARM','EA-18G','레이더파괴'],['USAF','노스럽그러먼'],
-    undefined,'https://en.wikipedia.org/wiki/AGM-88_HARM',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/AGM-88_HARM_on_F-4G.jpg/330px-AGM-88_HARM_on_F-4G.jpg','https://en.wikipedia.org/wiki/AGM-88_HARM',97),
 
   // ── 지상 전력 ─────────────────────────────────────────────────────────────
   w('usa-g001','M1A2 SEPv3 에이브럼스','M1A2 SEPv3 Abrams MBT','GROUND','USA','OPERATIONAL','LOW',
@@ -406,7 +406,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '3.7톤 초경량 155mm 견인포. CH-47·C-130 수송 가능. 우크라이나 대량 제공·실전 검증.',
     {armament:'155mm 39구경',range:'30km(표준)/40km(ERFB-BB)',weight:'3,745kg',crew:'8명',firstDeployed:'2005년',manufacturer:'BAE시스템즈'},
     ['M777','155mm','견인포','경량','우크라이나'],['US Army','BAE시스템즈'],
-    undefined,'https://en.wikipedia.org/wiki/M777_howitzer',99),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/M777_howitzer_rear.jpg/330px-M777_howitzer_rear.jpg','https://en.wikipedia.org/wiki/M777_howitzer',99),
 
   w('usa-g007','JLTV 합동경전술차량','Joint Light Tactical Vehicle','GROUND','USA','OPERATIONAL','LOW',
     'HMMWV 후계 다목적 경전술차량. IED 대응 방호강화. 4가지 파생형. 각국 수출 진행 중.',

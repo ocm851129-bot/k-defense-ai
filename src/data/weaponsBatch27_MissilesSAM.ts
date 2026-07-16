@@ -45,13 +45,13 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     '러시아 단거리 정밀탄도미사일. 500km. 기동탄두. 핵 가능. 벨라루스 배치. 우크라이나 공격.',
     {range:'500km',payload:'700kg',accuracy:'5~7m(CEP)',firstDeployed:'2006년',manufacturer:'MIT'},
     ['이스칸데르M','9M723','단거리탄도','기동탄두','벨라루스'],['러시아국방부'],
-    undefined,'https://en.wikipedia.org/wiki/9K720_Iskander',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Army2016demo-075.jpg/330px-Army2016demo-075.jpg','https://en.wikipedia.org/wiki/9K720_Iskander',85),
 
   w('ms-bal003','DF-21D 항모킬러 중국','DF-21D Anti-Ship Ballistic Missile','MISSILE','CHINA','OPERATIONAL','CRITICAL',
     '세계 최초 대함 탄도미사일. 마하 10. 1,500km. 기동 항모 추적. 미 항모전단 억제.',
     {speed:'마하 10+',range:'1,500km',payload:'600kg',firstDeployed:'2010년(추정)',manufacturer:'중국 방산부'},
     ['DF-21D','항모킬러','ASBM','대함탄도','중국'],['CSIS','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/DF-21',82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/DF-21A_TEL_-_Chinese_Military_Museum_Beijing.jpg/330px-DF-21A_TEL_-_Chinese_Military_Museum_Beijing.jpg','https://en.wikipedia.org/wiki/DF-21',82),
 
   w('ms-bal004','ATACMS PrSM 정밀타격미사일','PrSM Precision Strike Missile USA','MISSILE','USA','DEVELOPMENT','HIGH',
     'ATACMS 대체 PrSM. 499km+ 사거리. GPS+INS+SAR 복합 유도. M270·HIMARS 발사.',
@@ -76,7 +76,7 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     '이스라엘 아이언돔. 단거리로켓·박격포·드론 요격. 가자·레바논 실전검증. 미국 도입.',
     {range:'70km',speed:'마하 2.2',firstDeployed:'2011년',manufacturer:'라파엘·레이시언'},
     ['아이언돔','이스라엘','Tamir','C-RAM','가자'],['라파엘','이스라엘군'],
-    undefined,'https://en.wikipedia.org/wiki/Iron_Dome',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Iron_Dome_battery_near_Ashdod.jpg/320px-Iron_Dome_battery_near_Ashdod.jpg','https://en.wikipedia.org/wiki/Iron_Dome',95),
 
   w('ms-sam003','애로우-3 Arrow-3 이스라엘','Arrow-3 Exo-atmospheric Interceptor','SAM','ISRAEL','OPERATIONAL','HIGH',
     '이스라엘 외기권 탄도미사일 요격. 1,200km+ 사거리. 이란 탄도미사일 요격. 독일 도입 결정.',
@@ -124,14 +124,14 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     'Buk-M3 빅토르 개량. MH17 격추 MH17 사건 모델 후계. 우크라이나 사용. 사거리 70km.',
     {range:'70km',ceiling:'35km',firstDeployed:'2016년(M3)',manufacturer:'러시아 방산'},
     ['Buk-M3','빅토르','러시아방공','우크라이나','MH17'],['러시아국방부'],
-    undefined,'https://en.wikipedia.org/wiki/Buk_missile_system',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Buk-M1-2_air_defence_system_in_2010.jpg/330px-Buk-M1-2_air_defence_system_in_2010.jpg','https://en.wikipedia.org/wiki/Buk_missile_system',85),
 
   // ── 대전차 미사일 추가 ─────────────────────────────────────────────────
   w('ms-atm001','자벨린 FGM-148F','FGM-148F Javelin ATGM USA','MISSILE','USA','OPERATIONAL','HIGH',
     '세계 최강 휴대용 대전차미사일. 탑 어택 모드. 최소 사거리 65m. 우크라이나 대규모 공급.',
     {range:'4,750m',payload:'8.4kg 탠덤탄두',weight:'22.3kg',firstDeployed:'1996년',manufacturer:'레이시언/록히드마틴'},
     ['자벨린','FGM-148','대전차','탑어택','우크라이나'],['레이시언','미육군'],
-    undefined,'https://en.wikipedia.org/wiki/FGM-148_Javelin',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Javelin_with_checkout_equipment.jpg/330px-Javelin_with_checkout_equipment.jpg','https://en.wikipedia.org/wiki/FGM-148_Javelin',95),
 
   w('ms-atm002','NLAW ATGM 영국','NLAW Next Generation Light Anti-Tank UK','MISSILE','UK','OPERATIONAL','HIGH',
     'NLAW 차세대 경대전차. 예측비행형(PLOS). 단발 사용·휴대. 우크라이나 대규모 공급. 러시아 전차 격파.',
@@ -155,7 +155,7 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     'TOW 최신형. 2B 에어로 탑 어택. 개량형 탐색기. 전 세계 40개국+ 운용.',
     {range:'4,500m',payload:'탑공격 EFP',firstDeployed:'1987년(2B)/2014년(에어로)',manufacturer:'레이시언'},
     ['TOW-2B','에어로','대전차','탑어택','40개국'],['레이시언','미군'],
-    undefined,'https://en.wikipedia.org/wiki/BGM-71_TOW',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Hires_090509-A-4842R-001a.jpg/330px-Hires_090509-A-4842R-001a.jpg','https://en.wikipedia.org/wiki/BGM-71_TOW',90),
 
   w('ms-atm006','HJ-12 홍젠 12 중국','HJ-12 Red Arrow 12 ATGM China','MISSILE','CHINA','OPERATIONAL','HIGH',
     '중국 자벨린 대응형 4세대 대전차미사일. IIR 탐색기. 발사 후 망각. 탑 어택.',
@@ -168,13 +168,13 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     '영국·프랑스 공중발사 순항미사일. 550km. BROACH 탄두. 우크라이나 공급 핵심.',
     {range:'550km',payload:'450kg BROACH',speed:'마하 0.9',firstDeployed:'2003년',manufacturer:'MBDA'},
     ['SCALP-EG','스톰쉐도우','순항미사일','우크라이나'],['MBDA','영국프랑스'],
-    undefined,'https://en.wikipedia.org/wiki/MBDA_Storm_Shadow',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/RAF_Museum%2C_Colindale%2C_London_-_DSC06025.JPG/330px-RAF_Museum%2C_Colindale%2C_London_-_DSC06025.JPG','https://en.wikipedia.org/wiki/MBDA_Storm_Shadow',90),
 
   w('ms-crz002','타우러스 KEPD-350K','Taurus KEPD-350K Air-Launched Cruise Korea','MISSILE','GERMANY','OPERATIONAL','HIGH',
     '독일 타우러스 순항미사일 한국 도입. 500km. 벙커버스터. F-15K 탑재. 북한 전략목표 타격.',
     {range:'500km',payload:'MEPHISTO 481kg',speed:'마하 0.95',firstDeployed:'2013년(한국)',manufacturer:'TAURUS Systems(LFK·SAAB)'},
     ['타우러스','KEPD-350K','한국도입','F-15K','벙커버스터'],['타우러스시스템','방위사업청'],
-    undefined,'https://en.wikipedia.org/wiki/Taurus_KEPD_350',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Taurus_ILA2006.JPG/330px-Taurus_ILA2006.JPG','https://en.wikipedia.org/wiki/Taurus_KEPD_350',90),
 
   w('ms-crz003','AGM-158 JASSM 미국','AGM-158C LRASM Long Range Anti-Ship','MISSILE','USA','OPERATIONAL','HIGH',
     'JASSM 대함형 LRASM. 완전 자율 표적획득. 800km+. 스텔스. 중국 PLAN 억제.',

@@ -356,7 +356,7 @@ export const WEAPONS_SMALL_ARMS: WeaponSystem[] = [
     '북한 AK-47 복제판. 7.62×39mm. 1958년 소련 기술 이전 후 자체 생산. 북한군 주력 개인화기. 수출로 분쟁지역 확산.',
     {weight:'4.3kg', length:'880mm', caliber:'7.62×39mm', capacity:'30발', fireRate:'600rpm', manufacturer:'북한 군수공업', firstDeployed:'1958년'},
     ['소총','58식','북한AK','AK복제','7.62mm','수출'],['Jane\'s','GlobalSecurity'],
-    undefined,'https://en.wikipedia.org/wiki/Type_58_assault_rifle'),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/AK-47_type_II_Part_DM-ST-89-01131.jpg/320px-AK-47_type_II_Part_DM-ST-89-01131.jpg','https://en.wikipedia.org/wiki/Type_58_assault_rifle'),
 
   sa('sa-dprk-003','88식 소총','Type 88 Assault Rifle','RIFLE','DPRK','OPERATIONAL','HIGH',
     '북한 자체 설계 5.45mm 돌격소총. AK-74 영향. 1988년 개발. 폴딩 개머리판. 북한군 신세대 개인화기.',
