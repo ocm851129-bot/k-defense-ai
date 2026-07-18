@@ -28,23 +28,23 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-pak002','알 자라르 전차','Al-Zarrar Tank (Upgraded T-59)','GROUND','PAKISTAN','OPERATIONAL','MED','중국 T-54/55 개량형. 125mm 활강포·ERA 추가. 예비사단 운용.',{weight:'40t',armament:'125mm 활강포·12.7mm',crew:'4명',firstDeployed:'2004년',manufacturer:'HIT'},['알자라르','T-55개량','파키스탄'],['HIT','파키스탄군'],undefined,undefined,75),
 
   // ── 대만 지상 ─────────────────────────────────────────────────────────────
-  w('gnd-twn001','M1A2T 에이브람스 대만','M1A2T Abrams (Taiwan)','GROUND','TAIWAN','OPERATIONAL','LOW','대만 에이브람스 M1A2T. 108대 계약. 2024년 인도 시작. 중국 상륙 저지용.',{weight:'66.8t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2024년(대만)',manufacturer:'제너럴다이나믹스',quantity:'108대'},['M1A2T','대만전차','에이브람스','중국상륙저지'],['제너럴다이나믹스','대만군'],undefined,undefined,92),
+  w('gnd-twn001','M1A2T 에이브람스 대만','M1A2T Abrams (Taiwan)','GROUND','TAIWAN','OPERATIONAL','LOW','대만 에이브람스 M1A2T. 108대 계약. 2024년 인도 시작. 중국 상륙 저지용.',{weight:'66.8t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2024년(대만)',manufacturer:'제너럴다이나믹스',quantity:'108대'},['M1A2T','대만전차','에이브람스','중국상륙저지'],['제너럴다이나믹스','대만군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',92),
   w('gnd-twn002','M60A3TTS 전차 대만','M60A3TTS Taiwan','GROUND','TAIWAN','OPERATIONAL','LOW','M60A3 열상조준경 탑재형. 대만 주력전차 중 하나. 460대.',{weight:'52.6t',armament:'105mm M68A1·12.7mm·7.62mm',crew:'4명',firstDeployed:'1980년대',quantity:'460대'},['M60A3','대만','105mm','열상'],['대만군'],undefined,undefined,80),
   w('gnd-twn003','CM-11 용호전차 대만','CM-11 Brave Tiger MBT','GROUND','TAIWAN','OPERATIONAL','LOW','M60A3+M48A5 혼합형 대만 독자 개량전차. 100대.',{weight:'50t',armament:'105mm M68·7.62mm×2',crew:'4명',firstDeployed:'1990년',manufacturer:'NCSIST',quantity:'100대'},['CM-11','용호전차','대만독자'],['NCSIST','대만군'],undefined,undefined,78),
 
   // ── 호주 지상 ─────────────────────────────────────────────────────────────
-  w('gnd-aus001','M1A1 에이브람스 호주','M1A1 Abrams (Australia)','GROUND','AUSTRALIA','OPERATIONAL','LOW','호주 육군 M1A1 에이브람스. 59대. SEP 개량 추진.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2007년',manufacturer:'제너럴다이나믹스',quantity:'59대'},['M1A1','호주전차','에이브람스'],['제너럴다이나믹스','호주육군'],undefined,undefined,88),
+  w('gnd-aus001','M1A1 에이브람스 호주','M1A1 Abrams (Australia)','GROUND','AUSTRALIA','OPERATIONAL','LOW','호주 육군 M1A1 에이브람스. 59대. SEP 개량 추진.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2007년',manufacturer:'제너럴다이나믹스',quantity:'59대'},['M1A1','호주전차','에이브람스'],['제너럴다이나믹스','호주육군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',88),
   w('gnd-aus002','AS-LAV 장갑차 호주','AS-LAV Australia','GROUND','AUSTRALIA','OPERATIONAL','LOW','미국 LAV-25 기반 호주형. 25mm M242. 1990년대 도입.',{weight:'14.5t',armament:'M242 25mm·7.62mm',crew:'3+6명',firstDeployed:'1994년',quantity:'257대'},['AS-LAV','호주','25mm','장갑차'],['호주육군'],undefined,undefined,82),
 
   // ── 사우디아라비아 지상 ───────────────────────────────────────────────────
-  w('gnd-sar001','M1A2S 에이브람스 사우디','M1A2S Abrams (Saudi Arabia)','GROUND','NATO','OPERATIONAL','LOW','사우디 에이브람스. 373대. SEPv2 사우디 특화형.',{weight:'67t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2009년',quantity:'373대'},['M1A2S','사우디전차','에이브람스'],['제너럴다이나믹스','사우디군'],undefined,undefined,88),
+  w('gnd-sar001','M1A2S 에이브람스 사우디','M1A2S Abrams (Saudi Arabia)','GROUND','NATO','OPERATIONAL','LOW','사우디 에이브람스. 373대. SEPv2 사우디 특화형.',{weight:'67t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2009년',quantity:'373대'},['M1A2S','사우디전차','에이브람스'],['제너럴다이나믹스','사우디군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',88),
   w('gnd-sar002','LAV-25 사우디','LAV-25 Saudi Arabia','GROUND','NATO','OPERATIONAL','LOW','사우디 경보병 차량화 LAV-25. 1,100대+.',{weight:'14.5t',armament:'M242 25mm',crew:'3+6명',quantity:'1,100대+'},['LAV-25','사우디','경보병'],['사우디군'],undefined,undefined,80),
 
   // ── UAE 지상 ──────────────────────────────────────────────────────────────
   w('gnd-uae001','렉라이터 전차 (UAE)','Leclerc MBT UAE','GROUND','NATO','OPERATIONAL','LOW','프랑스 르클레르 UAE 수출형. 436대. 사막개량',{weight:'56t',armament:'120mm CN120-26·12.7mm·7.62mm',crew:'3명',firstDeployed:'1994년',manufacturer:'GIAT',quantity:'436대'},['르클레르','UAE','사막개량','120mm'],['GIAT','UAE군'],undefined,undefined,85),
 
   // ── 이집트 지상 ───────────────────────────────────────────────────────────
-  w('gnd-egy001','M1A1 에이브람스 이집트','M1A1 Abrams Egypt','GROUND','NATO','OPERATIONAL','LOW','이집트 에이브람스. 미국 공동생산(General Dynamics 이집트공장). 1,360대.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'1988년',manufacturer:'GD이집트공장',quantity:'1,360대'},['M1A1','이집트전차','공동생산'],['GD','이집트군'],undefined,undefined,88),
+  w('gnd-egy001','M1A1 에이브람스 이집트','M1A1 Abrams Egypt','GROUND','NATO','OPERATIONAL','LOW','이집트 에이브람스. 미국 공동생산(General Dynamics 이집트공장). 1,360대.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'1988년',manufacturer:'GD이집트공장',quantity:'1,360대'},['M1A1','이집트전차','공동생산'],['GD','이집트군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',88),
   w('gnd-egy002','M60A3 이집트','M60A3 Egypt','GROUND','NATO','OPERATIONAL','MED','미국 M60A3 이집트 운용. 900대. 예비전력.',{weight:'52.6t',armament:'105mm M68',crew:'4명',quantity:'900대'},['M60A3','이집트','105mm'],['이집트군'],undefined,undefined,80),
 
   // ── 브라질 지상 ───────────────────────────────────────────────────────────
@@ -109,13 +109,13 @@ export const WEAPONS_BATCH11_GROUND: WeaponSystem[] = [
   w('gnd-rom002','레오파르트 2A8 루마니아','Leopard 2A8 Romania','GROUND','NATO','DEVELOPMENT','LOW','루마니아 레오파르트 2A8 200대 계약(2024년). 최신형.',{firstDeployed:'2026년+(예상)',quantity:'200대(계약)'},['레오파르트2A8','루마니아','200대','신규'],['Rheinmetall','루마니아군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG/330px-Leopard_2_A7V_313_Bad_Frankenhausen_2024.JPG','https://en.wikipedia.org/wiki/Leopard_2',80),
 
   // ── 모로코 지상 ───────────────────────────────────────────────────────────
-  w('gnd-mar001','M1A1 에이브람스 모로코','M1A1 Abrams Morocco SA','GROUND','NATO','OPERATIONAL','LOW','모로코 M1A1 에이브람스 222대. 북아프리카 최강 기갑력.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2012년',quantity:'222대'},['M1A1','모로코','북아프리카'],['제너럴다이나믹스','모로코군'],undefined,undefined,85),
+  w('gnd-mar001','M1A1 에이브람스 모로코','M1A1 Abrams Morocco SA','GROUND','NATO','OPERATIONAL','LOW','모로코 M1A1 에이브람스 222대. 북아프리카 최강 기갑력.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2012년',quantity:'222대'},['M1A1','모로코','북아프리카'],['제너럴다이나믹스','모로코군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',85),
 
   // ── 쿠웨이트 지상 ────────────────────────────────────────────────────────
-  w('gnd-kwt001','M1A2 에이브람스 쿠웨이트','M1A2 Abrams Kuwait','GROUND','NATO','OPERATIONAL','LOW','쿠웨이트 에이브람스 M1A2. 218대.',{weight:'66.8t',armament:'120mm M256A1',crew:'4명',firstDeployed:'1994년',quantity:'218대'},['M1A2','쿠웨이트','에이브람스'],['GD','쿠웨이트군'],undefined,undefined,85),
+  w('gnd-kwt001','M1A2 에이브람스 쿠웨이트','M1A2 Abrams Kuwait','GROUND','NATO','OPERATIONAL','LOW','쿠웨이트 에이브람스 M1A2. 218대.',{weight:'66.8t',armament:'120mm M256A1',crew:'4명',firstDeployed:'1994년',quantity:'218대'},['M1A2','쿠웨이트','에이브람스'],['GD','쿠웨이트군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',85),
 
   // ── 이라크 지상 ───────────────────────────────────────────────────────────
-  w('gnd-irq001','M1A1M 에이브람스 이라크','M1A1M Abrams Iraq','GROUND','NATO','OPERATIONAL','MED','이라크군 M1A1. 140대. IS전 실전. 일부 격파·파괴.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2011년',quantity:'140대'},['M1A1','이라크','IS전','실전'],['GD','이라크군'],undefined,undefined,80),
+  w('gnd-irq001','M1A1M 에이브람스 이라크','M1A1M Abrams Iraq','GROUND','NATO','OPERATIONAL','MED','이라크군 M1A1. 140대. IS전 실전. 일부 격파·파괴.',{weight:'65t',armament:'120mm M256A1',crew:'4명',firstDeployed:'2011년',quantity:'140대'},['M1A1','이라크','IS전','실전'],['GD','이라크군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/M1A2_SEP_v3.jpg/330px-M1A2_SEP_v3.jpg','https://en.wikipedia.org/wiki/M1_Abrams',80),
 
   // ── 요르단 지상 ───────────────────────────────────────────────────────────
   w('gnd-jor001','찰린저 1 요르단','Challenger 1 (Al-Hussein) Jordan','GROUND','NATO','OPERATIONAL','LOW','영국 챌린저 1 요르단 수출. 392대. 알-후세인으로 개명.',{weight:'62t',armament:'120mm L11A5 강선포',crew:'4명',quantity:'392대'},['챌린저1','요르단','알후세인','수출'],['요르단군'],undefined,'https://en.wikipedia.org/wiki/Al-Hussein_(tank)',80),
