@@ -58,13 +58,13 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     'Su-27 기반 전폭기. 나란히 앉는 복좌 조종석. Kh-59·Kh-101 공대지. 우크라이나 전쟁 주요 타격기.',
     {speed:'마하 1.8',range:'4,000km',ceiling:'17,000m',crew:'2명',armament:'Kh-59·Kh-31·Kh-101·FAB-500M62·30mm GSh-30-1',firstDeployed:'2006년',manufacturer:'수호이',quantity:'140기'},
     ['Su-34','풀백','전폭기','복좌','우크라이나전쟁'],['러시아공군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-34',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Su-34_at_MAKS-2007.jpg/320px-Su-34_at_MAKS-2007.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-34',88),
 
   w('rus2-af004','Tu-160M2 블랙잭','Tu-160M2 Blackjack Strategic Bomber','AIRCRAFT','RUSSIA','OPERATIONAL','CRITICAL',
     '세계 최대 전략폭격기 재생산. 가변익. Kh-101/102 순항미사일 12발 탑재. 핵·재래식 이중용도.',
     {speed:'마하 2.05',range:'12,300km',ceiling:'15,000m',crew:'4명',armament:'Kh-101/102×12발·Kh-555·Kh-55',firstDeployed:'2022년(M2)',manufacturer:'카잔항공기생산협회',quantity:'20기+'},
     ['Tu-160','블랙잭','전략폭격기','가변익','Kh-101'],['러시아공군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Tupolev_Tu-160',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/TU-160_Blackjack.jpg/320px-TU-160_Blackjack.jpg','https://en.wikipedia.org/wiki/Tupolev_Tu-160',90),
 
   w('rus2-af005','Tu-22M3M 백파이어','Tu-22M3M Backfire-C Bomber','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
     'Tu-22M3 현대화형. Kh-32 대함미사일·Kh-101 순항미사일 통합. 전략·전술 이중 역할.',
@@ -76,18 +76,18 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '터보프롭 전략폭격기. 1950년대 설계 현역 운용. Kh-101/102 6발+Kh-55 16발. 핵억지 핵심.',
     {speed:'925km/h',range:'15,000km',crew:'7명',armament:'Kh-101/102×6발+Kh-55×10발',firstDeployed:'1955년(MSM:2020년대)',manufacturer:'툴라',quantity:'55기'},
     ['Tu-95','베어','전략폭격기','Kh-101','핵억지'],['러시아공군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Tupolev_Tu-95',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/TU-95MS.jpg/320px-TU-95MS.jpg','https://en.wikipedia.org/wiki/Tupolev_Tu-95',90),
 
   w('rus2-af007','Su-25SM3 프로그풋','Su-25SM3 Frogfoot','AIRCRAFT','RUSSIA','OPERATIONAL','MED',
     'Su-25 현대화형. SOLT-25 열상·위성유도 폭탄·Kh-25ML 레이저 유도. 우크라이나 CAS 임무.',
     {speed:'950km/h',range:'1,400km',crew:'1명',armament:'Kh-25ML·B-8 80mm 로켓·30mm GSh-30-2',firstDeployed:'2014년',manufacturer:'수호이·우란',quantity:'70기+'},
-    ['Su-25SM3','프로그풋','CAS','우크라이나','근접지원'],['러시아공군'],undefined,undefined,82),
+    ['Su-25SM3','프로그풋','CAS','우크라이나','근접지원'],['러시아공군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sukhoi_Su-25_in_2015.jpg/320px-Sukhoi_Su-25_in_2015.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-25',82),
 
   w('rus2-af008','MiG-31K BM 미그-31K','MiG-31K Kinzhal Carrier','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
     'Kh-47M2 킨잘 극초음속미사일 발사 전용기. MiG-31BM 개조. 2018년 실전 배치.',
     {speed:'마하 2.83',range:'3,000km',crew:'2명',armament:'Kh-47M2 킨잘 1발',firstDeployed:'2018년',manufacturer:'미코얀',quantity:'10기+'},
     ['MiG-31K','킨잘캐리어','극초음속','킨잘'],['러시아공군','CSIS'],
-    undefined,'https://en.wikipedia.org/wiki/Mikoyan_MiG-31',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mig-31_Foxhound.jpg/320px-Mig-31_Foxhound.jpg','https://en.wikipedia.org/wiki/Mikoyan_MiG-31',85),
 
   // ── 순항·극초음속 미사일 ──────────────────────────────────────────────────
   w('rus2-m001','Kh-47M2 킨잘 극초음속미사일','Kh-47M2 Kinzhal Hypersonic Missile','ASM','RUSSIA','OPERATIONAL','CRITICAL',
@@ -247,7 +247,7 @@ export const WEAPONS_BATCH4_RUSSIA2: WeaponSystem[] = [
     '세계 유일 현역 핵추진 순양함. 표트르 벨리키 1척 운용. S-300F·P-700 그라니트 대함미사일 20발.',
     {displacement:'28,000t',armament:'P-700 그라니트×20·S-300F·AK-130 130mm·기타',crew:'728명',speed:'31노트',firstDeployed:'1998년(표트르)',manufacturer:'발틱조선소'},
     ['표트르벨리키','키로프급','핵추진순양함','P-700','그라니트'],['러시아해군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kirov-class_battlecruiser.jpg/330px-Kirov-class_battlecruiser.jpg','https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',88),
 
   w('rus2-n002','마샬 우스티노프 (슬라바급)','Marshal Ustinov Slava-class Cruiser','NAVAL','RUSSIA','OPERATIONAL','HIGH',
     '슬라바급 2번함. 모스크바함(2022년 우크라이나에 격침) 자매함. P-1000 벌칸 대함 16발.',

@@ -15,7 +15,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '대지공격 전용기. 30mm GAU-8 개틀링포. 근접항공지원(CAS) 최강. 방어력 탁월. 퇴역 연기 중.',
     {speed:'706km/h',crew:'1명',armament:'30mm GAU-8 Avenger·매버릭·MK82',firstDeployed:'1977년',quantity:'281기',manufacturer:'페어차일드리퍼블릭'},
     ['A-10','썬더볼트','GAU-8','CAS','대지공격'],['페어차일드','USAF'],
-    undefined,'https://en.wikipedia.org/wiki/Fairchild_Republic_A-10_Thunderbolt_II',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/A-10_Thunderbolt_II_In-flight-2.jpg/320px-A-10_Thunderbolt_II_In-flight-2.jpg','https://en.wikipedia.org/wiki/Fairchild_Republic_A-10_Thunderbolt_II',90),
 
   w('ga-usa003','B-21 레이더 스텔스폭격기','B-21 Raider Stealth Bomber','AIRCRAFT','USA','DEVELOPMENT','HIGH',
     '차세대 핵전략 스텔스 폭격기. B-2 대체. 극초음속·핵폭탄 탑재. 100기 이상 생산 계획.',
@@ -45,7 +45,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '틸트로터 수직이착륙 수송기. 수평 비행 속도+헬기 이착륙 결합. USMC 핵심 상륙 전력.',
     {speed:'509km/h',crew:'3+24명',armament:'7.62mm M240·12.7mm',firstDeployed:'2007년',quantity:'400여기',manufacturer:'보잉·벨'},
     ['MV-22','오스프리','틸트로터','USMC','수직이착륙'],['보잉','벨','USMC'],
-    undefined,'https://en.wikipedia.org/wiki/Bell_Boeing_V-22_Osprey',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/MV-22B_Osprey_USMC.jpg/320px-MV-22B_Osprey_USMC.jpg','https://en.wikipedia.org/wiki/Bell_Boeing_V-22_Osprey',88),
 
   // ── 러시아 전투기 추가 ─────────────────────────────────────────────────
   w('ga-rus001','Su-57 페레크','Su-57 Felon 5th Gen Fighter','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
@@ -64,13 +64,13 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     'Su-27 기반 2인승 전폭기 개량형. 우크라이나 글라이드폭탄(KAB-500S·FAB-500M62) 집중 사용. 생산 증가 중.',
     {speed:'마하 1.8',crew:'2명(나란히)',armament:'Kh-59MK·KAB-500·FAB-500·Kh-31',firstDeployed:'2006년',quantity:'140여기',manufacturer:'수호이'},
     ['Su-34','풀백','전폭기','글라이드폭탄','우크라이나'],['수호이','러시아공군'],
-    undefined,'https://en.wikipedia.org/wiki/Sukhoi_Su-34',88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Su-34_at_MAKS-2007.jpg/320px-Su-34_at_MAKS-2007.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-34',88),
 
   w('ga-rus004','MiG-31BM 폭스하운드','MiG-31BM Foxhound Interceptor','AIRCRAFT','RUSSIA','OPERATIONAL','HIGH',
     '러시아 고속 요격기. 마하 2.83. Kh-47M2 킨잘 극초음속 미사일 발사. 우크라이나 요격에 사용.',
     {speed:'마하 2.83',crew:'2명',armament:'R-37M·Kh-47M2 킨잘·R-33',firstDeployed:'1981년(BM: 2000년대)',quantity:'250여기',manufacturer:'미그'},
     ['MiG-31BM','폭스하운드','요격기','킨잘','마하2.83'],['미그','러시아공군'],
-    undefined,'https://en.wikipedia.org/wiki/Mikoyan_MiG-31',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mig-31_Foxhound.jpg/320px-Mig-31_Foxhound.jpg','https://en.wikipedia.org/wiki/Mikoyan_MiG-31',85),
 
   // ── 중국 전투기 추가 ─────────────────────────────────────────────────
   w('ga-chn001','J-20A 흑검','J-20A Mighty Dragon 5th Gen Fighter','AIRCRAFT','CHINA','OPERATIONAL','HIGH',
@@ -264,7 +264,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '중국 CASC 익룡-II. 중동·아프리카·중앙아시아 수출. 예멘·리비아·이라크 실전 사용.',
     {ceiling:'9km',armament:'AR-1·AR-2·LS-6',firstDeployed:'2017년',manufacturer:'CASC'},
     ['익룡II','중국드론','수출','UCAV'],['CASC','중국공군'],
-    undefined,'https://en.wikipedia.org/wiki/CASC_Rainbow',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Wing_Loong.jpg/330px-Wing_Loong.jpg','https://en.wikipedia.org/wiki/CASC_Rainbow',80),
 
   w('ga-ucav004','크라노스 UCAV 그리스','Kranos UCAV Greece HAI','UAV','GREECE','DEVELOPMENT','LOW',
     '그리스 독자 개발 UCAV. HAI 설계. UCAV 자체 개발 야심 프로젝트. 초기 단계.',
@@ -309,7 +309,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     '세계 최대 가변익 전략폭격기 개량형. Kh-101·Kh-555 순항미사일 12발. 핵전력 핵심.',
     {speed:'마하 2.05',crew:'4명',armament:'Kh-101×12·Kh-555·핵폭탄',range:'12,300km',firstDeployed:'1987년(원형)/2022년(M2)',quantity:'16기',manufacturer:'카잔항공'},
     ['Tu-160M2','백조','전략폭격기','Kh-101','가변익'],['카잔항공','러시아공군'],
-    undefined,'https://en.wikipedia.org/wiki/Tupolev_Tu-160',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/TU-160_Blackjack.jpg/320px-TU-160_Blackjack.jpg','https://en.wikipedia.org/wiki/Tupolev_Tu-160',85),
 
   w('ga-bom003','H-20 차세대 폭격기','H-20 Stealth Bomber China','AIRCRAFT','CHINA','DEVELOPMENT','HIGH',
     '중국 차세대 스텔스 전략폭격기. B-2 유사 전익기. 핵·재래식 이중목적. 2025년 공개 예상.',
@@ -352,7 +352,7 @@ export const WEAPONS_BATCH25_GLOBAL_AIRCRAFT: WeaponSystem[] = [
     'Mi-24 대폭 개량. 단축익·야시·Ataka ATGM. 아프리카·중동 수출. 나이지리아·이라크 운용.',
     {speed:'310km/h',crew:'2+8명',armament:'12.7mm YakB·Ataka-V·S-8',firstDeployed:'2005년',manufacturer:'미그 로스토프'},
     ['Mi-35M','하인드E','공격헬기','수출'],['미그','러시아수출'],
-    undefined,'https://en.wikipedia.org/wiki/Mil_Mi-24',82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mi24CP_%28modified%29_b.jpg/330px-Mi24CP_%28modified%29_b.jpg','https://en.wikipedia.org/wiki/Mil_Mi-24',82),
 
   w('ga-hel006','RAH-66 코만치 (취소)','RAH-66 Comanche Stealth Scout Helo','HELICOPTER','USA','RETIRED','LOW',
     '미 육군 스텔스 정찰헬기. 2004년 취소. 예산 초과·개념변화. 대신 UAV로 대체.',

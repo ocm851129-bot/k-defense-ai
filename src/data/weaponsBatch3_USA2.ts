@@ -23,7 +23,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
   w('usa2-t004','M2A4 브래들리 IFV','M2A4 Bradley IFV','GROUND','USA','OPERATIONAL','LOW',
     'M2 브래들리 최신 개량형. 25mm M242 기관포·TOW2B 대전차미사일·레이저경보수신기.',
     {weight:'33.8t',armament:'25mm M242·TOW2B·7.62mm M240C',crew:'3+6명',speed:'66km/h',firstDeployed:'2020년',manufacturer:'BAE Systems',quantity:'3,500+대'},
-    ['M2A4','브래들리','IFV','25mm','TOW'],['BAE Systems','USARMY'],undefined,'https://en.wikipedia.org/wiki/Bradley_fighting_vehicle',93),
+    ['M2A4','브래들리','IFV','25mm','TOW'],['BAE Systems','USARMY'],'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Bradley_IFV.jpg/320px-Bradley_IFV.jpg','https://en.wikipedia.org/wiki/Bradley_fighting_vehicle',93),
 
   w('usa2-t005','M3A3 카발리 브래들리','M3A3 Bradley Cavalry Fighting Vehicle','GROUND','USA','OPERATIONAL','LOW',
     '브래들리 기병형. 보병 대신 증가연료·탄약. 기병 정찰 임무 특화.',
@@ -155,7 +155,7 @@ export const WEAPONS_BATCH3_USA2: WeaponSystem[] = [
     'CH-47 최신형. 디지털 조종석·향상 엔진. 중형 화물·병력·야포 슬링 수송. 590기+ 운용.',
     {speed:'298km/h',range:'741km',crew:'3+33명·화물10.9t',armament:'M134·M60D',firstDeployed:'2006년',manufacturer:'보잉',quantity:'590기+'},
     ['CH-47F','치누크','수송헬기','슬링','보잉'],['보잉','USARMY'],
-    undefined,'https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg/330px-CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg','https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',97),
 
   w('usa2-h004','MH-60M 블랙호크 (SOAR)','MH-60M Black Hawk (160th SOAR)','HELICOPTER','USA','OPERATIONAL','LOW',
     '미 특수전 항공연대(160th SOAR) 운용 개량형. 야간투시경·항법·피탐회피 강화. 빈라덴 작전 사용.',

@@ -125,7 +125,7 @@ export const WEAPONS_BATCH33_GLOBAL_EXPAND: WeaponSystem[] = [
     '네덜란드 아파치 롱보우. 롱보우 FCR 레이더. 말리·아프간 실전.',
     {speed:'293km/h',crew:'2명',armament:'30mm·헬파이어·하이드라',firstDeployed:'1998년(네덜란드)',quantity:'28기',manufacturer:'보잉'},
     ['아파치롱보우','네덜란드','FCR레이더','말리','아프간'],['보잉','네덜란드군'],
-    undefined,undefined,85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/AH-64D_Apache_Longbow.jpg/320px-AH-64D_Apache_Longbow.jpg','https://en.wikipedia.org/wiki/Boeing_AH-64_Apache',85),
 
   w('gd-add004','폴란드 K2PL 한국형 흑표','K2PL Black Panther Poland Polish Version','GROUND','ROK','DEVELOPMENT','HIGH',
     '폴란드 K2PL. 한화-폴란드 공동개발 K2 개량형. 1,000대. 2026년 생산 목표.',

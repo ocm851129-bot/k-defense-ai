@@ -20,7 +20,7 @@ export const WEAPONS_BATCH29_ASIA_OCEANIA: WeaponSystem[] = [
     '호주 슈퍼호넷. F-111 대체. 24기. Wedgetail와 연계 방공.',
     {speed:'마하 1.8',crew:'2명',armament:'JDAM·하푼·AIM-120',firstDeployed:'2010년(호주)',quantity:'24기',manufacturer:'보잉'},
     ['슈퍼호넷','호주','F/A-18F','F-111대체'],['보잉','RAAF'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/US_Navy_071203-N-8923M-074_An_F-A-18F_Super_Hornet%2C_from_the_Red_Rippers_of_Strike_Fighter_Squadron_%28VFA%29_11%2C_makes_a_sharp_turn_above_the_flight_deck_aboard_the_Nimitz-class_nuclear-powered_aircraft_carrier_USS_Harry_S._Truman.jpg/330px-thumbnail.jpg','https://en.wikipedia.org/wiki/Boeing_F/A-18E/F_Super_Hornet',88),
 
   w('ao-aus004','AS-90 호위함 프리깃','Arafura-class OPV Australia Replaced','SHIP','AUSTRALIA','DEVELOPMENT','LOW',
     '아라푸라급 해양순찰함. 2,000t. Mk41 VLS 없음. 8척. 해역감시·국경순찰.',
@@ -113,7 +113,7 @@ export const WEAPONS_BATCH29_ASIA_OCEANIA: WeaponSystem[] = [
     '대만 육군 아파치 E형. 30기. 반둥 상륙 저지 핵심. 헬파이어·하이드라.',
     {speed:'293km/h',crew:'2명',armament:'30mm M230·헬파이어',firstDeployed:'2014년(대만)',quantity:'30기',manufacturer:'보잉'},
     ['아파치E','대만','30기','헬파이어','반둥저지'],['보잉','대만육군'],
-    undefined,undefined,88),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/AH-64E_Apache_Guardian_helicopter.jpg/320px-AH-64E_Apache_Guardian_helicopter.jpg','https://en.wikipedia.org/wiki/Boeing_AH-64_Apache',88),
 
   // ── 싱가포르 무기 ─────────────────────────────────────────────────────
   w('ao-sgp001','F-35B 싱가포르','F-35B STOVL Singapore Air Force','AIRCRAFT','USA','DEVELOPMENT','HIGH',
@@ -215,7 +215,7 @@ export const WEAPONS_BATCH29_ASIA_OCEANIA: WeaponSystem[] = [
     '아제르바이잔 TB2. 나고르노-카라바흐 전쟁 핵심. 아르메니아 방공·지상군 제압.',
     {ceiling:'7.5km',armament:'MAM-L×4·MAM-C',firstDeployed:'2020년(카라바흐)',manufacturer:'바이카르'},
     ['TB2','바이락타르','아제르바이잔','카라바흐','터키드론'],['바이카르','아제르바이잔군'],
-    undefined,'https://en.wikipedia.org/wiki/Bayraktar_TB2',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bayraktar_TB2.jpg/320px-Bayraktar_TB2.jpg','https://en.wikipedia.org/wiki/Bayraktar_TB2',90),
 
   w('ao-uzb001','BMP-2 우즈베키스탄','BMP-2 Uzbekistan Upgraded Soviet Stock','GROUND','RUSSIA','OPERATIONAL','LOW',
     '우즈베키스탄 구소련 BMP-2 재고. 상당수 보관. 일부 현대화 작업.',

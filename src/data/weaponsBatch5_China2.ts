@@ -187,7 +187,7 @@ export const WEAPONS_BATCH5_CHINA2: WeaponSystem[] = [
     '중국 4세대 주력전차. 125mm ZPT-98A·구동형 ERA·레이저 다즐러. 사거리 2,000m AT-11 가능.',
     {weight:'58t',armament:'125mm ZPT-98A·12.7mm·7.62mm',crew:'3명',speed:'80km/h',firstDeployed:'2011년',manufacturer:'내몽골제1기계집단'},
     ['ZTZ-99A','Type99A','중국전차','125mm','ERA'],['중국군','IISS'],
-    undefined,'https://en.wikipedia.org/wiki/Type_99_tank',82),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/ZTZ-99A_tank_front_20170902.jpg/330px-ZTZ-99A_tank_front_20170902.jpg','https://en.wikipedia.org/wiki/Type_99_tank',82),
 
   w('chn2-t002','ZTZ-15 경전차','ZTZ-15 (Type 15) Light Tank','GROUND','CHINA','OPERATIONAL','MED',
     '고원·산악 작전용 경전차. 105mm 강선포·자동장전. 티베트·고원 배치. ZTZ-99 기동 불가 지형 전용.',

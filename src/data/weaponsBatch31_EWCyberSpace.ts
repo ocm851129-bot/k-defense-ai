@@ -57,7 +57,7 @@ export const WEAPONS_BATCH31_EW_CYBER_SPACE: WeaponSystem[] = [
     '미 공군 무인 우주왕복기. 비밀 궤도 임무. 800+일 체공 기록. 정찰·실험·무기 실험 추정.',
     {firstDeployed:'2010년',manufacturer:'보잉'},
     ['X-37B','우주왕복기','비밀임무','궤도실험'],['보잉','USAF'],
-    undefined,'https://en.wikipedia.org/wiki/Boeing_X-37',75),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/X-37B_concludes_mission_%28221111-F-XX000-0004%29.jpg/330px-X-37B_concludes_mission_%28221111-F-XX000-0004%29.jpg','https://en.wikipedia.org/wiki/Boeing_X-37',75),
 
   w('sp-chn001','중국 ASAT SC-19','SC-19 DN-1 ASAT Anti-Satellite China','MISSILE','CHINA','OPERATIONAL','CRITICAL',
     '중국 ASAT 위성요격미사일. 2007년 자국 위성 격추 실험. 저궤도 위성 요격.',

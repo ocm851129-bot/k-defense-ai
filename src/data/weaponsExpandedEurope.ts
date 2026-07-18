@@ -125,7 +125,7 @@ export const WEAPONS_EXP_EUROPE: WeaponSystem[] = [
     '독일 독자 중거리 지대공미사일. 사거리 40km. 우크라이나 제공·전력망 방어 성과. 레이더+지휘차 통합.',
     {range:'40km',altitude:'20km',guidance:'적외선 영상시커',firstDeployed:'2022년(우크라이나)',manufacturer:'딜빌이 / Diehl'},
     ['IRIS-T SLM','독일방공','우크라이나','중거리SAM','전력망방어'],['독일군','딜'],
-    undefined,'https://en.wikipedia.org/wiki/IRIS-T',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/IRIS-T_expo_front.JPG/330px-IRIS-T_expo_front.JPG','https://en.wikipedia.org/wiki/IRIS-T',95),
 
   w('deu-m002','KEPD 350 타우루스','KEPD 350 Taurus Cruise Missile','CRUISE','GERMANY','OPERATIONAL','LOW',
     '독일·스웨덴 공동 스텔스 공대지 순항미사일. 사거리 500km. 우크라이나 제공 논란(독일 거부).',

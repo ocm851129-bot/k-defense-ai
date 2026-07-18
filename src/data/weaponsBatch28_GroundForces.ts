@@ -20,7 +20,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     '브래들리 최신 A4. 25mm M242 체인건·TOW-2B. 디지털화. 우크라이나 공급 핵심.',
     {weight:'33.7t',armament:'25mm M242·TOW-2B·7.62mm',crew:'3+6명',speed:'60km/h',firstDeployed:'1981년(A4: 2022년)',manufacturer:'BAE Systems'},
     ['M2A4','브래들리','IFV','25mm','우크라이나'],['BAE','미육군'],
-    undefined,'https://en.wikipedia.org/wiki/Bradley_fighting_vehicle',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Bradley_IFV.jpg/320px-Bradley_IFV.jpg','https://en.wikipedia.org/wiki/Bradley_fighting_vehicle',90),
 
   w('gf-usa004','XM30 차기 IFV 미국','XM30 Mechanized Infantry Combat Vehicle USA','GROUND','USA','DEVELOPMENT','MED',
     '브래들리 대체 XM30. 50mm 포탑·APS·하이브리드 구동. 2030년대 전력화 목표.',
@@ -88,7 +88,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     '중국 주력 3세대 전차. FY-4 ERA·NERA 복합장갑. 2000hp. HJ-12 ATGM 발사 가능.',
     {weight:'58t',armament:'125mm ZPT-98A 활강포·QJC-88',crew:'3명',speed:'80km/h',firstDeployed:'2011년(99A)',quantity:'1,200여대(추정)',manufacturer:'NORINCO'},
     ['ZTZ-99A','99A형전차','중국전차','FY-4ERA'],['NORINCO','PLA'],
-    undefined,'https://en.wikipedia.org/wiki/Type_99_tank',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/ZTZ-99A_tank_front_20170902.jpg/330px-ZTZ-99A_tank_front_20170902.jpg','https://en.wikipedia.org/wiki/Type_99_tank',85),
 
   w('gf-chn002','ZBD-04A 보병전투차','ZBD-04A IFV China','GROUND','CHINA','OPERATIONAL','HIGH',
     '중국 BMP-3 설계 영향 IFV. 100mm+30mm. 수륙양용. HJ-73C ATGM.',
@@ -143,7 +143,7 @@ export const WEAPONS_BATCH28_GROUND_FORCES: WeaponSystem[] = [
     '핀란드 NASAMS 지대공미사일. 러시아 국경 방어. AMRAAM ER 탑재. 핀란드 NATO 가입 후 강화.',
     {range:'60km+(AMRAAM ER)',firstDeployed:'2011년',manufacturer:'콩스베르크·레이시언'},
     ['핀란드NASAMS','지대공','AMRAAM ER','핀란드','러시아국경'],['콩스베르크','핀란드군'],
-    undefined,undefined,85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Norwegian_Advanced_Surface_to_Air_Missile_System.jpg/330px-Norwegian_Advanced_Surface_to_Air_Missile_System.jpg','https://en.wikipedia.org/wiki/NASAMS',85),
 
   // ── 이스라엘 지상군 ─────────────────────────────────────────────────
   w('gf-isr001','메르카바 Mk4M 전차','Merkava Mk4M Trophy MBT Israel','GROUND','ISRAEL','OPERATIONAL','HIGH',

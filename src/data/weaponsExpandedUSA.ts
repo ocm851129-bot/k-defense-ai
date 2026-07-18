@@ -47,7 +47,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '2인승 복좌 슈퍼호넷. 전방석 조종사+후방석 WSO. 장거리 타격·전자전 임무 특화.',
     {speed:'마하 1.8',range:'2,346km',crew:'2명',armament:'AIM-120D·AGM-158C LRASM·JASSM',firstDeployed:'2001년',manufacturer:'보잉',quantity:'200기+'},
     ['F-18F','슈퍼호넷','복좌','WSO','해군'],['USN','보잉'],
-    undefined,'https://en.wikipedia.org/wiki/Boeing_F/A-18E/F_Super_Hornet',96),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/FA-18E_Super_Hornet_VFA-143.jpg/320px-FA-18E_Super_Hornet_VFA-143.jpg','https://en.wikipedia.org/wiki/Boeing_F/A-18E/F_Super_Hornet',96),
 
   w('usa-a008','EA-18G 그라울러','EA-18G Growler','AIRCRAFT','USA','OPERATIONAL','LOW',
     '슈퍼호넷 기반 전자전 전투기. 적 레이더·통신 교란. 항모 탑재. 미 해군 독점 전자공격 플랫폼.',
@@ -193,7 +193,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '탠덤 로터 대형 수송헬기. M1 전차 제외 대부분 군장비 수송. 21개국 운용. 아프가니스탄 산악전 주력.',
     {speed:'315km/h',range:'741km',ceiling:'5,640m',crew:'3+55명',payload:'10.9톤',firstDeployed:'1962년(F형 2006)',manufacturer:'보잉'},
     ['CH-47F','치누크','중형수송헬기','탠덤로터','산악전'],['US Army','보잉'],
-    undefined,'https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',98),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg/330px-CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg','https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',98),
 
   w('usa-a030','MH-60R 시호크','MH-60R Seahawk','HELICOPTER','USA','OPERATIONAL','LOW',
     '미 해군 함재 대잠·다목적헬기. 디핑소나·APS-153 레이더·MK54 어뢰 운용. 이지스함·항모 표준 탑재.',
@@ -535,7 +535,7 @@ export const WEAPONS_EXP_USA: WeaponSystem[] = [
     '미국 극비 무인 우주왕복기. 최장 908일 궤도체류. 임무 미공개. 중국·러시아 대응 우주 작전 능력.',
     {altitude:'200~800km LEO',propulsion:'태양광+비추력엔진',firstDeployed:'2010년',manufacturer:'보잉'},
     ['X-37B','우주왕복기','극비','우주전','OTV'],['US Space Force','보잉'],
-    undefined,'https://en.wikipedia.org/wiki/Boeing_X-37',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/X-37B_concludes_mission_%28221111-F-XX000-0004%29.jpg/330px-X-37B_concludes_mission_%28221111-F-XX000-0004%29.jpg','https://en.wikipedia.org/wiki/Boeing_X-37',90),
 
 ]
 

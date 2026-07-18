@@ -63,7 +63,7 @@ export const WEAPONS_BATCH9_UAV_MISSILES: WeaponSystem[] = [
     'AVIC 익룡 II 공격UAV. UAE·이집트·파키스탄 수출. 12발 무장. MQ-9 대응.',
     {speed:'370km/h',ceiling:'9,000m',armament:'AR-1·AR-2·YJ·레이저폭탄 최대12발',firstDeployed:'2017년',manufacturer:'AVIC'},
     ['윙룽II','익룡II','공격UAV','수출','중국'],['AVIC','수출국'],
-    undefined,'https://en.wikipedia.org/wiki/AVIC_Wing_Loong_II',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Wing_Loong.jpg/330px-Wing_Loong.jpg','https://en.wikipedia.org/wiki/AVIC_Wing_Loong_II',80),
 
   // ── 이스라엘 UAV ──────────────────────────────────────────────────────────
   w('uav-isr001','헤르메스 900 ISR UAV','Hermes 900 Medium Altitude UAV','UAV','ISRAEL','OPERATIONAL','LOW',

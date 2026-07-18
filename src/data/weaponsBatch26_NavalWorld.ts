@@ -14,13 +14,13 @@ export const WEAPONS_BATCH26_NAVAL_WORLD: WeaponSystem[] = [
     '미 차세대 스텔스 구축함. 155mm AGS 자동포·레이더 반사 최소화 설계. 3척 취역. 극초음속미사일 탑재 개조 중.',
     {displacement:'15,656t',armament:'155mm AGS·RGM-109·RIM-162 ESSM·Mk57 VLS',crew:'148명',firstDeployed:'2016년',quantity:'3척',manufacturer:'바스아이언웍스'},
     ['줌왈트','DDG-1000','스텔스구축함','155mm','극초음속'],['바스','USN'],
-    undefined,'https://en.wikipedia.org/wiki/Zumwalt-class_destroyer',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/USS_Zumwalt_%28DDG-1000%29_steams_through_the_Atlantic_Ocean_%28161017-N-ZW825-058%29.jpg/320px-USS_Zumwalt_%28DDG-1000%29_steams_through_the_Atlantic_Ocean_%28161017-N-ZW825-058%29.jpg','https://en.wikipedia.org/wiki/Zumwalt-class_destroyer',90),
 
   w('nw-usa003','버지니아급 SSN 블록5','Virginia-class SSN Block V Submarine','SUBMARINE','USA','OPERATIONAL','HIGH',
     '버지니아급 블록5. 페이로드 모듈(VPM) 추가 40기 토마호크. AUKUS 협력 기반. 128셀 VLS.',
     {displacement:'10,200t(블록5)',armament:'토마호크×128·Mk48 어뢰',crew:'135명',firstDeployed:'2020년(블록5)',manufacturer:'제너럴다이나믹스/HII'},
     ['버지니아급','블록5','공격핵잠','VPM','AUKUS'],['GD','USN'],
-    undefined,'https://en.wikipedia.org/wiki/Virginia-class_submarine',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Virginia_class_submarine.jpg/320px-Virginia_class_submarine.jpg','https://en.wikipedia.org/wiki/Virginia-class_submarine',95),
 
   w('nw-usa004','컨스텔레이션급 FFG-62','FFG-62 Constellation-class Frigate','SHIP','USA','DEVELOPMENT','MED',
     '미 해군 신형 호위함. FREMM 기반. SM-2·NSM·Mk41 VLS 32셀. 2026년 취역 목표.',
@@ -82,7 +82,7 @@ export const WEAPONS_BATCH26_NAVAL_WORLD: WeaponSystem[] = [
     '러시아 나히모프 키로프급 개조 복귀. Zircon·Kalibr·S-500 통합. 2026년 복귀 예상. 세계 최대 순양함.',
     {displacement:'28,000t',armament:'Zircon·Kalibr·P-700 그라닛·S-500',crew:'727명',firstDeployed:'1988년(나히모프)/2026년(재복귀)',manufacturer:'발틱조선'},
     ['나히모프','키로프급','지르콘','S-500','전투순양함'],['발틱조선','러시아해군'],
-    undefined,'https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',72),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kirov-class_battlecruiser.jpg/330px-Kirov-class_battlecruiser.jpg','https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',72),
 
   w('nw-rus004','카라칼 Kilo-III급 636.3','Project 636.3 Kilo-III Submarine','SUBMARINE','RUSSIA','OPERATIONAL','HIGH',
     '킬로 3세대 개량형. 6셀 Kalibr 크루즈미사일. 시리아·우크라이나 공격에 사용.',
@@ -95,7 +95,7 @@ export const WEAPONS_BATCH26_NAVAL_WORLD: WeaponSystem[] = [
     '영국 신형 항공모함. F-35B 36기 탑재. 65,000t. STOVL. 2017년 취역.',
     {displacement:'65,000t',armament:'F-35B×36·Phalanx CIWS·Sea Ceptor',crew:'1,600명',firstDeployed:'2017년',quantity:'2척',manufacturer:'BAE Systems'},
     ['퀸엘리자베스','항모','F-35B','영국항모','STOVL'],['BAE','영국해군'],
-    undefined,'https://en.wikipedia.org/wiki/Queen_Elizabeth-class_aircraft_carrier',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/HMS_Queen_Elizabeth_%28R08%29_in_the_Solent_in_2018_%28cropped%29.jpg/320px-HMS_Queen_Elizabeth_%28R08%29_in_the_Solent_in_2018_%28cropped%29.jpg','https://en.wikipedia.org/wiki/Queen_Elizabeth-class_aircraft_carrier',95),
 
   w('nw-eu002','프레데릭급 FREMM 이탈리아','FREMM Bergamini-class Frigate Italy','SHIP','NATO','OPERATIONAL','MED',
     '이탈리아 FREMM 호위함. Aster 15/30·MILAS 대잠. 10척 계획. 프랑스 Bretagne급과 설계공유.',

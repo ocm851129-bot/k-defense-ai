@@ -22,7 +22,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     'V/STOL 수직이착륙 공격기. 강습상륙함 탑재. F-35B 전환 중. 영국 공동 개발.',
     {speed:'1,065km/h',range:'1,360km',crew:'1명',armament:'25mm GAU-12·JDAM·AIM-9',firstDeployed:'1985년',manufacturer:'맥도넬더글라스·BAE',quantity:'80기+(감소 중)'},
     ['AV-8B','해리어','V/STOL','USMC','F-35B교체'],['USMC'],
-    undefined,'https://en.wikipedia.org/wiki/McDonnell_Douglas_AV-8B_Harrier_II',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Boeing_AV-8B_Harrier_II%2C_Italy_-_Navy_JP7306232.jpg/330px-Boeing_AV-8B_Harrier_II%2C_Italy_-_Navy_JP7306232.jpg','https://en.wikipedia.org/wiki/McDonnell_Douglas_AV-8B_Harrier_II',90),
 
   w('usa2-a004','E-2D 어드밴스드 호크아이','E-2D Advanced Hawkeye AEW','AIRCRAFT','USA','OPERATIONAL','LOW',
     '함재 공중조기경보기. 프로펠러형 AWACS. AN/APY-9 360도 레이더. 항모 전단 방공 관제',
@@ -71,7 +71,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     '줌왈트급 구축함 155mm AGS 제거 후 CPS 극초음속 미사일 8발 탑재 개조. 대중국 타격 억제.',
     {armament:'CPS 극초음속 미사일 8발(예정)',displacement:'15,900톤',firstDeployed:'2025년+(개조)'},
     ['줌왈트','극초음속개조','CPS','대중국','DDG-1000'],['USN'],
-    undefined,undefined,75),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/USS_Zumwalt_%28DDG-1000%29_steams_through_the_Atlantic_Ocean_%28161017-N-ZW825-058%29.jpg/320px-USS_Zumwalt_%28DDG-1000%29_steams_through_the_Atlantic_Ocean_%28161017-N-ZW825-058%29.jpg','https://en.wikipedia.org/wiki/Zumwalt-class_destroyer',75),
 
   w('usa2-n002','세계포드급 보급함','Supply-class AOE','NAVAL','USA','RETIRED','LOW',
     '미 해군 전속 전투지원함. 항모 전단과 동속 기동하며 연료·탄약·식량 보급. T-AO대체 중.',
@@ -281,7 +281,7 @@ export const WEAPONS_EXP_WORLD2: WeaponSystem[] = [
     'IRIS-T 단거리 지상발사 버전. 사거리 12km. 드론·헬기·항공기 요격. 우크라이나 제공.',
     {range:'12km',altitude:'8km',guidance:'적외선 영상시커',firstDeployed:'2022년(우크라이나)',manufacturer:'딜'},
     ['IRIS-T SLS','단거리SAM','우크라이나','드론요격','딜'],['독일군','우크라이나'],
-    undefined,'https://en.wikipedia.org/wiki/IRIS-T',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/IRIS-T_expo_front.JPG/330px-IRIS-T_expo_front.JPG','https://en.wikipedia.org/wiki/IRIS-T',92),
 
   w('nato2-m003','PzH 2000 자주포','PzH 2000 155mm SPH','ARTILLERY','GERMANY','OPERATIONAL','LOW',
     '독일 155mm/52구경 자주포. 분당 10발. 사거리 56km(ERBB). 우크라이나 제공·전선 사용.',

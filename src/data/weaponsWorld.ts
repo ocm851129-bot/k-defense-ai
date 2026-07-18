@@ -152,6 +152,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## Tu-160M2 Blackjack\n\n투폴레프가 설계한 가변익 초음속 전략폭격기. 세계 최대의 전투기이자 가장 빠른 폭격기다.\n\n### 주요 특징\n- 최고속도 마하 2.05\n- Kh-55/Kh-102 핵순항미사일 탑재\n- 사거리 12,000km\n- 2022년부터 현대화 M2 생산 재개\n\n### 전략적 의미\n러시아 핵3원 공중 전력의 주축. 비행코스에 따라 한반도 타격 가능.`,
     specs:{ range:'12,000km', speed:'마하 2.05', payload:'45,000kg', length:'54.1m', weight:'267,600kg', propulsion:'NK-32 터보팬×4', crew:'4명', firstDeployed:'1987년', manufacturer:'투폴레프', armament:'Kh-55/Kh-102 핵순항미사일×12발' },
     confidence:85, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['전략폭격기','핵폭격기','가변익'], sources:['IISS','Janes'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/TU-160_Blackjack.jpg/320px-TU-160_Blackjack.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Tupolev_Tu-160',
   },
   {
     id:'w-rus-003', name:'Kh-47M2 킨잘', nameEng:'Kh-47M2 Kinzhal',
@@ -360,6 +361,7 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## Arrow-3\n\nIAI와 보잉이 공동 개발한 이스라엘의 최상층 미사일 방어 체계. 탄도미사일을 대기권 밖에서 요격한다.\n\n### 주요 특징\n- 요격 고도 100km 이상\n- 사거리 2,400km\n- 핵 탄두 탑재 탄도미사일 요격\n- Hit-to-Kill 방식\n- Green Pine 레이더 연동`,
     specs:{ range:'2,400km', altitude:'100~150km', speed:'마하 9', guidance:'적외선 탐색기+INS', firstDeployed:'2017년', manufacturer:'IAI/보잉', accuracy:'Hit-to-Kill' },
     confidence:90, lastUpdated:'2026-04-01', relatedIntelIds:[], tags:['미사일방어','이스라엘','Arrow-3'], sources:['IDF','IAI'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg/330px-IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Arrow_3',
   },
   {
     id:'w-isr-003', name:'F-35I 아디르', nameEng:'F-35I Adir',
@@ -484,5 +486,6 @@ export const WEAPONS_WORLD: WeaponSystem[] = [
     detail:`## JAS-39E Gripen\n\n사브가 개발한 스웨덴의 다목적 경전투기 최신형. 경제적 운용비용과 단거리 이착륙 능력이 특징이다.\n\n### 주요 특징\n- ES-05 레이블 AESA 레이더\n- METEOR BVRAAM 운용\n- 도로 이착륙 가능\n- 유지비 F-16의 1/3 수준\n- NATO 표준 무장 통합`,
     specs:{ range:'3,200km', speed:'마하 2.0', payload:'5,300kg', length:'14.1m', weight:'7,000kg', propulsion:'GE F414G', firstDeployed:'2019년(E형)', manufacturer:'사브' },
     confidence:95, lastUpdated:'2026-03-01', relatedIntelIds:[], tags:['전투기','그리펜','스웨덴','NATO'], sources:['Saab','Swedish AF'],
+    imageUrl:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg/330px-Saab_JAS_39_Gripen_at_Kaivopuisto_Air_Show%2C_June_2017_%28altered%29_copy.jpg', wikiUrl:'https://en.wikipedia.org/wiki/Saab_JAS_39_Gripen',
   },
 ]

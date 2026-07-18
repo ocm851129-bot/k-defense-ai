@@ -274,7 +274,7 @@ export const WEAPONS_BATCH2_DPRK: WeaponSystem[] = [
   w('dprk-af004','Su-25 공격기','Su-25 Frogfoot (KPAF)','AIRCRAFT','DPRK','OPERATIONAL','HIGH',
     '지상군 근접지원 공격기. 34기 운용. Kh-25·Kh-29·S-24 로켓. 대지공격 주력.',
     {speed:'975km/h',range:'1,850km',crew:'1명',armament:'Kh-25·Kh-29·30mm GSh-30-2·FAB-500',firstDeployed:'1987년',quantity:'34기'},
-    ['Su-25','공격기','근접지원','북한공군'],['IISS','38North'],undefined,undefined,75),
+    ['Su-25','공격기','근접지원','북한공군'],['IISS','38North'],'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sukhoi_Su-25_in_2015.jpg/320px-Sukhoi_Su-25_in_2015.jpg','https://en.wikipedia.org/wiki/Sukhoi_Su-25',75),
 
   w('dprk-af005','H-5 폭격기 (IL-28형)','H-5 Beagle (KPAF)','AIRCRAFT','DPRK','OPERATIONAL','MED',
     '중국 H-5(Il-28 복제). 제트 폭격기. 80기 운용. 노후화. 화학탄·핵폭탄 투하 플랫폼.',

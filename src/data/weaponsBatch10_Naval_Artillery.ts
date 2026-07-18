@@ -14,13 +14,14 @@ export const WEAPONS_BATCH10_NAVAL_ARTILLERY: WeaponSystem[] = [
     '스텔스 구축함. 15,000t. 155mm AGS 함포(퇴역예정)→레일건·레이저 전환 예정. 3척.',
     {displacement:'15,000t',armament:'155mm AGS×2(→레일건 전환계획)·Mk57 VLS 80셀',crew:'147명',speed:'30노트',firstDeployed:'2016년',manufacturer:'바스 아이언웍스'},
     ['줌월트','DDG-1000','스텔스구축함','레일건','레이저'],['바스 아이언웍스','미해군'],
-    undefined,'https://en.wikipedia.org/wiki/Zumwalt-class_destroyer',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/USS_Zumwalt_%28DDG-1000%29_steams_through_the_Atlantic_Ocean_%28161017-N-ZW825-058%29.jpg/320px-USS_Zumwalt_%28DDG-1000%29_steams_through_the_Atlantic_Ocean_%28161017-N-ZW825-058%29.jpg','https://en.wikipedia.org/wiki/Zumwalt-class_destroyer',90),
 
   w('nav-usa003','알레이버크급 플라이트 III','Arleigh Burke-class Flight III Destroyer','NAVAL','USA','OPERATIONAL','LOW',
     '미 주력 이지스 구축함. 플라이트 III: SPY-6 레이더·SM-6·SM-3 Blk IIA. 96척+.',
     {displacement:'9,700t',armament:'VLS 96셀·SM-6·SM-3·하푼·5인치 62구경',crew:'330명',speed:'30노트',firstDeployed:'2021년(Flt III)',manufacturer:'HII·배스 아이언웍스'},
     ['알레이버크','Flt III','이지스구축함','SPY-6','SM-6'],['HII','바스','미해군'],
-    undefined,'https://en.wikipedia.org/wiki/Arleigh_Burke-class_destroyer',99),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/USS_Arleigh_Burke.jpg/320px-USS_Arleigh_Burke.jpg','https://en.wikipedia.org/wiki/Arleigh_Burke-class_destroyer',99),
+
 
   w('nav-usa004','타이콘데로가급 순양함','Ticonderoga-class Cruiser','NAVAL','USA','OPERATIONAL','LOW',
     '미 이지스 순양함. SPY-1A/B·Mk41 VLS 122셀·SM-2/6. 22척→퇴역 진행 중. DDG 대체.',
@@ -32,13 +33,13 @@ export const WEAPONS_BATCH10_NAVAL_ARTILLERY: WeaponSystem[] = [
     '미 전략핵잠수함. 트라이던트 II D5 SLBM 24발. 14척 운용. SSBN 4척→SSGN(토마호크 154발) 개조.',
     {displacement:'18,750t',armament:'트라이던트 II D5 SLBM×24',crew:'155명',speed:'25노트',firstDeployed:'1981년',manufacturer:'제너럴다이나믹스 Electric Boat',quantity:'14척SSBN+4척SSGN'},
     ['오하이오급','SSBN','트라이던트II','핵전략잠수함'],['EB','미해군'],
-    undefined,'https://en.wikipedia.org/wiki/Ohio-class_submarine',99),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/USS_Ohio_%28SSGN-726%29_-_DN-SD-05-12025.JPEG/320px-USS_Ohio_%28SSGN-726%29_-_DN-SD-05-12025.JPEG','https://en.wikipedia.org/wiki/Ohio-class_submarine',99),
 
   w('nav-usa006','버지니아급 핵잠수함 블록 V','Virginia-class Block V SSN','SUBMARINE','USA','OPERATIONAL','HIGH',
     '미 주력 공격핵잠수함 최신형. VPM 4개 추가 VLS(65발 토마호크). 7,900t.',
     {displacement:'7,900t',armament:'토마호크×65+·Mk48 어뢰·하푼',crew:'135명',speed:'25노트',firstDeployed:'2004년(Blk V: 2025년)',manufacturer:'제너럴다이나믹스 EB·HII'},
     ['버지니아급','Blk V','SSN','65발토마호크','AUKUS'],['EB','미해군'],
-    undefined,'https://en.wikipedia.org/wiki/Virginia-class_submarine',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Virginia_class_submarine.jpg/320px-Virginia_class_submarine.jpg','https://en.wikipedia.org/wiki/Virginia-class_submarine',97),
 
   w('nav-usa007','콘스텔레이션급 신형 호위함','Constellation-class FFG(X) Frigate','NAVAL','USA','DEVELOPMENT','LOW',
     'FFG(X) 미국 신형 호위함. FREMM 기반. SM-2·ESSM·NSM·MH-60R. 2027년 전력화.',

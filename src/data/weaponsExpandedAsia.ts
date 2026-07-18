@@ -121,7 +121,7 @@ export const WEAPONS_EXP_ASIA: WeaponSystem[] = [
     '대기권 외 고고도 ICBM·IRBM 요격. 이란 탄도미사일 방어 설계. 독일 도입 결정(2023).',
     {range:'2,400km+',altitude:'100km+(대기권외)',guidance:'직격요격(HitToKill)',firstDeployed:'2017년',manufacturer:'IAI·보잉'},
     ['애로우-3','이스라엘','ICBM요격','이란','독일도입'],['IDF','IAI'],
-    undefined,'https://en.wikipedia.org/wiki/Arrow_(Israeli_air_defense)',95),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg/330px-IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg','https://en.wikipedia.org/wiki/Arrow_(Israeli_air_defense)',95),
 
   w('isr-m004','제리코 III ICBM','Jericho III ICBM','ICBM','ISRAEL','SUSPECTED','HIGH',
     '이스라엘 추정 ICBM. 핵탄두 탑재 추정. 공식 미확인. 사거리 6,500~11,500km 추정.',

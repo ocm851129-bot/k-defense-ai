@@ -37,7 +37,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '영국 최대 항공모함. 65,000t. F-35B 36기 탑재. 팰렁크스·팔스 30mm·미사일 방어. 2017년 취역.',
     {displacement:'65,000t',armament:'팰렁크스 CIWS·팔스 30mm·F-35B 36기',crew:'1,600명',speed:'25노트',firstDeployed:'2017년',manufacturer:'BAE Systems'},
     ['퀸엘리자베스','R08','영국항모','F-35B','65000t'],['영국해군'],
-    undefined,'https://en.wikipedia.org/wiki/HMS_Queen_Elizabeth_(R08)',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/HMS_Queen_Elizabeth_%28R08%29_in_the_Solent_in_2018_%28cropped%29.jpg/320px-HMS_Queen_Elizabeth_%28R08%29_in_the_Solent_in_2018_%28cropped%29.jpg','https://en.wikipedia.org/wiki/HMS_Queen_Elizabeth_(R08)',97),
 
   w('uk2-n002','프린스 오브 웨일스함 (R09)','HMS Prince of Wales R09','NAVAL','UK','OPERATIONAL','LOW',
     '퀸 엘리자베스급 2번함. 자매함 동급 성능. 2019년 취역.',
@@ -93,7 +93,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '프랑스 핵추진 항공모함. 42,000t. 라팔M·호크아이 AEW 운용. 유럽 유일 핵항모.',
     {displacement:'42,000t',armament:'라팔M 40기·호크아이·Aster 15·20mm·CIWS',crew:'1,950명',speed:'27노트',firstDeployed:'2001년',manufacturer:'DCNS(나발그룹)'},
     ['드골','핵항모','프랑스','라팔M','유럽유일'],['나발그룹','프랑스해군'],
-    undefined,'https://en.wikipedia.org/wiki/French_aircraft_carrier_Charles_de_Gaulle',97),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Charles_De_Gaulle_at_sea.jpg/320px-Charles_De_Gaulle_at_sea.jpg','https://en.wikipedia.org/wiki/French_aircraft_carrier_Charles_de_Gaulle',97),
 
   w('fr2-n002','아킬랭급 핵잠수함 (SNA)','Suffren-class Nuclear Submarine (Barracuda)','SUBMARINE','FRANCE','OPERATIONAL','HIGH',
     '프랑스 신형 핵추진 공격잠수함. 바라쿠다급. 5,300t. SCALP Naval·F21 어뢰. 6척 건조.',
@@ -142,7 +142,7 @@ export const WEAPONS_BATCH6_EUROPE2: WeaponSystem[] = [
     '독일 독자 지상 발사 IRIS-T. 사거리 40km. 우크라이나 지원 핵심 방공무기. 적극 주목.',
     {range:'40km',altitude:'20km',speed:'마하 3',guidance:'IR 탐색기',firstDeployed:'2022년(우크라이나)',manufacturer:'Diehl Defence'},
     ['IRIS-T SLM','방공','우크라이나지원','40km','독일'],['Diehl','독일군'],
-    undefined,'https://en.wikipedia.org/wiki/IRIS-T',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/IRIS-T_expo_front.JPG/330px-IRIS-T_expo_front.JPG','https://en.wikipedia.org/wiki/IRIS-T',90),
 
   w('de2-n001','U-212A 잠수함 (독일)','Type 212A Submarine (Germany)','SUBMARINE','GERMANY','OPERATIONAL','LOW',
     'AIP 연료전지 잠수함. 1,830t. 매우 정숙. 이탈리아·한국(214)과 공동 개발. 독일 6척.',

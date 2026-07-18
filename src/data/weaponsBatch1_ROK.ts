@@ -487,7 +487,7 @@ export const WEAPONS_BATCH1_ROK: WeaponSystem[] = [
   w('rok-h004','CH-47D 치누크 (한국군)','CH-47D Chinook (ROKA)','HELICOPTER','ROK','OPERATIONAL','LOW',
     '중형 수송헬기. 18기 운용. 병력 수송·물자 공수·야포 슬링 수송.',
     {speed:'298km/h',range:'741km',crew:'3+33명',armament:'M134·M60D',firstDeployed:'1990년대',manufacturer:'보잉',quantity:'18기'},
-    ['치누크','CH-47D','수송헬기','중형','보잉'],['보잉','육군'],undefined,undefined,90),
+    ['치누크','CH-47D','수송헬기','중형','보잉'],['보잉','육군'],'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg/330px-CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg','https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',90),
 
   w('rok-h005','UH-60P 블랙호크','UH-60P Black Hawk (ROKA)','HELICOPTER','ROK','OPERATIONAL','LOW',
     '한국형 UH-60P(국산화). 기동헬기. 병력·물자 수송. KAI 면허생산.',

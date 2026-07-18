@@ -181,7 +181,7 @@ export const WEAPONS_BATCH24_ROK_MND: WeaponSystem[] = [
     '한국 육군 대형 수송헬기. 특수전·중장비 수송. D형 및 F형 혼용. 55기 운용.',
     {speed:'293km/h',crew:'3+55명(최대)',armament:'없음(구난총 제외)',firstDeployed:'1986년(한국)',quantity:'55기',manufacturer:'보잉'},
     ['CH-47','치누크','수송헬기','대형헬기'],['보잉','육군항공'],
-    undefined,'https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg/330px-CH-47_assigned_to_3rd_General_Support_Aviation_Battalion%2C_82nd_Combat_Aviation_Brigade.jpg','https://en.wikipedia.org/wiki/Boeing_CH-47_Chinook',90),
 
   w('mnd-air004','UH-60P 블랙호크','UH-60P Black Hawk ROK Army','HELICOPTER','USA','OPERATIONAL','LOW',
     '한국 KAI 면허생산 UH-60. 병력 수송·부상자 후송·특수전. 약 130기 운용.',

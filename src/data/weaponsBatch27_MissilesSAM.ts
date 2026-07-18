@@ -82,7 +82,7 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     '이스라엘 외기권 탄도미사일 요격. 1,200km+ 사거리. 이란 탄도미사일 요격. 독일 도입 결정.',
     {range:'2,400km(탐지)',ceiling:'100km+',firstDeployed:'2017년',manufacturer:'IAI·보잉'},
     ['애로우3','이스라엘','외기권요격','이란대응','독일'],['IAI','보잉','이스라엘국방부'],
-    undefined,'https://en.wikipedia.org/wiki/Arrow_3',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg/330px-IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg','https://en.wikipedia.org/wiki/Arrow_3',90),
 
   w('ms-sam004','데이비드 슬링 스파이더','David\'s Sling Stunner Interceptor','SAM','ISRAEL','OPERATIONAL','HIGH',
     '이스라엘 중거리 방공. 스턴너 요격체. 스커드·V-2급 탄도미사일 요격. 아이언돔·애로우 사이.',
@@ -112,7 +112,7 @@ export const WEAPONS_BATCH27_MISSILES_SAM: WeaponSystem[] = [
     '노르웨이 NASAMS. AIM-120 AMRAAM 지상발사형. 우크라이나 공급 핵심. 미국 도입.',
     {range:'25km+(AMRAAM)/100km+(ER)',firstDeployed:'1994년',manufacturer:'콩스베르크·레이시언'},
     ['NASAMS','AMRAAM지상발사','노르웨이','우크라이나'],['콩스베르크','레이시언'],
-    undefined,'https://en.wikipedia.org/wiki/NASAMS',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Norwegian_Advanced_Surface_to_Air_Missile_System.jpg/330px-Norwegian_Advanced_Surface_to_Air_Missile_System.jpg','https://en.wikipedia.org/wiki/NASAMS',90),
 
   w('ms-sam009','미스트랄 SHORAD 프랑스','Mistral SHORAD Missile France','SAM','FRANCE','OPERATIONAL','MED',
     '프랑스 적외선 유도 단거리 방공. 함정·차량·보병 탑재 다용도. 다수 국가 수출.',

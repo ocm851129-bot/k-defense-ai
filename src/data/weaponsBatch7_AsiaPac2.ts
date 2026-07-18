@@ -159,7 +159,7 @@ export const WEAPONS_BATCH7_ASIAPAC2: WeaponSystem[] = [
     '탄도미사일 대기권 외 요격. 사거리 2,400km. 핵탑재 IRBM 요격 가능. 미국 공동 개발·지원.',
     {range:'2,400km',altitude:'100km+(대기권외)',speed:'마하 9',guidance:'능동 레이더',firstDeployed:'2017년',manufacturer:'IAI·보잉'},
     ['애로우3','탄도미사일방어','대기권외','이란ICBM대응','미이스라엘'],['IAI','보잉','이스라엘군'],
-    undefined,'https://en.wikipedia.org/wiki/Arrow_3',90),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg/330px-IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg','https://en.wikipedia.org/wiki/Arrow_3',90),
 
   w('isr2-m002','아이언 돔 방공','Iron Dome Air Defense System','SAM','ISRAEL','OPERATIONAL','HIGH',
     '단거리 로켓·박격포 요격 방공. 70km 범위. 90%+ 성공률. 가자지구 수천 발 요격. 세계 최다 실전.',

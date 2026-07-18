@@ -376,7 +376,7 @@ export const WEAPONS_MAJOR_POWERS: WeaponSystem[] = [
     '이스라엘-미국 공동 개발 대기권 외 탄도미사일 요격 체계. 이란 ICBM·탄두 요격 가능. 2024년 이란 미사일 요격 성공.',
     {range:'2,400km',altitude:'100~150km(대기권 외)',guidance:'Ku-band 레이더+2단 요격기',firstDeployed:'2017년',manufacturer:'IAI+Boeing'},
     ['Arrow-3','헤츠3','탄도미사일요격','이란요격','이스라엘'],['IAI','Israel MOD'],
-    undefined,'https://en.wikipedia.org/wiki/Arrow_3',92),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg/330px-IAF-Arrow-3-%D7%97%D7%A5-sq1666.jpg','https://en.wikipedia.org/wiki/Arrow_3',92),
 
   w('isr-e03','F-35I Adir (이스라엘)','Lockheed Martin F-35I Adir (IAF)','AIRCRAFT','ISRAEL','OPERATIONAL','HIGH',
     '이스라엘 특수 개량 F-35A. 국산 장비 통합(링크16·EW 시스템). 이란 핵시설 장거리 타격 능력 보유. 50+대 운용 중.',

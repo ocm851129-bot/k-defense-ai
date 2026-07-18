@@ -124,13 +124,13 @@ export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
     '동축반전 공격헬기. 탈출 좌석 장착 세계 유일 공격헬기. 우크라이나 전선 대량 격파 손실.',
     {speed:'300km/h',range:'460km',armament:'30mm 2А42·Vikhr ATGM×12·Kh-25',firstDeployed:'1995년',manufacturer:'카모프·아르세니예프'},
     ['Ka-52','악어','공격헬기','동축반전','우크라이나'],['러시아육군항공'],
-    undefined,'https://en.wikipedia.org/wiki/Kamov_Ka-52',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Russian_Air_Force_Kamov_Ka-50.jpg/330px-Russian_Air_Force_Kamov_Ka-50.jpg','https://en.wikipedia.org/wiki/Kamov_Ka-52',85),
 
   w('rus-a010','Mi-28NM 하보크','Mi-28NM Havoc-B','HELICOPTER','RUSSIA','OPERATIONAL','HIGH',
     '러시아 주력 공격헬기. 30mm 기관포·대전차미사일·로켓. 야간전투 능력 강화형(NM).',
     {speed:'324km/h',range:'435km',armament:'30mm 2А42·Ataka·S-8 로켓',firstDeployed:'1993년(NM 2019)',manufacturer:'밀'},
     ['Mi-28NM','하보크','공격헬기','야간전투','ATGM'],['러시아육군항공'],
-    undefined,'https://en.wikipedia.org/wiki/Mil_Mi-28',85),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Russian_Air_Force%2C_RF-13489%2C_Mil_Mi-28NM_%2849581609382%29.jpg/330px-Russian_Air_Force%2C_RF-13489%2C_Mil_Mi-28NM_%2849581609382%29.jpg','https://en.wikipedia.org/wiki/Mil_Mi-28',85),
 
   // ── 지상 전력 ──────────────────────────────────────────────────────────────
   w('rus-g001','T-14 아르마타','T-14 Armata MBT','GROUND','RUSSIA','TESTING','HIGH',
@@ -237,13 +237,13 @@ export const WEAPONS_EXP_RUSSIA: WeaponSystem[] = [
     '세계 최대 핵추진 수상 전투함. P-700·S-300F·AK-130. 페트르 벨리키함 현역. 1척 수리 중.',
     {displacement:'28,000톤',length:'252m',crew:'710명',armament:'P-700 그라니트×20·S-300F VLS·AK-130',propulsion:'원자로 2기+스팀터빈',firstDeployed:'1980년',quantity:'1척(현역)'},
     ['키로프급','핵순양함','P-700','S-300F','세계최대'],['러시아해군'],
-    undefined,'https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',80),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kirov-class_battlecruiser.jpg/330px-Kirov-class_battlecruiser.jpg','https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',80),
 
   w('rus-nav005','어드미럴 나히모프 (개조중)','Admiral Nakhimov Refit Kirov Cruiser','NAVAL','RUSSIA','DEVELOPMENT','HIGH',
     '키로프급 2번함 현대화 개조 중. 칼리브르·치르콘·S-400F 탑재 예정. 2026년 재취역 목표.',
     {displacement:'28,000톤',armament:'칼리브르·치르콘·S-400F(예정)',firstDeployed:'2026년 재취역(예정)'},
     ['나히모프','키로프급','개조','치르콘','S-400F'],['러시아해군'],
-    undefined,undefined,60),
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kirov-class_battlecruiser.jpg/330px-Kirov-class_battlecruiser.jpg','https://en.wikipedia.org/wiki/Kirov-class_battlecruiser',60),
 
   w('rus-nav006','모스크바급 순양함 (격침)','Moskva Slava-class CG (sunk)','NAVAL','RUSSIA','RETIRED','HIGH',
     '러시아 흑해함대 기함. 2022년 우크라이나 넵튠 대함미사일에 격침. 전쟁사 최대 순양함 손실.',
